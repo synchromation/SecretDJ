@@ -6,18 +6,23 @@ description: How features are structured in this app — file layout, @Observabl
 # iOS Architecture
 
 Every feature in this app follows one shape. The Counter feature is the golden
-example — match its structure, naming, and granularity exactly. Read these
-files before writing a new feature:
+example — match its structure, naming, and granularity exactly.
 
-- [CounterModel.swift](../../../Untitled Project/Features/Counter/CounterModel.swift) — the observable model
-- [CounterStoring.swift](../../../Untitled Project/Features/Counter/CounterStoring.swift) — a dependency seam
-- [UserDefaultsCounterStore.swift](../../../Untitled Project/Features/Counter/UserDefaultsCounterStore.swift) — the production implementation
-- [InMemoryCounterStore.swift](../../../Untitled Project/Features/Counter/InMemoryCounterStore.swift) — the test/preview implementation
-- [UntitledProjectApp.swift](../../../Untitled Project/App/UntitledProjectApp.swift) — composition root
+Locations (used throughout the skills): **the app folder** is the source
+folder that shares the `.xcodeproj`'s name; **the tests folder** is its
+`<app>Tests/` sibling. Read these files in the app folder before writing a
+new feature:
+
+- `Features/Counter/CounterModel.swift` — the observable model
+- `Features/Counter/CounterStoring.swift` — a dependency seam
+- `Features/Counter/UserDefaultsCounterStore.swift` — the production implementation
+- `Features/Counter/InMemoryCounterStore.swift` — the test/preview implementation
+- `App/` — the `@main` app struct, the composition root
 
 ## Feature anatomy
 
-Each feature lives in its own folder under `Untitled Project/Features/<Name>/`:
+Each feature lives in its own folder under `Features/<Name>/` in the app
+folder:
 
 ```
 Features/Counter/
@@ -28,7 +33,7 @@ Features/Counter/
 └── InMemoryCounterStore.swift       # in-memory implementation for tests/previews
 ```
 
-Tests mirror this in `Untitled ProjectTests/` (see the swift-testing skill).
+Tests mirror this in the tests folder (see the swift-testing skill).
 
 ## Rules
 
@@ -47,7 +52,7 @@ in-memory fake. Nothing reaches a singleton (`UserDefaults.standard`,
 `URLSession.shared`) from inside logic code — singletons appear only as
 default arguments in production implementations or at the composition root.
 
-**Composition** happens in `App/UntitledProjectApp.swift`: production
+**Composition** happens in the `@main` app struct in `App/`: production
 dependencies are constructed there and handed down. State flows down, events
 flow up; no view reaches sideways into another view's state.
 

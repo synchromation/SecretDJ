@@ -26,9 +26,15 @@ procedure — no shortcuts.
    what triggers loading, so include the verbs a task would contain).
 
 4. **Ground it in real code.** Rules must point at golden examples — actual
-   files in the repository, linked by relative path — not invented snippets
-   that will drift. If no exemplar exists yet, build one first (it must
-   compile and pass `Scripts/verify.sh`) and link to it.
+   files in the repository — not invented snippets that will drift. If no
+   exemplar exists yet, build one first (it must compile and pass
+   `Scripts/verify.sh`) and reference it.
+
+   **Skills are transferable**: never embed the project name in a skill,
+   agent, or hook. Reference files by path relative to *the app folder* or
+   *the tests folder* (vocabulary defined in ios-architecture), e.g.
+   `Features/Counter/CounterModel.swift` — not by a repository-root path
+   that contains the project's name.
 
 5. **Run the consistency check.** Read every other `SKILL.md` in
    `.claude/skills/` end to end and confirm:
@@ -37,7 +43,8 @@ procedure — no shortcuts.
      in the same change, and note the resolution.
    - No duplication: the same rule isn't stated in two skills. Replace
      repetition with a link to the owning skill.
-   - All file links in the new/edited skill resolve to files that exist.
+   - All file references in the new/edited skill resolve to files that
+     exist, and none embeds the project name.
 
 6. **Update the index** in the same change: one line per skill in
    [INDEX.md](../INDEX.md) — name, one-sentence scope, owned conventions.

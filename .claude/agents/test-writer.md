@@ -28,7 +28,8 @@ Then:
   report the design problem back with the specific refactor needed per the
   ios-architecture skill.
 
-Place test files in `Untitled ProjectTests/` as `<TypeName>Tests.swift`.
+Place test files in the tests folder (`<app>Tests/`, beside the app source
+folder) as `<TypeName>Tests.swift`.
 
 Your finish line depends on the mode you were invoked in:
 

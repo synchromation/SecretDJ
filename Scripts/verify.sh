@@ -15,10 +15,19 @@
 set -o pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-PROJECT="$PROJECT_DIR/Untitled Project.xcodeproj"
-SCHEME="Untitled Project"
+
+# Auto-discover the project so this script transfers between projects
+# unchanged. Convention: the shared scheme matches the project name, and the
+# unit test target is "<project>Tests".
+PROJECT="$(find "$PROJECT_DIR" -maxdepth 1 -name '*.xcodeproj' -print -quit)"
+if [ -z "$PROJECT" ]; then
+	echo "error: no .xcodeproj found in $PROJECT_DIR" >&2
+	exit 1
+fi
+APP_NAME="$(basename "$PROJECT" .xcodeproj)"
+SCHEME="$APP_NAME"
+TEST_TARGET="${APP_NAME}Tests"
 DERIVED_DATA="$PROJECT_DIR/build/DerivedData"
-TEST_TARGET="Untitled ProjectTests"
 ACTION="${1:-test}"
 [ $# -gt 0 ] && shift
 

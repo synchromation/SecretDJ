@@ -8,8 +8,8 @@ description: The red-green-refactor workflow for building behavior — tests are
 New behavior in this project is built test-first, at **feature level**: the
 whole behavior list is specified as tests in one pass, proven red, then
 implemented to green. The Counter feature shows the target end state —
-[CounterModelTests.swift](../../../Untitled ProjectTests/CounterModelTests.swift)
-is what a finished spec looks like.
+`CounterModelTests.swift` in the tests folder is what a finished spec looks
+like.
 
 This skill owns the *process and ordering*; test mechanics (framework,
 naming, structure, fakes) are owned by the swift-testing skill and

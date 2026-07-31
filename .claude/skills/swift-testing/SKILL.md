@@ -5,11 +5,9 @@ description: How tests are written in this project — Swift Testing framework, 
 
 # Swift Testing
 
-The golden examples are
-[CounterModelTests.swift](../../../Untitled ProjectTests/CounterModelTests.swift)
-and
-[UserDefaultsCounterStoreTests.swift](../../../Untitled ProjectTests/UserDefaultsCounterStoreTests.swift).
-Match their shape.
+The golden examples are `CounterModelTests.swift` and
+`UserDefaultsCounterStoreTests.swift` in the tests folder (`<app>Tests/`,
+beside the app folder — see ios-architecture). Match their shape.
 
 ## Ground rules
 
@@ -22,10 +20,12 @@ Match their shape.
 - **Tests come first**: the order of work (spec → red → green → refactor)
   is owned by the [tdd skill](../tdd/SKILL.md); this skill owns how the
   tests themselves are written.
-- Test files live in `Untitled ProjectTests/`, one file per type under test,
+- Test files live in the tests folder, one file per type under test,
   named `<TypeName>Tests.swift`, containing a `struct <TypeName>Tests`.
   New files there are picked up automatically.
-- Import the app with `@testable import Untitled_Project`.
+- Import the app with `@testable import <AppModule>` — the app's module
+  name is the project name with non-identifier characters (spaces, hyphens)
+  replaced by underscores; copy it from the golden examples.
 
 ## Structure and naming
 

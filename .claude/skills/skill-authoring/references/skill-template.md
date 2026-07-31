@@ -10,13 +10,15 @@ description: <What this covers — and when to use it. Written so a task that ne
 
 # <Title>
 
-<One short paragraph: what this skill governs, and a link to the golden
-example file(s) in the repository that new code must match.>
+<One short paragraph: what this skill governs, and the golden example
+file(s) in the repository that new code must match, referenced by path
+relative to the app or tests folder.>
 
 ## <Rule area>
 
 - <Rules as short imperatives. Each rule states what to do, not background
-  theory. Point at real files with relative markdown links.>
+  theory. Reference real files by app-/tests-folder-relative path — never
+  embed the project name; skills must transfer between projects.>
 
 ## <Another rule area>
 

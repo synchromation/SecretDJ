@@ -1,4 +1,4 @@
-# Untitled Project
+# Project guide
 
 Multiplatform SwiftUI app (iOS-first), Swift 6 language mode, Xcode
 synchronized folders (new Swift files are picked up automatically; target
@@ -6,10 +6,13 @@ changes need `project.pbxproj` edits).
 
 ## Map
 
-- `Untitled Project/App/` — composition root (`UntitledProjectApp.swift`)
-- `Untitled Project/Features/<Name>/` — one folder per feature
-- `Untitled ProjectTests/` — Swift Testing unit tests
-- `Scripts/verify.sh` — canonical build + test command
+The app source folder shares the `.xcodeproj`'s name; the unit test folder
+is `<app>Tests/` beside it.
+
+- `<app>/App/` — composition root (the `@main` app struct)
+- `<app>/Features/<Name>/` — one folder per feature
+- `<app>Tests/` — Swift Testing unit tests
+- `Scripts/verify.sh` — canonical build + test command (auto-detects the project)
 - `.claude/skills/` — project conventions; `INDEX.md` lists them
 
 ## Commands
