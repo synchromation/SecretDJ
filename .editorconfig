@@ -1,0 +1,37 @@
+# EditorConfig — mirrors the formatter configs (.swiftformat / .swift-format):
+# tab indentation displayed 4 wide, LF endings, 120-column limit.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+indent_size = 4
+tab_width = 4
+
+[*.swift]
+max_line_length = 120
+
+# YAML forbids tabs.
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# JSON-style files are written with 2-space indentation (Xcode's own style
+# for .xcstrings; matches .swift-format and .claude/settings.json).
+[{*.json,*.xcstrings,.swift-format}]
+indent_style = space
+indent_size = 2
+
+# Xcode writes scheme XML with 3-space indentation.
+[*.xcscheme]
+indent_style = space
+indent_size = 3
+
+# Markdown: spaces for list nesting; trailing double-space is a hard break.
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false

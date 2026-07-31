@@ -18,20 +18,20 @@ ACTION="${1:-test}"
 # Pick the newest available iPhone simulator so results are reproducible
 # without hard-coding a device name that breaks on the next Xcode release.
 destination_id() {
-    xcrun simctl list devices available --json | python3 -c '
+	xcrun simctl list devices available --json | python3 -c '
 import json, sys
 
 data = json.load(sys.stdin)
 candidates = []
 for runtime, devices in data["devices"].items():
-    if "iOS" not in runtime:
-        continue
-    for device in devices:
-        if device.get("isAvailable") and "iPhone" in device["name"]:
-            candidates.append((runtime, device["udid"]))
+	if "iOS" not in runtime:
+		continue
+	for device in devices:
+		if device.get("isAvailable") and "iPhone" in device["name"]:
+			candidates.append((runtime, device["udid"]))
 
 if not candidates:
-    sys.exit("error: no available iPhone simulator found")
+	sys.exit("error: no available iPhone simulator found")
 print(sorted(candidates)[-1][1])
 '
 }
@@ -39,8 +39,8 @@ print(sorted(candidates)[-1][1])
 UDID="$(destination_id)" || exit 1
 
 xcodebuild "$ACTION" \
-    -project "$PROJECT" \
-    -scheme "$SCHEME" \
-    -destination "id=$UDID" \
-    -derivedDataPath "$DERIVED_DATA" \
-    -quiet
+	-project "$PROJECT" \
+	-scheme "$SCHEME" \
+	-destination "id=$UDID" \
+	-derivedDataPath "$DERIVED_DATA" \
+	-quiet
