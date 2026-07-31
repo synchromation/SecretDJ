@@ -5,10 +5,9 @@ description: Conventions for writing SwiftUI views in this app — composition, 
 
 # SwiftUI Views
 
-The golden example is `Features/Counter/CounterView.swift` in the app folder
-(see ios-architecture for locations). Match its shape: a small `body`
-composed from named private pieces, previews for every meaningful state,
-accessibility on anything non-obvious.
+The golden example is [CounterView.swift](references/CounterView.swift).
+Match its shape: a small `body` composed from named private pieces, previews
+for every meaningful state, accessibility on anything non-obvious.
 
 ## Composition
 

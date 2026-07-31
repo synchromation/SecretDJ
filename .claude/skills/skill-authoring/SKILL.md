@@ -25,16 +25,23 @@ procedure — no shortcuts.
    that states both what it covers and when to use it — the description is
    what triggers loading, so include the verbs a task would contain).
 
-4. **Ground it in real code.** Rules must point at golden examples — actual
-   files in the repository — not invented snippets that will drift. If no
-   exemplar exists yet, build one first (it must compile and pass
-   `Scripts/verify.sh`) and reference it.
+4. **Ground it in real code.** Rules must point at golden examples — real,
+   verified files — not invented snippets. Golden examples live *inside the
+   skill*, as copies in its `references/` folder, linked from SKILL.md with
+   relative links, so the skill is self-contained and transferable. They are
+   never written speculatively: build the exemplar as live code first (it
+   must compile and pass `Scripts/verify.sh`), then copy it in.
+
+   Where a live instance of an exemplar exists in the repository (in this
+   one: the Counter feature), the reference copies must match it
+   byte-for-byte, with exactly two sanctioned genericizations so no project
+   name leaks into a skill: the `@main` app struct is named `ExampleApp`,
+   and test files import `@testable import MyApp`.
 
    **Skills are transferable**: never embed the project name in a skill,
-   agent, or hook. Reference files by path relative to *the app folder* or
-   *the tests folder* (vocabulary defined in ios-architecture), e.g.
-   `Features/Counter/CounterModel.swift` — not by a repository-root path
-   that contains the project's name.
+   agent, or hook. In prose, describe locations with the vocabulary defined
+   in ios-architecture (*the app folder*, *the tests folder*), never with
+   repository-root paths containing the project's name.
 
 5. **Run the consistency check.** Read every other `SKILL.md` in
    `.claude/skills/` end to end and confirm:
@@ -45,13 +52,15 @@ procedure — no shortcuts.
      repetition with a link to the owning skill.
    - All file references in the new/edited skill resolve to files that
      exist, and none embeds the project name.
+   - Every reference copy still matches its live instance (diff them),
+     allowing only the two sanctioned genericizations above.
 
 6. **Update the index** in the same change: one line per skill in
    [INDEX.md](../INDEX.md) — name, one-sentence scope, owned conventions.
 
 ## When conventions change
 
-A convention change is one change: update the owning skill, its golden
-example files, and any code the change invalidates together, then verify.
-Skills describing code that no longer looks like their examples are worse
-than no skills.
+A convention change is one change: update the owning skill, the live
+exemplar code, the `references/` copies, and any code the change
+invalidates together, then verify. Skills describing code that no longer
+looks like their examples are worse than no skills.

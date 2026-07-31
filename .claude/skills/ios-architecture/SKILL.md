@@ -10,14 +10,20 @@ example — match its structure, naming, and granularity exactly.
 
 Locations (used throughout the skills): **the app folder** is the source
 folder that shares the `.xcodeproj`'s name; **the tests folder** is its
-`<app>Tests/` sibling. Read these files in the app folder before writing a
-new feature:
+`<app>Tests/` sibling.
 
-- `Features/Counter/CounterModel.swift` — the observable model
-- `Features/Counter/CounterStoring.swift` — a dependency seam
-- `Features/Counter/UserDefaultsCounterStore.swift` — the production implementation
-- `Features/Counter/InMemoryCounterStore.swift` — the test/preview implementation
-- `App/` — the `@main` app struct, the composition root
+The golden examples travel with this skill. Read them before writing a new
+feature:
+
+- [CounterModel.swift](references/CounterModel.swift) — the observable model
+- [CounterStoring.swift](references/CounterStoring.swift) — a dependency seam
+- [UserDefaultsCounterStore.swift](references/UserDefaultsCounterStore.swift) — the production implementation
+- [InMemoryCounterStore.swift](references/InMemoryCounterStore.swift) — the test/preview implementation
+- [ExampleApp.swift](references/ExampleApp.swift) — the `@main` app struct, the composition root
+
+Where a live instance of the exemplar exists in the app folder (in this
+repository: `Features/Counter/`), it and these copies must stay in step —
+see skill-authoring.
 
 ## Feature anatomy
 

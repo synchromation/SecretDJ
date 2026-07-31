@@ -5,9 +5,10 @@ description: How tests are written in this project — Swift Testing framework, 
 
 # Swift Testing
 
-The golden examples are `CounterModelTests.swift` and
-`UserDefaultsCounterStoreTests.swift` in the tests folder (`<app>Tests/`,
-beside the app folder — see ios-architecture). Match their shape.
+The golden examples are
+[CounterModelTests.swift](references/CounterModelTests.swift) and
+[UserDefaultsCounterStoreTests.swift](references/UserDefaultsCounterStoreTests.swift).
+Match their shape.
 
 ## Ground rules
 
@@ -25,7 +26,8 @@ beside the app folder — see ios-architecture). Match their shape.
   New files there are picked up automatically.
 - Import the app with `@testable import <AppModule>` — the app's module
   name is the project name with non-identifier characters (spaces, hyphens)
-  replaced by underscores; copy it from the golden examples.
+  replaced by underscores. (The reference copies use the placeholder
+  `MyApp`; live tests use the real module name.)
 
 ## Structure and naming
 
