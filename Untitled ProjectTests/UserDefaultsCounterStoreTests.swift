@@ -1,0 +1,29 @@
+import Foundation
+import Testing
+@testable import Untitled_Project
+
+struct UserDefaultsCounterStoreTests {
+    @Test func returnsZeroWhenNothingIsSaved() throws {
+        let store = try UserDefaultsCounterStore(defaults: scratchDefaults())
+
+        #expect(store.savedCount() == 0)
+    }
+
+    @Test func roundTripsASavedCount() throws {
+        let store = try UserDefaultsCounterStore(defaults: scratchDefaults())
+
+        store.save(41)
+
+        #expect(store.savedCount() == 41)
+    }
+
+    /// A throwaway `UserDefaults` suite so tests never touch the app's real defaults.
+    private func scratchDefaults() throws -> UserDefaults {
+        let suiteName = "test.\(UUID().uuidString)"
+        let defaults = try #require(UserDefaults(suiteName: suiteName))
+
+        defaults.removePersistentDomain(forName: suiteName)
+
+        return defaults
+    }
+}

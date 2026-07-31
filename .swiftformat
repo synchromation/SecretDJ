@@ -1,0 +1,14 @@
+# SwiftFormat configuration — enforced automatically by the PostToolUse hook.
+--swiftversion 6.0
+
+# Match Xcode defaults and Apple sample-code style.
+--indent 4
+--maxwidth 120
+--wraparguments before-first
+--wrapcollections before-first
+--stripunusedargs closure-only
+--self remove
+--importgrouping alpha
+
+# Blank-line discipline: exactly one between declarations, none padding scopes.
+--disable blankLinesAtStartOfScope,blankLinesAtEndOfScope

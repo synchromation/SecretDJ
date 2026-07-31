@@ -1,0 +1,32 @@
+# Untitled Project
+
+Multiplatform SwiftUI app (iOS-first), Swift 6 language mode, Xcode
+synchronized folders (new Swift files are picked up automatically; target
+changes need `project.pbxproj` edits).
+
+## Map
+
+- `Untitled Project/App/` — composition root (`UntitledProjectApp.swift`)
+- `Untitled Project/Features/<Name>/` — one folder per feature
+- `Untitled ProjectTests/` — Swift Testing unit tests
+- `Scripts/verify.sh` — canonical build + test command
+- `.claude/skills/` — project conventions; `INDEX.md` lists them
+
+## Commands
+
+```bash
+Scripts/verify.sh test    # build + full test suite (pinned simulator)
+Scripts/verify.sh build   # build only
+```
+
+## Conventions
+
+Detailed conventions live in skills and load on demand — consult
+`.claude/skills/INDEX.md` for ownership. In short: features follow the
+Counter exemplar (ios-architecture), views follow swiftui-views, all logic
+ships with Swift Testing tests (swift-testing), and skills themselves are
+managed via skill-authoring.
+
+Hooks enforce mechanics: SwiftFormat runs on every edited Swift file, and a
+Stop hook runs `Scripts/verify.sh test` — a turn cannot end with a broken
+build or failing tests, and tests must never be weakened to satisfy it.

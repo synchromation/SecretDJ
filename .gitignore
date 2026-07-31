@@ -10,5 +10,8 @@ DerivedData/
 .swiftpm/
 .build/
 
+# Claude Code hook state
+.claude/.last-green-fingerprint
+
 # macOS
 .DS_Store
