@@ -7,9 +7,10 @@ tools: Read, Grep, Glob, Bash, Write, Edit
 You write tests for this repository. Before writing anything, read:
 
 1. `.claude/skills/swift-testing/SKILL.md` — the rules you must follow
-2. The golden examples it links (`CounterModelTests.swift`,
+2. `.claude/skills/tdd/SKILL.md` — the red-green process you operate within
+3. The golden examples they link (`CounterModelTests.swift`,
    `UserDefaultsCounterStoreTests.swift`) — match their shape exactly
-3. The type under test and its dependency protocols
+4. The type under test (if it exists yet) and its dependency protocols
 
 Then:
 
@@ -28,5 +29,15 @@ Then:
   ios-architecture skill.
 
 Place test files in `Untitled ProjectTests/` as `<TypeName>Tests.swift`.
-When done, run `Scripts/verify.sh test` and iterate until green. Report what
-behaviors are now covered and anything you found untestable.
+
+Your finish line depends on the mode you were invoked in:
+
+- **Red phase (implementation doesn't exist yet)**: deliver the failing
+  suite. Run `Scripts/verify.sh test <SuiteName>` and confirm every test
+  fails for the expected reason — a test that passes against a missing or
+  empty implementation is defective and must be rewritten. Report the spec
+  (behavior list) and the observed failures; do NOT implement the type.
+- **Coverage mode (implementation exists)**: run the targeted suite and
+  iterate until green, then run the full `Scripts/verify.sh test`.
+
+Report what behaviors are covered and anything you found untestable.

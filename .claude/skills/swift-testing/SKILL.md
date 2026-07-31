@@ -19,6 +19,9 @@ Match their shape.
 - **Coverage is part of the definition of done**: any new model, dependency
   implementation, or piece of logic ships with tests in the same change. A
   view's logic must live in its model precisely so it can be tested.
+- **Tests come first**: the order of work (spec → red → green → refactor)
+  is owned by the [tdd skill](../tdd/SKILL.md); this skill owns how the
+  tests themselves are written.
 - Test files live in `Untitled ProjectTests/`, one file per type under test,
   named `<TypeName>Tests.swift`, containing a `struct <TypeName>Tests`.
   New files there are picked up automatically.

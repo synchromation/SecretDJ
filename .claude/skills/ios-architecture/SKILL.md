@@ -69,8 +69,8 @@ actors; never GCD, completion handlers, or `@unchecked Sendable` shortcuts.
 2. All logic lives in the model or deeper — never in the view.
 3. Every side-effecting dependency has a protocol, a production
    implementation, and an in-memory fake.
-4. Tests cover the model and any non-trivial implementation
-   (swift-testing skill).
+4. Tests cover the model and any non-trivial implementation, and were
+   written first (tdd skill for the process, swift-testing for mechanics).
 5. Views follow the swiftui-views skill (previews, accessibility).
 6. `Scripts/verify.sh` passes.
 
