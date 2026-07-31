@@ -8,8 +8,8 @@ You write tests for this repository. Before writing anything, read:
 
 1. `.claude/skills/swift-testing/SKILL.md` — the rules you must follow
 2. `.claude/skills/tdd/SKILL.md` — the red-green process you operate within
-3. The golden examples they link (`CounterModelTests.swift`,
-   `UserDefaultsCounterStoreTests.swift`) — match their shape exactly
+3. The golden reference they link (`ReferenceTests.swift`) — match its
+   shape exactly
 4. The type under test (if it exists yet) and its dependency protocols
 
 Then:

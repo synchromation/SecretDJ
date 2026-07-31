@@ -449,7 +449,7 @@
 			);
 			defaultConfigurationName = Release;
 		};
-	000000000000000210000000 /* Build configuration list for PBXNativeTarget "Untitled ProjectTests" */ = {
+		000000000000000210000000 /* Build configuration list for PBXNativeTarget "Untitled ProjectTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				000000000000000211000000 /* Debug configuration for PBXNativeTarget "Untitled ProjectTests" */,

@@ -38,6 +38,14 @@ procedure — no shortcuts.
    name leaks into a skill: the `@main` app struct is named `ExampleApp`,
    and test files import `@testable import MyApp`.
 
+   A skill may instead carry a **standalone catalog exemplar** with no live
+   twin when it must demonstrate more than the live code exercises. It is
+   verified differently — whenever it changes, run it in the project
+   (temporarily, if need be) and confirm it compiles and passes before the
+   copy lands in `references/`. (swift-testing's golden reference began this
+   way; it now doubles as the live test suite, so the ordinary sync rule
+   covers it.)
+
    **Skills are transferable**: never embed the project name in a skill,
    agent, or hook. In prose, describe locations with the vocabulary defined
    in ios-architecture (*the app folder*, *the tests folder*), never with
@@ -53,7 +61,8 @@ procedure — no shortcuts.
    - All file references in the new/edited skill resolve to files that
      exist, and none embeds the project name.
    - Every reference copy still matches its live instance (diff them),
-     allowing only the two sanctioned genericizations above.
+     allowing only the two sanctioned genericizations above; standalone
+     catalogs are instead re-verified by running them whenever they change.
 
 6. **Update the index** in the same change: one line per skill in
    [INDEX.md](../INDEX.md) — name, one-sentence scope, owned conventions.

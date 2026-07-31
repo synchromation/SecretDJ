@@ -5,10 +5,14 @@ description: How tests are written in this project — Swift Testing framework, 
 
 # Swift Testing
 
-The golden examples are
-[CounterModelTests.swift](references/CounterModelTests.swift) and
-[UserDefaultsCounterStoreTests.swift](references/UserDefaultsCounterStoreTests.swift).
-Match their shape.
+The golden reference is
+[ReferenceTests.swift](references/ReferenceTests.swift) — a verified
+catalog whose first three suites are the canonical everyday shape, followed
+by one suite per Swift Testing capability (parameterized tests, async and
+`confirmation`, throwing and `#require`, traits, `.serialized`, known
+issues, attachments, exit tests), each with a doc comment explaining when
+to reach for it. Match the canonical shape by default; use the later suites
+as the pattern to copy when a test genuinely needs that capability.
 
 ## Ground rules
 
@@ -40,20 +44,20 @@ Match their shape.
   automatically.)
 - **Separate concerns with nested suites**: when a type under test has
   distinct behavior areas, group its tests into nested structs named for
-  the concern as raw identifiers — see `CounterModelTests`:
+  the concern as raw identifiers — see the golden reference:
   `\`Starting up\``, `\`Changing the count\``, `Persistence`. No `@Suite`
-  attribute is needed; nesting alone creates the hierarchy. Keep small
-  suites flat — don't nest for the sake of it (see
-  `UserDefaultsCounterStoreTests`). One level of nesting is almost always
-  enough.
+  attribute is needed (nesting alone creates the hierarchy) — it appears
+  only to carry traits, e.g. `@Suite(.serialized)`. Keep small suites flat
+  — a type with only a handful of closely related tests doesn't need
+  nesting. One level of nesting is almost always enough.
 - The outer type keeps a standard UpperCamelCase identifier
   (`<TypeName>Tests`) so it matches its file name; when it holds only
   nested suites it becomes an `enum` namespace (SwiftFormat does this).
 - Shared helpers and fakes needed by several nested suites live on the
   outer type (or in the feature's fake, per ios-architecture).
 - Arrange / act / assert, separated by single blank lines (see any test in
-  the golden files). Collapse to fewer blocks only when a stage is a single
-  obvious line.
+  the golden reference). Collapse to fewer blocks only when a stage is a
+  single obvious line.
 - One behavior per test. Prefer several small tests over one test with many
   expectations about different behaviors.
 - Use `#require` (with `throws`) to unwrap optionals; never force-unwrap.
@@ -63,7 +67,7 @@ Match their shape.
 - Unit tests touch no real network, disk, clock, or shared `UserDefaults`.
   Inject the feature's in-memory fake (e.g. `InMemoryCounterStore`); when
   testing a real adapter, isolate it (scratch `UserDefaults` suite, temp
-  directory) as `UserDefaultsCounterStoreTests` does.
+  directory) as the golden reference's scratch-`UserDefaults` example does.
 - Prefer fakes (real implementations with in-memory storage) over mocks with
   expectation recording. Assert on observable outcomes, not call sequences.
 - Async code is tested with `async` test functions and `await` — never

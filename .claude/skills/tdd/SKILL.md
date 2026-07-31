@@ -7,9 +7,9 @@ description: The red-green-refactor workflow for building behavior — tests are
 
 New behavior in this project is built test-first, at **feature level**: the
 whole behavior list is specified as tests in one pass, proven red, then
-implemented to green. The Counter feature shows the target end state —
-[CounterModelTests.swift](../swift-testing/references/CounterModelTests.swift)
-is what a finished spec looks like.
+implemented to green. The Counter suites at the top of
+[ReferenceTests.swift](../swift-testing/references/ReferenceTests.swift)
+show the target end state — what a finished spec looks like.
 
 This skill owns the *process and ordering*; test mechanics (framework,
 naming, structure, fakes) are owned by the swift-testing skill and
