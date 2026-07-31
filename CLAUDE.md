@@ -12,6 +12,8 @@ is `<app>Tests/` beside it.
 - `<app>/App/` — composition root (the `@main` app struct)
 - `<app>/Features/<Name>/` — one folder per feature
 - `<app>Tests/` — Swift Testing unit tests
+- `Packages/Observability/` — logging/analytics/breadcrumb pipeline (SPM;
+  its tests run natively in every full verify)
 - `Scripts/verify.sh` — canonical build + test command (auto-detects the project)
 - `.claude/skills/` — project conventions; `INDEX.md` lists them
 
@@ -29,7 +31,9 @@ Detailed conventions live in skills and load on demand — consult
 Counter exemplar (ios-architecture), views follow swiftui-views, behavior is
 built test-first via red-green-refactor (tdd), all logic ships with Swift
 Testing tests (swift-testing), DocC comments mark contract boundaries only
-(documentation), and skills themselves are managed via skill-authoring.
+(documentation), logging/analytics/breadcrumbs go through the Observability
+pipeline (observability), and skills themselves are managed via
+skill-authoring.
 
 Hooks enforce mechanics: SwiftFormat then SwiftLint run on every edited Swift
 file (`.swiftformat` is the style authority; `.swiftlint.yml` covers only what

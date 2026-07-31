@@ -6,6 +6,11 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		000000000000000310000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000300000000 /* Observability */; };
+		000000000000000330000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000320000000 /* Observability */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		000000000000000260000000 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -38,11 +43,13 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				000000000000000310000000 /* Observability in Frameworks */,
 			);
 		};
 		000000000000000230000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				000000000000000330000000 /* Observability in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -83,6 +90,9 @@
 				000000000000000000000010 /* Untitled Project */,
 			);
 			name = "Untitled Project";
+			packageProductDependencies = (
+				000000000000000300000000 /* Observability */,
+			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* Untitled Project.app */;
 			productType = "com.apple.product-type.application";
@@ -103,6 +113,9 @@
 				000000000000000000000030 /* Untitled ProjectTests */,
 			);
 			name = "Untitled ProjectTests";
+			packageProductDependencies = (
+				000000000000000320000000 /* Observability */,
+			);
 			productName = "Untitled ProjectTests";
 			productReference = 000000000000000000000220 /* Untitled ProjectTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -135,6 +148,9 @@
 			);
 			mainGroup = 000000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				000000000000000000000040 /* XCLocalSwiftPackageReference "Packages/Observability" */,
+			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 000000000000000000000020 /* Products */;
 			projectDirPath = "";
@@ -458,6 +474,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		000000000000000000000040 /* XCLocalSwiftPackageReference "Packages/Observability" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/Observability;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		000000000000000300000000 /* Observability */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Observability;
+		};
+		000000000000000320000000 /* Observability */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Observability;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 000000000000000000000000 /* Project object */;
 }

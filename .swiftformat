@@ -12,7 +12,7 @@
 
 --disable all
 
---exclude build
+--exclude build,Packages/**/.build
 
 # ─── Whitespace & layout ───────────────────────────────────────────────────────
 
@@ -185,6 +185,9 @@
 # sortSwitchCases stays off: case order is often semantic, not alphabetical.
 
 # ─── Wrapping (120 columns) ────────────────────────────────────────────────────
+# Style note: keep multiline collection literals (and deeply nested calls) out
+# of call argument lists — extract a local first. SwiftFormat and swift-format
+# wrap that shape differently, and extraction is the form both canonicalize.
 
 --enable wrap
 --maxwidth 120

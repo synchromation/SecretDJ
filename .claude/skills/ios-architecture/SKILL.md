@@ -36,7 +36,8 @@ Features/Counter/
 ├── CounterModel.swift           # @Observable model — state + logic
 ├── CounterStoring.swift         # protocol for each side-effecting dependency
 ├── UserDefaultsCounterStore.swift   # production implementation
-└── InMemoryCounterStore.swift       # in-memory implementation for tests/previews
+├── InMemoryCounterStore.swift       # in-memory implementation for tests/previews
+└── CounterEvent.swift           # typed analytics events (observability skill)
 ```
 
 Tests mirror this in the tests folder (see the swift-testing skill).
@@ -53,7 +54,9 @@ actors) only when there is a measured reason. Use `ObservableObject`/
 
 **Dependencies** (persistence, networking, clocks, anything that touches the
 world outside the process) sit behind a small protocol, injected through the
-model's initializer. Every protocol has a production implementation and an
+model's initializer. Cross-cutting observability is injected the same way —
+models take an `ObservabilityPipeline` defaulting to `.disabled`
+(observability skill). Every protocol has a production implementation and an
 in-memory fake. Nothing reaches a singleton (`UserDefaults.standard`,
 `URLSession.shared`) from inside logic code — singletons appear only as
 default arguments in production implementations or at the composition root.

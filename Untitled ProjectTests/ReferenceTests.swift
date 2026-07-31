@@ -1,4 +1,5 @@
 import Foundation
+import Observability
 import Testing
 
 @testable import Untitled_Project
@@ -79,6 +80,43 @@ enum ReferenceTests {
 			model.increment()
 
 			#expect(store.count == 2)
+		}
+	}
+
+	/// Instrumentation is behavior and is tested like any other: inject a
+	/// `RecordingDestination` and assert on the emitted events
+	/// (observability skill).
+	struct Instrumentation {
+		/// Interactions become breadcrumbs, named for the intention.
+		@Test func `interactions leave breadcrumbs`() {
+			let recorder = RecordingDestination()
+			let model = CounterModel(
+				store: InMemoryCounterStore(),
+				observability: ObservabilityPipeline(destinations: [recorder]),
+			)
+
+			model.increment()
+			model.decrement()
+
+			let expected: [Breadcrumb.Kind] = [
+				.interaction(description: "increment"),
+				.interaction(description: "decrement"),
+			]
+
+			#expect(recorder.breadcrumbs == expected)
+		}
+
+		/// Business-meaningful moments additionally become analytics events.
+		@Test func `resetting tracks the counterReset analytics event`() {
+			let recorder = RecordingDestination()
+			let model = CounterModel(
+				store: InMemoryCounterStore(),
+				observability: ObservabilityPipeline(destinations: [recorder]),
+			)
+
+			model.reset()
+
+			#expect(recorder.analytics == [AnalyticsPayload(name: "counterReset", parameters: [:])])
 		}
 	}
 

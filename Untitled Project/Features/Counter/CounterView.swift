@@ -1,3 +1,4 @@
+import Observability
 import SwiftUI
 
 /// Displays the current count with controls to change it.
@@ -10,6 +11,7 @@ struct CounterView: View {
 			controls
 		}
 		.padding()
+		.tracksScreen("Counter")
 	}
 
 	private var countDisplay: some View {

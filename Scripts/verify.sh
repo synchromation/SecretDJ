@@ -60,6 +60,15 @@ print(sorted(candidates)[-1][1])
 '
 }
 
+# Package logic tests run natively on macOS — the fastest part of the loop.
+# They are part of every full test run; targeted runs skip them.
+if [ "$ACTION" = "test" ] && [ ${#ONLY_TESTING[@]} -eq 0 ]; then
+	for manifest in "$PROJECT_DIR"/Packages/*/Package.swift; do
+		[ -f "$manifest" ] || continue
+		swift test --package-path "$(dirname "$manifest")" || exit 1
+	done
+fi
+
 UDID="$(destination_id)" || exit 1
 
 xcodebuild "$ACTION" \

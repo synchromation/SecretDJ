@@ -11,6 +11,7 @@ reporter: xcode
 
 excluded:
   - build
+  - Packages/*/.build
 
 # ─── Disabled: fixed or owned by SwiftFormat ──────────────────────────────────
 
