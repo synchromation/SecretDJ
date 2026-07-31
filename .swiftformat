@@ -6,8 +6,9 @@
 # disables everything this file fixes; .swift-format mirrors these choices for
 # Xcode's built-in formatter. Change style here first, then mirror there.
 
-# Matches SWIFT_VERSION (language mode), not the compiler version.
---swiftversion 6.0
+# Language capabilities available to the project (raw identifiers need 6.2+).
+# The build's language *mode* is SWIFT_VERSION = 6.0; the toolchain is newer.
+--swiftversion 6.2
 
 --disable all
 
@@ -166,9 +167,16 @@
 # ─── Tests (Swift Testing — see swift-testing skill) ───────────────────────────
 
 --enable preferSwiftTesting
---enable swiftTestingTestCaseNames
 --enable noForceTryInTests
 --enable noForceUnwrapInTests
+
+# Test names are raw identifiers (`increment raises the count by one`); the
+# formatter converts test-prefixed, camelCase, and @Test("display name") forms
+# automatically. Suite names are preserved: the outer suite stays a standard
+# identifier matching its file name; nested suites are raw identifiers by hand.
+--enable swiftTestingTestCaseNames
+--testcasenameformat raw-identifiers
+--suitenameformat preserve
 
 # ─── Declaration ordering (comment-directed only) ──────────────────────────────
 

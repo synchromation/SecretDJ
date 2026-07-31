@@ -4,13 +4,13 @@ import Testing
 @testable import MyApp
 
 struct UserDefaultsCounterStoreTests {
-	@Test func returnsZeroWhenNothingIsSaved() throws {
+	@Test func `returns zero when nothing is saved`() throws {
 		let store = try UserDefaultsCounterStore(defaults: scratchDefaults())
 
 		#expect(store.savedCount() == 0)
 	}
 
-	@Test func roundTripsASavedCount() throws {
+	@Test func `round-trips a saved count`() throws {
 		let store = try UserDefaultsCounterStore(defaults: scratchDefaults())
 
 		store.save(41)

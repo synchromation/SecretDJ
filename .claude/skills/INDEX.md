@@ -9,7 +9,7 @@ skill addition, edit, or removal.
 |---|---|---|
 | [ios-architecture](ios-architecture/SKILL.md) | Structure of features and placement of code | Feature folder anatomy, @Observable model rules, dependency-injection seams (protocol + production + in-memory fake), composition root, separation of concerns at app/type/function level, Swift 6 concurrency stance, feature definition of done |
 | [swiftui-views](swiftui-views/SKILL.md) | Writing SwiftUI views | View composition and extraction, model access from views (`let model` / `@State` / `@Bindable`), current-API choices, previews, accessibility, localization |
-| [swift-testing](swift-testing/SKILL.md) | Writing and running tests | Swift Testing usage, test file placement and naming, behavior-statement test names, arrange/act/assert layout, fakes-over-mocks, determinism rules, no-weakening-tests rule |
+| [swift-testing](swift-testing/SKILL.md) | Writing and running tests | Swift Testing usage, test file placement and naming, raw-identifier test names (behavior statements in backticks), nested suites per concern, arrange/act/assert layout, fakes-over-mocks, determinism rules, no-weakening-tests rule |
 | [tdd](tdd/SKILL.md) | Order of work when building behavior | Red-green-refactor loop at feature level, red-phase proof (tests must fail for the expected reason), failing-test-first bug fixes, targeted test runs during the loop, what is exempt from TDD (view bodies) |
 | [skill-authoring](skill-authoring/SKILL.md) | Creating and maintaining skills | Skill template, contradiction/duplication checks, golden-example grounding, reference-copy sync with live exemplars, transferability rule (no project names in skills/agents/hooks), index maintenance, convention-change procedure |
 

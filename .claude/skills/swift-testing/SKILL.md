@@ -31,8 +31,26 @@ Match their shape.
 
 ## Structure and naming
 
-- Test names are behavior statements that read as English:
-  `restoresTheSavedCountOnLaunch`, not `testInit` or `init_savedCount_41`.
+- **Test names are human-readable raw identifiers** — the behavior
+  statement itself, lowercase, in backticks:
+  `@Test func \`restores the saved count on launch\`()`, never `testInit`
+  or `init_savedCount_41`. No `@Test("display name")` strings — the name
+  is written once, as the identifier. (SwiftFormat enforces this: it
+  converts `test`-prefixed, camelCase, and display-name forms
+  automatically.)
+- **Separate concerns with nested suites**: when a type under test has
+  distinct behavior areas, group its tests into nested structs named for
+  the concern as raw identifiers — see `CounterModelTests`:
+  `\`Starting up\``, `\`Changing the count\``, `Persistence`. No `@Suite`
+  attribute is needed; nesting alone creates the hierarchy. Keep small
+  suites flat — don't nest for the sake of it (see
+  `UserDefaultsCounterStoreTests`). One level of nesting is almost always
+  enough.
+- The outer type keeps a standard UpperCamelCase identifier
+  (`<TypeName>Tests`) so it matches its file name; when it holds only
+  nested suites it becomes an `enum` namespace (SwiftFormat does this).
+- Shared helpers and fakes needed by several nested suites live on the
+  outer type (or in the feature's fake, per ios-architecture).
 - Arrange / act / assert, separated by single blank lines (see any test in
   the golden files). Collapse to fewer blocks only when a stage is a single
   obvious line.
