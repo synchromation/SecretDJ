@@ -76,6 +76,7 @@ opt_in_rules:
   - prohibited_super_call
   - redundant_nil_coalescing
   - superfluous_else                  # backs the guard/early-exit style
+  - local_doc_comment                 # no /// inside function bodies (documentation skill)
   - legacy_multiple
   - legacy_objc_type
   - prefer_self_type_over_type_of_self

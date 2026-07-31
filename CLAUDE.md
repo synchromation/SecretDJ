@@ -28,8 +28,8 @@ Detailed conventions live in skills and load on demand — consult
 `.claude/skills/INDEX.md` for ownership. In short: features follow the
 Counter exemplar (ios-architecture), views follow swiftui-views, behavior is
 built test-first via red-green-refactor (tdd), all logic ships with Swift
-Testing tests (swift-testing), and skills themselves are managed via
-skill-authoring.
+Testing tests (swift-testing), DocC comments mark contract boundaries only
+(documentation), and skills themselves are managed via skill-authoring.
 
 Hooks enforce mechanics: SwiftFormat then SwiftLint run on every edited Swift
 file (`.swiftformat` is the style authority; `.swiftlint.yml` covers only what

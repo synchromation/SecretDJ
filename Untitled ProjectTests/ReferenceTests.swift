@@ -304,6 +304,7 @@ private final class ClosureCounterStore: CounterStoring {
 /// A tiny throwing API — scaffolding for the throwing-expectation examples.
 private enum CounterCodec {
 	enum ParsingError: Error {
+		/// The text contained no base-10 integer.
 		case notANumber
 	}
 
