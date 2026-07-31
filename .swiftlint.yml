@@ -1,0 +1,149 @@
+# SwiftLint configuration (0.65+) — semantic linting only.
+#
+# Division of labor: SwiftFormat (.swiftformat) owns everything mechanical —
+# whitespace, wrapping, redundancy removal, idiom rewrites — and runs first in
+# the format hook. Every SwiftLint rule that overlaps with a SwiftFormat rule is
+# disabled below so the two tools never disagree. What remains is what a
+# formatter cannot fix: unsafe constructs, correctness smells, and size limits
+# that back the skills' separation-of-concerns rules.
+
+reporter: xcode
+
+excluded:
+  - build
+
+# ─── Disabled: fixed or owned by SwiftFormat ──────────────────────────────────
+
+disabled_rules:
+  - attribute_name_spacing            # spaceAroundOperators / wrapAttributes
+  - closing_brace                     # spaceAroundBraces
+  - closure_parameter_position        # braces / wrap
+  - colon                             # spaceAroundOperators
+  - comma                             # spaceAroundOperators
+  - comment_spacing                   # spaceAroundComments / spaceInsideComments
+  - control_statement                 # redundantParens
+  - duplicate_imports                 # duplicateImports
+  - empty_enum_arguments              # redundantPattern
+  - empty_parameters                  # void
+  - empty_parentheses_with_trailing_closure  # trailingClosures
+  - function_name_whitespace          # spaceAroundParens
+  - implicit_getter                   # redundantGet
+  - implicit_optional_initialization  # redundantNilInit
+  - leading_whitespace                # linebreaks / indent
+  - mark                              # blankLinesAroundMark / todos
+  - no_space_in_method_call           # spaceAroundParens
+  - opening_brace                     # braces
+  - private_over_fileprivate          # redundantFileprivate
+  - redundant_discardable_let         # redundantLet
+  - redundant_objc_attribute          # redundantObjc
+  - redundant_sendable                # redundantSendable
+  - redundant_string_enum_value       # redundantRawValues
+  - redundant_void_return             # redundantVoidReturnType
+  - return_arrow_whitespace           # spaceAroundOperators
+  - statement_position                # elseOnSameLine
+  - switch_case_alignment             # indent (indentcase false)
+  - syntactic_sugar                   # typeSugar
+  - trailing_comma                    # trailingCommas
+  - trailing_newline                  # linebreakAtEndOfFile
+  - trailing_semicolon                # semicolons
+  - trailing_whitespace               # trailingSpace
+  - unneeded_break_in_switch          # redundantBreak
+  - unneeded_synthesized_initializer  # redundantMemberwiseInit
+  - unused_closure_parameter          # unusedArguments
+  - vertical_parameter_alignment      # wrapArguments
+  - vertical_whitespace               # consecutiveBlankLines
+  - void_return                       # void
+
+  # Judgement calls owned by review (skills + code-reviewer agent), not lint:
+  - todo
+  - nesting
+  - identifier_name
+  - generic_type_name
+  - type_name
+  - function_parameter_count
+  - line_length                       # wrap (maxwidth 120) handles this
+
+# ─── Opt-in: safety and correctness ───────────────────────────────────────────
+
+opt_in_rules:
+  - force_unwrapping                  # skills: never force-unwrap (use #require in tests)
+  - implicitly_unwrapped_optional
+  - fatal_error_message
+  - unhandled_throwing_task
+  - unowned_variable_capture
+  - discarded_notification_center_observer
+  - overridden_super_call
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - superfluous_else                  # backs the guard/early-exit style
+  - legacy_multiple
+  - legacy_objc_type
+  - prefer_self_type_over_type_of_self
+
+  # SwiftUI (swiftui-views skill):
+  - accessibility_label_for_image
+  - accessibility_trait_for_button
+
+  # Collection & performance idioms SwiftFormat has no rule for:
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - empty_collection_literal
+  - empty_string
+  - first_where
+  - last_where
+  - sorted_first_last
+  - flatmap_over_map_reduce
+  - reduce_into
+  - toggle_bool
+  - prefer_zero_over_explicit_init
+
+  # File hygiene (ios-architecture skill: file named after its primary type):
+  - file_name
+  - file_name_no_space
+
+# Only run with `swiftlint analyze` (needs a compile log); listed for CI use.
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+
+# ─── Severity: unsafe constructs are errors, not warnings ─────────────────────
+
+force_cast: error
+force_try: error
+force_unwrapping: error
+implicitly_unwrapped_optional:
+  severity: error
+legacy_cggeometry_functions: error
+legacy_constant: error
+legacy_constructor: error
+legacy_nsgeometry_functions: error
+overridden_super_call:
+  severity: error
+prohibited_super_call:
+  severity: error
+redundant_nil_coalescing:
+  severity: error
+unused_optional_binding:
+  severity: error
+
+superfluous_disable_command:
+  severity: warning
+
+# ─── Size limits (back the separation-of-concerns rules in ios-architecture) ──
+
+file_length:
+  warning: 400
+  error: 600
+
+type_body_length:
+  warning: 300
+  error: 400
+
+function_body_length:
+  warning: 50
+  error: 75
+
+large_tuple:
+  warning: 3

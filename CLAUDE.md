@@ -27,6 +27,9 @@ Counter exemplar (ios-architecture), views follow swiftui-views, all logic
 ships with Swift Testing tests (swift-testing), and skills themselves are
 managed via skill-authoring.
 
-Hooks enforce mechanics: SwiftFormat runs on every edited Swift file, and a
-Stop hook runs `Scripts/verify.sh test` — a turn cannot end with a broken
-build or failing tests, and tests must never be weakened to satisfy it.
+Hooks enforce mechanics: SwiftFormat then SwiftLint run on every edited Swift
+file (`.swiftformat` is the style authority; `.swiftlint.yml` covers only what
+a formatter can't fix; `.swift-format` mirrors the style for Xcode's built-in
+formatter), and a Stop hook runs `Scripts/verify.sh test` — a turn cannot end
+with a broken build or failing tests, and tests must never be weakened to
+satisfy it.

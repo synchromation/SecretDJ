@@ -14,8 +14,11 @@ skill addition, edit, or removal.
 
 Cross-cutting, owned elsewhere:
 
-- Mechanical formatting: `.swiftformat` config, applied by the
-  `format-swift.sh` PostToolUse hook — skills don't restate formatting rules.
+- Mechanical style: `.swiftformat` is the style authority, applied with
+  SwiftLint (semantic rules only, `.swiftlint.yml`) by the `format-swift.sh`
+  PostToolUse hook; `.swift-format` mirrors the same style for Xcode's
+  built-in formatter. Skills don't restate rules these tools enforce; style
+  changes start in `.swiftformat` and are mirrored to `.swift-format`.
 - Build/test verification: `Scripts/verify.sh`, enforced by the
   `verify-on-stop.sh` Stop hook.
 - Project map and commands: `CLAUDE.md`.

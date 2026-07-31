@@ -1,14 +1,211 @@
-# SwiftFormat configuration — enforced automatically by the PostToolUse hook.
+# SwiftFormat configuration (0.60+) — the style authority for this project.
+# Applied automatically by .claude/hooks/format-swift.sh on every edited file.
+#
+# All rules are disabled first, then enabled explicitly, so updating SwiftFormat
+# never silently adds unreviewed behavior. SwiftLint (.swiftlint.yml) deliberately
+# disables everything this file fixes; .swift-format mirrors these choices for
+# Xcode's built-in formatter. Change style here first, then mirror there.
+
+# Matches SWIFT_VERSION (language mode), not the compiler version.
 --swiftversion 6.0
 
-# Match Xcode defaults and Apple sample-code style.
---indent 4
---maxwidth 120
---wraparguments before-first
---wrapcollections before-first
---stripunusedargs closure-only
---self remove
---importgrouping alpha
+--disable all
 
-# Blank-line discipline: exactly one between declarations, none padding scopes.
---disable blankLinesAtStartOfScope,blankLinesAtEndOfScope
+--exclude build
+
+# ─── Whitespace & layout ───────────────────────────────────────────────────────
+
+--enable indent
+--indent tab
+--tabwidth 4
+--ifdef indent
+--indentcase false
+
+--enable linebreaks
+--linebreaks lf
+
+--enable linebreakAtEndOfFile
+--enable trailingSpace
+--enable consecutiveSpaces
+--enable consecutiveBlankLines
+--enable leadingDelimiters
+
+--enable braces                        # K&R, matching Xcode and Apple samples
+
+--enable elseOnSameLine
+--elseposition same-line
+--guardelse same-line
+
+--enable emptyBraces
+--emptybraces no-space
+
+--enable spaceAroundBraces
+--enable spaceAroundBrackets
+--enable spaceAroundComments
+--enable spaceAroundGenerics
+--enable spaceAroundOperators
+--ranges spaced
+--enable spaceAroundParens
+--enable spaceInsideBraces
+--enable spaceInsideBrackets
+--enable spaceInsideComments
+--enable spaceInsideGenerics
+--enable spaceInsideParens
+
+# ─── Blank-line discipline (one line between declarations, none padding scopes) ─
+
+--enable blankLinesBetweenScopes
+--enable blankLinesAtStartOfScope
+--typeblanklines remove
+--enable blankLinesAtEndOfScope
+--enable blankLinesBetweenChainedFunctions
+--enable blankLineAfterImports
+# blankLinesBetweenImports stays off: swift-format's OrderedImports separates
+# the @testable import group with a blank line, and that rule would strip it.
+--enable blankLinesAroundMark
+--lineaftermarks true
+
+# ─── Imports ───────────────────────────────────────────────────────────────────
+
+--enable sortImports
+--importgrouping testable-last
+--enable duplicateImports
+
+# ─── Comments ──────────────────────────────────────────────────────────────────
+
+--enable docComments                   # /// on declarations, // elsewhere
+--enable docCommentsBeforeModifiers
+--enable todos
+--enable fileHeader                    # no boilerplate headers — strip Xcode's
+--header strip
+--enable wrapSingleLineComments
+
+# ─── Redundancy removal ────────────────────────────────────────────────────────
+
+--enable redundantAsync
+--enable redundantBackticks
+--enable redundantBreak
+--enable redundantClosure
+--enable redundantEquatable
+--enable redundantExtensionACL
+--enable redundantFileprivate
+--enable redundantGet
+--enable redundantInit
+--enable redundantInternal
+--enable redundantLet
+--enable redundantLetError
+--enable redundantMemberwiseInit
+--enable redundantNilInit
+--enable redundantObjc
+--enable redundantOptionalBinding
+--enable redundantParens
+--enable redundantPattern
+--enable redundantRawValues
+--enable redundantReturn
+--enable redundantSendable
+--enable redundantStaticSelf
+--enable redundantSwiftTestingSuite
+--enable redundantThrows
+--enable redundantType
+--redundanttype infer-locals-only
+--enable redundantTypedThrows
+--enable redundantVariable
+--enable redundantViewBuilder
+--enable redundantVoidReturnType
+
+# Explicit self only where the language requires it (see CounterModel exemplar).
+--enable redundantSelf
+--self remove
+
+--enable semicolons
+--semicolons never
+
+# ─── Modern idiom ──────────────────────────────────────────────────────────────
+
+--enable andOperator                   # commas over && in conditions
+--enable anyObjectProtocol
+--enable applicationMain
+--enable assertionFailures
+--enable conditionalAssignment
+--enable enumNamespaces
+--enable genericExtensions
+# isEmpty stays off: it blindly rewrites `x.count == 0` to `x.isEmpty` even when
+# `count` is not a collection count (it broke CounterModel tests). Same reason
+# SwiftLint's empty_count is not opted into.
+--enable opaqueGenericParameters
+--enable preferCountWhere
+--enable preferForLoop
+--onelineforeach convert
+--enable simplifyGenericConstraints
+--enable strongifiedSelf
+--enable typeSugar
+--shortoptionals always
+--enable void
+
+--enable extensionAccessControl
+--extensionacl on-declarations
+
+--enable hoistAwait
+--enable hoistTry
+--enable hoistPatternLet
+--patternlet inline
+
+--enable modifierOrder
+--enable modifiersOnSameLine
+
+--enable numberFormatting
+--decimalgrouping 3,6
+
+--enable environmentEntry              # @Entry over EnvironmentKey boilerplate
+--enable privateStateVariables         # @State/@StateObject must be private
+--enable trailingClosures
+--enable unusedArguments
+--stripunusedargs closure-only
+--enable yodaConditions
+
+# ─── Tests (Swift Testing — see swift-testing skill) ───────────────────────────
+
+--enable preferSwiftTesting
+--enable swiftTestingTestCaseNames
+--enable noForceTryInTests
+--enable noForceUnwrapInTests
+
+# ─── Declaration ordering (comment-directed only) ──────────────────────────────
+
+--enable sortDeclarations
+--enable sortTypealiases
+# sortSwitchCases stays off: case order is often semantic, not alphabetical.
+
+# ─── Wrapping (120 columns) ────────────────────────────────────────────────────
+
+--enable wrap
+--maxwidth 120
+
+--enable wrapArguments
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--wrapconditions after-first
+--wrapeffects preserve
+--wrapreturntype preserve
+--wraptypealiases before-first
+
+--enable wrapAttributes
+--typeattributes prev-line
+--funcattributes preserve              # keeps `@Test func name()` on one line
+--storedvarattrs same-line             # keeps `@State private var …` on one line
+--computedvarattrs prev-line
+--complexattrs prev-line
+
+--enable wrapEnumCases
+--enable wrapSwitchCases
+--enable wrapLoopBodies
+--enable wrapFunctionBodies
+--enable wrapPropertyBodies
+--enable wrapMultilineStatementBraces
+--enable wrapMultilineConditionalAssignment
+
+--enable trailingCommas
+--commas always
+
+--enable emptyExtensions
