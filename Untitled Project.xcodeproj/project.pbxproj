@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		000000000000000310000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000300000000 /* Observability */; };
-		000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000340000000 /* ObservabilityTelemetryDeck */; };
 		000000000000000330000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000320000000 /* Observability */; };
+		000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000340000000 /* ObservabilityTelemetryDeck */; };
+		000000000000000370000000 /* ObservabilitySentry in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000360000000 /* ObservabilitySentry */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				000000000000000310000000 /* Observability in Frameworks */,
+				000000000000000370000000 /* ObservabilitySentry in Frameworks */,
 				000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */,
 			);
 		};
@@ -95,6 +97,7 @@
 			packageProductDependencies = (
 				000000000000000300000000 /* Observability */,
 				000000000000000340000000 /* ObservabilityTelemetryDeck */,
+				000000000000000360000000 /* ObservabilitySentry */,
 			);
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* Untitled Project.app */;
@@ -497,6 +500,10 @@
 		000000000000000340000000 /* ObservabilityTelemetryDeck */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ObservabilityTelemetryDeck;
+		};
+		000000000000000360000000 /* ObservabilitySentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ObservabilitySentry;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

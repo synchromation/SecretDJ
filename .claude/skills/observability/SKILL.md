@@ -10,7 +10,7 @@ All logging, analytics, and breadcrumbs flow through one pipeline
 wholesale). Features emit **semantic events**; destinations configured at the
 composition root fan them out. Features never import a vendor SDK — vendor
 code lives only in adapter targets inside the package
-(`ObservabilityTelemetryDeck`, a future Sentry adapter).
+(`ObservabilitySentry`, `ObservabilityTelemetryDeck`).
 
 Golden examples:
 
@@ -52,7 +52,7 @@ complete emission surface is reviewable in code.
 
 ## Routing policy
 
-| Level | Xcode console | Crash reporter (future Sentry adapter) |
+| Level | Xcode console | Crash reporter (`ObservabilitySentry`) |
 |---|---|---|
 | debug, info | ✓ | — |
 | notice, warning | ✓ | breadcrumb only — attached to later errors, never standalone issues |
@@ -66,9 +66,13 @@ adapter's routing lives in its `receive(_:)` switch, nowhere else.
 ## Composition
 
 `ObservabilityPipeline.live` in the app entry file is the only place
-destinations are assembled. Vendor destinations (e.g.
-`TelemetryDeckDestination(appID:)`) are appended there for release builds;
-DEBUG stays console-only.
+destinations are assembled. Vendor destinations
+(`SentryDestination(dsn:)`, `TelemetryDeckDestination(appID:)`) are
+appended there for release builds; DEBUG stays console-only. Vendor keys
+live in dedicated configuration types beside the app entry, so the
+transferable exemplars reference them symbolically. Sentry runs with
+`enableSwizzling = false` — breadcrumbs are explicit in this app, never
+swizzled.
 
 ## Testing
 

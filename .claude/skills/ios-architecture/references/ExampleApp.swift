@@ -1,4 +1,5 @@
 import Observability
+import ObservabilitySentry
 import ObservabilityTelemetryDeck
 import SwiftUI
 
@@ -27,6 +28,7 @@ extension ObservabilityPipeline {
 		var destinations: [any ObservabilityDestination] = [ConsoleDestination()]
 
 		#if !DEBUG
+			destinations.append(SentryDestination(dsn: SentryConfiguration.dsn))
 			destinations.append(TelemetryDeckDestination(appID: TelemetryDeckConfiguration.appID))
 		#endif
 
