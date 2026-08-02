@@ -1,4 +1,5 @@
 import Observability
+import ObservabilityTelemetryDeck
 import SwiftUI
 
 @main
@@ -22,5 +23,13 @@ extension ObservabilityPipeline {
 	/// breadcrumbs, and analytics all appear in Xcode's debug console;
 	/// vendor destinations (TelemetryDeck, a crash reporter) are appended
 	/// here — and only here — for release builds.
-	static let live = ObservabilityPipeline(destinations: [ConsoleDestination()])
+	static let live: ObservabilityPipeline = {
+		var destinations: [any ObservabilityDestination] = [ConsoleDestination()]
+
+		#if !DEBUG
+			destinations.append(TelemetryDeckDestination(appID: TelemetryDeckConfiguration.appID))
+		#endif
+
+		return ObservabilityPipeline(destinations: destinations)
+	}()
 }
