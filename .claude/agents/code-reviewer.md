@@ -31,6 +31,11 @@ needed to find it) and review against:
   names, fakes, determinism). Look for logic that exists but is untested.
 - **SwiftUI**: previews cover meaningful states, accessibility present,
   current APIs only, localization not broken.
+- **Instrumentation & privacy**: new behavior is instrumented per the
+  observability skill (screens tracked, interactions breadcrumbed,
+  failures reported), and no dynamic value reaches any event unredacted
+  unless provably non-identifying — uncertainty must default to
+  `Redacted`.
 - **Consistency**: the new code should be indistinguishable in style from
   the existing code.
 

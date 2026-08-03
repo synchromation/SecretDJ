@@ -1,6 +1,6 @@
 ---
 name: observability
-description: How the app logs, tracks analytics, and leaves crash breadcrumbs — everything flows through the Observability package's pipeline. Use whenever adding logging, analytics, error reporting, or instrumentation to any feature, or configuring a vendor SDK.
+description: How the app logs, tracks analytics, leaves crash breadcrumbs, and redacts sensitive values (PII) — everything flows through the Observability package's pipeline, and instrumentation is part of every feature's definition of done. Use whenever writing or changing any feature (instrumentation is automatic, not on request), adding logging/analytics/error reporting, deciding whether a value is safe to log, or configuring a vendor SDK.
 ---
 
 # Observability
@@ -23,9 +23,16 @@ Golden examples:
   asserting on emitted events with `RecordingDestination`
 - `Packages/Observability/Sources/Observability/` — the pipeline itself,
   doc-commented per the documentation skill
+- `Redacted.swift` (and `RedactedTests.swift`) in the package — the
+  redaction mechanism and its behavior spec
 
 ## Emitting
 
+- **Instrumentation is automatic**: every new or changed feature ships
+  instrumented — screens tracked, interactions breadcrumbed, failures
+  reported — as part of its definition of done (ios-architecture), without
+  being asked. Un-instrumented behavior is incomplete the same way
+  untested behavior is.
 - **Models** take `observability: ObservabilityPipeline = .disabled` in
   their initializer — the null-object default keeps tests and previews
   silent. The composition root passes `.live`.
@@ -44,11 +51,34 @@ Golden examples:
   method, path, status, and duration — never bodies, tokens, or full query
   strings.
 
-## Privacy
+## Privacy and redaction
 
-Nothing identifying goes into any event: no user IDs, no free-form user
-content, no full URLs. Analytics events are typed precisely so the app's
-complete emission surface is reviewable in code.
+**Sensitivity is the default.** A dynamic value may appear in the clear
+only when it is provably non-identifying: a code-defined name (enum case,
+screen name, state), a count, or an internal constant. Everything else —
+and anything you are *unsure* about — is treated as sensitive and wrapped:
+
+```swift
+observability.log(.info, "signed in as \(Redacted(email, label: "email"))", category: "Auth")
+// console + Sentry both see: signed in as ⟨email: j…16 #4f9a⟩
+```
+
+- The redacted hint keeps the first character, the length, and a stable
+  digest — enough to correlate occurrences ("same account both times")
+  and know *what kind* of value was redacted, while identifying no one.
+  The `label` names the kind ("email", "postcode", "query").
+- Redact **at the emission call site**, never in destinations: every
+  destination then receives only the redacted form, and nothing
+  downstream can leak what it never received. `Redacted` does not retain
+  the original.
+- Never rely on `os.Logger`'s `.private` interpolation for protection —
+  it guards only the console, not vendor destinations. Console messages
+  are `.public` precisely because redaction has already happened.
+- Analytics parameters accept no redacted values: if a value needs
+  redacting, it does not belong in analytics at all. Analytics events are
+  typed precisely so the app's complete emission surface is reviewable.
+- Network breadcrumbs carry method, path, status, and duration — never
+  bodies, tokens, or query strings.
 
 ## Routing policy
 
