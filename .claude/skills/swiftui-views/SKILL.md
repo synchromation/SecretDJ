@@ -27,18 +27,17 @@ for every meaningful state, accessibility on anything non-obvious.
 ## Previews
 
 Every view file ends with `#Preview` blocks covering its meaningful states —
-including the awkward ones (empty, error, loading, extreme values). Previews
-always inject in-memory fakes, never production dependencies. Name each
-preview: `#Preview("Fresh install") { ... }`.
+including the awkward ones (empty, error, loading, extreme values) and an
+accessibility text size (accessibility skill). Previews always inject
+in-memory fakes, never production dependencies. Name each preview:
+`#Preview("Fresh install") { ... }`.
 
 ## Accessibility
 
-- Icon-only or symbol buttons get their meaning from their title — construct
-  them with a real title even when `labelStyle(.iconOnly)` hides it.
-- Custom-rendered values get `accessibilityLabel` (what it is) and
-  `accessibilityValue` (its current value).
-- Never fix font sizes in a way that defeats Dynamic Type; prefer semantic
-  fonts (`.title`, `.body`) and `@ScaledMetric` for custom sizes.
+Views are accessible by design — labelling, adjustable elements, Dynamic
+Type, and layout variations at accessibility text sizes are owned by the
+[accessibility skill](../accessibility/SKILL.md); its verification steps
+are part of every view's definition of done.
 
 ## Localization
 

@@ -85,7 +85,8 @@ actors; never GCD, completion handlers, or `@unchecked Sendable` shortcuts.
    implementation, and an in-memory fake.
 4. Tests cover the model and any non-trivial implementation, and were
    written first (tdd skill for the process, swift-testing for mechanics).
-5. Views follow the swiftui-views skill (previews, accessibility).
+5. Views follow the swiftui-views skill (previews) and are accessible by
+   design (accessibility skill).
 6. The feature is instrumented — screens, interactions, failures — with
    sensitive values redacted (observability skill).
 7. `Scripts/verify.sh` passes.
