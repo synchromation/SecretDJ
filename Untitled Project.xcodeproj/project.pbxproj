@@ -152,6 +152,11 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
+				nl,
+				pt,
 			);
 			mainGroup = 000000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
@@ -180,22 +185,16 @@
 /* Begin PBXShellScriptBuildPhase section */
 		000000000000000380000000 /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(DWARF_DSYM_FOLDER_PATH)/$(DWARF_DSYM_FILE_NAME)",
 			);
 			name = "Upload Debug Symbols to Sentry";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR/Scripts/upload-symbols.sh\"\n";
+			shellScript = (
+				"\"$PROJECT_DIR/Scripts/upload-symbols.sh\"",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -42,8 +42,7 @@ preview: `#Preview("Fresh install") { ... }`.
 
 ## Localization
 
-User-facing strings are string literals inside SwiftUI text APIs — the
-project's String Catalog generation (`LOCALIZATION_PREFERS_STRING_CATALOGS`)
-extracts them automatically. Never interpolate whole sentences from parts,
-and never mark up strings the user won't see (keys, identifiers, log
-messages).
+User-facing strings are string literals inside SwiftUI text APIs so the
+String Catalog extracts them. Everything else — languages, tone of voice,
+translation rules, what counts as user-facing — is owned by the
+[localization skill](../localization/SKILL.md).
