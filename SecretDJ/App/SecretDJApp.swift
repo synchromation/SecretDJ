@@ -4,7 +4,7 @@ import ObservabilityTelemetryDeck
 import SwiftUI
 
 @main
-struct UntitledProjectApp: App {
+struct SecretDJApp: App {
 	@State private var counterModel = CounterModel(
 		store: UserDefaultsCounterStore(),
 		observability: .live,

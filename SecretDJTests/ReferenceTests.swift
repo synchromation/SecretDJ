@@ -2,7 +2,7 @@ import Foundation
 import Observability
 import Testing
 
-@testable import Untitled_Project
+@testable import SecretDJ
 
 /// The golden reference for tests in this project.
 ///
