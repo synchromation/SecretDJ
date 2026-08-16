@@ -62,6 +62,11 @@ per language, grown as concepts appear. Assistant-drafted translations of
 anything non-trivial are entered with state `needs_review` for a native
 speaker; trivial vocabulary may be `translated` directly.
 
+Change only the keys the task requires. An entry in state `translated` is
+settled — often by a native speaker — so re-wording or re-translating it as
+a side effect of another change silently discards that sign-off; a
+catalog-wide tone pass is its own task.
+
 ## Definition of done for any copy change
 
 1. Key in the catalog with a translator comment; the source string follows

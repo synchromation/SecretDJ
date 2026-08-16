@@ -74,6 +74,12 @@ flow up; no view reaches sideways into another view's state.
   (see `CounterModel.update(to:)`). Group logical steps inside a function
   with single blank lines.
 
+**Scope** follows the task: don't add features, refactors, or abstractions
+beyond what it requires — the simplest code that fits the anatomy above
+wins. Seams exist per real dependency, not per possibility; validate at
+those seams, where the outside world enters, and don't handle states that
+can't occur.
+
 **Swift language mode is 6** with strict concurrency. Use `async/await` and
 actors; never GCD, completion handlers, or `@unchecked Sendable` shortcuts.
 

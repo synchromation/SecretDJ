@@ -18,8 +18,8 @@ implementation rules by ios-architecture — follow all three together.
 ## The loop
 
 1. **Specify.** Enumerate the behaviors of the thing being built, including
-   edge cases and error paths. This list is the spec; review it before
-   writing code.
+   edge cases and error paths. This list is the spec; check it yourself for
+   gaps, then move on.
 
 2. **Write the tests first.** One test per behavior, complete test file,
    per the swift-testing skill. Create any fakes the tests need (following
@@ -41,7 +41,8 @@ implementation rules by ios-architecture — follow all three together.
    following ios-architecture. Re-run the targeted suite until green.
 
 5. **Refactor.** With the tests as a safety net, clean up: extract
-   functions, tighten names, remove duplication. The tests must not change
+   functions, tighten names, remove duplication — confined to the code this
+   feature touched, not the wider codebase. The tests must not change
    in this step unless a name they reference changed.
 
 6. **Full verification.** Finish with a complete `Scripts/verify.sh test`

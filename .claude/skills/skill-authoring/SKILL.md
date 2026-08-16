@@ -73,3 +73,11 @@ A convention change is one change: update the owning skill, the live
 exemplar code, the `references/` copies, and any code the change
 invalidates together, then verify. Skills describing code that no longer
 looks like their examples are worse than no skills.
+
+## Recording lessons
+
+Skills are memory: when work surfaces a lesson — a rule that misled, a
+missing reason, a gap that cost time — fold it into the owning skill as
+part of the same change, following the procedure above. Record *why* the
+rule exists alongside the rule, and delete guidance that experience has
+disproven; a stale rule misleads every future session that loads it.
