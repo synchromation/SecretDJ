@@ -144,7 +144,7 @@ target and package; all convention changes committed.
       **en source + es, fr, de, nl; Portuguese dropped** per product
       direction. Seed both apps' String Catalogs with the five languages.
       Update CLAUDE.md's "six languages" wording in the same commit.
-- [ ] S0.6 App identity: bundle ids, display names, entitlements from
+- [x] S0.6 App identity: bundle ids, display names, entitlements from
       scratch (Sign in with Apple only where used; keychain groups per
       D5), asset catalogs with placeholder icons, ATS **on** (no
       arbitrary loads). Decide URL schemes: with Spotify gone,
@@ -152,8 +152,9 @@ target and package; all convention changes committed.
       deliberately; prune `LSApplicationQueriesSchemes` to what the apps
       actually query — S3.3's social deep links (instagram/twitter),
       S6.10's appmask signal set, and S6.4's hand-offs (D12 affects the
-      list).
-- [ ] S0.7 Record every decision in the Decision log below in NOTES.md
+      list). (Done: legacy bundle ids kept per D14; `secretdj://`
+      dropped; queryable schemes instagram/twitter/uber, consumer only.)
+- [x] S0.7 Record every decision in the Decision log below in NOTES.md
       and open them with the product owner; mark each decision's owner
       and default.
 
@@ -519,6 +520,12 @@ what it blocks.
   consumer-side via `machinecontrol`). Default: match legacy. If the
   product wants kiosk-side skip/blacklist/queue tools, that is new scope
   to be planned as an S7 addition.
+- **D14 Ship as updates or new apps** — default: the rewrites ship as
+  **updates to the existing App Store listings**, which pins the legacy
+  bundle ids (`com.c-burn.secretdj`, `com.secretdj.kiosk`) — S0.6 uses
+  those. Shipping as new listings would free the identifiers but orphan
+  the installed base. Also pins S9.1: CFBundleVersion must exceed the
+  legacy build numbers (consumer 5287, kiosk 10226) before release.
 
 ## Risks
 
@@ -540,7 +547,7 @@ what it blocks.
 
 | Stage | Status |
 |---|---|
-| S0 Foundations | not started |
+| S0 Foundations | **done** |
 | S1 Domain & API | not started |
 | S2 Design system | not started |
 | S3 Feed engine | not started |

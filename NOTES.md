@@ -108,3 +108,25 @@ work happens; every commit includes this file's delta.
   swiftui-views exemplar byte-identical to its reference copy — the
   kiosk root imports DesignSystem instead, and pbxproj product
   dependencies prove consumer linking at build time.
+- S0.6 done: legacy bundle ids kept (com.c-burn.secretdj,
+  com.secretdj.kiosk) per new decision D14 — the rewrites ship as
+  updates to the existing App Store listings, so S9.1 must raise
+  CFBundleVersion above the legacy floors (5287/10226). Consumer gets
+  its own entitlements (Sign in with Apple + own keychain group, no
+  sharing per D5); kiosk has none. ATS confirmed on (zero exceptions
+  anywhere). secretdj:// URL scheme deliberately dropped (its only
+  consumer was Spotify OAuth); queryable schemes are
+  instagram/twitter/uber on the consumer only, via a minimal physical
+  Info.plist merged with the generated one. Marketing version 6.0.0.
+  Placeholder app icons (violet consumer, amber kiosk).
+  UIRequiresFullScreen removed (deprecated on iOS 26; kiosk runs under
+  Guided Access). Both schemes verified green, deprecation warning gone.
+- S0.7 done — S0 complete. All decisions live in PLAN.md's Decision log
+  with owners and defaults; resolved so far by the product owner: D2,
+  D10, D11 (2026-08-17) plus the iOS 26 floor; D14 default taken
+  (update-in-place). Still open for the product owner: D1 (Facebook
+  login), D3 (venue fleet vs iOS 26), D9 (ticker behavior), D12
+  (affiliate hand-offs), D13 (kiosk-side moderation). Stage exit
+  evidence: hosted test suites launch both apps to their roots on
+  iOS 26 simulators in every full verify; all targets and six packages
+  exercised; convention changes (S0.4, S0.5) committed.
