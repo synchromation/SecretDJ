@@ -86,3 +86,13 @@ work happens; every commit includes this file's delta.
 - S0.1 done: deployment floor set to iOS 26.0 (built with the Xcode 27 /
   iOS 27 SDK — normal arrangement), Swift 6 language mode and default
   MainActor isolation confirmed unchanged; verify green.
+- S0.2 done (and S0.5 closed with it): SecretDJKiosk app target
+  (iPad-only, landscape, status bar hidden, iOS 26) + hosted
+  SecretDJKioskTests with a placeholder Swift Testing suite, shared
+  scheme, synchronized folders, five-language kiosk String Catalog, and
+  verify.sh extended — it now runs the consumer scheme on the newest
+  iPhone simulator and the kiosk scheme on the newest iPad simulator,
+  with targeted filters routing to the right scheme. Both schemes green.
+  Notes: kiosk bundle id is a placeholder until S0.6;
+  UIRequiresFullScreen is deprecated as of iOS 26 (warning only) —
+  revisit in S0.6.

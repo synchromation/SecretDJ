@@ -6,12 +6,15 @@ changes need `project.pbxproj` edits).
 
 ## Map
 
-The app source folder shares the `.xcodeproj`'s name; the unit test folder
-is `<app>Tests/` beside it.
+The consumer app source folder shares the `.xcodeproj`'s name, with its
+unit test folder as `<app>Tests/` beside it; the kiosk app is a second app
+target following the same shape in `<app>Kiosk/` and `<app>KioskTests/`.
 
 - `<app>/App/` — composition root (the `@main` app struct)
 - `<app>/Features/<Name>/` — one folder per feature
 - `<app>Tests/` — Swift Testing unit tests
+- `<app>Kiosk/`, `<app>KioskTests/` — the kiosk app target, mirroring the
+  same `App/`/`Features/` anatomy and test conventions
 - `Packages/Observability/` — logging/analytics/breadcrumb pipeline (SPM;
   its tests run natively in every full verify)
 - `Scripts/verify.sh` — canonical build + test command (auto-detects the project)

@@ -123,7 +123,7 @@ target and package; all convention changes committed.
 - [x] S0.1 Raise the project to the target platform: iOS 26 minimum for
       the existing SecretDJ target, latest Swift language mode confirmed,
       project-level settings tidied (one source of truth for versions).
-- [ ] S0.2 Add the `SecretDJKiosk` app target (iPad-only, landscape,
+- [x] S0.2 Add the `SecretDJKiosk` app target (iPad-only, landscape,
       status bar hidden) and `SecretDJKioskTests`, with its own
       `Features/` synchronized folder and composition root
       (`project.pbxproj` edit — flag, don't improvise, per
@@ -139,14 +139,11 @@ target and package; all convention changes committed.
 - [x] S0.4 Convention change — multi-target placement: amend the
       ios-architecture skill with the package/app placement rule above
       (skill-authoring procedure: skill + INDEX.md in one change).
-- [ ] S0.5 Convention change — language set: amend the localization skill
+- [x] S0.5 Convention change — language set: amend the localization skill
       (and its adaptation-sheet references) from six languages to five —
       **en source + es, fr, de, nl; Portuguese dropped** per product
       direction. Seed both apps' String Catalogs with the five languages.
       Update CLAUDE.md's "six languages" wording in the same commit.
-      — in progress: skill, adaptation sheets, CLAUDE.md, INDEX.md, live
-      catalog + reference sync, and knownRegions all done and verified;
-      kiosk catalog seeding lands with S0.2.
 - [ ] S0.6 App identity: bundle ids, display names, entitlements from
       scratch (Sign in with Apple only where used; keychain groups per
       D5), asset catalogs with placeholder icons, ATS **on** (no
