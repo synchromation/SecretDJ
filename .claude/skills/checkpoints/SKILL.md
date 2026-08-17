@@ -1,6 +1,6 @@
 ---
 name: checkpoints
-description: How in-progress work is made visible — commit and push at every green checkpoint, and keep a running notes.md journal whose delta travels with every commit. Use whenever completing any unit of work, committing, or deciding when to commit or push.
+description: How in-progress work is made visible — commit and push at every green checkpoint, and keep a running Notes.md journal whose delta travels with every commit. Use whenever completing any unit of work, committing, or deciding when to commit or push.
 ---
 
 # Checkpoints
@@ -21,9 +21,9 @@ the remote and the journal, not by waiting for a final hand-off.
 - If no remote is configured, say so once rather than silently skipping
   the push.
 
-## The journal (notes.md)
+## The journal (Notes.md)
 
-- `notes.md` at the repository root is an append-only working journal:
+- `Notes.md` at the repository root is an append-only working journal:
   as you work, add short dated entries — what changed, decisions and
   their why, anything surprising. Write for the user previewing
   progress, not for yourself.

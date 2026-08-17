@@ -26,3 +26,8 @@ work happens; every commit includes this file's delta.
   defaults that must not be "fixed" (unifying the keys would brick
   fresh installs). Open questions for the product owner are collected
   at the end of the document.
+
+## 2026-08-17
+
+- Renamed notes.md to Notes.md (git mv, history preserved) and updated
+  every reference (CLAUDE.md, checkpoints/SKILL.md, INDEX.md).
