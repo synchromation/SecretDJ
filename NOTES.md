@@ -48,3 +48,20 @@ work happens; every commit includes this file's delta.
   the result; their must-fixes (wrapping in the accessibility branch,
   leaf-view previews) are in. Coding ran on sonnet subagents per the
   delegation skill.
+- Wrote PLAN.md: the staged rewrite plan for both legacy apps (consumer
+  + kiosk) on iOS 27, Spotify removed, shared local packages, five
+  languages (Portuguese dropped from the localization skill's set —
+  scheduled as convention change S0.5). Ten stages S0–S9 with per-task
+  checkboxes; PLAN.md is the single source of truth and statuses ride in
+  the same commit as work. Draft was adversarially reviewed on three
+  axes (coverage vs LEGACY.md, sequencing/restartability, skills
+  conventions) — the coverage critic caught real omissions now included
+  (likes/buzz, kiosk skin system + attract config, out-of-credits
+  pic-for-credits funnel, voucher/restore flows, .pbz download-then-
+  decode preview playback, appmodel=1 and User-Agent wire contract,
+  ?RESTART? staff reset) and corrected a kiosk-scope misread (legacy
+  kiosk has no queue/skip controls; moderation is consumer-side via
+  machinecontrol). Thirteen product decisions (D1–D13) logged with
+  defaults; the big open ones are D2 (music catalog/previews without
+  Spotify), D3 (venue iPad fleet vs iOS 27), D10 (skin system), and D11
+  (server copy is English-only today vs the five-language requirement).
