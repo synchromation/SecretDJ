@@ -96,3 +96,15 @@ work happens; every commit includes this file's delta.
   Notes: kiosk bundle id is a placeholder until S0.6;
   UIRequiresFullScreen is deprecated as of iOS 26 (warning only) —
   revisit in S0.6.
+- S0.3 done: five local packages scaffolded (SecretDJDomain,
+  SecretDJAPI → Domain, FeedUI → Domain, DesignSystem, SharedFeatures →
+  Domain+FeedUI+DesignSystem), each with a small real placeholder type
+  and native Swift Testing tests; both app targets link all five
+  (pbxproj package references + product dependencies); verify's package
+  loop now runs six packages, then both schemes — all green. The
+  production API host (api4.secretdj.com, confirmed in LEGACY.md) seeds
+  SecretDJAPI's environment type; staging is a marked placeholder. A
+  linking-proof edit to CounterView was reverted to keep the
+  swiftui-views exemplar byte-identical to its reference copy — the
+  kiosk root imports DesignSystem instead, and pbxproj product
+  dependencies prove consumer linking at build time.

@@ -1,3 +1,4 @@
+import DesignSystem
 import SwiftUI
 
 @main
@@ -16,6 +17,7 @@ private struct PlaceholderRootView: View {
 		Text("Kiosk coming soon")
 			.font(.title)
 			.multilineTextAlignment(.center)
+			.padding(Spacing.medium)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.accessibilityAddTraits(.isHeader)
 	}

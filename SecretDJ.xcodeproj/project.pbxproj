@@ -11,6 +11,16 @@
 		000000000000000330000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000320000000 /* Observability */; };
 		000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000340000000 /* ObservabilityTelemetryDeck */; };
 		000000000000000370000000 /* ObservabilitySentry in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000360000000 /* ObservabilitySentry */; };
+		000000000000000611000000 /* SecretDJDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000610000000 /* SecretDJDomain */; };
+		000000000000000621000000 /* SecretDJAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000620000000 /* SecretDJAPI */; };
+		000000000000000631000000 /* FeedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000630000000 /* FeedUI */; };
+		000000000000000641000000 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000640000000 /* DesignSystem */; };
+		000000000000000651000000 /* SharedFeatures in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000650000000 /* SharedFeatures */; };
+		000000000000000711000000 /* SecretDJDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000710000000 /* SecretDJDomain */; };
+		000000000000000721000000 /* SecretDJAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000720000000 /* SecretDJAPI */; };
+		000000000000000731000000 /* FeedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000730000000 /* FeedUI */; };
+		000000000000000741000000 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000740000000 /* DesignSystem */; };
+		000000000000000751000000 /* SharedFeatures in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000750000000 /* SharedFeatures */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +77,11 @@
 				000000000000000310000000 /* Observability in Frameworks */,
 				000000000000000370000000 /* ObservabilitySentry in Frameworks */,
 				000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */,
+				000000000000000611000000 /* SecretDJDomain in Frameworks */,
+				000000000000000621000000 /* SecretDJAPI in Frameworks */,
+				000000000000000631000000 /* FeedUI in Frameworks */,
+				000000000000000641000000 /* DesignSystem in Frameworks */,
+				000000000000000651000000 /* SharedFeatures in Frameworks */,
 			);
 		};
 		000000000000000230000000 /* Frameworks */ = {
@@ -78,6 +93,11 @@
 		000000000000000430000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				000000000000000711000000 /* SecretDJDomain in Frameworks */,
+				000000000000000721000000 /* SecretDJAPI in Frameworks */,
+				000000000000000731000000 /* FeedUI in Frameworks */,
+				000000000000000741000000 /* DesignSystem in Frameworks */,
+				000000000000000751000000 /* SharedFeatures in Frameworks */,
 			);
 		};
 		000000000000000530000000 /* Frameworks */ = {
@@ -132,6 +152,11 @@
 				000000000000000300000000 /* Observability */,
 				000000000000000340000000 /* ObservabilityTelemetryDeck */,
 				000000000000000360000000 /* ObservabilitySentry */,
+				000000000000000610000000 /* SecretDJDomain */,
+				000000000000000620000000 /* SecretDJAPI */,
+				000000000000000630000000 /* FeedUI */,
+				000000000000000640000000 /* DesignSystem */,
+				000000000000000650000000 /* SharedFeatures */,
 			);
 			productName = SecretDJ;
 			productReference = 000000000000000000000120 /* SecretDJ.app */;
@@ -174,6 +199,13 @@
 				000000000000000000000050 /* SecretDJKiosk */,
 			);
 			name = "SecretDJKiosk";
+			packageProductDependencies = (
+				000000000000000710000000 /* SecretDJDomain */,
+				000000000000000720000000 /* SecretDJAPI */,
+				000000000000000730000000 /* FeedUI */,
+				000000000000000740000000 /* DesignSystem */,
+				000000000000000750000000 /* SharedFeatures */,
+			);
 			productName = SecretDJKiosk;
 			productReference = 000000000000000000000420 /* SecretDJKiosk.app */;
 			productType = "com.apple.product-type.application";
@@ -239,6 +271,11 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				000000000000000000000040 /* XCLocalSwiftPackageReference "Packages/Observability" */,
+				000000000000000000000070 /* XCLocalSwiftPackageReference "Packages/SecretDJDomain" */,
+				000000000000000000000080 /* XCLocalSwiftPackageReference "Packages/SecretDJAPI" */,
+				000000000000000000000090 /* XCLocalSwiftPackageReference "Packages/FeedUI" */,
+				000000000000000000000100 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */,
+				000000000000000000000110 /* XCLocalSwiftPackageReference "Packages/SharedFeatures" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = 000000000000000000000020 /* Products */;
@@ -759,6 +796,26 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/Observability;
 		};
+		000000000000000000000070 /* XCLocalSwiftPackageReference "Packages/SecretDJDomain" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SecretDJDomain;
+		};
+		000000000000000000000080 /* XCLocalSwiftPackageReference "Packages/SecretDJAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SecretDJAPI;
+		};
+		000000000000000000000090 /* XCLocalSwiftPackageReference "Packages/FeedUI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/FeedUI;
+		};
+		000000000000000000000100 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DesignSystem;
+		};
+		000000000000000000000110 /* XCLocalSwiftPackageReference "Packages/SharedFeatures" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/SharedFeatures;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -777,6 +834,46 @@
 		000000000000000360000000 /* ObservabilitySentry */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ObservabilitySentry;
+		};
+		000000000000000610000000 /* SecretDJDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJDomain;
+		};
+		000000000000000620000000 /* SecretDJAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJAPI;
+		};
+		000000000000000630000000 /* FeedUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FeedUI;
+		};
+		000000000000000640000000 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		000000000000000650000000 /* SharedFeatures */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedFeatures;
+		};
+		000000000000000710000000 /* SecretDJDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJDomain;
+		};
+		000000000000000720000000 /* SecretDJAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJAPI;
+		};
+		000000000000000730000000 /* FeedUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FeedUI;
+		};
+		000000000000000740000000 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		000000000000000750000000 /* SharedFeatures */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharedFeatures;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

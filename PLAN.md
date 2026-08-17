@@ -132,7 +132,7 @@ target and package; all convention changes committed.
       the D3 default (iOS 26 kiosk floor); if D3 lands differently,
       re-targeting the kiosk is the known rework. Update CLAUDE.md's Map
       section (second app target and tests folder) in the same commit.
-- [ ] S0.3 Scaffold the local packages (`SecretDJDomain`, `SecretDJAPI`,
+- [x] S0.3 Scaffold the local packages (`SecretDJDomain`, `SecretDJAPI`,
       `FeedUI`, `DesignSystem`, `SharedFeatures`) with placeholder types
       and native tests, linked from both apps; confirm the verify.sh
       package loop picks each one up.
