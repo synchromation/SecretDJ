@@ -78,3 +78,8 @@ work happens; every commit includes this file's delta.
   Features/, shared features and infrastructure in local packages;
   packages never depend on app targets), INDEX.md updated in the same
   change.
+- S0.5 (all but kiosk seeding): localization is now five languages —
+  Portuguese removed from the skill, the adaptation sheets, the live
+  String Catalog (reference copy synced byte-identically), and
+  knownRegions; CLAUDE.md and INDEX.md updated; verify green. Kiosk
+  catalog seeding waits for the S0.2 target.

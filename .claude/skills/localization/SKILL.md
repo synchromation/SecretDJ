@@ -1,13 +1,13 @@
 ---
 name: localization
-description: All user-facing copy — modern Xcode localization via String Catalogs into English (source), Spanish, German, Portuguese, French, and Dutch, with a defined tone of voice. Use whenever writing, changing, or translating any user-visible string (UI text, alerts, buttons, accessibility labels, permission prompts), or reviewing copy quality or tone.
+description: All user-facing copy — modern Xcode localization via String Catalogs into English (source), Spanish, French, German, and Dutch, with a defined tone of voice. Use whenever writing, changing, or translating any user-visible string (UI text, alerts, buttons, accessibility labels, permission prompts), or reviewing copy quality or tone.
 ---
 
 # Localization
 
-Six languages: **English (en, source — British English)**, Spanish (es),
-German (de), Portuguese (pt — one catalog using Brazilian conventions with
-*você*; a recorded decision), French (fr), Dutch (nl). The golden example
+Five languages: **English (en, source — British English)**, Spanish (es),
+French (fr), German (de), Dutch (nl). (Portuguese was in the set until
+2026-08-17; dropped by recorded product decision.) The golden example
 is the live `Localizable.xcstrings` in the app folder (bundled copy:
 [references/Localizable.xcstrings](references/Localizable.xcstrings)).
 
@@ -32,7 +32,7 @@ is the live `Localizable.xcstrings` in the app folder (bundled copy:
   arrive localized (API takes a locale) or as codes mapped to catalog
   keys — never rendered as verbatim English.
 - **Never key logic off a visible string** (comparing a button's title to
-  its English text silently breaks in five languages) — drive UI state
+  its English text silently breaks in four languages) — drive UI state
   from model state.
 - Not user-facing → not localized: log messages, analytics names, keys.
 
@@ -54,7 +54,7 @@ Defined **once**, in the source language — full guide:
 
 Each language has a short adaptation sheet —
 [references/language-adaptations.md](references/language-adaptations.md) —
-covering register (informal address in all six), idiom transcreation
+covering register (informal address in all five), idiom transcreation
 (never calque), capitalization norms (English Title Case is not exported),
 length budgets (~130%, German and Dutch abbreviate), and the fixed
 load-bearing phrases. The glossary lives there too: one term per concept
@@ -71,7 +71,7 @@ catalog-wide tone pass is its own task.
 
 1. Key in the catalog with a translator comment; the source string follows
    the voice.
-2. All five translations present, conforming to the adaptation sheets.
+2. All four translations present, conforming to the adaptation sheets.
 3. Source-language flaws fixed *before* translating — a flawed source
-   multiplies its flaws by six.
+   multiplies its flaws by five.
 4. `Scripts/verify.sh` passes (the build compiles the catalog).

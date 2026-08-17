@@ -144,6 +144,9 @@ target and package; all convention changes committed.
       **en source + es, fr, de, nl; Portuguese dropped** per product
       direction. Seed both apps' String Catalogs with the five languages.
       Update CLAUDE.md's "six languages" wording in the same commit.
+      — in progress: skill, adaptation sheets, CLAUDE.md, INDEX.md, live
+      catalog + reference sync, and knownRegions all done and verified;
+      kiosk catalog seeding lands with S0.2.
 - [ ] S0.6 App identity: bundle ids, display names, entitlements from
       scratch (Sign in with Apple only where used; keychain groups per
       D5), asset catalogs with placeholder icons, ATS **on** (no

@@ -31,12 +31,6 @@
             "state" : "translated",
             "value" : "Huidige telling"
           }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contagem atual"
-          }
         }
       }
     },
@@ -65,12 +59,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verlagen"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diminuir"
           }
         }
       }
@@ -101,12 +89,6 @@
             "state" : "translated",
             "value" : "Verhogen"
           }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aumentar"
-          }
         }
       }
     },
@@ -135,12 +117,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Opnieuw instellen"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Redefinir"
           }
         }
       }

@@ -18,7 +18,7 @@ rules. The voice itself is defined once in
   references (e.g. a punk-rock "Hey! Ho! Let's Go!!!") stay in English
   where the reference is international; substitute an equally energetic
   local exclamation if it reads as noise — never translate literally.
-- **ALL-CAPS** is fine for buttons/labels in all six languages; never
+- **ALL-CAPS** is fine for buttons/labels in all five languages; never
   all-caps body text.
 - **Keep the `\n\n` structure** and `%@`/format placeholders exactly as in
   the source.
@@ -50,16 +50,6 @@ rules. The voice itself is defined once in
 - "No payment was taken." → **"Es wurde keine Zahlung abgebucht."**
 - German noun capitalization applies; no imitation of English Title Case.
 - iOS term: Settings = *Einstellungen*.
-
-## Portuguese (pt)
-
-- **Recorded decision: one catalog, Brazilian conventions with *você***
-  (informal in Brazil, acceptable-neutral in Portugal). Revisit only if
-  the audience becomes Portugal-specific (then pt-PT with *tu*).
-- "Sorry, ..." → *"Desculpe, ..."*; "Uh-oh! ..." → *"Opa! Algo deu errado..."*
-- "No payment was taken." → **"Nenhum pagamento foi efetuado."**
-- Sentence-style capitalization for titles and buttons.
-- iOS term: Settings = *Ajustes*.
 
 ## French (fr)
 
