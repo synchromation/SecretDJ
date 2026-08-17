@@ -120,7 +120,7 @@ everything else assumes. Exit: both apps build and launch to placeholder
 roots on iOS 26 simulators; `Scripts/verify.sh test` exercises every
 target and package; all convention changes committed.
 
-- [ ] S0.1 Raise the project to the target platform: iOS 26 minimum for
+- [x] S0.1 Raise the project to the target platform: iOS 26 minimum for
       the existing SecretDJ target, latest Swift language mode confirmed,
       project-level settings tidied (one source of truth for versions).
 - [ ] S0.2 Add the `SecretDJKiosk` app target (iPad-only, landscape,

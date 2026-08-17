@@ -83,3 +83,6 @@ work happens; every commit includes this file's delta.
   String Catalog (reference copy synced byte-identically), and
   knownRegions; CLAUDE.md and INDEX.md updated; verify green. Kiosk
   catalog seeding waits for the S0.2 target.
+- S0.1 done: deployment floor set to iOS 26.0 (built with the Xcode 27 /
+  iOS 27 SDK — normal arrangement), Swift 6 language mode and default
+  MainActor isolation confirmed unchanged; verify green.
