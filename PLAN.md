@@ -2,7 +2,7 @@
 
 The single source of truth for rebuilding the two legacy Secret DJ apps —
 the consumer iPhone app and the venue Kiosk iPad app — as one modern,
-iOS 27+ SwiftUI project in this repository. The behavioral reference is
+iOS 26+ SwiftUI project in this repository. The behavioral reference is
 [LEGACY.md](LEGACY.md) (analysis of the legacy checkout at
 `~/ws/secret-dj-ios-old`, `refactor` branch, tip `4fef6ac9`;
 `~/Code/secret-dj-ios-old` is a copy at the same tip). This file is the
@@ -34,7 +34,7 @@ reference for *what to build in what order and what is done*.
 ## Scope
 
 **In**: all current user-facing functionality of both legacy targets as
-catalogued in LEGACY.md, re-imagined on iOS 27+, except the items below.
+catalogued in LEGACY.md, re-imagined on iOS 26+, except the items below.
 
 **Out (deliberately not ported)**:
 
@@ -57,9 +57,10 @@ catalogued in LEGACY.md, re-imagined on iOS 27+, except the items below.
   Observability package's pipeline with vendor adapters (D4); Facebook
   login is a product decision (D1).
 
-**Platform**: iOS 27 floor for both apps (kiosk floor is decision D3 —
-it blocks S0.2), latest Swift language mode and SwiftUI throughout, Xcode
-synchronized folders, strict concurrency.
+**Platform**: iOS 26 floor for both apps (product decision 2026-08-17;
+venue-fleet check D3 still applies and blocks S0.2), latest Swift
+language mode and SwiftUI throughout, Xcode synchronized folders, strict
+concurrency.
 
 ## Ground rules (binding for every task)
 
@@ -116,10 +117,10 @@ internal anatomy is ios-architecture's. Package tests run natively via
 Prereqs: none.
 Goal: the project skeleton, targets, packages, and convention changes that
 everything else assumes. Exit: both apps build and launch to placeholder
-roots on iOS 27 simulators; `Scripts/verify.sh test` exercises every
+roots on iOS 26 simulators; `Scripts/verify.sh test` exercises every
 target and package; all convention changes committed.
 
-- [ ] S0.1 Raise the project to the target platform: iOS 27 minimum for
+- [ ] S0.1 Raise the project to the target platform: iOS 26 minimum for
       the existing SecretDJ target, latest Swift language mode confirmed,
       project-level settings tidied (one source of truth for versions).
 - [ ] S0.2 Add the `SecretDJKiosk` app target (iPad-only, landscape,
@@ -128,7 +129,7 @@ target and package; all convention changes committed.
       (`project.pbxproj` edit — flag, don't improvise, per
       ios-architecture). Extend `Scripts/verify.sh` to build/test both
       app schemes (its package loop already covers packages). Proceeds on
-      the D3 default (iOS 27 kiosk floor); if D3 lands differently,
+      the D3 default (iOS 26 kiosk floor); if D3 lands differently,
       re-targeting the kiosk is the known rework. Update CLAUDE.md's Map
       section (second app target and tests folder) in the same commit.
 - [ ] S0.3 Scaffold the local packages (`SecretDJDomain`, `SecretDJAPI`,
@@ -177,8 +178,10 @@ fixtures.
       unknown kinds map to nil and those sections are dropped.
 - [ ] S1.2 API client core: base environments, request building with the
       full implicit parameter set — location, `appmask`, client version,
-      `appmodel=1` on every kiosk request (the only kiosk/consumer
-      discriminator), and the structured User-Agent
+      the device language on every request (BCP-47 preferred language;
+      the coordinated backend addition from D11 that makes server copy
+      arrive localized), `appmodel=1` on every kiosk request (the only
+      kiosk/consumer discriminator), and the structured User-Agent
       (`secret dj <idfv>:<screenWidthPx>:<version>`) — plus auth/request
       signing compatible with the legacy scheme: SHA-1 password-hash
       signing, the AFNetworking-compatible query encoding (%2B/%3D
@@ -260,8 +263,8 @@ previews.
       legacy cadence (20s, tightened to 3s until the first GPS fix is
       ~12s old — LEGACY.md business rule); infinite scroll/pagination;
       hash-change "jukebox changed" surfacing; empty/error/offline
-      states. Server-driven copy renders as delivered — its localization
-      is D11.
+      states. Server-driven copy renders as delivered — it arrives
+      localized because every call carries the device language (D11).
 - [ ] S3.5 Performance proof: a stress-feed preview/profile pass on
       device-class hardware; no regressions against lazy-sections'
       scroll-performance rules.
@@ -468,14 +471,14 @@ what it blocks.
   show meaningful `facebooksignin` usage; native + Apple cover new
   accounts, and existing Facebook-account users need a migration story
   either way. Blocks S4.4 only.
-- **D2 Music catalog after Spotify removal** — search/browse/previews
-  must be served by the Secret DJ backend (it already drives selection
-  feeds and `musicsearch`). Confirm search coverage and preview delivery
-  without Spotify, and whether preview Content-Type gets fixed (S6.4's
-  playback strategy). Blocks S6.3/S6.4 detail work, not their UI
-  foundations.
-- **D3 Kiosk hardware floor** — iOS 27 on venue iPads (R1). Confirm the
-  installed fleet can run iOS 27 or plan hardware refresh; fallback is a
+- **D2 Music catalog after Spotify removal** — **Resolved 2026-08-17**:
+  the backend serves music search and preview audio without Spotify.
+  One detail remains open with the backend team: whether preview
+  Content-Type gets fixed (decides S6.4's streaming-vs-download playback
+  strategy; download-then-decode is the safe default).
+- **D3 Kiosk hardware floor** — iOS 26 on venue iPads (R1; the floor was
+  lowered from 27 to 26 by product decision 2026-08-17). Confirm the
+  installed fleet can run iOS 26 or plan hardware refresh; fallback is a
   lower kiosk deployment target. **Blocks S0.2** (deployment-target
   choice — S0.2 proceeds on the default and notes the rework);
   re-check before S7.
@@ -496,21 +499,17 @@ what it blocks.
   audio, ship without previews and remove the preview half of S6.4.
 - **D9 Extra-content ticker behavior** — confirm the scroll-direction
   show/hide interaction is wanted before rebuilding it verbatim.
-- **D10 Server-driven venue skinning** — default: keep the
-  `skinresources` contract as a typed manifest (per LEGACY.md's
-  tech-debt note) for behavioral config and minimal chrome colors, with
-  DesignSystem owning everything else; alternative: drop visual
-  skinning entirely and take only the behavioral config. Blocks
-  S7.1/S7.2; includes the staff-reset trigger and custom-keyboard
-  questions (S7.6).
-- **D11 Server-text localization** — the localization skill requires
-  server display text to arrive localized or as mapped codes, but the
-  legacy backend serves English copy (feeds, toasts, likeInfo, dialogs).
-  Confirm whether the backend can take a locale for the five languages;
-  if not, either map server codes to catalog keys where codes exist or
-  amend the localization skill via skill-authoring to record the
-  accepted English-server-copy exception. Blocks S8.1 sign-off; S3.4
-  renders server copy as delivered in the meantime.
+- **D10 Server-driven venue skinning** — **Resolved 2026-08-17**: keep
+  server-based venue skinning — the `skinresources` contract as a typed
+  manifest (per LEGACY.md's tech-debt note), with DesignSystem
+  reconciling. Still open within it: the staff-reset trigger and
+  custom-keyboard details (S7.1/S7.6).
+- **D11 Server-text localization** — **Resolved 2026-08-17**: the
+  multi-language requirement stands, and the client sends the device
+  language with every server call (S1.2's implicit parameter); the
+  backend returns copy localized for the five languages. This satisfies
+  the localization skill's server-text rule with no skill amendment.
+  S8.1 verifies localized server copy end to end per language.
 - **D12 Affiliate hand-offs** — default: keep the Apple Music affiliate
   link (moved to HTTPS endpoints) and the YouTube hand-off in the
   listen-elsewhere sheet; confirm the TradeDoubler affiliate program is
@@ -523,7 +522,7 @@ what it blocks.
 
 ## Risks
 
-- **R1 Venue iPad fleet vs iOS 27** — the kiosk floor decision (D3)
+- **R1 Venue iPad fleet vs iOS 26** — the kiosk floor decision (D3)
   blocks S0.2's target settings and can invalidate them late; resolve
   early, re-verify on real venue hardware in S9.3.
 - **R2 Undocumented server behavior** — LEGACY.md's open questions list

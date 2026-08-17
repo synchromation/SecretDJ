@@ -65,3 +65,11 @@ work happens; every commit includes this file's delta.
   defaults; the big open ones are D2 (music catalog/previews without
   Spotify), D3 (venue iPad fleet vs iOS 27), D10 (skin system), and D11
   (server copy is English-only today vs the five-language requirement).
+- Product owner decisions received and folded into PLAN.md: platform
+  floor lowered to iOS 26; D2 resolved (backend serves music search and
+  previews without Spotify — preview Content-Type still to confirm);
+  D10 resolved (keep server-based venue skinning, typed manifest); D11
+  resolved (multi-language stands; the client sends the device language
+  with every server call and the backend returns localized copy — no
+  localization-skill amendment needed). D3's fleet check remains open,
+  now against iOS 26.
