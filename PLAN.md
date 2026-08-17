@@ -136,7 +136,7 @@ target and package; all convention changes committed.
       `FeedUI`, `DesignSystem`, `SharedFeatures`) with placeholder types
       and native tests, linked from both apps; confirm the verify.sh
       package loop picks each one up.
-- [ ] S0.4 Convention change — multi-target placement: amend the
+- [x] S0.4 Convention change — multi-target placement: amend the
       ios-architecture skill with the package/app placement rule above
       (skill-authoring procedure: skill + INDEX.md in one change).
 - [ ] S0.5 Convention change — language set: amend the localization skill

@@ -73,3 +73,8 @@ work happens; every commit includes this file's delta.
   with every server call and the backend returns localized copy — no
   localization-skill amendment needed). D3's fleet check remains open,
   now against iOS 26.
+- Began implementing the plan. S0.4 done: ios-architecture gained the
+  multi-target placement rule (single-app features in the app's
+  Features/, shared features and infrastructure in local packages;
+  packages never depend on app targets), INDEX.md updated in the same
+  change.

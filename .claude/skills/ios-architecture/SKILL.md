@@ -42,6 +42,15 @@ Features/Counter/
 
 Tests mirror this in the tests folder (see the swift-testing skill).
 
+**Multi-target placement**: when the project has more than one app
+target, a feature used by a single app lives in that app's
+`Features/<Name>/`; anything used by more than one app lives in a local
+Swift package under `Packages/`, keeping this same internal anatomy.
+Shared non-feature infrastructure (domain model, API client, design
+system) gets its own package. App targets hold only composition roots
+and single-app features; packages never depend on app targets. Package
+tests run natively (`swift test`) in every full verify.
+
 ## Rules
 
 **Models** are `@Observable final class`, expose state as `private(set) var`,
