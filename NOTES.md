@@ -130,3 +130,28 @@ work happens; every commit includes this file's delta.
   evidence: hosted test suites launch both apps to their roots on
   iOS 26 simulators in every full verify; all targets and six packages
   exercised; convention changes (S0.4, S0.5) committed.
+- S1.1 done (TDD, 95 tests / 46 suites, sonnet subagent): the domain
+  vocabulary as value types in SecretDJDomain — Template/ItemType
+  (one OptionSet bitmask where legacy had two duplicate enums),
+  Action/ActionKind/ActionButton with .unsupported(Int) fallbacks,
+  Song with the intermission contract (songId "0", \n\n message
+  split), Venue/Person with identity-validated decoding, Artist
+  (preserving legacy's outer-level field quirk), TopUp (fixing
+  legacy's vendor-cast bug), Promotion, Control (fixing the malformed
+  "#00000" default), Item/Section/SectionList, SongRequestResult
+  (ReturnCode -8 branch typed), LikeInfo/LikeResult. Item/Section/
+  SectionList are deliberately not Decodable — template-driven payload
+  dispatch belongs to SecretDJAPI (S1.3); gaps recorded as // S1.3:
+  comments. News tab excluded per scope (code 500 → unsupported).
+  SwiftLint's inclusive_language note on jukeboxBlacklistSong accepted:
+  it is the wire protocol's vocabulary.
+- S2.1 done (TDD, 18 tests / 8 suites, sonnet subagent): DesignSystem
+  Theme — semantic color roles with explicit light/dark sRGB
+  components, ColorToken bridging to dynamic platform colors, a
+  sanctioned-pairings table that is itself API, and a native WCAG
+  contrast suite proving every sanctioned text/background pairing
+  ≥ 4.5:1 in both appearances (lowest margin 5.17:1); typography
+  tokens that structurally cannot carry fixed point sizes (semantic
+  styles + weight/design only). Brand violet accent, lightened in
+  dark mode where the base hue fails contrast. Full verify green
+  across six packages and both schemes after both lanes landed.

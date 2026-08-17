@@ -168,7 +168,7 @@ parameters match the legacy wire format byte-for-byte where the server
 requires it, and the package test suites prove it against captured
 fixtures.
 
-- [ ] S1.1 Domain model: sections/items/templates/actions, venues, users,
+- [x] S1.1 Domain model: sections/items/templates/actions, venues, users,
       credits & top-ups, moods/atmospheres, song requests, likes, awards,
       events — value types per LEGACY.md "Domain model and persistence".
       Song carries the intermission contract (`songId == "0"`: inert on
@@ -548,8 +548,8 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | not started |
-| S2 Design system | not started |
+| S1 Domain & API | in progress (S1.1 done) |
+| S2 Design system | in progress (S2.1 done) |
 | S3 Feed engine | not started |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
