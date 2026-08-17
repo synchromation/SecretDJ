@@ -23,6 +23,8 @@ for every meaningful state, accessibility on anything non-obvious.
 - Use current API only: `NavigationStack`/`NavigationSplitView` (never
   `NavigationView`), `foregroundStyle` (never `foregroundColor`),
   `Button("Title", systemImage:)` (never manual `Label` unless customizing).
+- Vertically scrolling, backend-driven feeds of heterogeneous sections
+  follow the [lazy-sections skill](../lazy-sections/SKILL.md).
 
 ## Previews
 

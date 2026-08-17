@@ -32,3 +32,19 @@ work happens; every commit includes this file's delta.
 - Renamed notes.md to NOTES.md (via an intermediate Notes.md, then a
   brief NOTES.MD typo, git mv throughout, history preserved) and
   updated every reference (CLAUDE.md, checkpoints/SKILL.md, INDEX.md).
+- Added the lazy-sections skill: the pattern for vertically scrolling,
+  backend-driven feeds of heterogeneous sections, adapted from
+  LazySectionsDemo (~/Code/stacks) — chosen because LEGACY.md shows the
+  legacy consumer app is exactly this kind of server-driven feed. The
+  12-file golden exemplar was built as live code in the app, verified
+  green by the full test suite (with and without the temp code), then
+  copied byte-identically into references/ per skill-authoring's
+  standalone-catalog rule. Adaptations from the demo: @ScaledMetric
+  dimensions and semantic fonts replace fixed points (Dynamic Type
+  works, layout still resolves per size change, not per frame), cells
+  are combined accessibility elements, RowCell reflows at accessibility
+  sizes, fixture text is Text(verbatim:) so the String Catalog stays
+  clean. Two review passes (skills compliance + demo fidelity) gated
+  the result; their must-fixes (wrapping in the accessibility branch,
+  leaf-view previews) are in. Coding ran on sonnet subagents per the
+  delegation skill.
