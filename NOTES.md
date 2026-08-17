@@ -29,5 +29,6 @@ work happens; every commit includes this file's delta.
 
 ## 2026-08-17
 
-- Renamed notes.md to Notes.md (git mv, history preserved) and updated
-  every reference (CLAUDE.md, checkpoints/SKILL.md, INDEX.md).
+- Renamed notes.md to NOTES.md (via an intermediate Notes.md, then a
+  brief NOTES.MD typo, git mv throughout, history preserved) and
+  updated every reference (CLAUDE.md, checkpoints/SKILL.md, INDEX.md).

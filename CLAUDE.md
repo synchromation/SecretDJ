@@ -36,7 +36,7 @@ Testing tests (swift-testing), DocC comments mark contract boundaries only
 pipeline (observability), user-facing copy is localized into six languages
 with a defined tone of voice (localization), coding tasks are executed by
 subagents on the lowest model tier the task allows (delegation), work is
-committed, pushed, and journaled in Notes.md at every green checkpoint
+committed, pushed, and journaled in NOTES.md at every green checkpoint
 (checkpoints), and skills themselves are managed via skill-authoring.
 
 Hooks enforce mechanics: SwiftFormat then SwiftLint run on every edited Swift
