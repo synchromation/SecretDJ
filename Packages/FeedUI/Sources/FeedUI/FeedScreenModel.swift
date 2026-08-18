@@ -166,11 +166,16 @@ public final class FeedScreenModel {
 		for pageSection in pageModel.visibleSections {
 			if let index = merged.firstIndex(where: { $0.id == pageSection.id }) {
 				let existing = merged[index]
+				// Overlapping page windows (the server re-sends an item near a
+				// page boundary) would otherwise duplicate that item's id
+				// within the section — skip anything already present instead.
+				let existingItemIDs = Set(existing.items.map(\.id))
+				let newItems = pageSection.items.filter { !existingItemIDs.contains($0.id) }
 				merged[index] = FeedDisplayModel.VisibleSection(
 					id: existing.id,
 					kind: existing.kind,
 					title: existing.title,
-					items: existing.items + pageSection.items,
+					items: existing.items + newItems,
 				)
 			} else {
 				merged.append(pageSection)

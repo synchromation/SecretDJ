@@ -12,10 +12,17 @@ struct FeedCarouselSection: View {
 	/// props rule).
 	var onItemTap: ((FeedDisplayItem) -> Void)?
 
-	@ScaledMetric(relativeTo: .subheadline)
-	private var cardWidth: CGFloat = 180
-	@ScaledMetric(relativeTo: .subheadline)
-	private var cardHeight: CGFloat = 120
+	/// Same base value and relativeTo text style as `CardCell.baseHeight` —
+	/// both resolve from the same scale factor in the same environment, so
+	/// the two heights can never drift even though each view holds its own
+	/// copy (lazy-sections' can-never-drift comment pattern). Width isn't
+	/// scaled here at all: `CardCell` already sizes itself from
+	/// `CardCell.baseWidth`, so a second, independently scaled copy of the
+	/// same width is exactly the bug this fixes — cards painting past a
+	/// wider carousel band, with snap targets that don't match the card
+	/// edges.
+	@ScaledMetric(relativeTo: .footnote)
+	private var cardHeight = CardCell.baseHeight
 
 	var body: some View {
 		ScrollView(.horizontal) {
@@ -27,12 +34,10 @@ struct FeedCarouselSection: View {
 				ForEach(items) { item in
 					if let onItemTap {
 						cell(for: item)
-							.frame(width: cardWidth)
 							.onTapGesture { onItemTap(item) }
 							.accessibilityAddTraits(.isButton)
 					} else {
 						cell(for: item)
-							.frame(width: cardWidth)
 					}
 				}
 			}
@@ -54,7 +59,7 @@ struct FeedCarouselSection: View {
 	/// carousel fails to compile instead of silently guessing a layout.
 	@ViewBuilder
 	private func cell(for item: FeedDisplayItem) -> some View {
-		switch item.cellProps {
+		switch item.props {
 		case .media(let props):
 			CardCell(
 				artworkURL: props.artworkURL,

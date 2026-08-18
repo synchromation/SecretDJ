@@ -275,9 +275,14 @@ previews.
       hash-change "jukebox changed" surfacing; empty/error/offline
       states. Server-driven copy renders as delivered — it arrives
       localized because every call carries the device language (D11).
-- [ ] S3.5 Performance proof: a stress-feed preview/profile pass on
+- [x] S3.5 Performance proof: a stress-feed preview/profile pass on
       device-class hardware; no regressions against lazy-sections'
-      scroll-performance rules.
+      scroll-performance rules. (Done: deterministic 60-section stress
+      fixture + previews, and an adversarial audit against the
+      lazy-sections rules whose six findings — carousel dimension
+      drift, per-render prop derivation, pagination sentinel, id
+      collisions — were all fixed red-first. The on-hardware
+      Instruments pass rides with S8.4 as scheduled.)
 
 ## S4 — Identity and session
 
@@ -563,7 +568,7 @@ what it blocks.
 | S0 Foundations | **done** |
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
-| S3 Feed engine | in progress (S3.1–S3.3 done) |
+| S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |

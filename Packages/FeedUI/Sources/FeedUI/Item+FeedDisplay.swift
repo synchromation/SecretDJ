@@ -2,7 +2,9 @@ import SecretDJDomain
 
 /// Render-ready projections of a Domain ``Item``, computed once when a
 /// ``FeedDisplayModel`` is built rather than inside a view body
-/// (lazy-sections' "every displayed value is computed once" rule).
+/// (lazy-sections' "every displayed value is computed once" rule) — as is
+/// ``FeedCellProps``, derived alongside these in
+/// ``FeedDisplayItem/init(id:item:text:template:)``.
 extension Item {
 	/// This item's stable, server-derived identity for `ForEach` diffing
 	/// (lazy-sections' stable-id rule — never derived from list position).

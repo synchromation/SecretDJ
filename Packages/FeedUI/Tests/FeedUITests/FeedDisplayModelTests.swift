@@ -138,6 +138,45 @@ enum FeedDisplayModelTests {
 		}
 	}
 
+	struct `Id de-duplication` {
+		@Test func `two same-template sections with omitted index get distinct, deterministic ids`() {
+			let sectionList = SectionList(
+				hash: FeedHash(rawValue: "h1"),
+				sections: [
+					makeSection(template: .song, title: "First", index: 0, items: []),
+					makeSection(template: .song, title: "Second", index: 0, items: []),
+				],
+				actions: [],
+			)
+
+			let model = FeedDisplayModel(sectionList: sectionList)
+
+			#expect(model.visibleSections.map(\.id) == ["200-0", "200-0#2"])
+		}
+
+		@Test func `the same song twice in one section gets an occurrence-suffixed id for the repeat`() {
+			let sectionList = SectionList(
+				hash: FeedHash(rawValue: "h1"),
+				sections: [
+					makeSection(
+						template: .song,
+						title: "Now Playing",
+						index: 0,
+						items: [
+							.song(makeSong(songId: "1", text: "Bohemian Rhapsody")),
+							.song(makeSong(songId: "1", text: "Bohemian Rhapsody")),
+						],
+					),
+				],
+				actions: [],
+			)
+
+			let model = FeedDisplayModel(sectionList: sectionList)
+
+			#expect(model.visibleSections[0].items.map(\.id) == ["song-1", "song-1#2"])
+		}
+	}
+
 	struct `Dropped sections` {
 		@Test func `an unrecognized template drops the section instead of guessing a layout`() {
 			let sectionList = SectionList(

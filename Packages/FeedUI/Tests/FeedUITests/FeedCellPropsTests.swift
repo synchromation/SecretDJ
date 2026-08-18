@@ -10,7 +10,7 @@ enum FeedCellPropsTests {
 		@Test func `maps title and subtitle from the first two tagged lines`() {
 			let item = makeItem(.song(makeSong(text: "Bohemian Rhapsody\nQueen")), template: .song)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -28,7 +28,7 @@ enum FeedCellPropsTests {
 			)
 			let item = makeItem(.song(song), template: .song)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -40,7 +40,7 @@ enum FeedCellPropsTests {
 			let song = makeSong(songId: Song.intermissionSongId, text: "Taking a break\nBack soon")
 			let item = makeItem(.song(song), template: .song)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -58,7 +58,7 @@ enum FeedCellPropsTests {
 			)
 			let item = makeItem(.venue(venue), template: .venue)
 
-			guard case .venue(let props) = item.cellProps else {
+			guard case .venue(let props) = item.props else {
 				Issue.record("expected .venue")
 				return
 			}
@@ -74,7 +74,7 @@ enum FeedCellPropsTests {
 			let venue = makeVenue(text: "You checked in at The Fox\nChiswick · 2 hours ago")
 			let item = makeItem(.venue(venue), template: template)
 
-			guard case .event(let props) = item.cellProps else {
+			guard case .event(let props) = item.props else {
 				Issue.record("expected .event")
 				return
 			}
@@ -85,7 +85,7 @@ enum FeedCellPropsTests {
 		@Test func `checkIn events use the check-in icon`() {
 			let item = makeItem(.venue(makeVenue(text: "Checked in")), template: .checkIn)
 
-			guard case .event(let props) = item.cellProps else {
+			guard case .event(let props) = item.props else {
 				Issue.record("expected .event")
 				return
 			}
@@ -96,7 +96,7 @@ enum FeedCellPropsTests {
 		@Test func `award events use the award icon`() {
 			let item = makeItem(.venue(makeVenue(text: "Badge unlocked")), template: .award)
 
-			guard case .event(let props) = item.cellProps else {
+			guard case .event(let props) = item.props else {
 				Issue.record("expected .event")
 				return
 			}
@@ -108,7 +108,7 @@ enum FeedCellPropsTests {
 			let venue = makeVenue(text: "The Fox\n123 High Street")
 			let item = makeItem(.venue(venue), template: .horizontalAward)
 
-			guard case .venue = item.cellProps else {
+			guard case .venue = item.props else {
 				Issue.record("expected .venue")
 				return
 			}
@@ -119,7 +119,7 @@ enum FeedCellPropsTests {
 		@Test func `maps name and subtitle from the first two tagged lines`() {
 			let item = makeItem(.person(makePerson(text: "Nick Banks\n12 places visited")), template: .person)
 
-			guard case .person(let props) = item.cellProps else {
+			guard case .person(let props) = item.props else {
 				Issue.record("expected .person")
 				return
 			}
@@ -135,7 +135,7 @@ enum FeedCellPropsTests {
 			)
 			let item = makeItem(.person(person), template: .person)
 
-			guard case .person(let props) = item.cellProps else {
+			guard case .person(let props) = item.props else {
 				Issue.record("expected .person")
 				return
 			}
@@ -149,7 +149,7 @@ enum FeedCellPropsTests {
 			let artist = Artist(name: "", artist: "The Beatles", numSongs: 3, sortIndex: 0, action: nil, actions: [])
 			let item = makeItem(.artist(artist), template: .artist)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -173,7 +173,7 @@ enum FeedCellPropsTests {
 			)
 			let item = makeItem(.jukebox(jukebox), template: .jukeboxList)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -189,7 +189,7 @@ enum FeedCellPropsTests {
 			let topUp = makeTopUp(text: "20 credits\nBest value", displayPrice: "£1.99", price: "1.99")
 			let item = makeItem(.topUp(topUp), template: .topUp)
 
-			guard case .topUp(let props) = item.cellProps else {
+			guard case .topUp(let props) = item.props else {
 				Issue.record("expected .topUp")
 				return
 			}
@@ -203,7 +203,7 @@ enum FeedCellPropsTests {
 			let topUp = makeTopUp(text: "20 credits", displayPrice: "", price: "1.99")
 			let item = makeItem(.topUp(topUp), template: .topUp)
 
-			guard case .topUp(let props) = item.cellProps else {
+			guard case .topUp(let props) = item.props else {
 				Issue.record("expected .topUp")
 				return
 			}
@@ -216,7 +216,7 @@ enum FeedCellPropsTests {
 		@Test func `carries the item's text as its caption`() {
 			let item = makeItem(.promotion(makePromotion(text: "Follow us")), template: .promotion)
 
-			guard case .promotion(let props) = item.cellProps else {
+			guard case .promotion(let props) = item.props else {
 				Issue.record("expected .promotion")
 				return
 			}
@@ -228,7 +228,7 @@ enum FeedCellPropsTests {
 		@Test func `an empty text has no caption`() {
 			let item = makeItem(.promotion(makePromotion(text: "")), template: .advert)
 
-			guard case .promotion(let props) = item.cellProps else {
+			guard case .promotion(let props) = item.props else {
 				Issue.record("expected .promotion")
 				return
 			}
@@ -242,7 +242,7 @@ enum FeedCellPropsTests {
 			let control = makeControl(text: "Chilled", bgColour: "#6C2BD9")
 			let item = makeItem(.control(control), template: .matrixControlLarge)
 
-			guard case .controlTile(let props) = item.cellProps else {
+			guard case .controlTile(let props) = item.props else {
 				Issue.record("expected .controlTile")
 				return
 			}
@@ -256,7 +256,7 @@ enum FeedCellPropsTests {
 			let control = makeControl(text: "Chilled", bgColour: "not-a-color")
 			let item = makeItem(.control(control), template: .matrixControlLarge)
 
-			guard case .controlTile(let props) = item.cellProps else {
+			guard case .controlTile(let props) = item.props else {
 				Issue.record("expected .controlTile")
 				return
 			}
@@ -274,7 +274,7 @@ enum FeedCellPropsTests {
 				template: Template(rawValue: 999),
 			)
 
-			#expect(item.cellProps == .dropped)
+			#expect(item.props == .dropped)
 		}
 	}
 }

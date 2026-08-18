@@ -43,7 +43,7 @@ struct FeedGridSection: View {
 	/// guessing a layout.
 	@ViewBuilder
 	private func cell(for item: FeedDisplayItem) -> some View {
-		switch item.cellProps {
+		switch item.props {
 		case .media(let props):
 			TileCell(
 				artwork: .remote(url: props.artworkURL, placeholderIcon: props.placeholderIcon),

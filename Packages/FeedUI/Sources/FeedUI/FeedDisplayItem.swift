@@ -18,4 +18,16 @@ public struct FeedDisplayItem: Sendable, Hashable, Identifiable {
 	/// LEGACY.md's "venue-shaped items with a badge image"), so cell
 	/// selection (S3.2) needs the template to tell them apart.
 	public let template: Template
+	/// This item's cell-rendering data, derived once here rather than in a
+	/// view body (lazy-sections' compute-once rule) — the section views
+	/// switch on this, never on a per-render computed property.
+	public let props: FeedCellProps
+
+	public init(id: String, item: Item, text: String, template: Template) {
+		self.id = id
+		self.item = item
+		self.text = text
+		self.template = template
+		props = FeedCellProps.make(item: item, text: text, template: template)
+	}
 }

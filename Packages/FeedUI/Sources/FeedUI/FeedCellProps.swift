@@ -17,12 +17,13 @@ extension String {
 	}
 }
 
-/// One item's cell-rendering data, derived once from its Domain payload —
-/// the only place `Item` crosses into DesignSystem's primitive vocabulary
-/// (PLAN.md S3.2: DesignSystem depends on nothing, so its cells never see a
-/// Domain type). Exhaustive over every ``Item`` case: a new Domain payload
-/// fails to compile here until this mapping accounts for it.
-enum FeedCellProps: Hashable {
+/// One item's cell-rendering data — the only place `Item` crosses into
+/// DesignSystem's primitive vocabulary (PLAN.md S3.2: DesignSystem depends
+/// on nothing, so its cells never see a Domain type). Derived once, by
+/// ``make(item:text:template:)``, when its owning ``FeedDisplayItem`` is
+/// built — never per body evaluation (lazy-sections' compute-once rule) —
+/// and stored on ``FeedDisplayItem/props``.
+public enum FeedCellProps: Hashable, Sendable {
 	case media(MediaProps)
 	case person(PersonProps)
 	case venue(VenueProps)
@@ -37,7 +38,7 @@ enum FeedCellProps: Hashable {
 	/// force-unwrapping an assumption.
 	case dropped
 
-	struct MediaProps: Hashable {
+	public struct MediaProps: Hashable, Sendable {
 		let title: String
 		let subtitle: String?
 		let placeholderIcon: Theme.Icon
@@ -45,14 +46,14 @@ enum FeedCellProps: Hashable {
 		let accessory: MediaRowCell.Accessory?
 	}
 
-	struct PersonProps: Hashable {
+	public struct PersonProps: Hashable, Sendable {
 		let name: String
 		let subtitle: String?
 		let avatarURL: URL?
 		let accessory: MediaRowCell.Accessory?
 	}
 
-	struct VenueProps: Hashable {
+	public struct VenueProps: Hashable, Sendable {
 		let name: String
 		let address: String?
 		let artworkURL: URL?
@@ -60,55 +61,49 @@ enum FeedCellProps: Hashable {
 		let isCheckedIn: Bool
 	}
 
-	struct EventProps: Hashable {
+	public struct EventProps: Hashable, Sendable {
 		let icon: Theme.Icon
 		let lines: [String]
 	}
 
-	struct TopUpProps: Hashable {
+	public struct TopUpProps: Hashable, Sendable {
 		let title: String
 		let subtitle: String?
 		let priceText: String
 	}
 
-	struct PromotionProps: Hashable {
+	public struct PromotionProps: Hashable, Sendable {
 		let artworkURL: URL?
 		let caption: String?
 	}
 
-	struct ControlTileProps: Hashable {
+	public struct ControlTileProps: Hashable, Sendable {
 		let title: String
 		let color: Theme.RGBAComponents
 		let icon: Theme.Icon
 	}
-}
 
-extension FeedDisplayItem {
-	/// This item's cell props. `artworkURL`/`avatarURL` resolve from each
-	/// payload's decoded ``SecretDJDomain/ItemImage`` at the row-sized bucket
-	/// (`size2x2` — LEGACY.md's per-row thumbnails have no larger/smaller
-	/// layout variant today; DesignSystem's row cells render every artwork
-	/// at a single fixed size, unlike legacy's device-classed grid/matrix
-	/// templates), falling back to `nil` — and the cell's icon fallback —
-	/// when an item has no image data or its bucket can't be resolved.
-	var cellProps: FeedCellProps {
+	/// Maps a Domain payload to its render-ready cell props. `artworkURL`/
+	/// `avatarURL` resolve from each payload's decoded
+	/// ``SecretDJDomain/ItemImage`` at the row-sized bucket (`size2x2` —
+	/// LEGACY.md's per-row thumbnails have no larger/smaller layout variant
+	/// today; DesignSystem's row cells render every artwork at a single
+	/// fixed size, unlike legacy's device-classed grid/matrix templates),
+	/// falling back to `nil` — and the cell's icon fallback — when an item
+	/// has no image data or its bucket can't be resolved. Exhaustive over
+	/// every ``Item`` case: a new Domain payload fails to compile here until
+	/// this mapping accounts for it. Called once, from
+	/// ``FeedDisplayItem/init(id:item:text:template:)``.
+	static func make(item: Item, text: String, template: Template) -> FeedCellProps {
 		switch item {
 		case .song(let song):
-			.media(FeedCellProps.MediaProps(
-				title: text.feedTaggedLines.first ?? song.title,
-				subtitle: text.feedTaggedLines.dropFirst().first,
-				placeholderIcon: .song,
-				artworkURL: song.image?.url(for: .size2x2),
-				// Inert on the consumer (LEGACY.md "Audio and playback") —
-				// no like affordance to show for the intermission placeholder.
-				accessory: song.isIntermission ? nil : likeAccessory(for: song.likeInfo),
-			))
+			songProps(for: song, text: text)
 
 		case .venue(let venue):
-			venueOrEventProps(for: venue)
+			venueOrEventProps(for: venue, text: text, template: template)
 
 		case .person(let person):
-			.person(FeedCellProps.PersonProps(
+			.person(PersonProps(
 				name: text.feedTaggedLines.first ?? person.screenName,
 				subtitle: text.feedTaggedLines.dropFirst().first,
 				avatarURL: person.image?.url(for: .size2x2),
@@ -122,7 +117,7 @@ extension FeedDisplayItem {
 			// bucket for artist rows either (`ItemImage.swift`'s
 			// `imageBaseURL()` has no `.artist` case), so this reliably
 			// stays `nil` today.
-			.media(FeedCellProps.MediaProps(
+			.media(MediaProps(
 				title: artist.displayText,
 				subtitle: nil,
 				placeholderIcon: .song,
@@ -131,32 +126,23 @@ extension FeedDisplayItem {
 			))
 
 		case .jukebox(let jukebox):
-			.media(FeedCellProps.MediaProps(
-				title: text.feedTaggedLines.first ?? jukebox.text,
-				// Prefer the structured `Description` field over a second
-				// tagged line — it's a proper wire field, not a text-split
-				// guess.
-				subtitle: jukebox.subtitle.isEmpty ? nil : jukebox.subtitle,
-				placeholderIcon: .jukebox,
-				artworkURL: jukebox.image?.url(for: .size2x2),
-				accessory: .chevron,
-			))
+			jukeboxProps(for: jukebox, text: text)
 
 		case .topUp(let topUp):
-			.topUp(FeedCellProps.TopUpProps(
+			.topUp(TopUpProps(
 				title: text.feedTaggedLines.first ?? topUp.name,
 				subtitle: text.feedTaggedLines.dropFirst().first,
 				priceText: topUp.displayPrice.isEmpty ? topUp.price : topUp.displayPrice,
 			))
 
 		case .promotion(let promotion):
-			.promotion(FeedCellProps.PromotionProps(
+			.promotion(PromotionProps(
 				artworkURL: promotion.image?.url(for: .size2x2),
 				caption: text.isEmpty ? nil : text,
 			))
 
 		case .control(let control):
-			.controlTile(FeedCellProps.ControlTileProps(
+			.controlTile(ControlTileProps(
 				title: text,
 				color: Theme.RGBAComponents(hex: control.bgColour) ?? Theme.RGBAComponents(
 					red: 0.5,
@@ -171,6 +157,30 @@ extension FeedDisplayItem {
 		}
 	}
 
+	private static func songProps(for song: Song, text: String) -> FeedCellProps {
+		.media(MediaProps(
+			title: text.feedTaggedLines.first ?? song.title,
+			subtitle: text.feedTaggedLines.dropFirst().first,
+			placeholderIcon: .song,
+			artworkURL: song.image?.url(for: .size2x2),
+			// Inert on the consumer (LEGACY.md "Audio and playback") — no
+			// like affordance to show for the intermission placeholder.
+			accessory: song.isIntermission ? nil : likeAccessory(for: song.likeInfo),
+		))
+	}
+
+	private static func jukeboxProps(for jukebox: Jukebox, text: String) -> FeedCellProps {
+		.media(MediaProps(
+			title: text.feedTaggedLines.first ?? jukebox.text,
+			// Prefer the structured `Description` field over a second tagged
+			// line — it's a proper wire field, not a text-split guess.
+			subtitle: jukebox.subtitle.isEmpty ? nil : jukebox.subtitle,
+			placeholderIcon: .jukebox,
+			artworkURL: jukebox.image?.url(for: .size2x2),
+			accessory: .chevron,
+		))
+	}
+
 	/// `.checkIn`/`.award` collapse onto the ``SecretDJDomain/Venue`` payload
 	/// (LEGACY.md: "venue-shaped items with a badge image"), but they render
 	/// as an activity-feed event (its full tagged-line text, an icon, no
@@ -178,16 +188,16 @@ extension FeedDisplayItem {
 	/// only signal that tells them apart, which is why ``FeedDisplayItem``
 	/// carries it. `horizontalAward`/`matrixAward*` stay venue-shaped: they
 	/// render in a carousel/grid, where the row-only event layout doesn't fit.
-	private func venueOrEventProps(for venue: Venue) -> FeedCellProps {
+	private static func venueOrEventProps(for venue: Venue, text: String, template: Template) -> FeedCellProps {
 		switch template {
 		case .checkIn:
-			.event(FeedCellProps.EventProps(icon: .checkIn, lines: text.feedTaggedLines))
+			.event(EventProps(icon: .checkIn, lines: text.feedTaggedLines))
 
 		case .award:
-			.event(FeedCellProps.EventProps(icon: .award, lines: text.feedTaggedLines))
+			.event(EventProps(icon: .award, lines: text.feedTaggedLines))
 
 		default:
-			.venue(FeedCellProps.VenueProps(
+			.venue(VenueProps(
 				name: text.feedTaggedLines.first ?? venue.name,
 				address: text.feedTaggedLines.dropFirst().first,
 				artworkURL: venue.image?.url(for: .size2x2),
@@ -197,7 +207,7 @@ extension FeedDisplayItem {
 		}
 	}
 
-	private func likeAccessory(for likeInfo: LikeInfo) -> MediaRowCell.Accessory {
+	private static func likeAccessory(for likeInfo: LikeInfo) -> MediaRowCell.Accessory {
 		.like(isLiked: likeInfo.likedByYou, summary: likeInfo.info.isEmpty ? nil : likeInfo.info)
 	}
 }

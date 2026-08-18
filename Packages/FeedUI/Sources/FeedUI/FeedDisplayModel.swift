@@ -37,6 +37,11 @@ public struct FeedDisplayModel: Sendable {
 		var visible: [VisibleSection] = []
 		var hidden: [Section] = []
 		var dropped: [DroppedSection] = []
+		// Scoped to this init call: a repeated id only needs breaking within
+		// the one section/page list being built here, never across calls
+		// (`appendPage` merges by id itself, and a fresh page's own
+		// same-slot repeats start their numbering over — see `FeedScreenModel`).
+		var sectionIDOccurrences: [String: Int] = [:]
 
 		for section in sectionList.sections {
 			guard let kind = FeedSectionKind(template: section.template) else {
@@ -49,18 +54,22 @@ public struct FeedDisplayModel: Sendable {
 				continue
 			}
 
-			let items = section.items.compactMap { item in
-				item.displayText.map { FeedDisplayItem(
-					id: item.stableID,
+			var itemIDOccurrences: [String: Int] = [:]
+			let items = section.items.compactMap { item -> FeedDisplayItem? in
+				guard let text = item.displayText else { return nil }
+				return FeedDisplayItem(
+					id: Self.deduplicated(item.stableID, occurrences: &itemIDOccurrences),
 					item: item,
-					text: $0,
+					text: text,
 					template: section.template,
-				) }
+				)
 			}
+
+			let baseID = Self.sectionID(template: section.template, index: section.index, hash: section.hash)
 
 			visible.append(
 				VisibleSection(
-					id: "\(section.template.rawValue)-\(section.index)",
+					id: Self.deduplicated(baseID, occurrences: &sectionIDOccurrences),
 					kind: kind,
 					title: section.title,
 					items: items,
@@ -71,5 +80,31 @@ public struct FeedDisplayModel: Sendable {
 		visibleSections = visible
 		hiddenSections = hidden
 		droppedSections = dropped
+	}
+
+	/// A section's server-derived id: its template and index, plus its own
+	/// change-detection hash when the server sent one — two sections sharing
+	/// a template/index but carrying different hashes (e.g. a page boundary
+	/// re-sending the "same" slot with fresh content) already differ before
+	/// ``deduplicated(_:occurrences:)`` ever has to break a tie.
+	private static func sectionID(template: Template, index: Int, hash: FeedHash?) -> String {
+		var id = "\(template.rawValue)-\(index)"
+		if let hash {
+			id += "-\(hash.rawValue)"
+		}
+		return id
+	}
+
+	/// Breaks a repeated id with a deterministic occurrence suffix
+	/// (`"200-0#2"`) — the server can omit or duplicate ``Section/index``
+	/// (the decoder defaults a missing `Index` to `0`), and the same song
+	/// can appear twice in one section; `ForEach` needs every id distinct
+	/// regardless. The first occurrence stays unsuffixed, so an id with no
+	/// collision at all matches what a caller (e.g. `appendPage`'s
+	/// by-id section lookup) already expects.
+	private static func deduplicated(_ id: String, occurrences: inout [String: Int]) -> String {
+		let count = (occurrences[id] ?? 0) + 1
+		occurrences[id] = count
+		return count == 1 ? id : "\(id)#\(count)"
 	}
 }

@@ -162,6 +162,64 @@ enum FeedScreenModelRefreshTests {
 			#expect(model.visibleSections[0].items.map(\.id) == ["song-1", "song-2"])
 		}
 
+		@Test func `loadNextPage skips items already present in the section, for overlapping page windows`() async {
+			let loader = InMemoryFeedLoading()
+			await loader.setOutcome(
+				.success(makeLoadedSectionList(hash: "v1", items: [
+					makeFeedSong(songId: "1"),
+					makeFeedSong(songId: "2"),
+				])),
+				forPage: nil,
+			)
+			await loader.setOutcome(
+				.success(makeLoadedSectionList(hash: "v1", items: [
+					// "2" is the overlapping tail of the previous window.
+					makeFeedSong(songId: "2"),
+					makeFeedSong(songId: "3"),
+				])),
+				forPage: 1,
+			)
+			let model = makeScreenModel(loader: loader, paginationEnabled: true)
+			await model.start()
+
+			await model.loadNextPage()
+
+			#expect(model.visibleSections[0].items.map(\.id) == ["song-1", "song-2", "song-3"])
+		}
+
+		@Test func `appendPage merges into the correct section when the initial page had id-colliding sections`() async {
+			let loader = InMemoryFeedLoading()
+			await loader.setOutcome(
+				.success(SectionList(
+					hash: FeedHash(rawValue: "v1"),
+					sections: [
+						makeFeedSection(template: .song, index: 0, items: [.song(makeFeedSong(songId: "1"))]),
+						makeFeedSection(template: .song, index: 0, items: [.song(makeFeedSong(songId: "a"))]),
+					],
+					actions: [],
+				)),
+				forPage: nil,
+			)
+			await loader.setOutcome(
+				.success(SectionList(
+					hash: FeedHash(rawValue: "v1"),
+					sections: [
+						makeFeedSection(template: .song, index: 0, items: [.song(makeFeedSong(songId: "2"))]),
+					],
+					actions: [],
+				)),
+				forPage: 1,
+			)
+			let model = makeScreenModel(loader: loader, paginationEnabled: true)
+			await model.start()
+
+			await model.loadNextPage()
+
+			#expect(model.visibleSections.map(\.id) == ["200-0", "200-0#2"])
+			#expect(model.visibleSections[0].items.map(\.id) == ["song-1", "song-2"])
+			#expect(model.visibleSections[1].items.map(\.id) == ["song-a"])
+		}
+
 		@Test func `an empty page marks the feed as having no more pages`() async {
 			let loader = InMemoryFeedLoading()
 			await loader.setOutcome(

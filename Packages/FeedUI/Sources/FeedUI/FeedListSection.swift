@@ -37,7 +37,7 @@ struct FeedListSection: View {
 	/// maps to grid).
 	@ViewBuilder
 	private func cell(for item: FeedDisplayItem) -> some View {
-		switch item.cellProps {
+		switch item.props {
 		case .media(let props):
 			MediaRowCell(
 				artworkURL: props.artworkURL,

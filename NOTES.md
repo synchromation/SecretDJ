@@ -319,3 +319,26 @@ work happens; every commit includes this file's delta.
   correlation variant is documented as S3.4-scope (needs SectionList
   context). "Blacklist" surfaced as .neverPlay in the outcome
   vocabulary; the wire identifier stays as the protocol names it.
+- S3.4 done (TDD, sonnet subagent; FeedUI 154 tests): FeedScreenModel
+  over injected seams — FeedLoading protocol + actor fake, per-screen
+  FeedConfiguration (legacy 20s/3s-GPS cadence via a fix-age seam),
+  guarded pagination, jukeboxChangedEvent as a pure signal, state
+  phases driving DesignSystem surfaces; FeedScreen with .refreshable
+  and event-driven pagination. The deferred song-tap jukebox
+  correlation landed via the hidden jukebox list.
+- S3.5 done — stage S3 complete: deterministic 60-section stress
+  fixture with previews (incl. accessibility5) and a shape/determinism
+  test, then an adversarial code-review audit against lazy-sections'
+  scroll rules. Six findings, all fixed red-first (sonnet subagent):
+  carousel dimensions now derive from CardCell's own base constants
+  (the exemplar's can-never-drift pattern); cell props computed once
+  at FeedDisplayModel build, stored on FeedDisplayItem; pagination
+  trigger replaced with a sentinel footer inside the LazyVStack (the
+  section-granular onAppear under-fired on merged pages); section and
+  item ids collision-proofed with hash folding + deterministic
+  occurrence suffixes; appendPage skips overlapping page windows;
+  EventRowCell's positional ForEach documented. FeedUI 163 /
+  DesignSystem 39 tests; full verify green. The audit also suggested
+  two articulations worth folding into the lazy-sections skill later
+  (RemoteArtworkView's fixed-frame contract; explicit unreachable-case
+  handling) — noted for a future skill-authoring pass.

@@ -16,7 +16,7 @@ enum FeedCellPropsArtworkTests {
 			let song = makeSong(text: "Bohemian Rhapsody\nQueen", image: makeItemImage(itemType: .song))
 			let item = makeItem(.song(song), template: .song)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -27,7 +27,7 @@ enum FeedCellPropsArtworkTests {
 		@Test func `stays nil when the song has no decoded image`() {
 			let item = makeItem(.song(makeSong(text: "Bohemian Rhapsody\nQueen")), template: .song)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -41,7 +41,7 @@ enum FeedCellPropsArtworkTests {
 			let venue = makeVenue(text: "The Fox\n123 High Street", image: makeItemImage(itemType: .venue))
 			let item = makeItem(.venue(venue), template: .venue)
 
-			guard case .venue(let props) = item.cellProps else {
+			guard case .venue(let props) = item.props else {
 				Issue.record("expected .venue")
 				return
 			}
@@ -55,7 +55,7 @@ enum FeedCellPropsArtworkTests {
 			let person = makePerson(text: "Nick Banks", image: makeItemImage(itemType: .person))
 			let item = makeItem(.person(person), template: .person)
 
-			guard case .person(let props) = item.cellProps else {
+			guard case .person(let props) = item.props else {
 				Issue.record("expected .person")
 				return
 			}
@@ -79,7 +79,7 @@ enum FeedCellPropsArtworkTests {
 			)
 			let item = makeItem(.jukebox(jukebox), template: .jukeboxList)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}
@@ -93,7 +93,7 @@ enum FeedCellPropsArtworkTests {
 			let promotion = makePromotion(text: "Follow us", image: makeItemImage(itemType: .promotion))
 			let item = makeItem(.promotion(promotion), template: .promotion)
 
-			guard case .promotion(let props) = item.cellProps else {
+			guard case .promotion(let props) = item.props else {
 				Issue.record("expected .promotion")
 				return
 			}
@@ -118,7 +118,7 @@ enum FeedCellPropsArtworkTests {
 			)
 			let item = makeItem(.artist(artist), template: .artist)
 
-			guard case .media(let props) = item.cellProps else {
+			guard case .media(let props) = item.props else {
 				Issue.record("expected .media")
 				return
 			}

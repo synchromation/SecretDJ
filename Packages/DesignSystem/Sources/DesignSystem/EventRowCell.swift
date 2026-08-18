@@ -28,6 +28,11 @@ public struct EventRowCell: View {
 				.accessibilityHidden(true)
 
 			VStack(alignment: .leading, spacing: Spacing.extraSmall) {
+				// Positional by convention, not identity: the server sends
+				// these as ordered tagged lines (title, then subtitle lines),
+				// never addressable records, and `lines` is an immutable
+				// value replaced atomically alongside the rest of this cell's
+				// props — so keying by offset never desyncs to stale content.
 				ForEach(Array(lines.enumerated()), id: \.offset) { index, line in
 					Text(verbatim: line)
 						.font(index == 0 ? Theme.TextStyle.cellTitle.font : Theme.TextStyle.cellSubtitle.font)

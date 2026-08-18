@@ -64,10 +64,19 @@ public struct FeedView: View {
 							} header: {
 								FeedSectionHeader(title: section.title)
 							}
-							.onAppear {
-								guard section.id == sections.last?.id else { return }
-								onApproachingEnd?()
-							}
+						}
+
+						// A sentinel footer, not a section-granular `.onAppear`
+						// guarded to `sections.last`: `appendPage` merges a new
+						// page's items into the *existing* last section rather
+						// than adding a new one for a homogeneous feed, so that
+						// section's identity — and its `.onAppear` — would never
+						// re-fire past page one. This sentinel's own identity
+						// never changes, so each appended page pushes it further
+						// down the list, genuinely leaving and re-entering the
+						// viewport.
+						if !sections.isEmpty {
+							paginationSentinel
 						}
 					}
 					.padding(.vertical, Spacing.medium)
@@ -77,6 +86,15 @@ public struct FeedView: View {
 				proxy.scrollTo(Self.topAnchorID, anchor: .top) // not animated → instant
 			}
 		}
+	}
+
+	/// Zero-height, no visual footprint — its only job is a stable
+	/// `ForEach`-free identity at the bottom of the `LazyVStack` for
+	/// ``onApproachingEnd`` to hang an `.onAppear` off.
+	private var paginationSentinel: some View {
+		Color.clear
+			.frame(height: 1)
+			.onAppear { onApproachingEnd?() }
 	}
 }
 
@@ -92,6 +110,19 @@ public struct FeedView: View {
 
 #Preview("Accessibility text size") {
 	FeedView(sections: previewMixedSections, generation: 0)
+		.environment(\.dynamicTypeSize, .accessibility5)
+}
+
+// PLAN.md S3.5's performance-proof pass: sixty sections mixing every kind,
+// well beyond any real feed page's section/item count today, to profile
+// against lazy-sections' scroll-performance rules on device-class
+// hardware. ``FeedStressFixture`` builds the sections once, deterministically.
+#Preview("Stress feed") {
+	FeedView(sections: FeedStressFixture.sections, generation: 0)
+}
+
+#Preview("Stress feed — accessibility5") {
+	FeedView(sections: FeedStressFixture.sections, generation: 0)
 		.environment(\.dynamicTypeSize, .accessibility5)
 }
 
