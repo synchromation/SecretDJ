@@ -243,3 +243,10 @@ work happens; every commit includes this file's delta.
   FeedView/FeedSectionView dispatch per the lazy-sections exemplar
   with themed placeholder cells (S3.2 replaces them). FeedUI now
   depends on DesignSystem per the architecture diagram.
+- Domain wire-variance fix (tdd bug rule: red first; sonnet subagent):
+  a fixture-wide type scan confirmed exactly two variant keys — ItemId
+  (int/string) and MachineControl (int/bool/string). Lenient decoding
+  helpers applied at only those two proven sites; the known-gap pins
+  in SecretDJAPI flipped to positive assertions (78/78 MusicSelection
+  songs, 50/50 StyleInfo songs, all venues, hasMachineControl correct
+  across representations). Domain 103 tests / API 187 tests.

@@ -23,7 +23,7 @@ enum SectionListDecoderTests {
 
 	/// Every template's dispatch, proven with a minimal, self-consistent
 	/// payload for each — clean of the wire's real-world type
-	/// inconsistencies (see `SectionListDecoderKnownGapsTests`), so these
+	/// variance (see `SectionListDecoderWireVarianceTests`), so these
 	/// isolate ``SectionListDecoder``'s own dispatch table from bugs in the
 	/// ``SecretDJDomain`` leaf types it calls into.
 	struct `Per-template dispatch` {

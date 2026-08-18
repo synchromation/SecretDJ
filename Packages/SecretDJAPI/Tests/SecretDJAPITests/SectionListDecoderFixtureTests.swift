@@ -8,8 +8,9 @@ import Testing
 /// suite per endpoint shape, each citing which legacy file/test it's
 /// checked against. See `SectionListDecoderTests` for isolated
 /// per-template dispatch and malformed-data tolerance, and
-/// `SectionListDecoderKnownGapsTests` for the pre-existing
-/// `SecretDJDomain` decode gaps some of these fixtures expose.
+/// `SectionListDecoderWireVarianceTests` for the fixtures whose
+/// `Action.ItemId`/`Venue.MachineControl` arrive in a non-Int wire
+/// representation.
 enum SectionListDecoderFixtureTests {
 	struct `Venue feed shape` {
 		/// `VenueFeed.json`: four sections (venue, VIP list, one promotion,
@@ -143,9 +144,9 @@ enum SectionListDecoderFixtureTests {
 		/// `Index`, and `Custom.Hash` — the pagination/change-detection
 		/// token S1.3e surfaces directly on ``SecretDJDomain/Section``.
 		/// Section-level metadata (`hash`/`store`/`index`) decodes from
-		/// `Custom` independently of whether any *item* decoded — see
-		/// `SectionListDecoderKnownGapsTests` for why this fixture's 78
-		/// songs don't survive item decode today.
+		/// `Custom` independently of item decode — see
+		/// `SectionListDecoderWireVarianceTests` for this fixture's 78
+		/// songs, whose `Actions` carry a string `ItemId`.
 		@Test func `decodes the section's Custom Hash as its pagination token`() throws {
 			let sectionList = try SectionListDecoder().decode(Fixture.data("MusicSelection"))
 
@@ -177,10 +178,9 @@ enum SectionListDecoderFixtureTests {
 		/// section (`Templates: [1001]`, this build only knows `1000`) plus
 		/// a `song` (200) section carrying `Custom.Hash`
 		/// (`secret-dj-ios-old/SecretDJTests/MachineControlAPIAccessTests.swift`'s
-		/// `testCanParseStyleInfo`: hash `2a31478b`, 50 songs — the item
-		/// count that fixture's legacy assertion pins doesn't survive item
-		/// decode with this build's ``SecretDJDomain/Action``; see
-		/// `SectionListDecoderKnownGapsTests`).
+		/// `testCanParseStyleInfo`: hash `2a31478b`, 50 songs — see
+		/// `SectionListDecoderWireVarianceTests` for that item count, whose
+		/// `Actions` carry a string `ItemId`).
 		@Test func `keeps the section for an unrecognized template code, tagged unsupported`() throws {
 			let sectionList = try SectionListDecoder().decode(Fixture.data("StyleInfo"))
 

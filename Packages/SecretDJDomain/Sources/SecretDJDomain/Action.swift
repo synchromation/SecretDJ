@@ -150,7 +150,9 @@ public struct Action: Sendable, Hashable, Decodable {
 		// The server always identifies an action by its `Id`; without one
 		// there's nothing to act on, so this mirrors the legacy failable init.
 		kind = try ActionKind(rawValue: container.decode(Int.self, forKey: .kind))
-		itemId = try container.decodeIfPresent(Int.self, forKey: .itemId)
+		// The wire sends this as a JSON string (the song id) for
+		// jukeboxRequestSong actions but a plain number for others.
+		itemId = try container.decodeIntOrStringIfPresent(forKey: .itemId)
 		itemTypeId = try container.decodeIfPresent(Int.self, forKey: .itemTypeId)
 		value = try container.decodeIfPresent(String.self, forKey: .value)
 		url = try container.decodeIfPresent(String.self, forKey: .url)

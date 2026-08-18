@@ -75,6 +75,64 @@ enum VenueTests {
 		}
 	}
 
+	struct `MachineControl decodes leniently across wire representations` {
+		/// `secretdjv3` sends `MachineControl` as a JSON string on some
+		/// payloads — `VenueFeed.json`: `"63"`.
+		@Test func `a numeric string MachineControl of "1" means hasMachineControl is true`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": "1"}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.hasMachineControl)
+		}
+
+		@Test func `a numeric string MachineControl of "0" means hasMachineControl is false`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": "0"}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(!venue.hasMachineControl)
+		}
+
+		/// The real wire value from `VenueFeed.json`.
+		@Test func `a numeric string MachineControl of "63" means hasMachineControl is true`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": "63"}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.hasMachineControl)
+		}
+
+		/// `secretdjv3` sends `MachineControl` as a JSON bool on some
+		/// payloads — `PlacesNearby.json`'s "Also recommended..." section:
+		/// `false`.
+		@Test func `a bool MachineControl of true means hasMachineControl is true`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": true}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.hasMachineControl)
+		}
+
+		@Test func `a bool MachineControl of false means hasMachineControl is false`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": false}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(!venue.hasMachineControl)
+		}
+
+		/// `secretdjv3` sends `MachineControl` as a plain JSON int on most
+		/// payloads — every fixture but the two above.
+		@Test func `an int MachineControl of 1 means hasMachineControl is true`() throws {
+			let json = Data(#"{"Data": {"Venue": "1", "MachineControl": 1}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.hasMachineControl)
+		}
+	}
+
 	struct `Identity validation` {
 		@Test func `a missing venue id fails to decode`() {
 			let json = Data(#"{"Data": {"VenueName": "The Crown"}}"#.utf8)

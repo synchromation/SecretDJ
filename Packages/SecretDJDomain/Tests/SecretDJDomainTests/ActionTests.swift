@@ -44,6 +44,30 @@ enum ActionTests {
 		}
 	}
 
+	struct `ItemId decodes leniently across wire representations` {
+		/// `secretdjv3` sends `ItemId` as a JSON string for
+		/// `jukeboxRequestSong` actions — the song id, e.g. `"152380"` in
+		/// `MusicSelection.json`.
+		@Test func `a string ItemId decodes to its integer value`() throws {
+			let json = Data(#"{"Id": 403, "ItemId": "152380"}"#.utf8)
+
+			let action = try JSONDecoder().decode(Action.self, from: json)
+
+			#expect(action.itemId == 152_380)
+		}
+
+		/// `secretdjv3` sends `ItemId` as a JSON number for
+		/// `jukeboxChangeAtmosphere` actions — a mood/control id, e.g. `679`
+		/// in `StyleInfo-Short.json`.
+		@Test func `an int ItemId decodes to its integer value`() throws {
+			let json = Data(#"{"Id": 400, "ItemId": 679}"#.utf8)
+
+			let action = try JSONDecoder().decode(Action.self, from: json)
+
+			#expect(action.itemId == 679)
+		}
+	}
+
 	struct `Malformed actions` {
 		@Test func `a missing Id fails to decode`() {
 			let json = Data(#"{"ItemId": 1}"#.utf8)

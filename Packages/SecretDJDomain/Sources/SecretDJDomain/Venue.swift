@@ -135,7 +135,9 @@ public struct Venue: Sendable, Hashable, Decodable {
 		)
 		properties = try VenueProperties(rawValue: data.decodeIfPresent(Int.self, forKey: .properties) ?? 0)
 		checkedIn = try data.decodeIfPresent(Bool.self, forKey: .checkedIn) ?? false
-		hasMachineControl = try (data.decodeIfPresent(Int.self, forKey: .machineControl) ?? 0) > 0
+		// The wire sends this as a JSON bool, int, or numeric string
+		// depending on the payload — genuinely inconsistent.
+		hasMachineControl = try data.decodeBoolOrIntOrStringIfPresent(forKey: .machineControl) ?? false
 		action = try data.decodeIfPresent(Action.self, forKey: .action)
 		actions = try data.decodeIfPresent([Action].self, forKey: .actions) ?? []
 	}
