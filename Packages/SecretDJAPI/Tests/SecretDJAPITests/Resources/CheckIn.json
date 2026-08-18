@@ -1,0 +1,20 @@
+{
+    "Sections": [{
+                 "Title": "VIP List",
+                 "ItemTypeId": 1073741824,
+                 "Templates": [305, 303],
+                 "Items": [],
+                 "Custom": {
+                 "Response": {
+                 "Checkins": "1",
+                 "Text": "Welcome, this is your first visit here.",
+                 "ReturnCode": 2,
+                 "Url": "TESTURL"
+                 }
+                 },
+                 "Index": 1
+                 }],
+    "Success": true,
+    "Token": "y\/CV1xZ6mY+qO2dE2CFIRRy+kC4=",
+    "ElapsedTime": "0.0045 seconds"
+}

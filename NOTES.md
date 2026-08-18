@@ -250,3 +250,18 @@ work happens; every commit includes this file's delta.
   in SecretDJAPI flipped to positive assertions (78/78 MusicSelection
   songs, 50/50 StyleInfo songs, all venues, hasMachineControl correct
   across representations). Domain 103 tests / API 187 tests.
+- S1.3f–i done — stage S1 complete (TDD, sonnet subagent; SecretDJAPI
+  now 234 tests): requestsong with the -8/ImageSize funnel typed
+  through the envelope, like/unlike over the ItemType bitmask,
+  machinecontrol (400/401/402), top-up feed + topupnotify
+  (credited/alreadyProcessed/retryable outcomes, multipart reused),
+  redeemjukeboxvoucher, numpaidcredits, watchonyoutube with the
+  song-signature port, checkin (scope=everyone), and skinresources →
+  typed SkinManifest (attract/idle config, toast appearance, full
+  color/asset role enums, unknown entries preserved raw for forward
+  compatibility — the S7.2 contract). Judgment call recorded:
+  RequestSongFail.json's Success:false envelope treated as a
+  fixture-authoring mistake vs its siblings; pinned as APIError.server
+  with citation. LIVE-CAPTURE gaps: watchonyoutube, numpaidcredits,
+  the -8/ImageSize branch, topupnotify ReturnCode 1. Full verify
+  green.

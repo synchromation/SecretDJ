@@ -1,0 +1,55 @@
+
+{
+    "ElapsedTime": "1.402 seconds",
+    "Response": {
+        "Vips": [{
+                 "Title": "DJ",
+                 "AwardTypeMask": 1,
+                 "Since": "2016-04-14T12:53:38+1",
+                 "Person": {
+                 "Image": {
+                 "Uri": "u-00000087-feae54c9.jpg",
+                 "Size": 3176,
+                 "ItemTypeId": 1073741824,
+                 "Resolutions": 127
+                 },
+                 "Data": {
+                 "User": "00000087_feae54c9",
+                 "ScreenName": "oliverk",
+                 "GenderId": 2,
+                 "LikeInfo": {
+                 "Info": "Liked by TurboTim and 3 others",
+                 "LikedByYou": false
+                 }
+                 },
+                 "Text": "DJ"
+                 }
+                 }, {
+                 "Title": "Top Dog",
+                 "AwardTypeMask": 2,
+                 "Since": "2017-10-02T13:44:21+1",
+                 "Person": {
+                 "Image": {
+                 "Uri": "u-00000002-586b3e75.jpg",
+                 "Size": 4286,
+                 "ItemTypeId": 1073741824,
+                 "Resolutions": 127
+                 },
+                 "Data": {
+                 "User": "00000002_586b3e75",
+                 "ScreenName": "adam.s",
+                 "GenderId": 2,
+                 "LikeInfo": {
+                 "Info": "Liked by greenturtle and 22 others",
+                 "LikedByYou": false
+                 }
+                 },
+                 "Text": "Top Dog"
+                 }
+                 }],
+        "Text": "Thanks, your song has been added to the queue.\n\noliverk is DJ\nadam.s is Top Dog of Bench.\n\nYou can pick 18 more songs here today.",
+        "ReturnCode": 0
+    },
+    "Success": true,
+    "Token": "kne6cciXUgQTWfBIHhzqNkjlVpE="
+}

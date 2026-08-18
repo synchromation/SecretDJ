@@ -1,0 +1,16 @@
+{
+    "ElapsedTime": "7.615 seconds",
+    "Response": {
+        "Likes": 5,
+        "Text": "You, pholyfe and 3 other people like 'Inbetween Days'.",
+        "Url": "TESTURL",
+        "LikeInfo": {
+            "Info": "Liked by you, pholyfe and 3 others",
+            "LikedByYou": true
+        },
+        "Item": "140875",
+        "ItemTypeId": 2
+    },
+    "Success": true,
+    "Token": "UnTP5egmDxkZcZBnfupYUNqGrx4="
+}

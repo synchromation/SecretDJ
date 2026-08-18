@@ -190,9 +190,12 @@ fixtures.
       `applesignin` requires (all per LEGACY.md "Backend API and Spotify
       integration"; D7 tracks server-side modernization). Each pinned by
       fixture tests.
-- [ ] S1.3 Endpoints (one sub-checkbox per group; fixtures captured from
+- [x] S1.3 Endpoints (one sub-checkbox per group; fixtures captured from
       the live API and the legacy test resources; cross-check the group
       contents against LEGACY.md's endpoint catalog before checking off):
+      (Cross-checked: every catalogued endpoint is built or deliberately
+      gated — facebooksignin behind D1. LIVE-CAPTURE markers list what
+      only production fixtures can still confirm.)
   - [x] S1.3a Auth: `signin`, `createuser`, `facebooksignin` (behind D1),
         `applesignin`, `resetpassword`. (facebooksignin awaits D1 — a
         `// D1:` marker sits in the group file.)
@@ -203,14 +206,14 @@ fixtures.
   - [x] S1.3d Search: `musicsearch`, `artistsavailable` (and the
         songs-for-artist path).
   - [x] S1.3e Music selection: digest/selection/mood feeds, `styleinfo`.
-  - [ ] S1.3f Jukebox writes: `requestsong` (including the ReturnCode -8
+  - [x] S1.3f Jukebox writes: `requestsong` (including the ReturnCode -8
         out-of-credits contract), `like`/`unlike` (ItemType bitmask),
         `machinecontrol` (server-granted moderation).
-  - [ ] S1.3g Credits: top-up feed, `topupnotify` (purchase + restore),
+  - [x] S1.3g Credits: top-up feed, `topupnotify` (purchase + restore),
         `redeemjukeboxvoucher`, `numpaidcredits`.
-  - [ ] S1.3h Hand-offs: `watchonyoutube` (signed song id), check-in
+  - [x] S1.3h Hand-offs: `watchonyoutube` (signed song id), check-in
         (`checkin`, scope=everyone, server-driven toast/URL response).
-  - [ ] S1.3i Kiosk: `skinresources` (typed skin manifest — D10).
+  - [x] S1.3i Kiosk: `skinresources` (typed skin manifest — D10).
 - [x] S1.4 Session persistence: current user + venue as Codable in
       UserDefaults, password/token material in the keychain — a clean
       re-design of `UserManager`'s storage (no legacy key migration; new
@@ -549,7 +552,7 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | in progress (S1.3f–i remain) |
+| S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
 | S3 Feed engine | in progress (S3.1 done) |
 | S4 Identity & session | not started |
