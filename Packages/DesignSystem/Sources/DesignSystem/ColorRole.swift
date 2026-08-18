@@ -23,6 +23,11 @@ extension Theme {
 		case toastText
 		/// The brand color for interactive elements and highlighted content.
 		case accent
+		/// A darkened `accent`, e.g. a filled button's background while pressed.
+		case accentPressed
+		/// The text/icon color drawn on `accent` or `accentPressed`, e.g. a
+		/// primary button's label.
+		case accentText
 		/// Signals a positive or confirming outcome, e.g. a completed request.
 		case success
 		/// Signals a cautionary state that needs attention but isn't an error.
@@ -75,6 +80,16 @@ extension Theme.ColorRole {
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 108 / 255, green: 43 / 255, blue: 217 / 255),
 				dark: Theme.RGBAComponents(red: 180 / 255, green: 156 / 255, blue: 250 / 255),
+			)
+		case .accentPressed:
+			Theme.ColorToken(
+				light: Theme.RGBAComponents(red: 86 / 255, green: 34 / 255, blue: 174 / 255),
+				dark: Theme.RGBAComponents(red: 144 / 255, green: 125 / 255, blue: 200 / 255),
+			)
+		case .accentText:
+			Theme.ColorToken(
+				light: Theme.RGBAComponents(red: 248 / 255, green: 247 / 255, blue: 251 / 255),
+				dark: Theme.RGBAComponents(red: 18 / 255, green: 15 / 255, blue: 23 / 255),
 			)
 		case .success:
 			Theme.ColorToken(

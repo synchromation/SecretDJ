@@ -18,6 +18,7 @@ struct ColorPairingTests {
 			.secondaryText,
 			.toastText,
 			.accent,
+			.accentText,
 			.success,
 			.warning,
 			.danger,
