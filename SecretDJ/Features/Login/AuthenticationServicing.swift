@@ -24,4 +24,17 @@ protocol AuthenticationServicing: Sendable {
 
 	/// `resetpassword` by email.
 	func resetPassword(email: String) async throws(AuthenticationError) -> PasswordResetOutcome
+
+	/// `applesignin`. `auth` is the caller's pre-computed day-of-year digest
+	/// (``SecretDJAPI/AppleSignInAuthDigest``); `firstName`/`lastName`/`email`
+	/// travel together only on Apple's first authorization for this account
+	/// (``SecretDJAPI/APIClient/appleSignIn(appleUserId:auth:firstName:lastName:email:)``'s
+	/// doc comment).
+	func appleSignIn(
+		appleUserId: String,
+		auth: String,
+		firstName: String?,
+		lastName: String?,
+		email: String?,
+	) async throws(AuthenticationError) -> AppleAuthenticatedSession
 }

@@ -9,6 +9,9 @@ enum LoginEvent: String, AnalyticsEvent {
 	/// A brand-new account was created via the native sign-up form.
 	case accountCreated
 
+	/// A brand-new account was created via Sign in with Apple.
+	case appleAccountCreated
+
 	var name: String {
 		rawValue
 	}

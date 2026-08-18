@@ -1628,6 +1628,93 @@
           }
         }
       }
+    },
+    "Pick your screen name": {
+      "comment": "Screen title on the Sign in with Apple sign-up route's screen-name step, shown before the gender and photo steps.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wähl deinen Benutzernamen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Elige tu nombre de usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Choisis ton nom d'utilisateur"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kies je gebruikersnaam"
+          }
+        }
+      }
+    },
+    "It's the name everyone else sees. Your real name stays private.": {
+      "comment": "Subtitle under the screen-name step's title on the Sign in with Apple sign-up route, explaining what the screen name is for.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diesen Namen sehen die anderen. Dein echter Name bleibt privat."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Es el nombre que ven los demás. Tu nombre real no se muestra."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "C'est le nom que les autres voient. Ton vrai nom reste privé."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dit is de naam die anderen zien. Je echte naam blijft privé."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't sign you in with Apple.\n\nPlease try again.": {
+      "comment": "Error shown on the login screen when the Sign in with Apple system flow fails for a reason other than the user cancelling it.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, die Anmeldung mit Apple hat nicht geklappt.\n\nVersuch es bitte noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido iniciar tu sesión con Apple.\n\nInténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, on n'a pas réussi à te connecter avec Apple.\n\nRéessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je niet met Apple aanmelden.\n\nProbeer het opnieuw."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

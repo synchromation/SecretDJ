@@ -304,10 +304,12 @@ flows accessible and localized.
       confirmation). Exit includes a smoke test against the production
       backend with a real account (R3). (Smoke passed 2026-08-18:
       one-shot production sign-in succeeded on attempt 1.)
-- [ ] S4.3 Sign in with Apple: first-auth name/email caching semantics
+- [x] S4.3 Sign in with Apple: first-auth name/email caching semantics
       (Apple only supplies them once — keychain, per LEGACY.md), the
       day-of-year `auth` digest (S1.2). Exit includes a production smoke
-      test (R3).
+      test (R3). — built and fully fake-tested; the live SIWA smoke
+      **remains pending a real device/human** (Apple's auth UI can't run
+      headlessly) — verify at S9.3 at the latest.
 - [ ] S4.4 Facebook sign-in — **D1 resolved: kept.** Current FB SDK, ATT
       prompt flow rebuilt per current policy, the `facebooksignin`
       endpoint (deferred from S1.3a), and the Facebook plist config +
@@ -572,7 +574,7 @@ what it blocks.
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
-| S4 Identity & session | in progress (S4.1, S4.2, S4.5 done) |
+| S4 Identity & session | in progress (S4.1–S4.3, S4.5 done; S4.4, S4.6 remain) |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |
 | S7 Kiosk app | not started |

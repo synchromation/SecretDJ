@@ -68,4 +68,31 @@ struct APIClientAuthenticationService: AuthenticationServicing {
 			throw AuthenticationError(error)
 		}
 	}
+
+	func appleSignIn(
+		appleUserId: String,
+		auth: String,
+		firstName: String?,
+		lastName: String?,
+		email: String?,
+	) async throws(AuthenticationError) -> AppleAuthenticatedSession {
+		do {
+			let response = try await client.appleSignIn(
+				appleUserId: appleUserId,
+				auth: auth,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+			)
+			return AppleAuthenticatedSession(
+				personId: response.payload.personId,
+				screenName: response.payload.screenName,
+				created: response.payload.created,
+				issuedCredential: response.payload.issuedCredential,
+				rotatedToken: response.rotatedToken,
+			)
+		} catch {
+			throw AuthenticationError(error)
+		}
+	}
 }

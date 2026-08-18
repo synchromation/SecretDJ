@@ -371,3 +371,28 @@ work happens; every commit includes this file's delta.
   test added. One flagged TDD deviation: OnboardingModel's spec was
   written alongside its seam types rather than strictly red-first.
   API package 232 tests; full verify green.
+
+## 2026-08-19
+
+- S4.3 done: Sign in with Apple. Built by a delegated team (the seams:
+  AppleAuthorizing over ASAuthorizationController with double-resume
+  guards and no force-unwrapped anchors; the keychain first-auth
+  name/email cache in SecretDJAPI matching legacy's account key; the
+  apple username step over setuserdetails) plus an escalated opus
+  finisher after the sonnet orchestrator stalled twice on statements
+  of intent — the finisher assembled AppleSignInModel review (the
+  model landed concurrently from the team's own worker; reviewed
+  line-by-line against its 23-test spec rather than duplicated), the
+  official Apple button (used as chrome only so authorization flows
+  through the testable seam — SwiftUI's SignInWithAppleButton would
+  bypass it), the username screen, and the RootView-priority wiring
+  (username → onboarding.apple → signed in; the step must outrank the
+  signed-in gate because applesignin signs in immediately). 42 Apple
+  tests green; 3 new localized keys (five languages, needs_review).
+  R3 note: the live SIWA smoke is PENDING a real device/human — the
+  auth sheet, once-only name/email delivery, and the server's
+  acceptance of the day-of-year digest (timezone-fragile per
+  LEGACY.md, ported as-is per D7) are unverified until then. Lesson
+  for the delegation ladder: nested sub-orchestration caused the
+  stalls and a mid-flight write race; direct single-agent completion
+  briefs work better for assembly tasks.
