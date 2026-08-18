@@ -265,3 +265,15 @@ work happens; every commit includes this file's delta.
   with citation. LIVE-CAPTURE gaps: watchonyoutube, numpaidcredits,
   the -8/ImageSize branch, topupnotify ReturnCode 1. Full verify
   green.
+- Product owner resolved every open decision (2026-08-18): D1 KEEP
+  Facebook login (S4.4 now includes the facebooksignin endpoint,
+  FB plist config, and queryable schemes); D3 iOS 26 kiosk floor
+  confirmed; D9 keep the ticker's scroll show/hide verbatim; D12 DROP
+  the listen-elsewhere sheet entirely (watchonyoutube endpoint +
+  song-signature removed again as dead code); D13 legacy parity for
+  kiosk moderation; D14 legacy bundle ids confirmed. D11 mechanism
+  refined: device language rides the standard Accept-Language header
+  on every request, not a query parameter (SecretDJAPI refactored
+  red-first; 229 tests). Live capture approved at max one API call
+  per second, read-only endpoints only; a production test account
+  exists with credentials in .secrets/ (gitignored — never committed).

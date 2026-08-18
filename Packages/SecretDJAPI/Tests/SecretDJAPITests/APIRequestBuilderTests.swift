@@ -81,15 +81,6 @@ enum APIRequestBuilderTests {
 			#expect(parameters["appmask"] == "6")
 		}
 
-		@Test func `always includes the device language`() throws {
-			let builder = makeBuilder(preferredLanguage: "es-ES")
-
-			let request = try builder.request(endpoint: "placesnearby", parameters: [:], signed: false, credential: nil)
-
-			let parameters = try percentEncodedParameters(of: request)
-			#expect(parameters["lang"] == "es-ES")
-		}
-
 		@Test func `includes coords formatted to six decimal places when a location is known`() throws {
 			let builder = makeBuilder(location: APICoordinate(latitude: 51.5, longitude: -0.1))
 
@@ -144,6 +135,69 @@ enum APIRequestBuilderTests {
 
 			let parameters = try percentEncodedParameters(of: request)
 			#expect(parameters["appmask"] == "1")
+		}
+	}
+
+	/// D11 (refined): the preferred language travels as the standard HTTP
+	/// `Accept-Language` header, never as a `lang` query/body parameter —
+	/// on both the GET request builder and the multipart one.
+	struct `Language header` {
+		@Test func `sends the preferred language as the Accept-Language header on an ordinary request`() throws {
+			let builder = makeBuilder(preferredLanguage: "es-ES")
+
+			let request = try builder.request(endpoint: "placesnearby", parameters: [:], signed: false, credential: nil)
+
+			#expect(request.value(forHTTPHeaderField: "Accept-Language") == "es-ES")
+		}
+
+		@Test func `sends the preferred language as the Accept-Language header on a multipart request`() throws {
+			let builder = makeBuilder(preferredLanguage: "fr-FR")
+			let credential = APICredential(
+				token: "kPV0J8Q+DVABopusWMnQkc6kldY=",
+				passwordHash: "889101801761492e1a2140d491c4235a1798e284",
+			)
+
+			let request = try builder.multipartRequest(
+				endpoint: "newavatar",
+				parameters: [:],
+				fileFieldName: "avatarfile",
+				filename: "avatar.jpg",
+				mimeType: "image/jpeg",
+				fileData: Data("fake-jpeg-bytes".utf8),
+				credential: credential,
+			)
+
+			#expect(request.value(forHTTPHeaderField: "Accept-Language") == "fr-FR")
+		}
+
+		@Test func `never includes lang as a query parameter`() throws {
+			let builder = makeBuilder(preferredLanguage: "es-ES")
+
+			let request = try builder.request(endpoint: "placesnearby", parameters: [:], signed: false, credential: nil)
+
+			let parameters = try percentEncodedParameters(of: request)
+			#expect(parameters["lang"] == nil)
+		}
+
+		@Test func `never includes lang as a multipart body field`() throws {
+			let builder = makeBuilder(preferredLanguage: "es-ES")
+			let credential = APICredential(
+				token: "kPV0J8Q+DVABopusWMnQkc6kldY=",
+				passwordHash: "889101801761492e1a2140d491c4235a1798e284",
+			)
+
+			let request = try builder.multipartRequest(
+				endpoint: "newavatar",
+				parameters: [:],
+				fileFieldName: "avatarfile",
+				filename: "avatar.jpg",
+				mimeType: "image/jpeg",
+				fileData: Data("fake-jpeg-bytes".utf8),
+				credential: credential,
+			)
+
+			let text = try bodyText(of: request)
+			#expect(!text.contains("name=\"lang\""))
 		}
 	}
 
@@ -278,7 +332,6 @@ enum APIRequestBuilderTests {
 			let request = try builder.request(endpoint: "placesnearby", parameters: [:], signed: false, credential: nil)
 
 			#expect(request.value(forHTTPHeaderField: "Accept") == "application/json")
-			#expect(request.value(forHTTPHeaderField: "Accept-Language") == "en")
 			#expect(request.value(forHTTPHeaderField: "Accept-Encoding") == "gzip")
 		}
 	}

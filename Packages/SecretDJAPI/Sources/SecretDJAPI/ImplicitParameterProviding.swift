@@ -12,6 +12,7 @@ public protocol ImplicitParameterProviding: Sendable {
 	var installedApps: InstalledAppsMask { get }
 
 	/// The user's preferred language as a BCP-47 tag (e.g. `"en-GB"`), sent
-	/// with every request so server copy arrives localized (D11).
+	/// as the `Accept-Language` header on every request so server copy
+	/// arrives localized (D11: a header, not a query parameter).
 	var preferredLanguage: String { get }
 }

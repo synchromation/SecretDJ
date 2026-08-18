@@ -25,7 +25,8 @@ public struct APIRequestBuilder: Sendable {
 	/// Builds a GET request for `endpoint` (the server's raw path, e.g.
 	/// `"signin"` — no leading slash), merging `parameters` with the
 	/// implicit parameter set and, when `signed`, a `sig` computed from
-	/// `credential`.
+	/// `credential`. The preferred language is never a query parameter;
+	/// it's set as the request's `Accept-Language` header instead (D11).
 	///
 	/// Precedence on key collisions matches the legacy client exactly:
 	/// implicit parameters overwrite same-named explicit ones, and `sig`
@@ -61,6 +62,7 @@ public struct APIRequestBuilder: Sendable {
 		for (field, value) in configuration.headers {
 			request.setValue(value, forHTTPHeaderField: field)
 		}
+		request.setValue(implicitParameters.preferredLanguage, forHTTPHeaderField: "Accept-Language")
 		return request
 	}
 
@@ -79,11 +81,11 @@ public struct APIRequestBuilder: Sendable {
 	///
 	/// Unlike that GET builder, this deliberately does *not* mirror one
 	/// legacy quirk: `NetworkAccess.generateAvatarUploadRequest` only ever
-	/// adds `sig`, never `appmask`/`coords`/`appmodel`/`lang`. This rewrite
+	/// adds `sig`, never `appmask`/`coords`/`appmodel`. This rewrite
 	/// includes the full implicit set here too — S1.2 established it "on
-	/// every request" (PLAN.md), and D11 specifically wants `lang` sent
-	/// everywhere so server copy (including this endpoint's reward toast)
-	/// arrives localized.
+	/// every request" (PLAN.md). It also sets `Accept-Language` from the
+	/// same provider seam, so server copy (including this endpoint's
+	/// reward toast) arrives localized (D11).
 	public func multipartRequest(
 		endpoint: String,
 		parameters: [String: String],
@@ -125,13 +127,13 @@ public struct APIRequestBuilder: Sendable {
 		}
 		request.setValue(formBuilder.contentType, forHTTPHeaderField: "Content-Type")
 		request.setValue("\(body.count)", forHTTPHeaderField: "Content-Length")
+		request.setValue(implicitParameters.preferredLanguage, forHTTPHeaderField: "Accept-Language")
 		return request
 	}
 
 	private func implicitParameterValues() -> [String: String] {
 		var values: [String: String] = [
 			"appmask": String(implicitParameters.installedApps.rawValue),
-			"lang": implicitParameters.preferredLanguage,
 		]
 		if let location = implicitParameters.location {
 			values["coords"] = location.queryValue

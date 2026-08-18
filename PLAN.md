@@ -179,9 +179,9 @@ fixtures.
       unknown kinds map to nil and those sections are dropped.
 - [x] S1.2 API client core: base environments, request building with the
       full implicit parameter set — location, `appmask`, client version,
-      the device language on every request (BCP-47 preferred language;
-      the coordinated backend addition from D11 that makes server copy
-      arrive localized), `appmodel=1` on every kiosk request (the only
+      the device language on every request (BCP-47, sent as the HTTP
+      `Accept-Language` header per D11 so server copy arrives
+      localized), `appmodel=1` on every kiosk request (the only
       kiosk/consumer discriminator), and the structured User-Agent
       (`secret dj <idfv>:<screenWidthPx>:<version>`) — plus auth/request
       signing compatible with the legacy scheme: SHA-1 password-hash
@@ -213,6 +213,8 @@ fixtures.
         `redeemjukeboxvoucher`, `numpaidcredits`.
   - [x] S1.3h Hand-offs: `watchonyoutube` (signed song id), check-in
         (`checkin`, scope=everyone, server-driven toast/URL response).
+        (watchonyoutube subsequently removed under D12 — dead without
+        the listen-elsewhere sheet.)
   - [x] S1.3i Kiosk: `skinresources` (typed skin manifest — D10).
 - [x] S1.4 Session persistence: current user + venue as Codable in
       UserDefaults, password/token material in the keychain — a clean
@@ -297,8 +299,10 @@ flows accessible and localized.
       (Apple only supplies them once — keychain, per LEGACY.md), the
       day-of-year `auth` digest (S1.2). Exit includes a production smoke
       test (R3).
-- [ ] S4.4 Facebook sign-in — **gated on D1**; if kept: current FB SDK,
-      ATT prompt flow rebuilt per current policy.
+- [ ] S4.4 Facebook sign-in — **D1 resolved: kept.** Current FB SDK, ATT
+      prompt flow rebuilt per current policy, the `facebooksignin`
+      endpoint (deferred from S1.3a), and the Facebook plist config +
+      queryable schemes S0.6 omitted.
 - [ ] S4.5 Onboarding steps per route (gender/photo/details/username
       ordering per LEGACY.md "Consumer app: features and flows" → "Login,
       sign-up, onboarding"), avatar capture/pick + upload (camera/photo
@@ -346,15 +350,13 @@ exclusions.
       nav-bar action), song buzz/like, and the server-granted skip/
       blacklist moderation buttons (`machinecontrol`) that appear for
       entitled users.
-- [ ] S6.4 Audio previews and listen-elsewhere (SharedFeatures, gated on
-      D2/D8): **download-then-decode** preview playback
-      (`AVAudioPlayer(data:)` — the backend serves previews as `.pbz`
-      with a generic Content-Type that AVPlayer refuses, LEGACY.md
-      "Audio and playback"; streaming AVPlayer only if D2 lands a fixed
-      Content-Type), 30s hard cap, stop-on-exit, cancel-during-download;
-      the listen-elsewhere sheet minus its Spotify rows — Apple Music
-      via the affiliate search link with server `Custom.Store` overrides
-      (D12), YouTube via `watchonyoutube`.
+- [ ] S6.4 Audio previews (SharedFeatures): **download-then-decode**
+      preview playback (`AVAudioPlayer(data:)` — the backend serves
+      previews as `.pbz` with a generic Content-Type that AVPlayer
+      refuses, LEGACY.md "Audio and playback"; streaming AVPlayer only
+      if the backend lands a fixed Content-Type, still unconfirmed
+      under D2), 30s hard cap, stop-on-exit, cancel-during-download.
+      (The listen-elsewhere sheet was dropped entirely — D12.)
 - [ ] S6.5 Activity feed: server-driven event history (check-ins,
       requests, awards, people) on the feed engine; award templates
       render via S3.2 cells.
@@ -472,21 +474,19 @@ Prereqs: S8.
 Defaults apply unless the product owner overrides; each decision names
 what it blocks.
 
-- **D1 Facebook login** — default: *not ported* unless legacy analytics
-  show meaningful `facebooksignin` usage; native + Apple cover new
-  accounts, and existing Facebook-account users need a migration story
-  either way. Blocks S4.4 only.
+- **D1 Facebook login** — **Resolved 2026-08-18: keep it.** S4.4 is in
+  scope: current Facebook SDK, ATT prompt flow per current policy, and
+  the `facebooksignin` endpoint (deferred out of S1.3a — build it as
+  part of S4.4) plus the Facebook plist config and queryable schemes
+  S0.6 omitted.
 - **D2 Music catalog after Spotify removal** — **Resolved 2026-08-17**:
   the backend serves music search and preview audio without Spotify.
   One detail remains open with the backend team: whether preview
   Content-Type gets fixed (decides S6.4's streaming-vs-download playback
   strategy; download-then-decode is the safe default).
-- **D3 Kiosk hardware floor** — iOS 26 on venue iPads (R1; the floor was
-  lowered from 27 to 26 by product decision 2026-08-17). Confirm the
-  installed fleet can run iOS 26 or plan hardware refresh; fallback is a
-  lower kiosk deployment target. **Blocks S0.2** (deployment-target
-  choice — S0.2 proceeds on the default and notes the rework);
-  re-check before S7.
+- **D3 Kiosk hardware floor** — **Resolved 2026-08-18: iOS 26 stands**
+  for the kiosk (product owner confirmed). Still re-verified on real
+  venue hardware at S9.3 (R1).
 - **D4 Observability vendors** — default: Sentry (crash) + TelemetryDeck
   (analytics) via the existing adapter targets; Firebase not carried
   over.
@@ -502,33 +502,31 @@ what it blocks.
   here and tracked with the backend team.
 - **D8 Previews without Spotify** — if the backend cannot supply preview
   audio, ship without previews and remove the preview half of S6.4.
-- **D9 Extra-content ticker behavior** — confirm the scroll-direction
-  show/hide interaction is wanted before rebuilding it verbatim.
+- **D9 Extra-content ticker behavior** — **Resolved 2026-08-18: keep
+  the legacy scroll-direction show/hide behavior verbatim** (S6.9).
 - **D10 Server-driven venue skinning** — **Resolved 2026-08-17**: keep
   server-based venue skinning — the `skinresources` contract as a typed
   manifest (per LEGACY.md's tech-debt note), with DesignSystem
   reconciling. Still open within it: the staff-reset trigger and
   custom-keyboard details (S7.1/S7.6).
-- **D11 Server-text localization** — **Resolved 2026-08-17**: the
-  multi-language requirement stands, and the client sends the device
-  language with every server call (S1.2's implicit parameter); the
-  backend returns copy localized for the five languages. This satisfies
-  the localization skill's server-text rule with no skill amendment.
-  S8.1 verifies localized server copy end to end per language.
-- **D12 Affiliate hand-offs** — default: keep the Apple Music affiliate
-  link (moved to HTTPS endpoints) and the YouTube hand-off in the
-  listen-elsewhere sheet; confirm the TradeDoubler affiliate program is
-  still live and wanted. Blocks S6.4's sheet contents and S0.6's
-  queryable-schemes list.
-- **D13 Kiosk-side moderation** — legacy has none (moderation is
-  consumer-side via `machinecontrol`). Default: match legacy. If the
-  product wants kiosk-side skip/blacklist/queue tools, that is new scope
-  to be planned as an S7 addition.
-- **D14 Ship as updates or new apps** — default: the rewrites ship as
-  **updates to the existing App Store listings**, which pins the legacy
-  bundle ids (`com.c-burn.secretdj`, `com.secretdj.kiosk`) — S0.6 uses
-  those. Shipping as new listings would free the identifiers but orphan
-  the installed base. Also pins S9.1: CFBundleVersion must exceed the
+- **D11 Server-text localization** — **Resolved 2026-08-17**; mechanism
+  refined 2026-08-18: the device language travels as the standard HTTP
+  **`Accept-Language` header** on every request (not a query
+  parameter); the backend returns copy localized for the five
+  languages. Satisfies the localization skill's server-text rule with
+  no skill amendment. S8.1 verifies localized server copy end to end
+  per language.
+- **D12 Affiliate hand-offs** — **Resolved 2026-08-18: dropped.** The
+  listen-elsewhere sheet goes entirely (its only non-Spotify rows were
+  the Apple Music affiliate link and the YouTube hand-off): S6.4 is
+  previews-only, and the `watchonyoutube` endpoint + song-signature
+  code built in S1.3h were removed again (dead without the sheet).
+- **D13 Kiosk-side moderation** — **Resolved 2026-08-18: legacy parity**
+  (no kiosk-side skip/blacklist/queue tools; moderation stays
+  consumer-side via `machinecontrol`).
+- **D14 Ship as updates or new apps** — **Resolved 2026-08-18: ship as
+  updates**, legacy bundle ids confirmed (`com.c-burn.secretdj`,
+  `com.secretdj.kiosk`). Pins S9.1: CFBundleVersion must exceed the
   legacy build numbers (consumer 5287, kiosk 10226) before release.
 
 ## Risks
@@ -540,6 +538,14 @@ what it blocks.
   server behaviors only production data can confirm (hidden section
   variants, action payloads still emitted). Mitigation: fixtures
   captured early in S1.3 against the live API, and S8.5's cross-check.
+  Live capture is approved (2026-08-18) under a hard rate limit of
+  **at most one API call per second**, read-only endpoints only —
+  never any write endpoint (requestsong, like, machinecontrol,
+  topupnotify, redeemjukeboxvoucher, checkin, setuserdetails,
+  newavatar, and above all requestdeleteaccount are off-limits to
+  capture). A production test account exists for sign-in and the S4
+  smoke tests; its credentials live in `.secrets/` (gitignored, never
+  committed).
 - **R3 Account-continuity edge cases** — password-hash compatibility
   (D7) and Apple-sign-in re-auth must be verified against production
   early (S4.2/S4.3 exit criteria include the live-backend smoke tests).
