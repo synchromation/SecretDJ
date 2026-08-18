@@ -55,6 +55,18 @@ public final class SessionStore {
 		credentialStore.save(credential)
 	}
 
+	/// Rotates the signed-in session's token after an authenticated call whose
+	/// response carried a fresh one — almost every response does
+	/// (``APIResponse/rotatedToken``'s doc comment). A no-op when not signed
+	/// in, since there is no credential to rotate.
+	public func rotateToken(_ token: String) {
+		guard let credential else { return }
+
+		let updated = APICredential(token: token, passwordHash: credential.passwordHash)
+		self.credential = updated
+		credentialStore.save(updated)
+	}
+
 	/// Clears the session and wipes both persistence stores.
 	public func signOut() {
 		user = nil

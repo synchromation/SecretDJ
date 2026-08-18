@@ -522,6 +522,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecretDJ/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Secret DJ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Secret DJ needs your camera so you can take a profile picture.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -565,6 +566,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecretDJ/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Secret DJ";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Secret DJ needs your camera so you can take a profile picture.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -356,3 +356,18 @@ work happens; every commit includes this file's delta.
   recorded. SecretDJTests now hosts real feature tests (83 across the
   suite); test target gained Domain/API package deps in pbxproj.
   Full verify green.
+- S4.5 done (TDD, sonnet subagent): Features/Onboarding with a typed
+  per-route step sequence (native → photo only, since S4.2's details
+  form already collects gender; apple → gender+photo and facebook →
+  photo modeled for S4.3/S4.4), avatar pipeline ported from legacy
+  (square center-crop, 1024 cap, JPEG 0.9; the interactive crop UI
+  deliberately not ported), PhotosPicker + seamed camera capture,
+  localized camera usage description via a new consumer
+  InfoPlist.xcstrings (five languages), RootView re-gated so sign-up
+  flows through onboarding before the signed-in screen. The agent
+  caught and fixed a real token bug: SessionStore.rotateToken now
+  fires even on ReturnCode-failed responses (the server can rotate on
+  failure; dropping it left the next call stale-signed) — regression
+  test added. One flagged TDD deviation: OnboardingModel's spec was
+  written alongside its seam types rather than strictly red-first.
+  API package 232 tests; full verify green.

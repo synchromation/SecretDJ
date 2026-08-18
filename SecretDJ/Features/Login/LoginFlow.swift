@@ -11,6 +11,7 @@ struct LoginFlow: View {
 	let authService: any AuthenticationServicing
 	let sessionStore: SessionStore
 	let observability: ObservabilityPipeline
+	let onAccountCreated: (OnboardingRoute) -> Void
 
 	@State private var loginModel: LoginModel
 	@State private var showsSignUp = false
@@ -20,10 +21,12 @@ struct LoginFlow: View {
 		authService: any AuthenticationServicing,
 		sessionStore: SessionStore,
 		observability: ObservabilityPipeline = .disabled,
+		onAccountCreated: @escaping (OnboardingRoute) -> Void,
 	) {
 		self.authService = authService
 		self.sessionStore = sessionStore
 		self.observability = observability
+		self.onAccountCreated = onAccountCreated
 		_loginModel = State(initialValue: LoginModel(
 			authService: authService,
 			sessionStore: sessionStore,
@@ -39,11 +42,14 @@ struct LoginFlow: View {
 				onForgotPassword: { showsForgottenPassword = true },
 			)
 			.navigationDestination(isPresented: $showsSignUp) {
-				SignUpView(model: SignUpModel(
-					authService: authService,
-					sessionStore: sessionStore,
-					observability: observability,
-				))
+				SignUpView(
+					model: SignUpModel(
+						authService: authService,
+						sessionStore: sessionStore,
+						observability: observability,
+					),
+					onAccountCreated: onAccountCreated,
+				)
 			}
 		}
 		.sheet(isPresented: $showsForgottenPassword) {

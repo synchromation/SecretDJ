@@ -180,6 +180,34 @@ enum SignUpModelTests {
 
 			#expect(model.errorMessage != nil)
 		}
+
+		@Test func `sets onboardingRoute to native on success`() async {
+			let authService = InMemoryAuthenticationService(
+				createUserResult: .success(AuthenticatedSession(
+					personId: "9",
+					screenName: "TurboTim",
+					rotatedToken: "tok",
+				)),
+			)
+			let model = SignUpModel(authService: authService, sessionStore: SignUpModelTests.makeSessionStore())
+			SignUpModelTests.fillValidFields(on: model)
+
+			await model.submit()
+
+			#expect(model.onboardingRoute == .native)
+		}
+
+		@Test func `leaves onboardingRoute nil on failure`() async {
+			let authService = InMemoryAuthenticationService(
+				createUserResult: .failure(.server(message: "That screen name is taken.")),
+			)
+			let model = SignUpModel(authService: authService, sessionStore: SignUpModelTests.makeSessionStore())
+			SignUpModelTests.fillValidFields(on: model)
+
+			await model.submit()
+
+			#expect(model.onboardingRoute == nil)
+		}
 	}
 
 	struct Instrumentation {

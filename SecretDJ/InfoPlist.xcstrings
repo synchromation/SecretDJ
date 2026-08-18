@@ -1,0 +1,35 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSCameraUsageDescription": {
+      "comment": "Camera permission prompt, shown when the onboarding photo step's camera capture button is first tapped.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ braucht Zugriff auf deine Kamera, damit du ein Profilbild aufnehmen kannst."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ necesita tu cámara para que puedas hacerte una foto de perfil."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ a besoin de ton appareil photo pour que tu puisses prendre une photo de profil."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ heeft toegang tot je camera nodig zodat je een profielfoto kunt maken."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

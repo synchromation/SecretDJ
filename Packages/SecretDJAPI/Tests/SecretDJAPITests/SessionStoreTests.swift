@@ -217,4 +217,47 @@ enum SessionStoreTests {
 			#expect(credentialStore.saveInvocations == [nil])
 		}
 	}
+
+	@MainActor
+	struct `Rotating the token` {
+		@Test func `rotateToken updates the credential's token while keeping the password hash`() {
+			let store = SessionStore(
+				snapshotStore: InMemorySessionSnapshotStore(),
+				credentialStore: InMemoryCredentialStore(),
+			)
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "nick"),
+				venue: nil,
+				credential: APICredential(token: "old-token", passwordHash: "hash"),
+			)
+
+			store.rotateToken("new-token")
+
+			#expect(store.credential == APICredential(token: "new-token", passwordHash: "hash"))
+		}
+
+		@Test func `rotateToken persists the updated credential to the credential store`() {
+			let credentialStore = InMemoryCredentialStore()
+			let store = SessionStore(snapshotStore: InMemorySessionSnapshotStore(), credentialStore: credentialStore)
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "nick"),
+				venue: nil,
+				credential: APICredential(token: "old-token", passwordHash: "hash"),
+			)
+
+			store.rotateToken("new-token")
+
+			#expect(credentialStore.savedCredential() == APICredential(token: "new-token", passwordHash: "hash"))
+		}
+
+		@Test func `rotateToken while signed out does nothing`() {
+			let credentialStore = InMemoryCredentialStore()
+			let store = SessionStore(snapshotStore: InMemorySessionSnapshotStore(), credentialStore: credentialStore)
+
+			store.rotateToken("new-token")
+
+			#expect(store.credential == nil)
+			#expect(credentialStore.saveInvocations.isEmpty)
+		}
+	}
 }

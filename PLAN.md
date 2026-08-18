@@ -312,10 +312,12 @@ flows accessible and localized.
       prompt flow rebuilt per current policy, the `facebooksignin`
       endpoint (deferred from S1.3a), and the Facebook plist config +
       queryable schemes S0.6 omitted.
-- [ ] S4.5 Onboarding steps per route (gender/photo/details/username
+- [x] S4.5 Onboarding steps per route (gender/photo/details/username
       ordering per LEGACY.md "Consumer app: features and flows" → "Login,
       sign-up, onboarding"), avatar capture/pick + upload (camera/photo
-      permissions with localized usage strings).
+      permissions with localized usage strings). (Native route folds
+      gender into S4.2's details form, so its remaining step is photo;
+      apple/facebook route tables are modeled and await S4.3/S4.4.)
 - [ ] S4.6 Account management: sign out, delete account (server flow +
       local wipe; no exit(0) gates — a sane blocked-state screen).
 
@@ -570,7 +572,7 @@ what it blocks.
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
-| S4 Identity & session | in progress (S4.1, S4.2 done) |
+| S4 Identity & session | in progress (S4.1, S4.2, S4.5 done) |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |
 | S7 Kiosk app | not started |

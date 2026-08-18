@@ -9,6 +9,7 @@ import SwiftUI
 /// ``SignUpModel``'s doc comment).
 struct SignUpView: View {
 	let model: SignUpModel
+	let onAccountCreated: (OnboardingRoute) -> Void
 
 	@FocusState private var focusedField: Field?
 
@@ -43,6 +44,11 @@ struct SignUpView: View {
 		.scrollDismissesKeyboard(.interactively)
 		.background(Theme.ColorRole.background.color)
 		.tracksScreen("SignUp")
+		.onChange(of: model.onboardingRoute) { _, newValue in
+			if let newValue {
+				onAccountCreated(newValue)
+			}
+		}
 	}
 
 	private var nameFields: some View {
@@ -228,16 +234,19 @@ extension View {
 }
 
 #Preview("Fresh") {
-	SignUpView(model: SignUpModel(
-		authService: InMemoryAuthenticationService(),
-		sessionStore: PreviewSessionStore.signedOut(),
-	))
+	SignUpView(
+		model: SignUpModel(
+			authService: InMemoryAuthenticationService(),
+			sessionStore: PreviewSessionStore.signedOut(),
+		),
+		onAccountCreated: { _ in },
+	)
 }
 
 #Preview("Validation errors") {
 	let model = SignUpModel(authService: InMemoryAuthenticationService(), sessionStore: PreviewSessionStore.signedOut())
 	model.updateEmail("not-an-email")
-	return SignUpView(model: model)
+	return SignUpView(model: model, onAccountCreated: { _ in })
 }
 
 #Preview("Sign-up error") {
@@ -252,13 +261,16 @@ extension View {
 	model.updateEmail("tim@example.com")
 	model.updateScreenName("TurboTim")
 	model.updatePassword("hunter2")
-	return SignUpView(model: model)
+	return SignUpView(model: model, onAccountCreated: { _ in })
 }
 
 #Preview("Accessibility text size") {
-	SignUpView(model: SignUpModel(
-		authService: InMemoryAuthenticationService(),
-		sessionStore: PreviewSessionStore.signedOut(),
-	))
+	SignUpView(
+		model: SignUpModel(
+			authService: InMemoryAuthenticationService(),
+			sessionStore: PreviewSessionStore.signedOut(),
+		),
+		onAccountCreated: { _ in },
+	)
 	.environment(\.dynamicTypeSize, .accessibility5)
 }

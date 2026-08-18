@@ -26,6 +26,10 @@ final class SignUpModel {
 	/// Whether ``submit()`` has been called at least once — views use this
 	/// to hold back inline field errors until the user has tried to submit.
 	private(set) var hasAttemptedSubmit = false
+	/// Set once account creation succeeds — the view reacts by pushing
+	/// S4.5's onboarding flow, using this to build the right
+	/// ``OnboardingRoute``.
+	private(set) var onboardingRoute: OnboardingRoute?
 
 	private let authService: any AuthenticationServicing
 	private let sessionStore: SessionStore
@@ -116,7 +120,7 @@ final class SignUpModel {
 			)
 			if sessionStore.signIn(from: session, passwordHash: passwordHash) {
 				observability.track(LoginEvent.accountCreated)
-				// S4.5: push the avatar-capture onboarding step here.
+				onboardingRoute = .native
 			} else {
 				handle(.connection)
 			}
