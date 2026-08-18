@@ -15,7 +15,10 @@ public struct SharedFeaturePlaceholder: Equatable, Sendable {
 	/// Builds the placeholder from a feed's cached/latest hashes, defaulting
 	/// its spacing to the design system's medium token.
 	public init(cached: FeedHash, latest: FeedHash, contentSpacing: CGFloat = Spacing.medium) {
-		needsReload = FeedRenderState(cached: cached, latest: latest).needsReload
+		var detector = FeedChangeDetector(policy: .surfaceChange)
+		detector.establish(cached)
+		let outcome = detector.page(latest)
+		needsReload = outcome == .jukeboxChanged
 		self.contentSpacing = contentSpacing
 	}
 }

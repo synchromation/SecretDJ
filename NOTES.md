@@ -186,3 +186,20 @@ work happens; every commit includes this file's delta.
   ride the existing sanctioned-pairings test. Reviewer caught and
   fixed a sub-44pt toast tap area and missing preview variants.
   Full verify green across six packages and both schemes.
+- S1.4 done (TDD, sonnet subagent; SecretDJAPI now 84 tests / 43
+  suites): SessionStore (@Observable) with restore-on-init and
+  both-stores-present signed-in gate (mirroring legacy
+  requiresLogin()), UserDefaults snapshot store + keychain credential
+  store each behind a protocol with an in-memory fake, keychain query
+  construction factored for keychain-free testing. Purpose-built
+  SessionUser/SessionVenue projections instead of reusing feed-item
+  Person/Venue (those are Decodable-only feed types). No first-run
+  writes of any kind (the legacy trap), proven by test. Observability
+  wiring deliberately left to composition roots.
+- S1.5 done (TDD, sonnet subagent): FeedChangeDetector in FeedUI —
+  establish/page state machine over FeedHash with the two legacy
+  policies (surfaceChange for the consumer's jukebox-changed flow,
+  reloadInPlace absorbing hash changes for the kiosk digest).
+  Superseded and deleted the S0.3 FeedRenderState placeholder; the
+  SharedFeatures placeholder was updated to compose the new detector
+  (haiku subagent). Full verify green.

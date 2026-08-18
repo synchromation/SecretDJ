@@ -210,11 +210,11 @@ fixtures.
   - [ ] S1.3h Hand-offs: `watchonyoutube` (signed song id), check-in
         (`checkin`, scope=everyone, server-driven toast/URL response).
   - [ ] S1.3i Kiosk: `skinresources` (typed skin manifest — D10).
-- [ ] S1.4 Session persistence: current user + venue as Codable in
+- [x] S1.4 Session persistence: current user + venue as Codable in
       UserDefaults, password/token material in the keychain — a clean
       re-design of `UserManager`'s storage (no legacy key migration; new
       installs only — D6).
-- [ ] S1.5 Feed change detection: the server `hash` / "jukebox changed"
+- [x] S1.5 Feed change detection: the server `hash` / "jukebox changed"
       contract (LEGACY.md "Consumer app: features and flows" → "The feed
       engine") as a typed, testable primitive.
 
@@ -548,7 +548,7 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | in progress (S1.1, S1.2 done) |
+| S1 Domain & API | in progress (S1.1, S1.2, S1.4, S1.5 done; S1.3 remains) |
 | S2 Design system | in progress (S2.1, S2.2 done) |
 | S3 Feed engine | not started |
 | S4 Identity & session | not started |
