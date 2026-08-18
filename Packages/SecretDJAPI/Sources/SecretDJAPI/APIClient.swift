@@ -47,7 +47,42 @@ public struct APIClient: Sendable {
 			signed: signed,
 			credential: credential,
 		)
+		return try await send(request)
+	}
 
+	/// Calls a `multipart/form-data` endpoint (`newavatar`; S1.3g's
+	/// `topupnotify`), decoding its body as `Payload`. Every multipart
+	/// endpoint in this API always signs
+	/// (``APIRequestBuilder/multipartRequest(endpoint:parameters:fileFieldName:filename:mimeType:fileData:credential:)``'s
+	/// doc comment), so `credential` is required rather than optional here.
+	public func execute<Payload: Decodable & Sendable>(
+		multipartEndpoint endpoint: String,
+		parameters: [String: String],
+		fileFieldName: String,
+		filename: String,
+		mimeType: String,
+		fileData: Data,
+		credential: APICredential,
+		decodingPayloadAs _: Payload.Type,
+	) async throws(APIError) -> APIResponse<Payload> {
+		let request = try requestBuilder.multipartRequest(
+			endpoint: endpoint,
+			parameters: parameters,
+			fileFieldName: fileFieldName,
+			filename: filename,
+			mimeType: mimeType,
+			fileData: fileData,
+			credential: credential,
+		)
+		return try await send(request)
+	}
+
+	/// The shared transport-send → envelope-check → payload-decode pipeline
+	/// both `execute` overloads run, differing only in how they built
+	/// `request`.
+	private func send<Payload: Decodable & Sendable>(_ request: URLRequest) async throws(APIError)
+		-> APIResponse<Payload>
+	{
 		let data: Data
 		do {
 			data = try await transport.send(request)

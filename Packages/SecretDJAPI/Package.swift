@@ -16,7 +16,11 @@ let package = Package(
 	],
 	targets: [
 		.target(name: "SecretDJAPI", dependencies: ["SecretDJDomain"]),
-		.testTarget(name: "SecretDJAPITests", dependencies: ["SecretDJAPI"]),
+		.testTarget(
+			name: "SecretDJAPITests",
+			dependencies: ["SecretDJAPI"],
+			resources: [.copy("Resources")],
+		),
 	],
 	swiftLanguageModes: [.v6],
 )

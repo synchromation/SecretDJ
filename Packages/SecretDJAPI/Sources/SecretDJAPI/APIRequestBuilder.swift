@@ -64,6 +64,70 @@ public struct APIRequestBuilder: Sendable {
 		return request
 	}
 
+	/// Builds a `multipart/form-data` `POST` request for `endpoint`,
+	/// matching the legacy client's construction
+	/// (`secretdjv3/PostRequestProvider.swift`'s `imageRequestBody`): text
+	/// fields (`parameters` plus the implicit set and `sig`) followed by one
+	/// file part.
+	///
+	/// Every multipart endpoint in this API always signs — `newavatar`
+	/// (S1.3g's `topupnotify` too) is absent from the sig-exclusion list,
+	/// and `NetworkAccess.generateAvatarUploadRequest` asserts a
+	/// token/password always exist — so `credential` is required, not
+	/// optional, here (contrast
+	/// ``request(endpoint:parameters:signed:credential:)``).
+	///
+	/// Unlike that GET builder, this deliberately does *not* mirror one
+	/// legacy quirk: `NetworkAccess.generateAvatarUploadRequest` only ever
+	/// adds `sig`, never `appmask`/`coords`/`appmodel`/`lang`. This rewrite
+	/// includes the full implicit set here too — S1.2 established it "on
+	/// every request" (PLAN.md), and D11 specifically wants `lang` sent
+	/// everywhere so server copy (including this endpoint's reward toast)
+	/// arrives localized.
+	public func multipartRequest(
+		endpoint: String,
+		parameters: [String: String],
+		fileFieldName: String,
+		filename: String,
+		mimeType: String,
+		fileData: Data,
+		credential: APICredential,
+	) throws(APIError) -> URLRequest {
+		var allParameters = parameters
+		for (key, value) in implicitParameterValues() {
+			allParameters[key] = value
+		}
+		allParameters["sig"] = signer.signature(token: credential.token, passwordHash: credential.passwordHash)
+
+		guard let scheme = configuration.environment.baseURL.scheme,
+		      let host = configuration.environment.baseURL.host else
+		{
+			throw .requestGeneration
+		}
+		guard let url = URL(string: "\(scheme)://\(host)/\(endpoint)") else {
+			throw .requestGeneration
+		}
+
+		let formBuilder = MultipartFormDataBuilder()
+		let body = formBuilder.body(
+			fields: allParameters,
+			fileFieldName: fileFieldName,
+			filename: filename,
+			mimeType: mimeType,
+			fileData: fileData,
+		)
+
+		var request = URLRequest(url: url)
+		request.httpMethod = "POST"
+		request.httpBody = body
+		for (field, value) in configuration.headers {
+			request.setValue(value, forHTTPHeaderField: field)
+		}
+		request.setValue(formBuilder.contentType, forHTTPHeaderField: "Content-Type")
+		request.setValue("\(body.count)", forHTTPHeaderField: "Content-Length")
+		return request
+	}
+
 	private func implicitParameterValues() -> [String: String] {
 		var values: [String: String] = [
 			"appmask": String(implicitParameters.installedApps.rawValue),
