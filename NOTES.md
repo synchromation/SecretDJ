@@ -277,3 +277,24 @@ work happens; every commit includes this file's delta.
   red-first; 229 tests). Live capture approved at max one API call
   per second, read-only endpoints only; a production test account
   exists with credentials in .secrets/ (gitignored — never committed).
+- S3.2 done (sonnet subagent; DesignSystem 39 tests, FeedUI 76 tests):
+  domain-agnostic cell library (MediaRow/PersonRow/VenueRow/Card/Tile/
+  TopUpRow/EventRow/Promotion cells + RemoteArtworkView) on Theme/Icon
+  tokens per lazy-sections; FeedUI maps every Item payload to
+  primitive cell props (FeedCellProps, exhaustively switched, TDD'd),
+  placeholder cell deleted. FeedDisplayItem carries its originating
+  template (award/checkIn decode venue-shaped; the template
+  disambiguates). Known gap flagged honestly: Domain never decodes
+  ItemImage/artwork URIs (S1.1 omission) — artwork falls back to
+  icons; scheduled next round.
+- Live capture done (sonnet subagent, ≤1 req/s, read-only only): 15
+  production fixtures captured through the package's OWN request
+  builder and HMAC signing — production accepted our wire contract,
+  the strongest S1.2 validation possible. Five LIVE-CAPTURE markers
+  resolved (nowplaying, extracontent, musicsearch, musicdigest,
+  numpaidcredits, plus userdetails' layout confirmed); tokens and the
+  account email redacted in fixtures; remaining markers all gate on
+  forbidden write endpoints, correctly untouched. Two doc-comment
+  corrections (musicdigest carries a top-level Hash; numpaidcredits
+  has an unmodeled NumCredits). One real server error captured as-is
+  (styleinfo with item=0). API package steady at 229 tests.

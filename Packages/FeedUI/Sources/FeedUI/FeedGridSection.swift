@@ -18,7 +18,35 @@ struct FeedGridSection: View {
 
 	var body: some View {
 		LazyVGrid(columns: columns, spacing: Spacing.medium) {
-			ForEach(items) { FeedPlaceholderCell(item: $0) }
+			// Today's Template catalog never produces .event/.topUp inside a
+			// grid-kind section (checkIn/award/topUp are all list-only) —
+			// handled explicitly rather than with `default` so a template
+			// that starts feeding one of them into a grid fails to compile
+			// instead of silently guessing a layout.
+			ForEach(items) { item in
+				switch item.cellProps {
+				case .media(let props):
+					TileCell(
+						artwork: .remote(url: props.artworkURL, placeholderIcon: props.placeholderIcon),
+						title: props.title,
+					)
+				case .person(let props):
+					TileCell(artwork: .remote(url: props.avatarURL, placeholderIcon: .profile), title: props.name)
+				case .venue(let props):
+					TileCell(artwork: .remote(url: props.artworkURL, placeholderIcon: .venue), title: props.name)
+				case .promotion(let props):
+					TileCell(
+						artwork: .remote(url: props.artworkURL, placeholderIcon: .promotion),
+						title: props.caption ?? "",
+					)
+				case .controlTile(let props):
+					TileCell(artwork: .flatColor(props.color, icon: props.icon), title: props.title)
+				case .event,
+				     .topUp,
+				     .dropped:
+					EmptyView()
+				}
+			}
 		}
 		.padding(.horizontal, Spacing.medium)
 	}

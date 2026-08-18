@@ -25,6 +25,12 @@ extension Theme {
 		/// A person, venue, or song already liked ("buzzed") — the toggled
 		/// state of ``like``.
 		case likeFilled
+		/// A song, artist, or jukebox row's fallback when it has no artwork.
+		case song
+		/// A promotion card's fallback when it has no artwork.
+		case promotion
+		/// A mood/atmosphere tile.
+		case mood
 		/// Starting a song preview.
 		case playPreview
 		/// Ending an in-progress song preview.
@@ -67,6 +73,9 @@ extension Theme.Icon {
 		case .checkIn: "checkmark.circle.fill"
 		case .like: "heart"
 		case .likeFilled: "heart.fill"
+		case .song: "music.note"
+		case .promotion: "megaphone.fill"
+		case .mood: "flame.fill"
 		case .playPreview: "play.fill"
 		case .stopPreview: "stop.fill"
 		case .profile: "person.crop.circle.fill"

@@ -124,5 +124,5 @@ private func previewSongItem(id: String, text: String) -> FeedDisplayItem {
 		action: nil,
 		actions: [],
 	)
-	return FeedDisplayItem(id: "song-\(id)", item: .song(song), text: text)
+	return FeedDisplayItem(id: "song-\(id)", item: .song(song), text: text, template: .song)
 }

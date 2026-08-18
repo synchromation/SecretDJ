@@ -66,6 +66,25 @@ enum FeedDisplayModelTests {
 			#expect(items[0].text == "Bohemian Rhapsody")
 		}
 
+		@Test func `visible items carry their section's template, since cell selection needs it`() {
+			let sectionList = SectionList(
+				hash: FeedHash(rawValue: "h1"),
+				sections: [
+					makeSection(
+						template: .checkIn,
+						title: "Activity",
+						index: 0,
+						items: [.venue(makeVenue(venueId: "v1", name: "The Fox"))],
+					),
+				],
+				actions: [],
+			)
+
+			let model = FeedDisplayModel(sectionList: sectionList)
+
+			#expect(model.visibleSections[0].items[0].template == .checkIn)
+		}
+
 		@Test func `visible sections stay ordered as the server sent them`() {
 			let sectionList = SectionList(
 				hash: FeedHash(rawValue: "h1"),

@@ -20,9 +20,48 @@ struct FeedCarouselSection: View {
 				// carousel remains individually navigable — VoiceOver
 				// users swipe through cards one at a time, same as any
 				// other list.
-				ForEach(items) {
-					FeedPlaceholderCell(item: $0)
-						.frame(width: cardWidth)
+				//
+				// Today's Template catalog only ever produces .media
+				// (horizontalSong), .person (horizontalVIP/horizontalPerson),
+				// and .venue (horizontalAward) inside a carousel-kind
+				// section — .event/.topUp/.promotion/.controlTile/.dropped
+				// are unreachable here, handled explicitly rather than with
+				// `default` so a template that starts feeding one of them
+				// into a carousel fails to compile instead of silently
+				// guessing a layout.
+				ForEach(items) { item in
+					Group {
+						switch item.cellProps {
+						case .media(let props):
+							CardCell(
+								artworkURL: props.artworkURL,
+								placeholderIcon: props.placeholderIcon,
+								title: props.title,
+								subtitle: props.subtitle,
+							)
+						case .person(let props):
+							CardCell(
+								artworkURL: props.avatarURL,
+								placeholderIcon: .profile,
+								title: props.name,
+								subtitle: props.subtitle,
+							)
+						case .venue(let props):
+							CardCell(
+								artworkURL: props.artworkURL,
+								placeholderIcon: .venue,
+								title: props.name,
+								subtitle: props.address,
+							)
+						case .event,
+						     .topUp,
+						     .promotion,
+						     .controlTile,
+						     .dropped:
+							EmptyView()
+						}
+					}
+					.frame(width: cardWidth)
 				}
 			}
 			.scrollTargetLayout()

@@ -38,4 +38,45 @@ enum RGBAComponentsTests {
 			#expect(a.contrastRatio(against: b) == b.contrastRatio(against: a))
 		}
 	}
+
+	/// A server-driven mood tile (``SecretDJDomain/Control``'s `fgColour`/
+	/// `bgColour`) sends its color as a hex string, not a semantic token —
+	/// this is the one place a raw hex string becomes a color in this design
+	/// system.
+	struct `Hex parsing` {
+		@Test func `parses a six digit hex string with a leading hash`() throws {
+			let components = try #require(Theme.RGBAComponents(hex: "#FF0000"))
+
+			#expect(components.red == 1)
+			#expect(components.green == 0)
+			#expect(components.blue == 0)
+			#expect(components.alpha == 1)
+		}
+
+		@Test func `parses a six digit hex string without a leading hash`() throws {
+			let components = try #require(Theme.RGBAComponents(hex: "00FF00"))
+
+			#expect(components.red == 0)
+			#expect(components.green == 1)
+			#expect(components.blue == 0)
+		}
+
+		@Test func `parses black and white at their extremes`() throws {
+			let black = try #require(Theme.RGBAComponents(hex: "#000000"))
+			let white = try #require(Theme.RGBAComponents(hex: "#FFFFFF"))
+
+			#expect(black.relativeLuminance == 0)
+			#expect(white.relativeLuminance == 1)
+		}
+
+		@Test func `fails to parse a string that isn't six hex digits`() {
+			#expect(Theme.RGBAComponents(hex: "#FFF") == nil)
+			#expect(Theme.RGBAComponents(hex: "#FFFFFFFF") == nil)
+			#expect(Theme.RGBAComponents(hex: "") == nil)
+		}
+
+		@Test func `fails to parse a string with non hex characters`() {
+			#expect(Theme.RGBAComponents(hex: "#GGGGGG") == nil)
+		}
+	}
 }

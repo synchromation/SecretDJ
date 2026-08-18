@@ -50,7 +50,12 @@ public struct FeedDisplayModel: Sendable {
 			}
 
 			let items = section.items.compactMap { item in
-				item.displayText.map { FeedDisplayItem(id: item.stableID, item: item, text: $0) }
+				item.displayText.map { FeedDisplayItem(
+					id: item.stableID,
+					item: item,
+					text: $0,
+					template: section.template,
+				) }
 			}
 
 			visible.append(

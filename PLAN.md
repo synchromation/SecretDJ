@@ -254,10 +254,12 @@ previews.
 - [x] S3.1 Map Domain templates → `SectionKind`s and cell/section views
       (list, carousel/container, grid, hidden data sections); unknown
       kinds dropped per lazy-sections (see the S1.1 boundary note).
-- [ ] S3.2 Cell library for the legacy template set (song, artist, venue,
+- [x] S3.2 Cell library for the legacy template set (song, artist, venue,
       person, jukebox, top-up, award, event/check-in, promotion) in
       DesignSystem on the S2.1 tokens, each cell an immutable-value view
-      per lazy-sections, accessible per accessibility.
+      per lazy-sections, accessible per accessibility. (Known gap
+      carried: Domain doesn't decode ItemImage/artwork URIs yet, so all
+      artwork renders icon fallbacks — fix scheduled with S3.3's round.)
 - [ ] S3.3 Action dispatch: typed `Action` handling (goto item, request
       song, change atmosphere, show top-up, goto URL, launch search,
       taxi/Uber deep links, server-granted `machinecontrol` moderation
@@ -560,7 +562,7 @@ what it blocks.
 | S0 Foundations | **done** |
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
-| S3 Feed engine | in progress (S3.1 done) |
+| S3 Feed engine | in progress (S3.1, S3.2 done) |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |
