@@ -35,6 +35,45 @@ struct PromotionTests {
 		#expect(promotion.url == nil)
 	}
 
+	struct `Image decoding` {
+		/// `Image` is a sibling of `Text`/`Index`/`Data`, matching every other
+		/// payload type — no live fixture carries a promotion `Image` (none
+		/// of this package's fixtures include a promotion row), so this shape
+		/// follows `secretdjv3/ItemImage.swift`'s documented wire contract
+		/// rather than a captured payload. `event`/`promotion` share the
+		/// `promotions/` bucket in legacy's `imageBaseURL()`.
+		@Test func `decodes a present Image object into artwork`() throws {
+			let json = Data(
+				"""
+				{"Data": {"Id": 1},
+				 "Image": {"ItemTypeId": 1048576, "Resolutions": 5503, "Size": 9, "Uri": "p-1.jpg"}}
+				""".utf8,
+			)
+
+			let promotion = try JSONDecoder().decode(Promotion.self, from: json)
+
+			#expect(promotion.image?.url(for: .size1x1) ==
+				URL(string: "https://secretdj.s3.amazonaws.com/promotions/640x640/p-1.jpg?9"))
+		}
+
+		@Test func `a missing Image decodes to no artwork`() throws {
+			let json = Data(#"{"Data": {"Id": 1}}"#.utf8)
+
+			let promotion = try JSONDecoder().decode(Promotion.self, from: json)
+
+			#expect(promotion.image == nil)
+		}
+
+		@Test func `a malformed Image never fails the whole item`() throws {
+			let json = Data(#"{"Data": {"Id": 1}, "Image": "not an object"}"#.utf8)
+
+			let promotion = try JSONDecoder().decode(Promotion.self, from: json)
+
+			#expect(promotion.image == nil)
+			#expect(promotion.promotionId == 1)
+		}
+	}
+
 	struct SocialPlatformTests {
 		static let rawValues = [-1, -2, -3, -4]
 		static let platforms: [SocialPlatform] = [.facebook, .twitter, .website, .instagram]

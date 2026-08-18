@@ -73,6 +73,39 @@ enum VenueTests {
 
 			#expect(!venue.hasMachineControl)
 		}
+
+		/// `Image` is a sibling of `Text`/`Index`/`Data`, not nested inside
+		/// `Data` — the real shape from `VenueFeed.json`'s "The Lamb".
+		@Test func `decodes the sibling Image object into artwork`() throws {
+			let json = Data(
+				"""
+				{"Data": {"Venue": "1"},
+				 "Image": {"ItemTypeId": 536870912, "Resolutions": 5503, "Size": 5278, "Uri": "v-00003960-a53e3169.jpg"}}
+				""".utf8,
+			)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.image?.url(for: .size1x1) ==
+				URL(string: "https://secretdj.s3.amazonaws.com/venues/640x640/v-00003960-a53e3169.jpg?5278"))
+		}
+
+		@Test func `a missing Image decodes to no artwork`() throws {
+			let json = Data(#"{"Data": {"Venue": "1"}}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.image == nil)
+		}
+
+		@Test func `a malformed Image never fails the whole item`() throws {
+			let json = Data(#"{"Data": {"Venue": "1"}, "Image": "not an object"}"#.utf8)
+
+			let venue = try JSONDecoder().decode(Venue.self, from: json)
+
+			#expect(venue.image == nil)
+			#expect(venue.venueId == "1")
+		}
 	}
 
 	struct `MachineControl decodes leniently across wire representations` {

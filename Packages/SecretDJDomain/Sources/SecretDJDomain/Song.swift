@@ -12,6 +12,9 @@ public struct Song: Sendable, Hashable, Decodable {
 	public let sortIndex: Int
 	public let action: Action?
 	public let actions: [Action]
+	/// Cover art metadata (`Image`), or `nil` when absent or malformed on
+	/// the wire.
+	public let image: ItemImage?
 
 	/// The pseudo-song id the server sends when nothing is playing.
 	public static let intermissionSongId = "0"
@@ -43,6 +46,7 @@ public struct Song: Sendable, Hashable, Decodable {
 		sortIndex: Int,
 		action: Action?,
 		actions: [Action],
+		image: ItemImage? = nil,
 	) {
 		self.songId = songId
 		self.title = title
@@ -53,12 +57,14 @@ public struct Song: Sendable, Hashable, Decodable {
 		self.sortIndex = sortIndex
 		self.action = action
 		self.actions = actions
+		self.image = image
 	}
 
 	private enum CodingKeys: String, CodingKey {
 		case text = "Text"
 		case sortIndex = "Index"
 		case data = "Data"
+		case image = "Image"
 	}
 
 	private enum DataKeys: String, CodingKey {
@@ -89,5 +95,8 @@ public struct Song: Sendable, Hashable, Decodable {
 		)
 		action = try data.decodeIfPresent(Action.self, forKey: .action)
 		actions = try data.decodeIfPresent([Action].self, forKey: .actions) ?? []
+		// Malformed Image data (present but the wrong shape) never fails the
+		// whole item — it just means no artwork for this row.
+		image = try? container.decodeIfPresent(ItemImage.self, forKey: .image)
 	}
 }

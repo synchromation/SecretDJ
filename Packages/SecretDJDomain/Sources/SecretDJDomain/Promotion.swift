@@ -24,6 +24,9 @@ public struct Promotion: Sendable, Hashable, Decodable {
 	public let sortIndex: Int
 	public let action: Action?
 	public let actions: [Action]
+	/// Promo image metadata (`Image`), or `nil` when absent or malformed on
+	/// the wire.
+	public let image: ItemImage?
 
 	/// The social platform this promotion represents, when ``promotionId``
 	/// is one of the server's well-known negative ids.
@@ -40,6 +43,7 @@ public struct Promotion: Sendable, Hashable, Decodable {
 		sortIndex: Int,
 		action: Action?,
 		actions: [Action],
+		image: ItemImage? = nil,
 	) {
 		self.promotionId = promotionId
 		self.url = url
@@ -49,12 +53,14 @@ public struct Promotion: Sendable, Hashable, Decodable {
 		self.sortIndex = sortIndex
 		self.action = action
 		self.actions = actions
+		self.image = image
 	}
 
 	private enum CodingKeys: String, CodingKey {
 		case text = "Text"
 		case sortIndex = "Index"
 		case data = "Data"
+		case image = "Image"
 	}
 
 	private enum DataKeys: String, CodingKey {
@@ -78,5 +84,8 @@ public struct Promotion: Sendable, Hashable, Decodable {
 		height = try data.decodeIfPresent(Int.self, forKey: .height) ?? 0
 		action = try data.decodeIfPresent(Action.self, forKey: .action)
 		actions = try data.decodeIfPresent([Action].self, forKey: .actions) ?? []
+		// Malformed Image data (present but the wrong shape) never fails the
+		// whole item — it just means no artwork for this row.
+		image = try? container.decodeIfPresent(ItemImage.self, forKey: .image)
 	}
 }

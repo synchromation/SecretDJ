@@ -257,9 +257,10 @@ previews.
 - [x] S3.2 Cell library for the legacy template set (song, artist, venue,
       person, jukebox, top-up, award, event/check-in, promotion) in
       DesignSystem on the S2.1 tokens, each cell an immutable-value view
-      per lazy-sections, accessible per accessibility. (Known gap
-      carried: Domain doesn't decode ItemImage/artwork URIs yet, so all
-      artwork renders icon fallbacks — fix scheduled with S3.3's round.)
+      per lazy-sections, accessible per accessibility. (The artwork gap
+      is closed: Domain decodes ItemImage with legacy's resolution
+      buckets and fallback ladder, pinned to live fixtures; cells now
+      resolve real artwork URLs.)
 - [ ] S3.3 Action dispatch: typed `Action` handling (goto item, request
       song, change atmosphere, show top-up, goto URL, launch search,
       taxi/Uber deep links, server-granted `machinecontrol` moderation

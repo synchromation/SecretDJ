@@ -84,11 +84,13 @@ enum FeedCellProps: Hashable {
 }
 
 extension FeedDisplayItem {
-	/// This item's cell props. Domain fields carry no artwork URL yet
-	/// (no Domain type decodes an image URI at S3.2 — a gap for a later
-	/// Domain task, not something this mapping should guess at), so every
-	/// `artworkURL`/`avatarURL` below is `nil` today; the cells already
-	/// render their icon fallback in that case.
+	/// This item's cell props. `artworkURL`/`avatarURL` resolve from each
+	/// payload's decoded ``SecretDJDomain/ItemImage`` at the row-sized bucket
+	/// (`size2x2` — LEGACY.md's per-row thumbnails have no larger/smaller
+	/// layout variant today; DesignSystem's row cells render every artwork
+	/// at a single fixed size, unlike legacy's device-classed grid/matrix
+	/// templates), falling back to `nil` — and the cell's icon fallback —
+	/// when an item has no image data or its bucket can't be resolved.
 	var cellProps: FeedCellProps {
 		switch item {
 		case .song(let song):
@@ -96,7 +98,7 @@ extension FeedDisplayItem {
 				title: text.feedTaggedLines.first ?? song.title,
 				subtitle: text.feedTaggedLines.dropFirst().first,
 				placeholderIcon: .song,
-				artworkURL: nil,
+				artworkURL: song.image?.url(for: .size2x2),
 				// Inert on the consumer (LEGACY.md "Audio and playback") —
 				// no like affordance to show for the intermission placeholder.
 				accessory: song.isIntermission ? nil : likeAccessory(for: song.likeInfo),
@@ -109,19 +111,22 @@ extension FeedDisplayItem {
 			.person(FeedCellProps.PersonProps(
 				name: text.feedTaggedLines.first ?? person.screenName,
 				subtitle: text.feedTaggedLines.dropFirst().first,
-				avatarURL: nil,
+				avatarURL: person.image?.url(for: .size2x2),
 				accessory: likeAccessory(for: person.likeInfo),
 			))
 
 		case .artist(let artist):
 			// Artist.displayText is client-synthesized, not `text` split on
 			// newlines (Item+FeedDisplay.swift's own doc: legacy never uses
-			// the item's Text for this row).
+			// the item's Text for this row). Legacy never resolved a real
+			// bucket for artist rows either (`ItemImage.swift`'s
+			// `imageBaseURL()` has no `.artist` case), so this reliably
+			// stays `nil` today.
 			.media(FeedCellProps.MediaProps(
 				title: artist.displayText,
 				subtitle: nil,
 				placeholderIcon: .song,
-				artworkURL: nil,
+				artworkURL: artist.image?.url(for: .size2x2),
 				accessory: nil,
 			))
 
@@ -133,7 +138,7 @@ extension FeedDisplayItem {
 				// guess.
 				subtitle: jukebox.subtitle.isEmpty ? nil : jukebox.subtitle,
 				placeholderIcon: .jukebox,
-				artworkURL: nil,
+				artworkURL: jukebox.image?.url(for: .size2x2),
 				accessory: .chevron,
 			))
 
@@ -144,8 +149,11 @@ extension FeedDisplayItem {
 				priceText: topUp.displayPrice.isEmpty ? topUp.price : topUp.displayPrice,
 			))
 
-		case .promotion:
-			.promotion(FeedCellProps.PromotionProps(artworkURL: nil, caption: text.isEmpty ? nil : text))
+		case .promotion(let promotion):
+			.promotion(FeedCellProps.PromotionProps(
+				artworkURL: promotion.image?.url(for: .size2x2),
+				caption: text.isEmpty ? nil : text,
+			))
 
 		case .control(let control):
 			.controlTile(FeedCellProps.ControlTileProps(
@@ -182,7 +190,7 @@ extension FeedDisplayItem {
 			.venue(FeedCellProps.VenueProps(
 				name: text.feedTaggedLines.first ?? venue.name,
 				address: text.feedTaggedLines.dropFirst().first,
-				artworkURL: nil,
+				artworkURL: venue.image?.url(for: .size2x2),
 				hasJukebox: venue.properties.contains(.hasJukebox),
 				isCheckedIn: venue.checkedIn,
 			))

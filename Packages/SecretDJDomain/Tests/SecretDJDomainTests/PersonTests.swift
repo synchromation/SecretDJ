@@ -54,6 +54,39 @@ enum PersonTests {
 			#expect(person.firstName == nil)
 			#expect(person.lastName == nil)
 		}
+
+		/// `Image` is a sibling of `Text`/`Index`/`Data`, not nested inside
+		/// `Data` — the real shape from `PlacesNearby.json`'s "nickbot".
+		@Test func `decodes the sibling Image object into an avatar`() throws {
+			let json = Data(
+				"""
+				{"Data": {"User": "1", "ScreenName": "A"},
+				 "Image": {"ItemTypeId": 1073741824, "Resolutions": 5503, "Size": 3345, "Uri": "u-01256912-5442fc6c.jpg"}}
+				""".utf8,
+			)
+
+			let person = try JSONDecoder().decode(Person.self, from: json)
+
+			#expect(person.image?.url(for: .size4x4) ==
+				URL(string: "https://secretdj.s3.amazonaws.com/useravatars/large/u-01256912-5442fc6c.jpg?3345"))
+		}
+
+		@Test func `a missing Image decodes to no avatar`() throws {
+			let json = Data(#"{"Data": {"User": "1", "ScreenName": "A"}}"#.utf8)
+
+			let person = try JSONDecoder().decode(Person.self, from: json)
+
+			#expect(person.image == nil)
+		}
+
+		@Test func `a malformed Image never fails the whole item`() throws {
+			let json = Data(#"{"Data": {"User": "1", "ScreenName": "A"}, "Image": "not an object"}"#.utf8)
+
+			let person = try JSONDecoder().decode(Person.self, from: json)
+
+			#expect(person.image == nil)
+			#expect(person.personId == "1")
+		}
 	}
 
 	struct `Identity validation` {

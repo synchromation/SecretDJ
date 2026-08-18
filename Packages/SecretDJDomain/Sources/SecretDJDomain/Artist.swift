@@ -12,6 +12,11 @@ public struct Artist: Sendable, Hashable, Decodable {
 	public let sortIndex: Int
 	public let action: Action?
 	public let actions: [Action]
+	/// Artwork metadata (`Image`), or `nil` when absent or malformed on the
+	/// wire — legacy never actually resolved a real bucket for artist rows
+	/// (`ItemImage.swift`'s `imageBaseURL()` has no `.artist` case), so this
+	/// is carried mostly for completeness/forward-compatibility.
+	public let image: ItemImage?
 
 	/// Client-synthesized display text — the server's own item `Text` is not
 	/// used for artist rows (`secretdjv3/Artist.swift`): just the artist
@@ -20,13 +25,22 @@ public struct Artist: Sendable, Hashable, Decodable {
 		artist + (numSongs > 1 ? " ..." : "")
 	}
 
-	public init(name: String, artist: String, numSongs: Int, sortIndex: Int, action: Action?, actions: [Action]) {
+	public init(
+		name: String,
+		artist: String,
+		numSongs: Int,
+		sortIndex: Int,
+		action: Action?,
+		actions: [Action],
+		image: ItemImage? = nil,
+	) {
 		self.name = name
 		self.artist = artist
 		self.numSongs = numSongs
 		self.sortIndex = sortIndex
 		self.action = action
 		self.actions = actions
+		self.image = image
 	}
 
 	private enum CodingKeys: String, CodingKey {
@@ -35,6 +49,7 @@ public struct Artist: Sendable, Hashable, Decodable {
 		case numSongs = "NumSongs"
 		case sortIndex = "Index"
 		case data = "Data"
+		case image = "Image"
 	}
 
 	private enum DataKeys: String, CodingKey {
@@ -57,5 +72,8 @@ public struct Artist: Sendable, Hashable, Decodable {
 			action = nil
 			actions = []
 		}
+		// Malformed Image data (present but the wrong shape) never fails the
+		// whole item.
+		image = try? container.decodeIfPresent(ItemImage.self, forKey: .image)
 	}
 }

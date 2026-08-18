@@ -298,3 +298,11 @@ work happens; every commit includes this file's delta.
   corrections (musicdigest carries a top-level Hash; numpaidcredits
   has an unmodeled NumCredits). One real server error captured as-is
   (styleinfo with item=0). API package steady at 229 tests.
+- Artwork gap closed (TDD, sonnet subagent): ItemImage in Domain with
+  legacy's resolution bitmask, size-class buckets, fallback ladder,
+  and the image's-own-ItemType base-path rule (a song's cover can be
+  album-bucketed — proven by PlayHistory.json); image fields on
+  Song/Venue/Person/Artist/Jukebox/Promotion, tolerant decode; FeedUI
+  resolves real artwork URLs (size2x2 row bucket). TopUp's wire image
+  deliberately unwired (no cell artwork field — no dead code). Domain
+  135 / FeedUI 83 / API 229 tests.

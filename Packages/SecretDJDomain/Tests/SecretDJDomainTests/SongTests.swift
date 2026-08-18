@@ -45,6 +45,39 @@ enum SongTests {
 
 			#expect(song.previewURL == nil)
 		}
+
+		/// `Image` is a sibling of `Text`/`Index`/`Data`, not nested inside
+		/// `Data` — the real shape from `PlayHistory.json`'s first item.
+		@Test func `decodes the sibling Image object into artwork`() throws {
+			let json = Data(
+				"""
+				{"Data": {"SongId": "1"},
+				 "Image": {"ItemTypeId": 2, "Resolutions": 5503, "Size": 4483, "Uri": "s102000/s102698.jpg"}}
+				""".utf8,
+			)
+
+			let song = try JSONDecoder().decode(Song.self, from: json)
+
+			#expect(song.image?.url(for: .size1x1) ==
+				URL(string: "https://secretdj.s3.amazonaws.com/songcovers/640x640/s102000/s102698.jpg?4483"))
+		}
+
+		@Test func `a missing Image decodes to no artwork`() throws {
+			let json = Data(#"{"Data": {"SongId": "1"}}"#.utf8)
+
+			let song = try JSONDecoder().decode(Song.self, from: json)
+
+			#expect(song.image == nil)
+		}
+
+		@Test func `a malformed Image never fails the whole item`() throws {
+			let json = Data(#"{"Data": {"SongId": "1"}, "Image": "not an object"}"#.utf8)
+
+			let song = try JSONDecoder().decode(Song.self, from: json)
+
+			#expect(song.image == nil)
+			#expect(song.songId == "1")
+		}
 	}
 
 	struct `Intermission contract` {

@@ -40,4 +40,37 @@ struct JukeboxTests {
 
 		#expect(jukebox.itemType.isEmpty)
 	}
+
+	/// `Image` is a sibling of `Text`/`Index`/`Data`, not nested inside
+	/// `Data` — the real shape from `MusicSelection.json`'s "Recently Added".
+	@Test func `decodes the sibling Image object into artwork`() throws {
+		let json = Data(
+			"""
+			{"Data": {"Id": 1},
+			 "Image": {"ItemTypeId": 134217728, "Resolutions": 5503, "Size": 2, "Uri": "j-1879048193.jpg"}}
+			""".utf8,
+		)
+
+		let jukebox = try JSONDecoder().decode(Jukebox.self, from: json)
+
+		#expect(jukebox.image?.url(for: .size3x3) ==
+			URL(string: "https://secretdj.s3.amazonaws.com/jukeboxes/195x195/j-1879048193.jpg?2"))
+	}
+
+	@Test func `a missing Image decodes to no artwork`() throws {
+		let json = Data(#"{"Data": {"Id": 1}}"#.utf8)
+
+		let jukebox = try JSONDecoder().decode(Jukebox.self, from: json)
+
+		#expect(jukebox.image == nil)
+	}
+
+	@Test func `a malformed Image never fails the whole item`() throws {
+		let json = Data(#"{"Data": {"Id": 1}, "Image": "not an object"}"#.utf8)
+
+		let jukebox = try JSONDecoder().decode(Jukebox.self, from: json)
+
+		#expect(jukebox.image == nil)
+		#expect(jukebox.jukeboxId == 1)
+	}
 }
