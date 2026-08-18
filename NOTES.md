@@ -306,3 +306,16 @@ work happens; every commit includes this file's delta.
   resolves real artwork URLs (size2x2 row bucket). TopUp's wire image
   deliberately unwired (no cell artwork field — no dead code). Domain
   135 / FeedUI 83 / API 229 tests.
+- S3.3 done (TDD, sonnet subagent; FeedUI 127 tests): FeedActionRouter
+  + typed FeedActionOutcome vocabulary with an injectable InstalledApps
+  seam — legacy FeedActionProvider rules ported with citations
+  (item-action-overrides-payload-default gate, artist song-count
+  branch, promotion social deep-link conversion when installed with
+  externalBrowser routing and the URL-less engagePromotion ping,
+  server-gated Uber launch, machinecontrol as skip/neverPlay). Taps
+  thread through the section ForEach level so cell props stay
+  closure-free per lazy-sections; the kiosk's change-mood tiles ride
+  the same changeAtmosphere path for S7. The Song-tap hidden-jukebox
+  correlation variant is documented as S3.4-scope (needs SectionList
+  context). "Blacklist" surfaced as .neverPlay in the outcome
+  vocabulary; the wire identifier stays as the protocol names it.

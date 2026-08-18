@@ -6,12 +6,13 @@ import SwiftUI
 /// previewed through ``FeedView``'s previews.
 struct FeedSectionView: View {
 	let section: FeedDisplayModel.VisibleSection
+	let onItemTap: ((FeedDisplayItem) -> Void)?
 
 	var body: some View {
 		switch section.kind {
-		case .list: FeedListSection(items: section.items)
-		case .carousel: FeedCarouselSection(items: section.items)
-		case .grid: FeedGridSection(items: section.items)
+		case .list: FeedListSection(items: section.items, onItemTap: onItemTap)
+		case .carousel: FeedCarouselSection(items: section.items, onItemTap: onItemTap)
+		case .grid: FeedGridSection(items: section.items, onItemTap: onItemTap)
 		case .hidden:
 			// Unreachable: FeedDisplayModel routes hidden-kind sections to
 			// `hiddenSections`, never `visibleSections`. Handled explicitly

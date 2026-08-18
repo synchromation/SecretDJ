@@ -19,12 +19,21 @@ public struct FeedView: View {
 	/// refresh replaces `sections` (S3.4). Equal values never trigger a
 	/// scroll.
 	public let generation: Int
+	/// Called with the tapped cell's item; `nil` renders every cell
+	/// non-interactive. Routing the tap to a ``FeedActionOutcome`` (S3.3) is
+	/// the caller's job — this view performs no navigation itself.
+	public let onItemTap: ((FeedDisplayItem) -> Void)?
 
 	private static let topAnchorID = "top"
 
-	public init(sections: [FeedDisplayModel.VisibleSection], generation: Int) {
+	public init(
+		sections: [FeedDisplayModel.VisibleSection],
+		generation: Int,
+		onItemTap: ((FeedDisplayItem) -> Void)? = nil,
+	) {
 		self.sections = sections
 		self.generation = generation
+		self.onItemTap = onItemTap
 	}
 
 	public var body: some View {
@@ -39,7 +48,7 @@ public struct FeedView: View {
 					LazyVStack(spacing: Spacing.large) {
 						ForEach(sections) { section in
 							Section {
-								FeedSectionView(section: section)
+								FeedSectionView(section: section, onItemTap: onItemTap)
 									.padding(.bottom, Spacing.small)
 							} header: {
 								FeedSectionHeader(title: section.title)

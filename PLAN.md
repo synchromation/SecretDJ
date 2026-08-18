@@ -261,7 +261,7 @@ previews.
       is closed: Domain decodes ItemImage with legacy's resolution
       buckets and fallback ladder, pinned to live fixtures; cells now
       resolve real artwork URLs.)
-- [ ] S3.3 Action dispatch: typed `Action` handling (goto item, request
+- [x] S3.3 Action dispatch: typed `Action` handling (goto item, request
       song, change atmosphere, show top-up, goto URL, launch search,
       taxi/Uber deep links, server-granted `machinecontrol` moderation
       actions, promotion engagement — social-app deep-link conversion to
@@ -563,7 +563,7 @@ what it blocks.
 | S0 Foundations | **done** |
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
-| S3 Feed engine | in progress (S3.1, S3.2 done) |
+| S3 Feed engine | in progress (S3.1–S3.3 done) |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |

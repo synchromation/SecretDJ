@@ -7,6 +7,10 @@ import SwiftUI
 /// skill).
 struct FeedCarouselSection: View {
 	let items: [FeedDisplayItem]
+	/// Applied at this ForEach level, never carried on `FeedCellProps` —
+	/// cell props stay immutable values (lazy-sections' no-closures-in-cell-
+	/// props rule).
+	var onItemTap: ((FeedDisplayItem) -> Void)?
 
 	@ScaledMetric(relativeTo: .subheadline)
 	private var cardWidth: CGFloat = 180
@@ -20,48 +24,16 @@ struct FeedCarouselSection: View {
 				// carousel remains individually navigable — VoiceOver
 				// users swipe through cards one at a time, same as any
 				// other list.
-				//
-				// Today's Template catalog only ever produces .media
-				// (horizontalSong), .person (horizontalVIP/horizontalPerson),
-				// and .venue (horizontalAward) inside a carousel-kind
-				// section — .event/.topUp/.promotion/.controlTile/.dropped
-				// are unreachable here, handled explicitly rather than with
-				// `default` so a template that starts feeding one of them
-				// into a carousel fails to compile instead of silently
-				// guessing a layout.
 				ForEach(items) { item in
-					Group {
-						switch item.cellProps {
-						case .media(let props):
-							CardCell(
-								artworkURL: props.artworkURL,
-								placeholderIcon: props.placeholderIcon,
-								title: props.title,
-								subtitle: props.subtitle,
-							)
-						case .person(let props):
-							CardCell(
-								artworkURL: props.avatarURL,
-								placeholderIcon: .profile,
-								title: props.name,
-								subtitle: props.subtitle,
-							)
-						case .venue(let props):
-							CardCell(
-								artworkURL: props.artworkURL,
-								placeholderIcon: .venue,
-								title: props.name,
-								subtitle: props.address,
-							)
-						case .event,
-						     .topUp,
-						     .promotion,
-						     .controlTile,
-						     .dropped:
-							EmptyView()
-						}
+					if let onItemTap {
+						cell(for: item)
+							.frame(width: cardWidth)
+							.onTapGesture { onItemTap(item) }
+							.accessibilityAddTraits(.isButton)
+					} else {
+						cell(for: item)
+							.frame(width: cardWidth)
 					}
-					.frame(width: cardWidth)
 				}
 			}
 			.scrollTargetLayout()
@@ -72,5 +44,44 @@ struct FeedCarouselSection: View {
 		// Fixed (scaled) height: the vertical feed never has to measure
 		// carousel content to lay itself out (lazy-sections' scroll rule).
 		.frame(height: cardHeight)
+	}
+
+	/// Today's Template catalog only ever produces .media (horizontalSong),
+	/// .person (horizontalVIP/horizontalPerson), and .venue (horizontalAward)
+	/// inside a carousel-kind section — .event/.topUp/.promotion/.controlTile/
+	/// .dropped are unreachable here, handled explicitly rather than with
+	/// `default` so a template that starts feeding one of them into a
+	/// carousel fails to compile instead of silently guessing a layout.
+	@ViewBuilder
+	private func cell(for item: FeedDisplayItem) -> some View {
+		switch item.cellProps {
+		case .media(let props):
+			CardCell(
+				artworkURL: props.artworkURL,
+				placeholderIcon: props.placeholderIcon,
+				title: props.title,
+				subtitle: props.subtitle,
+			)
+		case .person(let props):
+			CardCell(
+				artworkURL: props.avatarURL,
+				placeholderIcon: .profile,
+				title: props.name,
+				subtitle: props.subtitle,
+			)
+		case .venue(let props):
+			CardCell(
+				artworkURL: props.artworkURL,
+				placeholderIcon: .venue,
+				title: props.name,
+				subtitle: props.address,
+			)
+		case .event,
+		     .topUp,
+		     .promotion,
+		     .controlTile,
+		     .dropped:
+			EmptyView()
+		}
 	}
 }
