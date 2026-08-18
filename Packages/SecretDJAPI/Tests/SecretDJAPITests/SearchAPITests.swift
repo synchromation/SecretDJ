@@ -74,17 +74,26 @@ enum SearchAPITests {
 			#expect(parameters["searchmask"] == "0")
 		}
 
-		/// // LIVE-CAPTURE: no legacy fixture exists for `musicsearch`.
+		/// `Live/MusicSearch.json` — a production `musicsearch` capture (S1's
+		/// R2 live-capture pass) for the query "beatles" against a real
+		/// venue: a single results section, zero matches for this venue's
+		/// catalogue. No legacy fixture existed for this endpoint, and the
+		/// live response carries no top-level `Hash` — top-level hash
+		/// decoding itself is already covered generically by
+		/// `SectionListDecoderFixtureTests`.
 		@Test func `decodes the response as a SectionList`() async throws {
-			let json = Data(#"{"Success": true, "Sections": [], "Hash": "search-hash"}"#.utf8)
-			let client = SearchAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+			let client = SearchAPITests.makeClient(
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("MusicSearch"))),
+			)
 
 			let response = try await client.musicSearch(
 				userId: "u", venueId: "v", query: "q", type: .songs, mask: .computeLikes,
 				credential: SearchAPITests.credential,
 			)
 
-			#expect(response.payload.hash == FeedHash(rawValue: "search-hash"))
+			#expect(response.payload.hash == FeedHash(rawValue: ""))
+			#expect(response.payload.sections.first?.title == "Results for 'beatles'")
+			#expect(response.payload.sections.first?.items.isEmpty == true)
 		}
 	}
 

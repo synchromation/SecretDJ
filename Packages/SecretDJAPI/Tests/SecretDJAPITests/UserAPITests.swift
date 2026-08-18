@@ -43,21 +43,24 @@ enum UserAPITests {
 			#expect(parameters["sig"] != nil)
 		}
 
-		/// `PersonDetails.json` is captured for `persondetails`, reused here —
-		/// see ``UserDetailsPayload``'s doc comment for why that's a fair
-		/// stand-in and the `// LIVE-CAPTURE` gap it leaves.
+		/// `Live/UserDetails.json` — a production `userdetails` capture
+		/// (S1's R2 live-capture pass), confirming ``UserDetailsPayload``'s
+		/// documented shape for real: `Sections[0].Items[0]` really is the
+		/// current user as a `Person`, the same layout `persondetails` uses.
+		/// This supersedes the earlier `persondetails`-fixture stand-in —
+		/// see ``UserDetailsPayload``'s doc comment.
 		@Test func `decodes the Person from the first section's first item`() async throws {
 			let client = UserAPITests.makeClient(
-				transport: FakeAPITransport(outcome: .success(Fixture.data("PersonDetails"))),
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("UserDetails"))),
 			)
 
 			let response = try await client.userDetails(
-				userId: "00027786_c2eb9af2",
+				userId: "01256912_5442fc6c",
 				credential: UserAPITests.credential,
 			)
 
-			#expect(response.payload.personId == "00027786_c2eb9af2")
-			#expect(response.payload.screenName == "TurboTim")
+			#expect(response.payload.personId == "01256912_5442fc6c")
+			#expect(response.payload.screenName == "nickbot")
 			#expect(response.payload.gender == .unisex)
 		}
 

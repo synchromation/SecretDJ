@@ -187,16 +187,23 @@ enum FeedAPITests {
 			#expect(parameters["sig"] != nil)
 		}
 
-		/// // LIVE-CAPTURE: no legacy fixture exists for `playhistory`
-		/// (the legacy test resources have no now-playing capture); this
-		/// only proves the envelope threads through to a `SectionList`.
+		/// `Live/PlayHistory.json` — a production `playhistory` capture (S1's
+		/// R2 live-capture pass) for a real venue ("The Lamb", Chiswick): a
+		/// `Venue` section plus a "Recently Played" song section. The legacy
+		/// test resources have no now-playing capture at all, and this
+		/// endpoint's response carries no top-level `Hash` (unlike the
+		/// synthetic fixture this replaces) — top-level hash decoding itself
+		/// is already covered generically by `SectionListDecoderFixtureTests`.
 		@Test func `decodes the response as a SectionList`() async throws {
-			let json = Data(#"{"Success": true, "Sections": [], "Hash": "np-hash"}"#.utf8)
-			let client = FeedAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+			let client = FeedAPITests.makeClient(
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("PlayHistory"))),
+			)
 
 			let response = try await client.nowPlaying(userId: "u", venueId: "v", credential: FeedAPITests.credential)
 
-			#expect(response.payload.hash == FeedHash(rawValue: "np-hash"))
+			#expect(response.payload.sections.count == 2)
+			#expect(response.payload.sections.map(\.title) == ["Venue", "Recently Played"])
+			#expect(response.payload.sections.last?.items.count == 10)
 		}
 	}
 
@@ -247,10 +254,14 @@ enum FeedAPITests {
 			#expect(parameters["venue"] == "v")
 		}
 
-		/// // LIVE-CAPTURE: no legacy fixture exists for `extracontent`.
+		/// `Live/ExtraContent.json` — a production `extracontent` capture
+		/// (S1's R2 live-capture pass) for the venueDetails screen: one
+		/// "Recently Played" song section. No legacy fixture existed for
+		/// this endpoint at all.
 		@Test func `decodes the response as a SectionList`() async throws {
-			let json = Data(#"{"Success": true, "Sections": []}"#.utf8)
-			let client = FeedAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+			let client = FeedAPITests.makeClient(
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("ExtraContent"))),
+			)
 
 			let response = try await client.extraContent(
 				userId: "u",
@@ -259,7 +270,9 @@ enum FeedAPITests {
 				credential: FeedAPITests.credential,
 			)
 
-			#expect(response.payload.sections.isEmpty)
+			#expect(response.payload.sections.count == 1)
+			#expect(response.payload.sections.first?.title == "Recently Played")
+			#expect(response.payload.sections.first?.items.count == 1)
 		}
 	}
 

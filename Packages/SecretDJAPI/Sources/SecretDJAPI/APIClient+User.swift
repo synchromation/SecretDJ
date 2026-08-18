@@ -106,15 +106,14 @@ extension APIClient {
 /// envelope — S1.3c builds that; this endpoint's response only ever
 /// carries the one `Person`.
 ///
-/// // LIVE-CAPTURE: no legacy fixture exists specifically for `userdetails`
-/// (only for `persondetails`, which shares the documented "SectionList
-/// with a hidden section wrapping a Person" shape — LEGACY.md's catalog:
-/// `userdetails` → hidden `hiddenUserDetails` section → `Person`;
-/// `persondetails` → hidden `hiddenProfile` section → `Person`). Tests here
-/// pin against the `persondetails` fixture (`PersonDetails.json`) since
-/// this decoder only reads `Sections[0].Items[0]`, which is structurally
-/// identical either way — a true `userdetails` production capture would
-/// confirm the section layout is really this simple.
+/// A production `userdetails` capture (S1's R2 live-capture pass,
+/// `Live/UserDetails.json`) confirms this: `Sections[0].Items[0]` really is
+/// the current user as a `Person`, the same layout `persondetails` uses.
+/// That capture also confirms ``SecretDJDomain/Person/email``'s doc
+/// comment — the live response's email address sits at
+/// `Sections[0].Custom.Email`, a sibling of `Items`, not inside the
+/// `Person` item's own `Data`; wiring that up is still open (S1.3's note
+/// on `Person.email`), tracked separately from this decoder.
 struct UserDetailsPayload: Hashable, Decodable {
 	let person: Person
 

@@ -117,13 +117,19 @@ enum MusicSelectionAPITests {
 			#expect(request.url?.path == "/musicdigest")
 		}
 
-		/// // LIVE-CAPTURE: no legacy fixture exists for `musicdigest`
-		/// specifically (only `musicselection`'s, reused here since both
-		/// endpoints share the same request/response shape per
-		/// `secretdjv3/MusicAPIAccess.swift`'s `updateMusic`).
+		/// `Live/MusicDigest.json` — a production `musicdigest` capture
+		/// (S1's R2 live-capture pass): three sections ("The Lamb", "Our
+		/// Jukeboxes", "More Music For You"). No legacy fixture existed for
+		/// `musicdigest` specifically. Unlike `APIClient+MusicSelection.swift`'s
+		/// doc comment claims ("none of these responses carry a top-level
+		/// `Hash`"), this live response *does* carry one (`"eed5efae"`,
+		/// matching its first section's own `Custom.Hash`) — harmless since
+		/// `SectionList.hash` already decodes it, and callers page off each
+		/// section's own hash regardless, but worth a genuine wire-contract
+		/// note rather than silently contradicting that comment.
 		@Test func `decodes the response as a SectionList`() async throws {
 			let client = MusicSelectionAPITests.makeClient(
-				transport: FakeAPITransport(outcome: .success(Fixture.data("MusicSelection"))),
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("MusicDigest"))),
 			)
 
 			let response = try await client.musicDigest(
@@ -131,7 +137,9 @@ enum MusicSelectionAPITests {
 				credential: MusicSelectionAPITests.credential,
 			)
 
-			#expect(response.payload.sections.count == 1)
+			#expect(response.payload.sections.count == 3)
+			#expect(response.payload.sections.map(\.title) == ["The Lamb", "Our Jukeboxes", "More Music For You"])
+			#expect(response.payload.hash == FeedHash(rawValue: "eed5efae"))
 		}
 	}
 

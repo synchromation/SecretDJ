@@ -8,14 +8,19 @@ import SecretDJDomain
 /// None of these appear in the legacy sig-exclusion list, so every method
 /// here requires an ``APICredential``.
 ///
-/// None of these responses carry a top-level `Hash` (unlike most feeds) —
-/// legacy instead reads one specific section's `Custom.Hash` for pagination
+/// Legacy reads one specific section's `Custom.Hash` for pagination
 /// (`MusicAPIAccess.parseResult`'s *last*-section read,
-/// `MachineControlAPIAccess.parseResult`'s *first-`.song`*-section read).
-/// This package doesn't reproduce that per-endpoint section-picking: every
-/// section's own hash already decodes onto ``SecretDJDomain/Section/hash``
-/// (S1.3c's ``SectionListDecoder``), so a caller reads whichever section's
-/// hash it needs directly off the returned ``SecretDJDomain/SectionList``.
+/// `MachineControlAPIAccess.parseResult`'s *first-`.song`*-section read)
+/// rather than a top-level `Hash` — a live `musicdigest` capture (R2)
+/// confirms `musicselection` matches that (no top-level `Hash`), though
+/// `musicdigest` itself did carry one on the wire, equal to its first
+/// section's own `Custom.Hash`; harmless either way, since this package
+/// doesn't reproduce legacy's per-endpoint section-picking: every section's
+/// own hash already decodes onto ``SecretDJDomain/Section/hash`` (S1.3c's
+/// ``SectionListDecoder``), so a caller reads whichever section's hash it
+/// needs directly off the returned ``SecretDJDomain/SectionList``, and
+/// ``SecretDJDomain/SectionList/hash`` itself just decodes whatever
+/// top-level value (or lack of one) the endpoint happens to send.
 extension APIClient {
 	/// `musicselection` — a venue's paged music-browse catalogue
 	/// (`secretdjv3/MusicAPIAccess.swift`'s `musicSelection`).

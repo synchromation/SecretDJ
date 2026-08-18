@@ -1,0 +1,46 @@
+{
+  "Actions" : [
+
+  ],
+  "ElapsedTime" : "0.0257 seconds",
+  "Sections" : [
+    {
+      "Custom" : {
+        "AppModel" : 0,
+        "Created" : "2026-08-18T10:36:03+0",
+        "Email" : "redacted@example.com",
+        "FirstName" : "Nick",
+        "FixedVenue" : "",
+        "LastName" : "Bot"
+      },
+      "Items" : [
+        {
+          "Data" : {
+            "GenderId" : 0,
+            "LikeInfo" : {
+              "Info" : "Like this person...",
+              "LikedByYou" : false,
+              "Likes" : 0
+            },
+            "ScreenName" : "nickbot",
+            "User" : "01256912_5442fc6c"
+          },
+          "Image" : {
+            "ItemTypeId" : 1073741824,
+            "Resolutions" : 5503,
+            "Size" : 3345,
+            "Uri" : "u-01256912-5442fc6c.jpg"
+          },
+          "Text" : "nickbot"
+        }
+      ],
+      "ItemTypeId" : 1073741824,
+      "Templates" : [
+        301
+      ],
+      "Title" : "Profile"
+    }
+  ],
+  "Success" : true,
+  "Token" : "REDACTED-TOKEN-0000"
+}

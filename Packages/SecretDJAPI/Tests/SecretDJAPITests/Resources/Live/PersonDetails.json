@@ -1,0 +1,54 @@
+{
+  "Actions" : [
+    {
+      "Button" : 100,
+      "Id" : 1,
+      "Index" : 1,
+      "Url" : "",
+      "Value" : ""
+    }
+  ],
+  "ElapsedTime" : "0.1207 seconds",
+  "Sections" : [
+    {
+      "Custom" : {
+        "Interactions" : {
+          "LastCheckin" : null,
+          "NumPeopleWhoLikeUser" : 0,
+          "PlacesVisited" : 0,
+          "SongRequests" : 0
+        },
+        "TopupAllowed" : true
+      },
+      "Index" : 1,
+      "Items" : [
+        {
+          "Data" : {
+            "GenderId" : 0,
+            "LikeInfo" : {
+              "Info" : "Like this person...",
+              "LikedByYou" : false,
+              "Likes" : 0
+            },
+            "ScreenName" : "nickbot",
+            "User" : "01256912_5442fc6c"
+          },
+          "Image" : {
+            "ItemTypeId" : 1073741824,
+            "Resolutions" : 5503,
+            "Size" : 3345,
+            "Uri" : "u-01256912-5442fc6c.jpg"
+          },
+          "Text" : "nickbot"
+        }
+      ],
+      "ItemTypeId" : 1073741824,
+      "Templates" : [
+        302
+      ],
+      "Title" : "Profile"
+    }
+  ],
+  "Success" : true,
+  "Token" : "REDACTED-TOKEN-0000"
+}

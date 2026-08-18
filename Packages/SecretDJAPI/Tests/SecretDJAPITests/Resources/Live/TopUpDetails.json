@@ -1,0 +1,126 @@
+{
+  "ElapsedTime" : "0.0082 seconds",
+  "Sections" : [
+    {
+      "Custom" : {
+        "Title" : "You're out of songs... top up?",
+        "User" : "01256912_5442fc6c"
+      },
+      "Index" : 1,
+      "Items" : [
+        {
+          "Data" : {
+            "CurrencyCode" : "GBP",
+            "Description" : "[PRIVATE] only use for IAP testing",
+            "DisplayPrice" : "Â£9.99",
+            "Name" : "Test product",
+            "NumCredits" : 10,
+            "Price" : "9.99",
+            "SKU" : "apnonconsumabletest01",
+            "Url" : "",
+            "VendorId" : 2
+          },
+          "Image" : {
+            "ItemTypeId" : 33554432,
+            "Resolutions" : 127,
+            "Size" : 0,
+            "Uri" : "p-00000006.jpg"
+          },
+          "Index" : 1,
+          "Text" : "Test product\n[PRIVATE] only use for IAP testing"
+        },
+        {
+          "Data" : {
+            "CurrencyCode" : "GBP",
+            "Description" : "Make tonight your night -",
+            "DisplayPrice" : "Â£2.99",
+            "Name" : "Top-up Twenty",
+            "NumCredits" : 20,
+            "Price" : "2.99",
+            "SKU" : "ap20credit01",
+            "Url" : "",
+            "VendorId" : 2
+          },
+          "Image" : {
+            "ItemTypeId" : 33554432,
+            "Resolutions" : 127,
+            "Size" : 2,
+            "Uri" : "p-00000004.jpg"
+          },
+          "Index" : 2,
+          "Text" : "Top-up Twenty\nMake tonight your night -"
+        },
+        {
+          "Data" : {
+            "CurrencyCode" : "GBP",
+            "Description" : "Another 12 songs - should last at least a couple of pints -",
+            "DisplayPrice" : "Â£1.99",
+            "Name" : "Dirty Dozen",
+            "NumCredits" : 12,
+            "Price" : "1.99",
+            "SKU" : "ap12credit01",
+            "Url" : "",
+            "VendorId" : 2
+          },
+          "Image" : {
+            "ItemTypeId" : 33554432,
+            "Resolutions" : 127,
+            "Size" : 0,
+            "Uri" : "p-00000002.jpg"
+          },
+          "Index" : 3,
+          "Text" : "Dirty Dozen\nAnother 12 songs - should last at least a couple of pints -"
+        },
+        {
+          "Data" : {
+            "CurrencyCode" : "GBP",
+            "Description" : "Play 5 more songs for just",
+            "DisplayPrice" : "99p",
+            "Name" : "15 minutes of fame",
+            "NumCredits" : 5,
+            "Price" : "0.99",
+            "SKU" : "ap05credit01",
+            "Url" : "",
+            "VendorId" : 2
+          },
+          "Image" : {
+            "ItemTypeId" : 33554432,
+            "Resolutions" : 127,
+            "Size" : 1,
+            "Uri" : "p-00000001.jpg"
+          },
+          "Index" : 4,
+          "Text" : "15 minutes of fame\nPlay 5 more songs for just"
+        },
+        {
+          "Data" : {
+            "CurrencyCode" : "GBP",
+            "Description" : "Need to hear that one essential tune? We'll sort you out for",
+            "DisplayPrice" : "50p",
+            "Name" : "Just a quick one",
+            "NumCredits" : 1,
+            "Price" : "0.50",
+            "SKU" : "ap01credit01",
+            "Url" : "",
+            "VendorId" : 2
+          },
+          "Image" : {
+            "ItemTypeId" : 33554432,
+            "Resolutions" : 127,
+            "Size" : 1,
+            "Uri" : "p-00000003.jpg"
+          },
+          "Index" : 5,
+          "Text" : "Just a quick one\nNeed to hear that one essential tune? We'll sort you out for"
+        }
+      ],
+      "ItemTypeId" : 33554432,
+      "Templates" : [
+        700
+      ],
+      "Title" : ""
+    }
+  ],
+  "Success" : true,
+  "Token" : "REDACTED-TOKEN-0000"
+}

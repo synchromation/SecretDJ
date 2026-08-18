@@ -1,0 +1,8682 @@
+{
+  "Artists" : [
+    {
+      "Artist" : "The 1975",
+      "Name" : "1975, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "24 Carat Black",
+      "Name" : "24 Carat Black",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The 3 Pieces",
+      "Name" : "3 Pieces, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "49th And Main",
+      "Name" : "49th And Main",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "49th Blue Streak",
+      "Name" : "49th Blue Streak",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "6ix Toys",
+      "Name" : "6ix Toys",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "79.5",
+      "Name" : "79.5",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "87th Off Broadway",
+      "Name" : "87th Off Broadway",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "94 East",
+      "Name" : "94 East",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "A Case Of Tyme",
+      "Name" : "A Case Of Tyme",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "A Darker Shade Of Black",
+      "Name" : "A Darker Shade Of Black",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "A. Billi Free And The Lasso",
+      "Name" : "A. Billi Free And The Lasso",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aaron Frazer",
+      "Name" : "Aaron Frazer",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Aaron Neville",
+      "Name" : "Aaron Neville",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Act I",
+      "Name" : "Act I",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ad Libs",
+      "Name" : "Ad Libs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Adele",
+      "Name" : "Adele",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Adeline",
+      "Name" : "Adeline",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Adi Oasis",
+      "Name" : "Adi Oasis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Adrian Younge",
+      "Name" : "Adrian Younge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Afro Lafayette Rock Band",
+      "Name" : "Afro Lafayette Rock Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "AJR",
+      "Name" : "AJR",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Al Brown",
+      "Name" : "Al Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Al Green",
+      "Name" : "Al Green",
+      "NumSongs" : 11
+    },
+    {
+      "Artist" : "Al Hudson And The Soul Partners",
+      "Name" : "Al Hudson And The Soul Partners",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Al Jarreau",
+      "Name" : "Al Jarreau",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Al Wilson",
+      "Name" : "Al Wilson",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Alan Hawkshaw",
+      "Name" : "Alan Hawkshaw",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Albert",
+      "Name" : "Albert",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Albert Collins",
+      "Name" : "Albert Collins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Albert King",
+      "Name" : "Albert King",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Albert Washington",
+      "Name" : "Albert Washington",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aleem",
+      "Name" : "Aleem",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alex Rocks",
+      "Name" : "Alex Rocks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alex Warren",
+      "Name" : "Alex Warren",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alexander Iv, Cezanne",
+      "Name" : "Alexander Iv, Cezanne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alexander Iv, Josef Scott",
+      "Name" : "Alexander Iv, Josef Scott",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alexander O'Neal And Cherrelle",
+      "Name" : "Alexander O`Neal And Cherrelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice And The Wonders",
+      "Name" : "Alice And The Wonders",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice Cohen And Fun City",
+      "Name" : "Alice Cohen And Fun City",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice Deejay",
+      "Name" : "Alice Deejay",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice Ivy And Mayer Hawthorne",
+      "Name" : "Alice Ivy And Mayer Hawthorne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice Rusell",
+      "Name" : "Alice Rusell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alice Russell",
+      "Name" : "Alice Russell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alicia Keys",
+      "Name" : "Alicia Keys",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "All Day Breakfast Cafe",
+      "Name" : "All Day Breakfast Cafe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "All The People",
+      "Name" : "All The People",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Allen Stone",
+      "Name" : "Allen Stone",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Allen Toussaint",
+      "Name" : "Allen Toussaint",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Allergies",
+      "Name" : "Allergies, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Alma Faye Brooks",
+      "Name" : "Alma Faye Brooks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alma Negra",
+      "Name" : "Alma Negra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Almir Ricardi",
+      "Name" : "Almir Ricardi",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Almost Monday",
+      "Name" : "Almost Monday",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aloe Blacc",
+      "Name" : "Aloe Blacc",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Althea And Donna",
+      "Name" : "Althea And Donna",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Alton Ellis",
+      "Name" : "Alton Ellis",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Alvin Robinson",
+      "Name" : "Alvin Robinson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Amedeo Picone, Aboutme",
+      "Name" : "Amedeo Picone, Aboutme",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Amerie",
+      "Name" : "Amerie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Amos Milburn",
+      "Name" : "Amos Milburn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Amy Holland",
+      "Name" : "Amy Holland",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Amy Winehouse",
+      "Name" : "Amy Winehouse",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ana Frango Eletrico",
+      "Name" : "Ana Frango Eletrico",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ananda Shankar",
+      "Name" : "Ananda Shankar",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Anderson .Paak",
+      "Name" : "Anderson .Paak",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Anderson East",
+      "Name" : "Anderson East",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Andre Williams",
+      "Name" : "Andre Williams",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Andrea True Connection",
+      "Name" : "Andrea True Connection",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Andreya Triana",
+      "Name" : "Andreya Triana",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Andy Powell",
+      "Name" : "Andy Powell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Angie Stone",
+      "Name" : "Angie Stone",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Animals",
+      "Name" : "Animals, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Animotion",
+      "Name" : "Animotion",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ann Peebles",
+      "Name" : "Ann Peebles",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Ann Robinson",
+      "Name" : "Ann Robinson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ann Sexton",
+      "Name" : "Ann Sexton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Anne-Marie",
+      "Name" : "Anne-Marie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Anthony White",
+      "Name" : "Anthony White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Antony Szmierek",
+      "Name" : "Antony Szmierek",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Apple And The Three Oranges",
+      "Name" : "Apple And The Three Oranges",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Apples",
+      "Name" : "Apples, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Archie Bell And The Drells",
+      "Name" : "Archie Bell And The Drells",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Aretha Franklin",
+      "Name" : "Aretha Franklin",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Arial Ten",
+      "Name" : "Arial Ten",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Arin Ray",
+      "Name" : "Arin Ray",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Arlo Parks",
+      "Name" : "Arlo Parks",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Arnau Obiols And Kayyak",
+      "Name" : "Arnau Obiols And Kayyak",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Art Carey And Magnum Force",
+      "Name" : "Art Carey And Magnum Force",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Art Freeman",
+      "Name" : "Art Freeman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Artemas",
+      "Name" : "Artemas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Arthur Conley",
+      "Name" : "Arthur Conley",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Arthur Crudup",
+      "Name" : "Arthur Crudup",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Artie White",
+      "Name" : "Artie White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ash Walker",
+      "Name" : "Ash Walker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ashford And Simpson",
+      "Name" : "Ashford And Simpson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aswad",
+      "Name" : "Aswad",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Atlantic Starr",
+      "Name" : "Atlantic Starr",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Augustus Pablo",
+      "Name" : "Augustus Pablo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aurora",
+      "Name" : "Aurora",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Aurra",
+      "Name" : "Aurra",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Austin Millz",
+      "Name" : "Austin Millz",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Austin Millz And Aluna",
+      "Name" : "Austin Millz And Aluna",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ava Max",
+      "Name" : "Ava Max",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Avalanches",
+      "Name" : "Avalanches, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Average White Band",
+      "Name" : "Average White Band",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Avicii",
+      "Name" : "Avicii",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Avril Lavigne",
+      "Name" : "Avril Lavigne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Aweh",
+      "Name" : "Aweh",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Azoto",
+      "Name" : "Azoto",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The B-52's",
+      "Name" : "B-52`s, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "B.B. Carter",
+      "Name" : "B.B. Carter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "B.B. King",
+      "Name" : "B.B. King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "B.T. (Brenda Taylor)",
+      "Name" : "B.T. (Brenda Taylor)",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "B.T. Express",
+      "Name" : "B.T. Express",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Baba Brooks",
+      "Name" : "Baba Brooks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Baba Brooks And His Band",
+      "Name" : "Baba Brooks And His Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Babe Ruth",
+      "Name" : "Babe Ruth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Baby Charles",
+      "Name" : "Baby Charles",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Baby Huey",
+      "Name" : "Baby Huey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Baby Huey And The Baby Sitters",
+      "Name" : "Baby Huey And The Baby Sitters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Baby Washington",
+      "Name" : "Baby Washington",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bad Manners",
+      "Name" : "Bad Manners",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bad Medicine",
+      "Name" : "Bad Medicine",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Bamboos",
+      "Name" : "Bamboos, The",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Banbara",
+      "Name" : "Banbara",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Banbarra",
+      "Name" : "Banbarra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Bar-Kays",
+      "Name" : "Bar-Kays, The",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Barabaras",
+      "Name" : "Barabaras",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barbara Acklin",
+      "Name" : "Barbara Acklin",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Barbara Carr",
+      "Name" : "Barbara Carr",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barbara Hernandez",
+      "Name" : "Barbara Hernandez",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barbara Jean Acklin",
+      "Name" : "Barbara Jean Acklin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barbara Lynn",
+      "Name" : "Barbara Lynn",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Barbara Mason",
+      "Name" : "Barbara Mason",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barbie Gaye",
+      "Name" : "Barbie Gaye",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barefoot Jerry",
+      "Name" : "Barefoot Jerry",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Barons Ltd",
+      "Name" : "Barons Ltd, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barrett Strong",
+      "Name" : "Barrett Strong",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Barrett Strong And The Contours",
+      "Name" : "Barrett Strong And The Contours",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barrington Levy",
+      "Name" : "Barrington Levy",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Barry Can't Swim",
+      "Name" : "Barry Can`t Swim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Barry White",
+      "Name" : "Barry White",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Barry White And Glodean White",
+      "Name" : "Barry White And Glodean White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Basement Jaxx",
+      "Name" : "Basement Jaxx",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bataan",
+      "Name" : "Bataan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bear Garden",
+      "Name" : "Bear Garden",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Beat",
+      "Name" : "Beat, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Beau",
+      "Name" : "Beau",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Beenie Man",
+      "Name" : "Beenie Man",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Beginning Of The End",
+      "Name" : "Beginning Of The End, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Belleruche",
+      "Name" : "Belleruche",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Belles",
+      "Name" : "Belles, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Benny Gordon",
+      "Name" : "Benny Gordon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Benny Sings",
+      "Name" : "Benny Sings",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Benson Boone",
+      "Name" : "Benson Boone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Beres Hammond",
+      "Name" : "Beres Hammond",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Bernard Wright",
+      "Name" : "Bernard Wright",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bessie Jones",
+      "Name" : "Bessie Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Betty Davis",
+      "Name" : "Betty Davis",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Betty Everett",
+      "Name" : "Betty Everett",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Betty Griffin",
+      "Name" : "Betty Griffin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Betty Harris",
+      "Name" : "Betty Harris",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Betty Wright",
+      "Name" : "Betty Wright",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Bettye Lavette",
+      "Name" : "Bettye Lavette",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bettye Swann",
+      "Name" : "Bettye Swann",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Beverly Glenn-Copeland",
+      "Name" : "Beverly Glenn-Copeland",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Beyonce",
+      "Name" : "Beyonce",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Big Bill Broonzy",
+      "Name" : "Big Bill Broonzy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Daddy Rucker",
+      "Name" : "Big Daddy Rucker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Joe Turner",
+      "Name" : "Big Joe Turner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Mama Thornton",
+      "Name" : "Big Mama Thornton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Maybelle",
+      "Name" : "Big Maybelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Sam's Funky Nation",
+      "Name" : "Big Sam`s Funky Nation",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Big Youth",
+      "Name" : "Big Youth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Biig Piig",
+      "Name" : "Biig Piig",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bill Butter Ball Crane",
+      "Name" : "Bill Butter Ball Crane",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bill Withers",
+      "Name" : "Bill Withers",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Billie Eilish",
+      "Name" : "Billie Eilish",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Billy Bruner",
+      "Name" : "Billy Bruner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Butler",
+      "Name" : "Billy Butler",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Evans",
+      "Name" : "Billy Evans",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Garner",
+      "Name" : "Billy Garner",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Billy Griffin",
+      "Name" : "Billy Griffin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Ocean",
+      "Name" : "Billy Ocean",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Paul",
+      "Name" : "Billy Paul",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Billy Preston",
+      "Name" : "Billy Preston",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bing Ji Ling",
+      "Name" : "Bing Ji Ling",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Black Eyed Peas",
+      "Name" : "Black Eyed Peas, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Black Heat",
+      "Name" : "Black Heat",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Black Ivory",
+      "Name" : "Black Ivory",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Black Keys",
+      "Name" : "Black Keys, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Black Pumas",
+      "Name" : "Black Pumas",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "The Blackbyrds",
+      "Name" : "Blackbyrds, The",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Blackstreet",
+      "Name" : "Blackstreet",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Blind Lemon Jefferson",
+      "Name" : "Blind Lemon Jefferson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Blink 182",
+      "Name" : "Blink 182",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Blondie",
+      "Name" : "Blondie",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Blood Sisters",
+      "Name" : "Blood Sisters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Blu Cantrell",
+      "Name" : "Blu Cantrell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Blue Bottles",
+      "Name" : "Blue Bottles, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Blue Lab Beats",
+      "Name" : "Blue Lab Beats",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Blues Brothers",
+      "Name" : "Blues Brothers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Blues Busters",
+      "Name" : "Blues Busters, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bluestaeb, Melodiesinfonie And S. Fidelity",
+      "Name" : "Bluestaeb, Melodiesinfonie And S. Fidelity",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Blur",
+      "Name" : "Blur",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bo Diddley",
+      "Name" : "Bo Diddley",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bo Dollis And The Wild Magnolia Mardis Gras Indian Band",
+      "Name" : "Bo Dollis And The Wild Magnolia Mardis Gras Indian Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob And Earl",
+      "Name" : "Bob And Earl",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob And Marcia",
+      "Name" : "Bob And Marcia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob Andy",
+      "Name" : "Bob Andy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob Dylan",
+      "Name" : "Bob Dylan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob James",
+      "Name" : "Bob James",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bob Marley And The Wailers",
+      "Name" : "Bob Marley And The Wailers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bobbie Gentry",
+      "Name" : "Bobbie Gentry",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bobby And The Heavyweights",
+      "Name" : "Bobby And The Heavyweights",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bobby Bland",
+      "Name" : "Bobby Bland",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Bobby Byrd",
+      "Name" : "Bobby Byrd",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Bobby Marchan",
+      "Name" : "Bobby Marchan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bobby Rush",
+      "Name" : "Bobby Rush",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bobby Saint",
+      "Name" : "Bobby Saint",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bobby Womack",
+      "Name" : "Bobby Womack",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Boca 45",
+      "Name" : "Boca 45",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Bodysnatchers",
+      "Name" : "Bodysnatchers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bogaz",
+      "Name" : "Bogaz",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bohannon",
+      "Name" : "Bohannon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bondax",
+      "Name" : "Bondax",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bonnie And Sheila",
+      "Name" : "Bonnie And Sheila",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Boogie Man And Sipho Gumede",
+      "Name" : "Boogie Man And Sipho Gumede, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Booker T And The M.G.'s",
+      "Name" : "Booker T And The M.G.`s",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bootsy Collins",
+      "Name" : "Bootsy Collins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Boris Gardiner",
+      "Name" : "Boris Gardiner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Boston Chery",
+      "Name" : "Boston Chery",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bottom And Company",
+      "Name" : "Bottom And Company",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Boy Blue",
+      "Name" : "Boy Blue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Boz Scaggs",
+      "Name" : "Boz Scaggs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Brand New Heavies",
+      "Name" : "Brand New Heavies, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brass Construction",
+      "Name" : "Brass Construction",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Brassroots",
+      "Name" : "Brassroots",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Braye",
+      "Name" : "Braye",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Breakestra",
+      "Name" : "Breakestra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brenda Holloway",
+      "Name" : "Brenda Holloway",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brendetta Davis",
+      "Name" : "Brendetta Davis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brenton Wood",
+      "Name" : "Brenton Wood",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brian Jackson",
+      "Name" : "Brian Jackson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brick",
+      "Name" : "Brick",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brijean",
+      "Name" : "Brijean",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Britney Spears",
+      "Name" : "Britney Spears",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brittany Howard",
+      "Name" : "Brittany Howard",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Brooklyn Funk Essentials",
+      "Name" : "Brooklyn Funk Essentials, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brother Zulu",
+      "Name" : "Brother Zulu",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Brotherhood",
+      "Name" : "Brotherhood, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Brothers Johnson",
+      "Name" : "Brothers Johnson, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Brothers of Soul",
+      "Name" : "Brothers of Soul, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Brothers Two",
+      "Name" : "Brothers Two, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Brownie McGhee",
+      "Name" : "Brownie McGhee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bruno Mars",
+      "Name" : "Bruno Mars",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Bruno Mars, Anderson .Paak And Silk Sonic",
+      "Name" : "Bruno Mars, Anderson .Paak And Silk Sonic",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Bubba Suggs",
+      "Name" : "Bubba Suggs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bubble Love And Ross From Friends",
+      "Name" : "Bubble Love And Ross From Friends",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Buddy Guy",
+      "Name" : "Buddy Guy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Bunndebrett Quintet",
+      "Name" : "Bunndebrett Quintet",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Bush Tetras",
+      "Name" : "Bush Tetras, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Busters All Stars",
+      "Name" : "Busters All Stars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Busy Signal",
+      "Name" : "Busy Signal",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Butch Dayo",
+      "Name" : "Butch Dayo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Buzzcocks",
+      "Name" : "Buzzcocks, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Byamm",
+      "Name" : "Byamm",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Byron Lee And The Dragonaires",
+      "Name" : "Byron Lee And The Dragonaires",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Caal Dawkins And The Wailers",
+      "Name" : "Caal Dawkins And The Wailers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cadillac John And Bill Abel",
+      "Name" : "Cadillac John And Bill Abel",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Calby",
+      "Name" : "Calby",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The California Honeydrops",
+      "Name" : "California Honeydrops, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The California Playboys",
+      "Name" : "California Playboys, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Calvin Boze",
+      "Name" : "Calvin Boze",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Calvin Harris",
+      "Name" : "Calvin Harris",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Cameo",
+      "Name" : "Cameo",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Candi Staton",
+      "Name" : "Candi Staton",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Candido",
+      "Name" : "Candido",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Canned Heat",
+      "Name" : "Canned Heat",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Capitols",
+      "Name" : "Capitols, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carl Dawkins",
+      "Name" : "Carl Dawkins",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Carl Perkins",
+      "Name" : "Carl Perkins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carleen And The Groovers",
+      "Name" : "Carleen And The Groovers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carlton Jumel Smith And The Soul Seeders",
+      "Name" : "Carlton Jumel Smith And The Soul Seeders",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carly Simon",
+      "Name" : "Carly Simon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carol Cool",
+      "Name" : "Carol Cool",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carol Williams",
+      "Name" : "Carol Williams",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carol Woods",
+      "Name" : "Carol Woods",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carole King",
+      "Name" : "Carole King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Carrie Riley And The Fascinations",
+      "Name" : "Carrie Riley And The Fascinations",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cashmere",
+      "Name" : "Cashmere",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Cats",
+      "Name" : "Cats, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "CeDell Davis",
+      "Name" : "CeDell Davis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cee Lo Green",
+      "Name" : "Cee Lo Green",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Celeste",
+      "Name" : "Celeste",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Cerrone",
+      "Name" : "Cerrone",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Cha Wa",
+      "Name" : "Cha Wa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chai And Mndsgn",
+      "Name" : "Chai And Mndsgn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chairmen Of The Board",
+      "Name" : "Chairmen Of The Board",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Chaka Demus And Plier",
+      "Name" : "Chaka Demus And Plier",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chaka Khan",
+      "Name" : "Chaka Khan",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Chalice",
+      "Name" : "Chalice",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Chambers Brothers",
+      "Name" : "Chambers Brothers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Change",
+      "Name" : "Change",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Chappell Roan",
+      "Name" : "Chappell Roan",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Charles Bradley",
+      "Name" : "Charles Bradley",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Charles Wright",
+      "Name" : "Charles Wright",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Charles Wright And The Watts 103rd Street Band",
+      "Name" : "Charles Wright And The Watts 103rd Street Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Charli XCX",
+      "Name" : "Charli XCX",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Charlie Burg",
+      "Name" : "Charlie Burg",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Charlotte OC",
+      "Name" : "Charlotte OC",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Charmer",
+      "Name" : "Charmer",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chase And Status And Blossoms",
+      "Name" : "Chase And Status And Blossoms",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cheap Trick",
+      "Name" : "Cheap Trick",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cheat Codes",
+      "Name" : "Cheat Codes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Chemical Brothers",
+      "Name" : "Chemical Brothers, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Chequers",
+      "Name" : "Chequers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Cherry Boppers",
+      "Name" : "Cherry Boppers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cheryl Glasgow",
+      "Name" : "Cheryl Glasgow",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cheryl Lynn",
+      "Name" : "Cheryl Lynn",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Chi-Lites",
+      "Name" : "Chi-Lites, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Chic",
+      "Name" : "Chic",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Chicago Gangsters",
+      "Name" : "Chicago Gangsters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chico And Buddy",
+      "Name" : "Chico And Buddy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Chiffons",
+      "Name" : "Chiffons, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Childish Gambino",
+      "Name" : "Childish Gambino",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Children Of Zeus",
+      "Name" : "Children Of Zeus",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chocolate Buttermilk Band",
+      "Name" : "Chocolate Buttermilk Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Chords",
+      "Name" : "Chords, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chris And Kylie",
+      "Name" : "Chris And Kylie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chris Clark",
+      "Name" : "Chris Clark",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Christina Aguilera",
+      "Name" : "Christina Aguilera",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Christina Milian",
+      "Name" : "Christina Milian",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chromeo",
+      "Name" : "Chromeo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chronixx",
+      "Name" : "Chronixx",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chubby Checker And Dee Dee Sharp",
+      "Name" : "Chubby Checker And Dee Dee Sharp",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chuck Carbo",
+      "Name" : "Chuck Carbo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Chuck Colbert And Viewpoint",
+      "Name" : "Chuck Colbert And Viewpoint",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chuck Conway And The Amars",
+      "Name" : "Chuck Conway And The Amars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chuck Jackson",
+      "Name" : "Chuck Jackson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chuck Willis",
+      "Name" : "Chuck Willis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Chvrches",
+      "Name" : "Chvrches",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Cikho",
+      "Name" : "Cikho",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Cimarons",
+      "Name" : "Cimarons, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Citrus Sun",
+      "Name" : "Citrus Sun",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clancy Eccles",
+      "Name" : "Clancy Eccles",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clarence Carter",
+      "Name" : "Clarence Carter",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Clarence Reid",
+      "Name" : "Clarence Reid",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clarence Wheeler And The Enforcers",
+      "Name" : "Clarence Wheeler And The Enforcers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Clarendonians",
+      "Name" : "Clarendonians, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Clash",
+      "Name" : "Clash, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Class Action",
+      "Name" : "Class Action",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Classixx And Local Natives",
+      "Name" : "Classixx And Local Natives",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Claude Jay",
+      "Name" : "Claude Jay",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clemon Smith",
+      "Name" : "Clemon Smith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clifford Brown And Jeen Bassa",
+      "Name" : "Clifford Brown And Jeen Bassa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clyde Brown",
+      "Name" : "Clyde Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Clyde McPhatter",
+      "Name" : "Clyde McPhatter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Coast To Coast",
+      "Name" : "Coast To Coast",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Coasters",
+      "Name" : "Coasters, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Coke",
+      "Name" : "Coke",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Col3trane",
+      "Name" : "Col3trane",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Coldwater Stone",
+      "Name" : "Coldwater Stone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Collard",
+      "Name" : "Collard",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Commodores",
+      "Name" : "Commodores, The",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Common Saints",
+      "Name" : "Common Saints",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Con Funk Shun",
+      "Name" : "Con Funk Shun",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Congos",
+      "Name" : "Congos, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Connie Laverne",
+      "Name" : "Connie Laverne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Conor Albert",
+      "Name" : "Conor Albert",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Contours",
+      "Name" : "Contours, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Cookies",
+      "Name" : "Cookies, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cookin' On 3 Burners",
+      "Name" : "Cookin` On 3 Burners",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cookin' On 3 Burners And Stella Angelico",
+      "Name" : "Cookin` On 3 Burners And Stella Angelico",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cor.Ece",
+      "Name" : "Cor.Ece",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cosmo's Midnight",
+      "Name" : "Cosmo`s Midnight",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cougars",
+      "Name" : "Cougars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Count Machuki",
+      "Name" : "Count Machuki",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Courage",
+      "Name" : "Courage",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Courrier Sud",
+      "Name" : "Courrier Sud",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Cranberries",
+      "Name" : "Cranberries, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Crazy Town",
+      "Name" : "Crazy Town",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Creative Source",
+      "Name" : "Creative Source",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Crown Heights Affair",
+      "Name" : "Crown Heights Affair",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Crystal Fighters",
+      "Name" : "Crystal Fighters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Cure",
+      "Name" : "Cure, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Curly Moore",
+      "Name" : "Curly Moore",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Curtis Harding",
+      "Name" : "Curtis Harding",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Curtis Mayfield",
+      "Name" : "Curtis Mayfield",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Cutty Ranks",
+      "Name" : "Cutty Ranks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Cymande",
+      "Name" : "Cymande",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Cyril Neville",
+      "Name" : "Cyril Neville",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "D-Train",
+      "Name" : "D-Train",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Da Chick",
+      "Name" : "Da Chick",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dabeull",
+      "Name" : "Dabeull",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Daley",
+      "Name" : "Daley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "DAMEDAME*",
+      "Name" : "DAMEDAME*",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Damian Marley",
+      "Name" : "Damian Marley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Damn!",
+      "Name" : "Damn!",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dan Kye",
+      "Name" : "Dan Kye",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dana Gillespie",
+      "Name" : "Dana Gillespie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dana Mccoy",
+      "Name" : "Dana Mccoy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dandy",
+      "Name" : "Dandy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Danny Offia And The Friks",
+      "Name" : "Danny Offia And The Friks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Danny White",
+      "Name" : "Danny White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Darondo",
+      "Name" : "Darondo",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Darrell Banks",
+      "Name" : "Darrell Banks",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Darrow Fletcher",
+      "Name" : "Darrow Fletcher",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Daughters Of Eve",
+      "Name" : "Daughters Of Eve, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dave And Ansel Collins",
+      "Name" : "Dave And Ansel Collins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dave Baker",
+      "Name" : "Dave Baker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dave Cortez",
+      "Name" : "Dave Cortez",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dave Leatherman And Bruce Nolan",
+      "Name" : "Dave Leatherman And Bruce Nolan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "David Batiste",
+      "Name" : "David Batiste",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "David Bendeth",
+      "Name" : "David Bendeth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "David Bowie",
+      "Name" : "David Bowie",
+      "NumSongs" : 13
+    },
+    {
+      "Artist" : "David Guetta, Teddy Swims And Tones And I",
+      "Name" : "David Guetta, Teddy Swims And Tones And I",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "David Isaacs",
+      "Name" : "David Isaacs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "David Porter",
+      "Name" : "David Porter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dawn Pemberton",
+      "Name" : "Dawn Pemberton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dawn Penn",
+      "Name" : "Dawn Penn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Dazz Band",
+      "Name" : "Dazz Band, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dazzle",
+      "Name" : "Dazzle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Deacons",
+      "Name" : "Deacons",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dead Horse Beats",
+      "Name" : "Dead Horse Beats",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Debbie",
+      "Name" : "Debbie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dee Dee Sharp",
+      "Name" : "Dee Dee Sharp",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dee Dee Sharp Gamble",
+      "Name" : "Dee Dee Sharp Gamble",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dee Dee Warwick",
+      "Name" : "Dee Dee Warwick",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dee Irwin",
+      "Name" : "Dee Irwin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Degrees",
+      "Name" : "Degrees, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Delfonic",
+      "Name" : "Delfonic",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Della Reese",
+      "Name" : "Della Reese",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Delroy Wilson",
+      "Name" : "Delroy Wilson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Delta 5",
+      "Name" : "Delta 5",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Denise LaSalle",
+      "Name" : "Denise LaSalle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dennis Brown",
+      "Name" : "Dennis Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dennis Coffey",
+      "Name" : "Dennis Coffey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dennis Mobley",
+      "Name" : "Dennis Mobley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Deodato",
+      "Name" : "Deodato",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Depeche Mode",
+      "Name" : "Depeche Mode",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Derrick And Patsy",
+      "Name" : "Derrick And Patsy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Derrick Laro And Trinity",
+      "Name" : "Derrick Laro And Trinity",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Derrick Morgan",
+      "Name" : "Derrick Morgan",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Desmond Dekker",
+      "Name" : "Desmond Dekker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Desmond Dekker And The Aces",
+      "Name" : "Desmond Dekker And The Aces",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Destination",
+      "Name" : "Destination",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Destiny's Child",
+      "Name" : "Destiny`s Child",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Detroit Emeralds",
+      "Name" : "Detroit Emeralds, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Detroit Spinners",
+      "Name" : "Detroit Spinners, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Devo",
+      "Name" : "Devo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Devonns",
+      "Name" : "Devonns, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Diamond Cafe",
+      "Name" : "Diamond Cafe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Diana Ross",
+      "Name" : "Diana Ross",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Diana Ross And The Supremes",
+      "Name" : "Diana Ross And The Supremes",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "The Diasonics",
+      "Name" : "Diasonics, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dillinger",
+      "Name" : "Dillinger",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dinah Washington",
+      "Name" : "Dinah Washington",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dinner Party",
+      "Name" : "Dinner Party",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dion Cameron And The Three Tops",
+      "Name" : "Dion Cameron And The Three Tops",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Dip",
+      "Name" : "Dip, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Diplomats Of Solid Sound",
+      "Name" : "Diplomats Of Solid Sound, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Dirty Dozen Brass Band",
+      "Name" : "Dirty Dozen Brass Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Disclosure",
+      "Name" : "Disclosure",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Disco Dub Band",
+      "Name" : "Disco Dub Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Discomatin",
+      "Name" : "Discomatin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dixie Cups",
+      "Name" : "Dixie Cups",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dobie Gray",
+      "Name" : "Dobie Gray",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Doc Severinsen",
+      "Name" : "Doc Severinsen",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Doja Cat",
+      "Name" : "Doja Cat",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dojo Cuts",
+      "Name" : "Dojo Cuts",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dolly Parton",
+      "Name" : "Dolly Parton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Don Blackman",
+      "Name" : "Don Blackman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Don Covay",
+      "Name" : "Don Covay",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Donald",
+      "Name" : "Donald",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Donell Jones",
+      "Name" : "Donell Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Donna Summer",
+      "Name" : "Donna Summer",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Donna Washington",
+      "Name" : "Donna Washington",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Donny Hathaway",
+      "Name" : "Donny Hathaway",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Doris",
+      "Name" : "Doris",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Dorothy Moore",
+      "Name" : "Dorothy Moore",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Douniah",
+      "Name" : "Douniah",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dr. John",
+      "Name" : "Dr. John",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Dr. Rubberfunk",
+      "Name" : "Dr. Rubberfunk",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dram",
+      "Name" : "Dram",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Drifters",
+      "Name" : "Drifters, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dua Lipa",
+      "Name" : "Dua Lipa",
+      "NumSongs" : 10
+    },
+    {
+      "Artist" : "Dual Manner",
+      "Name" : "Dual Manner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Duffy",
+      "Name" : "Duffy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Duke Dumont",
+      "Name" : "Duke Dumont",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dumpstaphunk",
+      "Name" : "Dumpstaphunk",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Duncans",
+      "Name" : "Duncans, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Duran Duran",
+      "Name" : "Duran Duran",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Durand Jones And The Indications",
+      "Name" : "Durand Jones And The Indications",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Durand Jones",
+      "Name" : "Durand Jones, The Indications And Aaron Frazer",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Dyke And The Blazers",
+      "Name" : "Dyke And The Blazers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Dynamics",
+      "Name" : "Dynamics, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Dynamites",
+      "Name" : "Dynamites, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Earl King",
+      "Name" : "Earl King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Earth, Wind And Fire",
+      "Name" : "Earth, Wind And Fire",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Easy Life",
+      "Name" : "Easy Life",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Echo And The Bunnymen",
+      "Name" : "Echo And The Bunnymen",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Edbl And Nick Brewer",
+      "Name" : "Edbl And Nick Brewer",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Edbl And Tuara",
+      "Name" : "Edbl And Tuara",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Edbl, Jackson Mathod And Sophie Faith",
+      "Name" : "Edbl, Jackson Mathod And Sophie Faith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Bo",
+      "Name" : "Eddie Bo",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Eddie Floyd",
+      "Name" : "Eddie Floyd",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Eddie Holland",
+      "Name" : "Eddie Holland",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Johns",
+      "Name" : "Eddie Johns",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Kendricks",
+      "Name" : "Eddie Kendricks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Murphy",
+      "Name" : "Eddie Murphy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Perkins",
+      "Name" : "Eddie Perkins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eddie Senay",
+      "Name" : "Eddie Senay",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eden Brent",
+      "Name" : "Eden Brent",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Edwin Birdsong",
+      "Name" : "Edwin Birdsong",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Edwin Starr",
+      "Name" : "Edwin Starr",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Ego Ella May",
+      "Name" : "Ego Ella May",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eight Minutes",
+      "Name" : "Eight Minutes",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "El Michels Affair",
+      "Name" : "El Michels Affair",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Elbow",
+      "Name" : "Elbow",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eldridge Holmes",
+      "Name" : "Eldridge Holmes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Electric Light Orchestra",
+      "Name" : "Electric Light Orchestra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Eleventh Commandment",
+      "Name" : "Eleventh Commandment, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Elgins",
+      "Name" : "Elgins, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Eli Paperboy Reed",
+      "Name" : "Eli Paperboy Reed",
+      "NumSongs" : 10
+    },
+    {
+      "Artist" : "Eli 'Paperboy' Reed",
+      "Name" : "Eli `Paperboy` Reed",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Elia And Elizabeth",
+      "Name" : "Elia And Elizabeth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eliza",
+      "Name" : "Eliza",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ella Fitzgerald",
+      "Name" : "Ella Fitzgerald",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ellie Goulding",
+      "Name" : "Ellie Goulding",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Elmer And Brenda Parker And The Nite Lighters",
+      "Name" : "Elmer And Brenda Parker And The Nite Lighters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Elmore James",
+      "Name" : "Elmore James",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eloise",
+      "Name" : "Eloise",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eloise Laws",
+      "Name" : "Eloise Laws",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Elton John",
+      "Name" : "Elton John",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Elvis Costello",
+      "Name" : "Elvis Costello",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Embryo",
+      "Name" : "Embryo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Emeli Sande",
+      "Name" : "Emeli Sande",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Emily King",
+      "Name" : "Emily King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Emotions",
+      "Name" : "Emotions, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "En Vogue",
+      "Name" : "En Vogue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Enchanters",
+      "Name" : "Enchanters, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Enny",
+      "Name" : "Enny",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ephemerals",
+      "Name" : "Ephemerals",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Equals",
+      "Name" : "Equals, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eric Burdon",
+      "Name" : "Eric Burdon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eric Clapton",
+      "Name" : "Eric Clapton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eric Monty Morris",
+      "Name" : "Eric Monty Morris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eric Morris",
+      "Name" : "Eric Morris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Erin Buku",
+      "Name" : "Erin Buku",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Erma Franklin",
+      "Name" : "Erma Franklin",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Ernie And The Top Notes",
+      "Name" : "Ernie And The Top Notes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ernie K. Doe",
+      "Name" : "Ernie K. Doe",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "ESG",
+      "Name" : "ESG",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Estelle",
+      "Name" : "Estelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Esther Phillips",
+      "Name" : "Esther Phillips",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Ethiopians",
+      "Name" : "Ethiopians, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Etta James",
+      "Name" : "Etta James",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Eurythmics",
+      "Name" : "Eurythmics",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Eva Gadd And Blue Lab Beats",
+      "Name" : "Eva Gadd And Blue Lab Beats",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Evelyn 'Champagne' King",
+      "Name" : "Evelyn `Champagne` King",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Evie Sands",
+      "Name" : "Evie Sands",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Executive",
+      "Name" : "Executive",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Explosions",
+      "Name" : "Explosions, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fabiana Palladino",
+      "Name" : "Fabiana Palladino",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fabich",
+      "Name" : "Fabich",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fall Out Boy",
+      "Name" : "Fall Out Boy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Falqo",
+      "Name" : "Falqo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Family Tree",
+      "Name" : "Family Tree",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Family Tree",
+      "Name" : "Family Tree, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fana Hues",
+      "Name" : "Fana Hues",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Fantastic Four",
+      "Name" : "Fantastic Four, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Fantastic Johnny C",
+      "Name" : "Fantastic Johnny C, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Fantastics!",
+      "Name" : "Fantastics!, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fantoms",
+      "Name" : "Fantoms",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Fascinations",
+      "Name" : "Fascinations, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fat Freddy's Drop",
+      "Name" : "Fat Freddy`s Drop",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fat Joe",
+      "Name" : "Fat Joe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fat Night",
+      "Name" : "Fat Night",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fatback",
+      "Name" : "Fatback",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Fatback Band",
+      "Name" : "Fatback Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Fatback Band",
+      "Name" : "Fatback Band, The",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Fatboy Slim",
+      "Name" : "Fatboy Slim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fatima And Joe Armon-Jones",
+      "Name" : "Fatima And Joe Armon-Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fats Domino",
+      "Name" : "Fats Domino",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Faye Meana",
+      "Name" : "Faye Meana",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Feiertag",
+      "Name" : "Feiertag",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "FH",
+      "Name" : "FH",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fiona Franklin",
+      "Name" : "Fiona Franklin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Firefly",
+      "Name" : "Firefly",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "First Choice",
+      "Name" : "First Choice",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Five Stairsteps",
+      "Name" : "Five Stairsteps, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flamingoes",
+      "Name" : "Flamingoes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flamingosis",
+      "Name" : "Flamingosis",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Fleetwood Mac",
+      "Name" : "Fleetwood Mac",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Flevans",
+      "Name" : "Flevans",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flight Facilities",
+      "Name" : "Flight Facilities",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Flirtations",
+      "Name" : "Flirtations, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flo",
+      "Name" : "Flo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Flo Rida",
+      "Name" : "Flo Rida",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Florence + The Machine",
+      "Name" : "Florence + The Machine",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Flower.Far",
+      "Name" : "Flower.Far",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flume",
+      "Name" : "Flume",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Flying Guitar",
+      "Name" : "Flying Guitar, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Flynn",
+      "Name" : "Flynn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "FM Laeti",
+      "Name" : "FM Laeti",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Folamour",
+      "Name" : "Folamour",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Fontella Bass",
+      "Name" : "Fontella Bass",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Fontella Bass And Bobby McClure",
+      "Name" : "Fontella Bass And Bobby McClure",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Foreal People",
+      "Name" : "Foreal People",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Formula 1",
+      "Name" : "Formula 1",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Four Aces",
+      "Name" : "Four Aces, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Four Tops",
+      "Name" : "Four Tops, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Foxes",
+      "Name" : "Foxes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Foy Vance",
+      "Name" : "Foy Vance",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Franc Moody",
+      "Name" : "Franc Moody",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "France Joli",
+      "Name" : "France Joli",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Frank Sinatra",
+      "Name" : "Frank Sinatra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Frankie Valli",
+      "Name" : "Frankie Valli",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Frankie Valli And The Four Seasons",
+      "Name" : "Frankie Valli And The Four Seasons",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fred Again.. And Jamie T",
+      "Name" : "Fred Again.. And Jamie T",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Fred Wesley",
+      "Name" : "Fred Wesley",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Fred Wesley And The J.B.'s",
+      "Name" : "Fred Wesley And The J.B.`s",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Freda Payne",
+      "Name" : "Freda Payne",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Freddie King",
+      "Name" : "Freddie King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Freddie McGregor",
+      "Name" : "Freddie McGregor",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Free Nationals",
+      "Name" : "Free Nationals",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Freedom",
+      "Name" : "Freedom",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Freedom Family",
+      "Name" : "Freedom Family",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Freeez",
+      "Name" : "Freeez",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Freya Ridings",
+      "Name" : "Freya Ridings",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "FS Green",
+      "Name" : "FS Green",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Funkadelic",
+      "Name" : "Funkadelic",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Gabriels",
+      "Name" : "Gabriels",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Galaxia",
+      "Name" : "Galaxia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Gap Band",
+      "Name" : "Gap Band, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Garnet Mimms",
+      "Name" : "Garnet Mimms",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gary Clark Jr.",
+      "Name" : "Gary Clark Jr.",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Gary Moore",
+      "Name" : "Gary Moore",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gary's Gang",
+      "Name" : "Gary`s Gang",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Gaturs",
+      "Name" : "Gaturs, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Geater Davis",
+      "Name" : "Geater Davis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Geejay",
+      "Name" : "Geejay",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Gems",
+      "Name" : "Gems, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gene Chandler",
+      "Name" : "Gene Chandler",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Gene Dudley Group",
+      "Name" : "Gene Dudley Group, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gene Washington And The Ironsides",
+      "Name" : "Gene Washington And The Ironsides",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Generationals",
+      "Name" : "Generationals",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gentleman June Gardener",
+      "Name" : "Gentleman June Gardener",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "George Clinton",
+      "Name" : "George Clinton",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "George Dekker",
+      "Name" : "George Dekker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "George Duke",
+      "Name" : "George Duke",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "George Ezra",
+      "Name" : "George Ezra",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "George McCrae",
+      "Name" : "George McCrae",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "George Thorogood And The Destroyers",
+      "Name" : "George Thorogood And The Destroyers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Geraldine Hunt",
+      "Name" : "Geraldine Hunt",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Gerard Alain",
+      "Name" : "Gerard Alain",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ghetto Brothers",
+      "Name" : "Ghetto Brothers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gil Scott-Heron",
+      "Name" : "Gil Scott-Heron",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Gil Scott-Heron And Brian Jackson",
+      "Name" : "Gil Scott-Heron And Brian Jackson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ginge",
+      "Name" : "Ginge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ginge And .Multibeat",
+      "Name" : "Ginge And .Multibeat",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Gino Fontaine",
+      "Name" : "Gino Fontaine, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gino Soccio",
+      "Name" : "Gino Soccio",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Gitte And Inger",
+      "Name" : "Gitte And Inger",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gizelle Smith And The Mighty Mocambos",
+      "Name" : "Gizelle Smith And The Mighty Mocambos",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Gladiators And Brentford Disco Set",
+      "Name" : "Gladiators And Brentford Disco Set, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Gladiators",
+      "Name" : "Gladiators, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gladys Knight And The Pips",
+      "Name" : "Gladys Knight And The Pips",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Gloria Jones",
+      "Name" : "Gloria Jones",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Gnarls Barkley",
+      "Name" : "Gnarls Barkley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gold",
+      "Name" : "Gold",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Golden Vessel",
+      "Name" : "Golden Vessel",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Goldlink And Ari Lennox",
+      "Name" : "Goldlink And Ari Lennox",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Goods",
+      "Name" : "Goods, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Googie Rene",
+      "Name" : "Googie Rene",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gorillaz",
+      "Name" : "Gorillaz",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Grace Jones",
+      "Name" : "Grace Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gracie Abrams",
+      "Name" : "Gracie Abrams",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Graffiti6",
+      "Name" : "Graffiti6",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Graham Central Station",
+      "Name" : "Graham Central Station",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Grand Slam",
+      "Name" : "Grand Slam",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Grass Roots",
+      "Name" : "Grass Roots, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gregg Diamond",
+      "Name" : "Gregg Diamond",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Greyhounds",
+      "Name" : "Greyhounds",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Gwen Guthrie",
+      "Name" : "Gwen Guthrie",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Gwen McCrae",
+      "Name" : "Gwen McCrae",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Gwen McRae",
+      "Name" : "Gwen McRae",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Haggis Horns",
+      "Name" : "Haggis Horns, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Haim",
+      "Name" : "Haim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hajaj",
+      "Name" : "Hajaj",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hamilton Bohannon",
+      "Name" : "Hamilton Bohannon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hannah Williams And The Affirmations",
+      "Name" : "Hannah Williams And The Affirmations",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Hardkandy",
+      "Name" : "Hardkandy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Harlem Gospel Travelers",
+      "Name" : "Harlem Gospel Travelers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Harold Melvin And The Blue Notes",
+      "Name" : "Harold Melvin And The Blue Notes",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Harry J Allstars",
+      "Name" : "Harry J Allstars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Harry Mosco",
+      "Name" : "Harry Mosco",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Harvey Mason",
+      "Name" : "Harvey Mason",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Harvey Scales",
+      "Name" : "Harvey Scales, The Seven Sounds And Magic Touch",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Harvey Sutherland",
+      "Name" : "Harvey Sutherland",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Hawk (Feat. Little Hannah Collins)",
+      "Name" : "Hawk (Feat. Little Hannah Collins), The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Heatwave",
+      "Name" : "Heatwave",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Heavy",
+      "Name" : "Heavy, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Hemai",
+      "Name" : "Hemai",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Henry Boatwright",
+      "Name" : "Henry Boatwright",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Heptones",
+      "Name" : "Heptones, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Herbie Hancock",
+      "Name" : "Herbie Hancock",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Hiatus Kaiyote",
+      "Name" : "Hiatus Kaiyote",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Higgs And Wilson",
+      "Name" : "Higgs And Wilson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "High HOOPS",
+      "Name" : "High HOOPS",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The High Numbers",
+      "Name" : "High Numbers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hira",
+      "Name" : "Hira",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Hitch-hikers",
+      "Name" : "Hitch-hikers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hollie Cook",
+      "Name" : "Hollie Cook",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Holly Humberstone",
+      "Name" : "Holly Humberstone",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Holly Near",
+      "Name" : "Holly Near",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Holy Hive",
+      "Name" : "Holy Hive",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Homegrown Syndrome",
+      "Name" : "Homegrown Syndrome",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Honey Mooncie",
+      "Name" : "Honey Mooncie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Honeydrippers",
+      "Name" : "Honeydrippers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Hoosiers",
+      "Name" : "Hoosiers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hopeton Lewis",
+      "Name" : "Hopeton Lewis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Horace Andy",
+      "Name" : "Horace Andy",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Horace Faith",
+      "Name" : "Horace Faith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Horse Meat Disco And Kathy Sledge",
+      "Name" : "Horse Meat Disco And Kathy Sledge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hot Cargo",
+      "Name" : "Hot Cargo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Houzzie Killa",
+      "Name" : "Houzzie Killa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Howlin' Wolf",
+      "Name" : "Howlin` Wolf",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hrvy",
+      "Name" : "Hrvy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Huey 'Piano' Smith And His Clowns",
+      "Name" : "Huey `Piano` Smith And His Clowns",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Hugh Laurie",
+      "Name" : "Hugh Laurie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Human League",
+      "Name" : "Human League, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "I Roy",
+      "Name" : "I Roy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ian Dury",
+      "Name" : "Ian Dury",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Ibibio Sound Machine",
+      "Name" : "Ibibio Sound Machine",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Idris Muhammad",
+      "Name" : "Idris Muhammad",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Iggy Pop",
+      "Name" : "Iggy Pop",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Ike And Tina Turner",
+      "Name" : "Ike And Tina Turner",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Ike Turner And His Kings of Rhythm",
+      "Name" : "Ike Turner And His Kings of Rhythm",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ikebe Shakedown",
+      "Name" : "Ikebe Shakedown",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Imagine Dragons",
+      "Name" : "Imagine Dragons",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Immortals",
+      "Name" : "Immortals, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Impressions",
+      "Name" : "Impressions, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Incredible Bongo Band",
+      "Name" : "Incredible Bongo Band",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Inell Young",
+      "Name" : "Inell Young",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ingram",
+      "Name" : "Ingram",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Inner Circle",
+      "Name" : "Inner Circle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Inspirations",
+      "Name" : "Inspirations, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Instant Funk",
+      "Name" : "Instant Funk",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Internet",
+      "Name" : "Internet, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "INXS",
+      "Name" : "INXS",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Irma Thomas",
+      "Name" : "Irma Thomas",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Isaac Hayes",
+      "Name" : "Isaac Hayes",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "The Isley Brothers",
+      "Name" : "Isley Brothers, The",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Iyamah",
+      "Name" : "Iyamah",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Izo Fitzroy",
+      "Name" : "Izo Fitzroy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "J-Felix",
+      "Name" : "J-Felix",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "J. B. Lenoir",
+      "Name" : "J. B. Lenoir",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "J.P. Bimeni And The Black Belts",
+      "Name" : "J.P. Bimeni And The Black Belts",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Jack Savoretti",
+      "Name" : "Jack Savoretti",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Jack 'The Bear' Parker",
+      "Name" : "Jack `The Bear` Parker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jackie Mittoo",
+      "Name" : "Jackie Mittoo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jackie Opel",
+      "Name" : "Jackie Opel",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jackie Ross",
+      "Name" : "Jackie Ross",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jackie Wilson",
+      "Name" : "Jackie Wilson",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "The Jackson 5",
+      "Name" : "Jackson 5, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jackson Homer, Kaisha",
+      "Name" : "Jackson Homer, Kaisha",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Jackson Sisters",
+      "Name" : "Jackson Sisters, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jacob Banks",
+      "Name" : "Jacob Banks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jacob Collier",
+      "Name" : "Jacob Collier",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jacob Miller",
+      "Name" : "Jacob Miller",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jade",
+      "Name" : "Jade",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jain",
+      "Name" : "Jain",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jalen Ngonda",
+      "Name" : "Jalen Ngonda",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Jalen N'Gonda",
+      "Name" : "Jalen N`Gonda",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Jam",
+      "Name" : "Jam, The",
+      "NumSongs" : 9
+    },
+    {
+      "Artist" : "Jamelia",
+      "Name" : "Jamelia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "James Alexander Bright",
+      "Name" : "James Alexander Bright",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "James Brown",
+      "Name" : "James Brown",
+      "NumSongs" : 17
+    },
+    {
+      "Artist" : "The James Hunter Six",
+      "Name" : "James Hunter Six, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "James West",
+      "Name" : "James West",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jamie Lidell",
+      "Name" : "Jamie Lidell",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Jamie xx",
+      "Name" : "Jamie xx",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jamila Woods",
+      "Name" : "Jamila Woods",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jamiroquai",
+      "Name" : "Jamiroquai",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "The Jammers",
+      "Name" : "Jammers, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Jan Bradley",
+      "Name" : "Jan Bradley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Janelle Monae",
+      "Name" : "Janelle Monae",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Janet Kay",
+      "Name" : "Janet Kay",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Janet N'Diaye Lokamba",
+      "Name" : "Janet N`Diaye Lokamba",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Janis Joplin",
+      "Name" : "Janis Joplin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Janiva Magness",
+      "Name" : "Janiva Magness",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jarami",
+      "Name" : "Jarami",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jason Derulo",
+      "Name" : "Jason Derulo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jay-Z",
+      "Name" : "Jay-Z",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jazzanova",
+      "Name" : "Jazzanova",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The JB's",
+      "Name" : "JB`s, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jean Carn",
+      "Name" : "Jean Carn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jean Knight",
+      "Name" : "Jean Knight",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jeanette Jones",
+      "Name" : "Jeanette Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jeanne And the Darlings",
+      "Name" : "Jeanne And the Darlings",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jeannie Tracy",
+      "Name" : "Jeannie Tracy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jenny Burton",
+      "Name" : "Jenny Burton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jerry Butler",
+      "Name" : "Jerry Butler",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jerry Byrne",
+      "Name" : "Jerry Byrne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jess Glynne",
+      "Name" : "Jess Glynne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jesse Boykins III",
+      "Name" : "Jesse Boykins III",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jessica Doolan",
+      "Name" : "Jessica Doolan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jessie Hill",
+      "Name" : "Jessie Hill",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jessie J",
+      "Name" : "Jessie J",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jessie Ware",
+      "Name" : "Jessie Ware",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "JGrrey",
+      "Name" : "JGrrey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jill Scott",
+      "Name" : "Jill Scott",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Jim Ford",
+      "Name" : "Jim Ford",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Bo Horne",
+      "Name" : "Jimmy Bo Horne",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Jimmy Castor Bunch",
+      "Name" : "Jimmy Castor Bunch, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jimmy Cliff",
+      "Name" : "Jimmy Cliff",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Hicks",
+      "Name" : "Jimmy Hicks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Holiday",
+      "Name" : "Jimmy Holiday",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Hughes",
+      "Name" : "Jimmy Hughes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Lewis",
+      "Name" : "Jimmy Lewis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Liggins",
+      "Name" : "Jimmy Liggins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy McGriff",
+      "Name" : "Jimmy McGriff",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Reed",
+      "Name" : "Jimmy Reed",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy Rogers",
+      "Name" : "Jimmy Rogers",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jimmy Ruffin",
+      "Name" : "Jimmy Ruffin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jimmy 'Bo' Horne",
+      "Name" : "Jimmy `Bo` Horne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jitwam",
+      "Name" : "Jitwam",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jnr Walker And The Allstars",
+      "Name" : "Jnr Walker And The Allstars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jo Bisso",
+      "Name" : "Jo Bisso",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jo Jo Bennett",
+      "Name" : "Jo Jo Bennett",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jo Tongo",
+      "Name" : "Jo Tongo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jocelyn Brown",
+      "Name" : "Jocelyn Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe",
+      "Name" : "Joe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Armon-Jones And Fatima",
+      "Name" : "Joe Armon-Jones And Fatima",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Bataan",
+      "Name" : "Joe Bataan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Bonamassa",
+      "Name" : "Joe Bonamassa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Cocker",
+      "Name" : "Joe Cocker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Goddard And Ibibio Sound Machine",
+      "Name" : "Joe Goddard And Ibibio Sound Machine",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Haywood",
+      "Name" : "Joe Haywood",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Hertz",
+      "Name" : "Joe Hertz",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Joe Hertz And Sophie Faith",
+      "Name" : "Joe Hertz And Sophie Faith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Jackson",
+      "Name" : "Joe Jackson",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Joe Quarterman And Free Soul",
+      "Name" : "Joe Quarterman And Free Soul",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe Simon",
+      "Name" : "Joe Simon",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Joe Tex",
+      "Name" : "Joe Tex",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Joe Turner",
+      "Name" : "Joe Turner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joe White",
+      "Name" : "Joe White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joel Culpepper",
+      "Name" : "Joel Culpepper",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joesef",
+      "Name" : "Joesef",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "John Holt",
+      "Name" : "John Holt",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "John Lee Hooker",
+      "Name" : "John Lee Hooker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "John Legend",
+      "Name" : "John Legend",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "John Newman",
+      "Name" : "John Newman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnnie Taylor",
+      "Name" : "Johnnie Taylor",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnny Adams",
+      "Name" : "Johnny Adams",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnny Clarke",
+      "Name" : "Johnny Clarke",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnny Guitar Watson",
+      "Name" : "Johnny Guitar Watson",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Johnny Osborne",
+      "Name" : "Johnny Osborne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnny Otis",
+      "Name" : "Johnny Otis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Johnny Sketch And The Dirty Notes",
+      "Name" : "Johnny Sketch And The Dirty Notes",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jonas Blue And Malive",
+      "Name" : "Jonas Blue And Malive",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jonathan Jeremiah",
+      "Name" : "Jonathan Jeremiah",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jones",
+      "Name" : "Jones",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Jones Girls",
+      "Name" : "Jones Girls, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jonny Nash",
+      "Name" : "Jonny Nash",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jordan Rakei",
+      "Name" : "Jordan Rakei",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Jorja Smith",
+      "Name" : "Jorja Smith",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Joseph Malik",
+      "Name" : "Joseph Malik",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joss Stone",
+      "Name" : "Joss Stone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Journey",
+      "Name" : "Journey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Joy Crookes",
+      "Name" : "Joy Crookes",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Joy Denalane",
+      "Name" : "Joy Denalane",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Joya Mooi",
+      "Name" : "Joya Mooi",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Jr. Walker And The All Stars",
+      "Name" : "Jr. Walker And The All Stars",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Juan Maclean",
+      "Name" : "Juan Maclean, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Julien Dyne",
+      "Name" : "Julien Dyne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Julio Zavalla",
+      "Name" : "Julio Zavalla",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jungle",
+      "Name" : "Jungle",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Jungle By Night",
+      "Name" : "Jungle By Night",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Jungle Fire",
+      "Name" : "Jungle Fire",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Junior Murvin",
+      "Name" : "Junior Murvin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Junior Parker's Blue Flames",
+      "Name" : "Junior Parker`s Blue Flames",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Just Brothers",
+      "Name" : "Just Brothers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Justin Bieber",
+      "Name" : "Justin Bieber",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Justin Hinds And The Dominoes",
+      "Name" : "Justin Hinds And The Dominoes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Justin Timberlake",
+      "Name" : "Justin Timberlake",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "K.C. And The Sunshine Band",
+      "Name" : "K.C. And The Sunshine Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "K.C. White",
+      "Name" : "K.C. White",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kaiya",
+      "Name" : "Kaiya",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kasbo",
+      "Name" : "Kasbo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kay Young",
+      "Name" : "Kay Young",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kaytranada",
+      "Name" : "Kaytranada",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Kaytranada And Anderson .Paak",
+      "Name" : "Kaytranada And Anderson .Paak",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kelis",
+      "Name" : "Kelis",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Ken Boothe And Stranger Cole",
+      "Name" : "Ken Boothe And Stranger Cole",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kenny Gamble And The Romeos",
+      "Name" : "Kenny Gamble And The Romeos",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kenny Wells",
+      "Name" : "Kenny Wells",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kevin Lyttle",
+      "Name" : "Kevin Lyttle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kevin Mark Trail",
+      "Name" : "Kevin Mark Trail",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Khazali",
+      "Name" : "Khazali",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kid Bloom",
+      "Name" : "Kid Bloom",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kidgusto | Truegrooves",
+      "Name" : "Kidgusto | Truegrooves",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kiko Bun",
+      "Name" : "Kiko Bun",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kim Weston",
+      "Name" : "Kim Weston",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kimberose",
+      "Name" : "Kimberose",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "King Bee",
+      "Name" : "King Bee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "King Errisson",
+      "Name" : "King Errisson",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "King Floyd",
+      "Name" : "King Floyd",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "King Sporty",
+      "Name" : "King Sporty",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "King Stitt And Andy Capp",
+      "Name" : "King Stitt And Andy Capp",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "King Tutt",
+      "Name" : "King Tutt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kings Go Forth",
+      "Name" : "Kings Go Forth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kings of Leon",
+      "Name" : "Kings of Leon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kio Amachree",
+      "Name" : "Kio Amachree",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kirby",
+      "Name" : "Kirby",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Kita Alexander",
+      "Name" : "Kita Alexander",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kitty Grant",
+      "Name" : "Kitty Grant",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kitty, Daisy And Lewis",
+      "Name" : "Kitty, Daisy And Lewis",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Kleeer",
+      "Name" : "Kleeer",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Koko Taylor",
+      "Name" : "Koko Taylor",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kokolo",
+      "Name" : "Kokolo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kokomo",
+      "Name" : "Kokomo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Komiko",
+      "Name" : "Komiko",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Kooks",
+      "Name" : "Kooks, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kool And The Gang",
+      "Name" : "Kool And The Gang",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Kraak And Smaak",
+      "Name" : "Kraak And Smaak",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Kuf Knotz And Christine Elise",
+      "Name" : "Kuf Knotz And Christine Elise",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kutiman",
+      "Name" : "Kutiman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kwaku Asante",
+      "Name" : "Kwaku Asante",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Kylie Auldist",
+      "Name" : "Kylie Auldist",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Kylie Minogue",
+      "Name" : "Kylie Minogue",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "La Bionda",
+      "Name" : "La Bionda",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "La Rombe",
+      "Name" : "La Rombe",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Labelle",
+      "Name" : "Labelle",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Labi Siffre",
+      "Name" : "Labi Siffre",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lack Of Afro",
+      "Name" : "Lack Of Afro",
+      "NumSongs" : 10
+    },
+    {
+      "Artist" : "Ladi6",
+      "Name" : "Ladi6",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lady Blackbird",
+      "Name" : "Lady Blackbird",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Lady Gaga",
+      "Name" : "Lady Gaga",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Lafayette Afro Rock Band",
+      "Name" : "Lafayette Afro Rock Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lafayette Afro-Rock Band",
+      "Name" : "Lafayette Afro-Rock Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lake Street Dive",
+      "Name" : "Lake Street Dive",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lamont Dozier",
+      "Name" : "Lamont Dozier",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lana Del Rey",
+      "Name" : "Lana Del Rey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Larry Darnell",
+      "Name" : "Larry Darnell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Larry Graham",
+      "Name" : "Larry Graham",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Larry Jones",
+      "Name" : "Larry Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Larry Youngs Fuel",
+      "Name" : "Larry Youngs Fuel",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Latisha",
+      "Name" : "Latisha",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Laura Lee",
+      "Name" : "Laura Lee",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Laura Mvula",
+      "Name" : "Laura Mvula",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Laurice Hudson",
+      "Name" : "Laurice Hudson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lava La Rue",
+      "Name" : "Lava La Rue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lazy Habits",
+      "Name" : "Lazy Habits",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Leadbelly",
+      "Name" : "Leadbelly",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lee Dorsey",
+      "Name" : "Lee Dorsey",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Lee Dosey And Betty Harris",
+      "Name" : "Lee Dosey And Betty Harris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lee Fields",
+      "Name" : "Lee Fields",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lee Fields And Sugarman 3",
+      "Name" : "Lee Fields And Sugarman 3",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lee Fields And The Expressions",
+      "Name" : "Lee Fields And The Expressions",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Lee Perry",
+      "Name" : "Lee Perry",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Leela James",
+      "Name" : "Leela James",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Leigh-Anne",
+      "Name" : "Leigh-Anne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lennie Hibbert",
+      "Name" : "Lennie Hibbert",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lenny Curtis",
+      "Name" : "Lenny Curtis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Leon Bridges",
+      "Name" : "Leon Bridges",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Leon Redbone",
+      "Name" : "Leon Redbone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Leon Ware",
+      "Name" : "Leon Ware",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Leroy Hutson",
+      "Name" : "Leroy Hutson",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Leroy Sibbles",
+      "Name" : "Leroy Sibbles",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lester Tipton",
+      "Name" : "Lester Tipton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lettuce",
+      "Name" : "Lettuce",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Let's Dance",
+      "Name" : "Let`s Dance",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liam Gallagher",
+      "Name" : "Liam Gallagher",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lianne La Havas",
+      "Name" : "Lianne La Havas",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Liberators",
+      "Name" : "Liberators, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Lightning Seeds",
+      "Name" : "Lightning Seeds, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lightnin' Hopkins",
+      "Name" : "Lightnin` Hopkins",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lightnin' Slim",
+      "Name" : "Lightnin` Slim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lily KIIng",
+      "Name" : "Lily KIIng",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Linda 'Babe' Majika",
+      "Name" : "Linda `Babe` Majika",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lipps Inc.",
+      "Name" : "Lipps Inc.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liquid Liquid",
+      "Name" : "Liquid Liquid",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liquid Spirits",
+      "Name" : "Liquid Spirits",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Dragon",
+      "Name" : "Little Dragon",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Little Esther",
+      "Name" : "Little Esther",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Irvin",
+      "Name" : "Little Irvin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Junior Parker",
+      "Name" : "Little Junior Parker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Lisa",
+      "Name" : "Little Lisa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Milton",
+      "Name" : "Little Milton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Richie",
+      "Name" : "Little Richie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Rose Little",
+      "Name" : "Little Rose Little",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Simz",
+      "Name" : "Little Simz",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Little Walter",
+      "Name" : "Little Walter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liv East",
+      "Name" : "Liv East",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liv East And Kolidescopes",
+      "Name" : "Liv East And Kolidescopes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Liz Lawrence",
+      "Name" : "Liz Lawrence",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lizzo",
+      "Name" : "Lizzo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lloy Charmers",
+      "Name" : "Lloy Charmers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lloyd Clarke",
+      "Name" : "Lloyd Clarke",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lloyd Robinson",
+      "Name" : "Lloyd Robinson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lois Johnson",
+      "Name" : "Lois Johnson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Loleatta Holloway",
+      "Name" : "Loleatta Holloway",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lonnie Johnson",
+      "Name" : "Lonnie Johnson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lonnie Jones",
+      "Name" : "Lonnie Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lonnie Liston-Smith",
+      "Name" : "Lonnie Liston-Smith",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Loose Joints",
+      "Name" : "Loose Joints",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lord Echo",
+      "Name" : "Lord Echo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lord Tanamo",
+      "Name" : "Lord Tanamo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lorraine Chandler",
+      "Name" : "Lorraine Chandler",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Lou Donaldson",
+      "Name" : "Lou Donaldson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lou Johnson",
+      "Name" : "Lou Johnson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lou Rawls",
+      "Name" : "Lou Rawls",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Louis Cole",
+      "Name" : "Louis Cole",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Louis Jordan",
+      "Name" : "Louis Jordan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Love Company",
+      "Name" : "Love Company",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Love Experience",
+      "Name" : "Love Experience, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lowell Fulsom",
+      "Name" : "Lowell Fulsom",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lucky Daye",
+      "Name" : "Lucky Daye",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lucky Sun",
+      "Name" : "Lucky Sun",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lucy Hawkins",
+      "Name" : "Lucy Hawkins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lucy Pearl",
+      "Name" : "Lucy Pearl",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lucy Rose",
+      "Name" : "Lucy Rose",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Luke Gomm",
+      "Name" : "Luke Gomm",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lulu",
+      "Name" : "Lulu",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lumidee",
+      "Name" : "Lumidee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lunafruit",
+      "Name" : "Lunafruit",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Luther Vandross",
+      "Name" : "Luther Vandross",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Lyn Collins",
+      "Name" : "Lyn Collins",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Lyn Taitt And The Jets",
+      "Name" : "Lyn Taitt And The Jets",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lynda Dawn",
+      "Name" : "Lynda Dawn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Lynn Taitt",
+      "Name" : "Lynn Taitt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Maceo",
+      "Name" : "Maceo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Maceo And The Macks",
+      "Name" : "Maceo And The Macks",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Macy Gray",
+      "Name" : "Macy Gray",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Madeline Bell",
+      "Name" : "Madeline Bell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mae Muller",
+      "Name" : "Mae Muller",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Magic Sam",
+      "Name" : "Magic Sam",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mahalia",
+      "Name" : "Mahalia",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Majestic",
+      "Name" : "Majestic",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Majid Jordan",
+      "Name" : "Majid Jordan",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Major Lazer",
+      "Name" : "Major Lazer",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Malia",
+      "Name" : "Malia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mandrill",
+      "Name" : "Mandrill",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Manhattan Transfer",
+      "Name" : "Manhattan Transfer, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Manhattans",
+      "Name" : "Manhattans",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mantronix",
+      "Name" : "Mantronix",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Manu Dibango",
+      "Name" : "Manu Dibango",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Manual B. Holcolm",
+      "Name" : "Manual B. Holcolm",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marc Broussard",
+      "Name" : "Marc Broussard",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marcia Aitken",
+      "Name" : "Marcia Aitken",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Margaret Singana",
+      "Name" : "Margaret Singana",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Margo Thunder",
+      "Name" : "Margo Thunder",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mariah Carey",
+      "Name" : "Mariah Carey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Maribou State",
+      "Name" : "Maribou State",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marilyn Barbarin",
+      "Name" : "Marilyn Barbarin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mark Capanni",
+      "Name" : "Mark Capanni",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mark IV",
+      "Name" : "Mark IV",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mark Morrison",
+      "Name" : "Mark Morrison",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mark Ronson",
+      "Name" : "Mark Ronson",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Marlena Shaw",
+      "Name" : "Marlena Shaw",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marra And Whinn",
+      "Name" : "Marra And Whinn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marta Ren",
+      "Name" : "Marta Ren",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marta Ren And The Groovelvets",
+      "Name" : "Marta Ren And The Groovelvets",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Martha And The Muffins",
+      "Name" : "Martha And The Muffins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Martha And The Vandellas",
+      "Name" : "Martha And The Vandellas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Martha Reeves And The Vandellas",
+      "Name" : "Martha Reeves And The Vandellas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Martin L. Dumas, Jr.",
+      "Name" : "Martin L. Dumas, Jr.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marva And Ellis",
+      "Name" : "Marva And Ellis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marva Whitney",
+      "Name" : "Marva Whitney",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Marve Johnson",
+      "Name" : "Marve Johnson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Marvelettes",
+      "Name" : "Marvelettes, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Marvels",
+      "Name" : "Marvels, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Marvin Gaye",
+      "Name" : "Marvin Gaye",
+      "NumSongs" : 10
+    },
+    {
+      "Artist" : "Marvin Gaye And Tammi Terrell",
+      "Name" : "Marvin Gaye And Tammi Terrell",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Marvin Holmes And The Uptights",
+      "Name" : "Marvin Holmes And The Uptights",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mary Clark",
+      "Name" : "Mary Clark",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mary J. Blige",
+      "Name" : "Mary J. Blige",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mary Jane Girls",
+      "Name" : "Mary Jane Girls",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mary Jane Hooper",
+      "Name" : "Mary Jane Hooper",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Mary Love",
+      "Name" : "Mary Love",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mary Wells",
+      "Name" : "Mary Wells",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Master Plan Inc",
+      "Name" : "Master Plan Inc",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Master Soul Boy",
+      "Name" : "Master Soul Boy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Matata",
+      "Name" : "Matata",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Maverick Sabre",
+      "Name" : "Maverick Sabre",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mavis Staples",
+      "Name" : "Mavis Staples",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Max Romeo",
+      "Name" : "Max Romeo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Maxayn",
+      "Name" : "Maxayn",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Maya Delilah",
+      "Name" : "Maya Delilah",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mayer Hawthorne",
+      "Name" : "Mayer Hawthorne",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Maytals",
+      "Name" : "Maytals, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Mel And Tim",
+      "Name" : "Mel And Tim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mel Carter",
+      "Name" : "Mel Carter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Melle Brown",
+      "Name" : "Melle Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Memphis Slim",
+      "Name" : "Memphis Slim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Men Without Hats",
+      "Name" : "Men Without Hats",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Messengers Incorporated",
+      "Name" : "Messengers Incorporated",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Meters",
+      "Name" : "Meters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Meters",
+      "Name" : "Meters, The",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Metro Station",
+      "Name" : "Metro Station",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mette And Sam Gellaitry",
+      "Name" : "Mette And Sam Gellaitry",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "MF Robots",
+      "Name" : "MF Robots",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "MGMT",
+      "Name" : "MGMT",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mica Paris",
+      "Name" : "Mica Paris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Micah Edwards",
+      "Name" : "Micah Edwards",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Michael Kiwanuka",
+      "Name" : "Michael Kiwanuka",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Michael Kiwanuka And Tom Misch",
+      "Name" : "Michael Kiwanuka And Tom Misch",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Michael McDonald",
+      "Name" : "Michael McDonald",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Michael Viner's Incredible Bongo Band",
+      "Name" : "Michael Viner`s Incredible Bongo Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Michelle",
+      "Name" : "Michelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Midas Hutch",
+      "Name" : "Midas Hutch",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Mighty Dogcatchers",
+      "Name" : "Mighty Dogcatchers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Mighty Show-stoppers",
+      "Name" : "Mighty Show-stoppers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mike And Ike",
+      "Name" : "Mike And Ike",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Milan Ring",
+      "Name" : "Milan Ring",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mild Minds",
+      "Name" : "Mild Minds",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Miller Blue",
+      "Name" : "Miller Blue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Millie Jackson",
+      "Name" : "Millie Jackson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Milton Wright",
+      "Name" : "Milton Wright",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Minnie Riperton",
+      "Name" : "Minnie Riperton",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Minnie Ripperton",
+      "Name" : "Minnie Ripperton",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Miss C-Line",
+      "Name" : "Miss C-Line",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mississippi Fred McDowell",
+      "Name" : "Mississippi Fred McDowell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mississippi John Hurt",
+      "Name" : "Mississippi John Hurt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mistura",
+      "Name" : "Mistura",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Misty in roots",
+      "Name" : "Misty in roots",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "MJ Cole",
+      "Name" : "MJ Cole",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "MNEK",
+      "Name" : "MNEK",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mocky",
+      "Name" : "Mocky",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Mohawks",
+      "Name" : "Mohawks, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mokie JJ And Rob",
+      "Name" : "Mokie JJ And Rob",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mom Tudie",
+      "Name" : "Mom Tudie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Moments And Whatnauts",
+      "Name" : "Moments And Whatnauts",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Moments",
+      "Name" : "Moments, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Monitors",
+      "Name" : "Monitors, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Monophonics And Kelly Finnigan",
+      "Name" : "Monophonics And Kelly Finnigan",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Monsune",
+      "Name" : "Monsune",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Moods, Nic Hanson",
+      "Name" : "Moods, Nic Hanson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Moods, Noah Slee, Lyriya And Meron",
+      "Name" : "Moods, Noah Slee, Lyriya And Meron",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Moon Mullican",
+      "Name" : "Moon Mullican",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mork",
+      "Name" : "Mork",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Motet",
+      "Name" : "Motet, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Mothers Favorite Child And Saeeda Wright",
+      "Name" : "Mothers Favorite Child And Saeeda Wright",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Movers",
+      "Name" : "Movers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mr Jukes",
+      "Name" : "Mr Jukes",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Mr Vegas",
+      "Name" : "Mr Vegas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ms. Lauryn Hill",
+      "Name" : "Ms. Lauryn Hill",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Muddy Waters",
+      "Name" : "Muddy Waters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mungo Jerry",
+      "Name" : "Mungo Jerry",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Munk And Peaches",
+      "Name" : "Munk And Peaches",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Mura Masa",
+      "Name" : "Mura Masa",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Musical Youth",
+      "Name" : "Musical Youth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The MVPS",
+      "Name" : "MVPS, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Myles Smith",
+      "Name" : "Myles Smith",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Myles Smith And Niall Horan",
+      "Name" : "Myles Smith And Niall Horan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Myron And E",
+      "Name" : "Myron And E",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Mysie",
+      "Name" : "Mysie",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "N.Y.C.C.",
+      "Name" : "N.Y.C.C.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nancy Priddy",
+      "Name" : "Nancy Priddy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nao",
+      "Name" : "Nao",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Natalie Duncan",
+      "Name" : "Natalie Duncan",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Natasha King",
+      "Name" : "Natasha King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Natasha Watts",
+      "Name" : "Natasha Watts",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Nathaniel Rateliff And The Night Sweats",
+      "Name" : "Nathaniel Rateliff And The Night Sweats",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Neal Francis",
+      "Name" : "Neal Francis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nectar Woode",
+      "Name" : "Nectar Woode",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Ned Doheny",
+      "Name" : "Ned Doheny",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Nella Dodds",
+      "Name" : "Nella Dodds",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nelly",
+      "Name" : "Nelly",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nelly Furtado",
+      "Name" : "Nelly Furtado",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Neville Brothers",
+      "Name" : "Neville Brothers, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Neville Nash",
+      "Name" : "Neville Nash",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The New Birth",
+      "Name" : "New Birth, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The New Jersey Connection",
+      "Name" : "New Jersey Connection, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The New Mastersounds",
+      "Name" : "New Mastersounds, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "New Order",
+      "Name" : "New Order",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Nick Pride And The Pimptones",
+      "Name" : "Nick Pride And The Pimptones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nick Waterhouse",
+      "Name" : "Nick Waterhouse",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nicky Thomas",
+      "Name" : "Nicky Thomas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nik West",
+      "Name" : "Nik West",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Nilufer Yanya",
+      "Name" : "Nilufer Yanya",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nina Simone",
+      "Name" : "Nina Simone",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Nite-Liters",
+      "Name" : "Nite-Liters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Noah Kahan",
+      "Name" : "Noah Kahan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nolan Porter",
+      "Name" : "Nolan Porter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "NoMBe",
+      "Name" : "NoMBe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nora Mae",
+      "Name" : "Nora Mae",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Norma Jean",
+      "Name" : "Norma Jean",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Norman Harris",
+      "Name" : "Norman Harris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Nouvelle Vague",
+      "Name" : "Nouvelle Vague",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The O Jays",
+      "Name" : "O Jays, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "O. V. Wright",
+      "Name" : "O. V. Wright",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "O.C. Tolbert",
+      "Name" : "O.C. Tolbert",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Oakenfold",
+      "Name" : "Oakenfold",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Oasis",
+      "Name" : "Oasis",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Obatala",
+      "Name" : "Obatala",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Obongjayar",
+      "Name" : "Obongjayar",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Oby Onyioha",
+      "Name" : "Oby Onyioha",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Odyssey",
+      "Name" : "Odyssey",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Ohio Players",
+      "Name" : "Ohio Players, The",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Oliver Morgan",
+      "Name" : "Oliver Morgan",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Oliver Sain",
+      "Name" : "Oliver Sain",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Olivia Dean",
+      "Name" : "Olivia Dean",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Olivia Nelson",
+      "Name" : "Olivia Nelson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Olivia Rodrigo",
+      "Name" : "Olivia Rodrigo",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Omar",
+      "Name" : "Omar",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Omar Apollo",
+      "Name" : "Omar Apollo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "One Blood",
+      "Name" : "One Blood",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Only Ones",
+      "Name" : "Only Ones, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Only The Poets",
+      "Name" : "Only The Poets",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Orange Juice",
+      "Name" : "Orange Juice",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Organics",
+      "Name" : "Organics",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Orgone",
+      "Name" : "Orgone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Originals",
+      "Name" : "Originals, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Oscar Jerome",
+      "Name" : "Oscar Jerome",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Oscar Mack",
+      "Name" : "Oscar Mack",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Otis Clay",
+      "Name" : "Otis Clay",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Otis Junior, Dr. Dundiff And J.lamotta",
+      "Name" : "Otis Junior, Dr. Dundiff And J.lamotta",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Otis Kane",
+      "Name" : "Otis Kane",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Otis Redding",
+      "Name" : "Otis Redding",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Otis Rush",
+      "Name" : "Otis Rush",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Otis Spann",
+      "Name" : "Otis Spann",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Outkast",
+      "Name" : "Outkast",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Owen Gray",
+      "Name" : "Owen Gray",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The O'Jays",
+      "Name" : "O`Jays, The",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "P-Funk All Stars",
+      "Name" : "P-Funk All Stars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "P.J. Morton",
+      "Name" : "P.J. Morton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "P.P Arnold",
+      "Name" : "P.P Arnold",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pale Jay",
+      "Name" : "Pale Jay",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Paloma Faith",
+      "Name" : "Paloma Faith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pamoja",
+      "Name" : "Pamoja",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Panic! At The Disco",
+      "Name" : "Panic! At The Disco",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Panna Cotta",
+      "Name" : "Panna Cotta",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Paolo Nutini",
+      "Name" : "Paolo Nutini",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Papa Lightfoot",
+      "Name" : "Papa Lightfoot",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Papa Michigan And General Smilie",
+      "Name" : "Papa Michigan And General Smilie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Paragons",
+      "Name" : "Paragons, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Parliament",
+      "Name" : "Parliament",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Pastel",
+      "Name" : "Pastel",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Pastor T.l. Barrett And The Youth For Christ Choir",
+      "Name" : "Pastor T.l. Barrett And The Youth For Christ Choir",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pat Hunt",
+      "Name" : "Pat Hunt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pat Kelly",
+      "Name" : "Pat Kelly",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pat Van Dyke",
+      "Name" : "Pat Van Dyke",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Patawawa",
+      "Name" : "Patawawa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Patrice Rushen",
+      "Name" : "Patrice Rushen",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "The Patterson Singers",
+      "Name" : "Patterson Singers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Patti Jo",
+      "Name" : "Patti Jo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Patti Labelle",
+      "Name" : "Patti Labelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Paul Nero",
+      "Name" : "Paul Nero",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pearl Dowdell",
+      "Name" : "Pearl Dowdell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pearl Dowell",
+      "Name" : "Pearl Dowell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Peggy Gaines",
+      "Name" : "Peggy Gaines",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Peoples Pleasure And Alive And Well",
+      "Name" : "Peoples Pleasure And Alive And Well",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "People's Choice",
+      "Name" : "People`s Choice",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Percy Sledge",
+      "Name" : "Percy Sledge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Perfections",
+      "Name" : "Perfections, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Performers",
+      "Name" : "Performers, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Pete Bonet",
+      "Name" : "Pete Bonet",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pete Josef",
+      "Name" : "Pete Josef",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Peter King",
+      "Name" : "Peter King",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Peter Tosh",
+      "Name" : "Peter Tosh",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Phantom Planet",
+      "Name" : "Phantom Planet",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Phil Collins",
+      "Name" : "Phil Collins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Phil Fearon And Galaxy",
+      "Name" : "Phil Fearon And Galaxy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Phil Flowers",
+      "Name" : "Phil Flowers",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Phillip Mitchell",
+      "Name" : "Phillip Mitchell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Phyllis Dillon",
+      "Name" : "Phyllis Dillon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pink",
+      "Name" : "Pink",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Pioneers",
+      "Name" : "Pioneers, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Pip Millet",
+      "Name" : "Pip Millet",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Plan B",
+      "Name" : "Plan B",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Plunky And The Oneness Of Juju",
+      "Name" : "Plunky And The Oneness Of Juju",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pm Warson",
+      "Name" : "Pm Warson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Poets of Rhythm",
+      "Name" : "Poets of Rhythm",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Pointer Sisters",
+      "Name" : "Pointer Sisters, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Police",
+      "Name" : "Police, The",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Poloshirt",
+      "Name" : "Poloshirt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Poolside",
+      "Name" : "Poolside",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Poppy Ajudha",
+      "Name" : "Poppy Ajudha",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Poppy Ajudha And Twin Palms",
+      "Name" : "Poppy Ajudha And Twin Palms",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Porgy Jones",
+      "Name" : "Porgy Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Positive Force",
+      "Name" : "Positive Force",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Post Malone",
+      "Name" : "Post Malone",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Prefab Sprout",
+      "Name" : "Prefab Sprout",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Pretenders",
+      "Name" : "Pretenders, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Primal Scream",
+      "Name" : "Primal Scream",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Prime Mates",
+      "Name" : "Prime Mates, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Prince",
+      "Name" : "Prince",
+      "NumSongs" : 14
+    },
+    {
+      "Artist" : "Prince And The Revolution",
+      "Name" : "Prince And The Revolution",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Prince Buster",
+      "Name" : "Prince Buster",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Prince Jazzbo",
+      "Name" : "Prince Jazzbo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Private Jones",
+      "Name" : "Private Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Private Joy",
+      "Name" : "Private Joy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Professor Green",
+      "Name" : "Professor Green",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Professor Longhair",
+      "Name" : "Professor Longhair",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Protoje",
+      "Name" : "Protoje",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Proxima Parada",
+      "Name" : "Proxima Parada",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Prvna",
+      "Name" : "Prvna",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Psychic Mirrors",
+      "Name" : "Psychic Mirrors",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Public Image Ltd",
+      "Name" : "Public Image Ltd",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Pure Silk",
+      "Name" : "Pure Silk",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Purity Ring",
+      "Name" : "Purity Ring",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Purple Disco Machine And Chromeo",
+      "Name" : "Purple Disco Machine And Chromeo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Purple Mundi",
+      "Name" : "Purple Mundi",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Quantic",
+      "Name" : "Quantic",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "The Quantic Soul Orchestra",
+      "Name" : "Quantic Soul Orchestra, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Queen",
+      "Name" : "Queen",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Quincy Jones",
+      "Name" : "Quincy Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Quinn Oulton",
+      "Name" : "Quinn Oulton",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Quintin Copper And Nas Mellow",
+      "Name" : "Quintin Copper And Nas Mellow",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "RAC",
+      "Name" : "RAC",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rachel Chinouriri",
+      "Name" : "Rachel Chinouriri",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rae Sremmurd, Swae Lee And Slim Jxmmi",
+      "Name" : "Rae Sremmurd, Swae Lee And Slim Jxmmi",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Raf Rundell",
+      "Name" : "Raf Rundell",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Ramones",
+      "Name" : "Ramones, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Randa And The Soul Kingdom",
+      "Name" : "Randa And The Soul Kingdom",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Randy Crawford",
+      "Name" : "Randy Crawford",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Randy's Allstars",
+      "Name" : "Randy`s Allstars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Raphael Cameron",
+      "Name" : "Raphael Cameron",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Raphael Saadiq",
+      "Name" : "Raphael Saadiq",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rare Earth",
+      "Name" : "Rare Earth",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rare Essence",
+      "Name" : "Rare Essence",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rare Pleasure",
+      "Name" : "Rare Pleasure",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rationale",
+      "Name" : "Rationale",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Raveena",
+      "Name" : "Raveena",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ravyn Lenae",
+      "Name" : "Ravyn Lenae",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Raw Silk",
+      "Name" : "Raw Silk",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ray Barretto",
+      "Name" : "Ray Barretto",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ray Charles",
+      "Name" : "Ray Charles",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Ray J",
+      "Name" : "Ray J",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Raye",
+      "Name" : "Raye",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Raymond Harper And Drumbago's Orchestra",
+      "Name" : "Raymond Harper And Drumbago`s Orchestra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Razzy Bailey",
+      "Name" : "Razzy Bailey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Real Thing",
+      "Name" : "Real Thing, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Reanna Coleman",
+      "Name" : "Reanna Coleman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Reel People",
+      "Name" : "Reel People",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Reggae Boys",
+      "Name" : "Reggae Boys, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Relatives",
+      "Name" : "Relatives, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Remi Kabaka",
+      "Name" : "Remi Kabaka",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Remi Wolf",
+      "Name" : "Remi Wolf",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Renee Rapp",
+      "Name" : "Renee Rapp",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Renegades Of Jazz",
+      "Name" : "Renegades Of Jazz",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Revelation",
+      "Name" : "Revelation",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Reverend And The Makers Feat. Robbie Williams)",
+      "Name" : "Reverend And The Makers Feat. Robbie Williams)",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rhetta Hughes",
+      "Name" : "Rhetta Hughes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rhythm Machine",
+      "Name" : "Rhythm Machine",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ric Robertson",
+      "Name" : "Ric Robertson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Richie Havens",
+      "Name" : "Richie Havens",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rick James",
+      "Name" : "Rick James",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Rico",
+      "Name" : "Rico",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rico's Combo",
+      "Name" : "Rico`s Combo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rihanna",
+      "Name" : "Rihanna",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Ripple",
+      "Name" : "Ripple",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Risco Connection",
+      "Name" : "Risco Connection",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rita Ora",
+      "Name" : "Rita Ora",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ritual",
+      "Name" : "Ritual",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rivage",
+      "Name" : "Rivage",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Rival Sons",
+      "Name" : "Rival Sons",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rob Da' Noize Temple",
+      "Name" : "Rob Da` Noize Temple",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Robert Johnson",
+      "Name" : "Robert Johnson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Robert Parker",
+      "Name" : "Robert Parker",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Rockers Revenge",
+      "Name" : "Rockers Revenge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rodney Franklin",
+      "Name" : "Rodney Franklin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roger And the Gypsies",
+      "Name" : "Roger And the Gypsies",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roger Damawuzan, Les As Du Benin",
+      "Name" : "Roger Damawuzan, Les As Du Benin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roger Fakhr",
+      "Name" : "Roger Fakhr",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roisin Murphy",
+      "Name" : "Roisin Murphy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roland Alphonso",
+      "Name" : "Roland Alphonso",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roland Wrightangle",
+      "Name" : "Roland Wrightangle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Rolling Stones",
+      "Name" : "Rolling Stones, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Romanthony",
+      "Name" : "Romanthony",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Romderful",
+      "Name" : "Romderful",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Ronettes",
+      "Name" : "Ronettes, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Ronia La Vee",
+      "Name" : "Ronia La Vee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ronnie Hudson",
+      "Name" : "Ronnie Hudson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ronnie Jones",
+      "Name" : "Ronnie Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roomful Of Blues",
+      "Name" : "Roomful Of Blues",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Roscoe Robinson",
+      "Name" : "Roscoe Robinson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rose And Bruno Mars",
+      "Name" : "Rose And Bruno Mars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rose Royce",
+      "Name" : "Rose Royce",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Rosie Lowe",
+      "Name" : "Rosie Lowe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rotary Connection",
+      "Name" : "Rotary Connection",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Roy Ayers",
+      "Name" : "Roy Ayers",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Royel Otis",
+      "Name" : "Royel Otis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Rubaiyats",
+      "Name" : "Rubaiyats, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ruby Andrews",
+      "Name" : "Ruby Andrews",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rufus And Carla",
+      "Name" : "Rufus And Carla",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Rufus And Chaka Khan",
+      "Name" : "Rufus And Chaka Khan",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Rufus Thomas",
+      "Name" : "Rufus Thomas",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Ruth Brown",
+      "Name" : "Ruth Brown",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ruthven",
+      "Name" : "Ruthven",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "S.O.S. Band",
+      "Name" : "S.O.S. Band",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Sabrina Carpenter",
+      "Name" : "Sabrina Carpenter",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Saina",
+      "Name" : "Saina",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Saint Etienne",
+      "Name" : "Saint Etienne",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Saint Joshua",
+      "Name" : "Saint Joshua",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Salsoul Orchestra",
+      "Name" : "Salsoul Orchestra, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Salt",
+      "Name" : "Salt",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Salt 'N' Pepa",
+      "Name" : "Salt `N` Pepa",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sam And Dave",
+      "Name" : "Sam And Dave",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Sam Cooke",
+      "Name" : "Sam Cooke",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Sam Ezeh",
+      "Name" : "Sam Ezeh",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sam Fender",
+      "Name" : "Sam Fender",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sam Gellaitry",
+      "Name" : "Sam Gellaitry",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sam Padrul",
+      "Name" : "Sam Padrul",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Samm Henshaw",
+      "Name" : "Samm Henshaw",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Sampha",
+      "Name" : "Sampha",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sandra Rhodes",
+      "Name" : "Sandra Rhodes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sans Soucis",
+      "Name" : "Sans Soucis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Santiago",
+      "Name" : "Santiago",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Santigold",
+      "Name" : "Santigold",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sarah Vaughan",
+      "Name" : "Sarah Vaughan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sasha Keable",
+      "Name" : "Sasha Keable",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Satisfactions",
+      "Name" : "Satisfactions, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Saul",
+      "Name" : "Saul",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Sault",
+      "Name" : "Sault",
+      "NumSongs" : 9
+    },
+    {
+      "Artist" : "Saun And Starr",
+      "Name" : "Saun And Starr",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Savoir-Flair",
+      "Name" : "Savoir-Flair",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Savoy Brown Blues Band",
+      "Name" : "Savoy Brown Blues Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Say She She",
+      "Name" : "Say She She",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Say She She And Piya Malik",
+      "Name" : "Say She She And Piya Malik",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Scary Pockets",
+      "Name" : "Scary Pockets",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Schwey",
+      "Name" : "Schwey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Scissor Sisters",
+      "Name" : "Scissor Sisters",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Scott Vlassis",
+      "Name" : "Scott Vlassis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Screamin' Jay Hawkins",
+      "Name" : "Screamin` Jay Hawkins",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Script",
+      "Name" : "Script, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Searchlight",
+      "Name" : "Searchlight",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Seasick Steve",
+      "Name" : "Seasick Steve",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Selah Sue",
+      "Name" : "Selah Sue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Selecter",
+      "Name" : "Selecter, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Selena Gomez",
+      "Name" : "Selena Gomez",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Senor Soul",
+      "Name" : "Senor Soul",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sequence",
+      "Name" : "Sequence",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Seratones",
+      "Name" : "Seratones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Sextones",
+      "Name" : "Sextones, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "SG Lewis",
+      "Name" : "SG Lewis",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Sgt Slick And Marcia Hines",
+      "Name" : "Sgt Slick And Marcia Hines",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shalamar",
+      "Name" : "Shalamar",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Shangri-las",
+      "Name" : "Shangri-las, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shapeshifters",
+      "Name" : "Shapeshifters",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sharon Jones",
+      "Name" : "Sharon Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sharon Jones And The Dap Kings",
+      "Name" : "Sharon Jones And The Dap Kings",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Sharon Redd",
+      "Name" : "Sharon Redd",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shawn Lee",
+      "Name" : "Shawn Lee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shay Lia",
+      "Name" : "Shay Lia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sheila",
+      "Name" : "Sheila",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sheila And B. Devotion",
+      "Name" : "Sheila And B. Devotion",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sheryl Lee Ralph",
+      "Name" : "Sheryl Lee Ralph",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shinehead",
+      "Name" : "Shinehead",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Shirelles",
+      "Name" : "Shirelles, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shirley And Lee",
+      "Name" : "Shirley And Lee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shirley Ellis",
+      "Name" : "Shirley Ellis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shiv",
+      "Name" : "Shiv",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shorty Long",
+      "Name" : "Shorty Long",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Shuggie Otis",
+      "Name" : "Shuggie Otis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sia",
+      "Name" : "Sia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sigala",
+      "Name" : "Sigala",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sio And Tesfa Williams",
+      "Name" : "Sio And Tesfa Williams",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Siouxsie And The Banshees",
+      "Name" : "Siouxsie And The Banshees",
+      "NumSongs" : 6
+    },
+    {
+      "Artist" : "Sister Nancy",
+      "Name" : "Sister Nancy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sister Sledge",
+      "Name" : "Sister Sledge",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sizzla",
+      "Name" : "Sizzla",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Skatalites",
+      "Name" : "Skatalites, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Skipworth And Turner",
+      "Name" : "Skipworth And Turner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Skull Snaps",
+      "Name" : "Skull Snaps",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Skyy",
+      "Name" : "Skyy",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Slim And The Beast",
+      "Name" : "Slim And The Beast",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Slim Harpo",
+      "Name" : "Slim Harpo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Slim Smith",
+      "Name" : "Slim Smith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Slim Smith And The Uniques",
+      "Name" : "Slim Smith And The Uniques",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sly And The Family Stone",
+      "Name" : "Sly And The Family Stone",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Sly5thave",
+      "Name" : "Sly5thave",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Smiths",
+      "Name" : "Smiths, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Smokey Robinson And The Miracles",
+      "Name" : "Smokey Robinson And The Miracles",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Smokey Wilson",
+      "Name" : "Smokey Wilson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Smoki Whitfield",
+      "Name" : "Smoki Whitfield",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Smoove And Turrell",
+      "Name" : "Smoove And Turrell",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Snakehips",
+      "Name" : "Snakehips",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Snoh Aalegra",
+      "Name" : "Snoh Aalegra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Snooks Eaglin",
+      "Name" : "Snooks Eaglin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Social Lovers",
+      "Name" : "Social Lovers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sol Paradise",
+      "Name" : "Sol Paradise",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Solid Gold Revue",
+      "Name" : "Solid Gold Revue",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Solomon Burke",
+      "Name" : "Solomon Burke",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Son Little",
+      "Name" : "Son Little",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sonique",
+      "Name" : "Sonique",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sonny Boy Williamson",
+      "Name" : "Sonny Boy Williamson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sonny Jones",
+      "Name" : "Sonny Jones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sonny Tennet, Joanna Perry And David Landers",
+      "Name" : "Sonny Tennet, Joanna Perry And David Landers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sonny Terry And Brownie McGhee",
+      "Name" : "Sonny Terry And Brownie McGhee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Soul Brothers",
+      "Name" : "Soul Brothers",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Soul Childrern",
+      "Name" : "Soul Childrern",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Soul II Soul",
+      "Name" : "Soul II Soul",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Soul Rebels Brass Band",
+      "Name" : "Soul Rebels Brass Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Soul Sister",
+      "Name" : "Soul Sister",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Soul Snatchers",
+      "Name" : "Soul Snatchers, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Soul Survivors",
+      "Name" : "Soul Survivors",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Souldrippin, Darius Dante And Hari Loco",
+      "Name" : "Souldrippin, Darius Dante And Hari Loco",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Soundburger",
+      "Name" : "Soundburger",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Source",
+      "Name" : "Source, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Space Invadas",
+      "Name" : "Space Invadas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Spanky Wilson",
+      "Name" : "Spanky Wilson",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Sparkle",
+      "Name" : "Sparkle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Specials",
+      "Name" : "Specials, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Speedometer",
+      "Name" : "Speedometer",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Speelburg",
+      "Name" : "Speelburg",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Spinners",
+      "Name" : "Spinners, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Spiral Starecase",
+      "Name" : "Spiral Starecase",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Spirit Of Atlanta",
+      "Name" : "Spirit Of Atlanta",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Spirit of Love",
+      "Name" : "Spirit of Love",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "St. Paul And the Broken Bones",
+      "Name" : "St. Paul And the Broken Bones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Staple Singers",
+      "Name" : "Staple Singers, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Stargard",
+      "Name" : "Stargard",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Starpoint",
+      "Name" : "Starpoint",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stars",
+      "Name" : "Stars",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Steaua de Mare",
+      "Name" : "Steaua de Mare",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Steel City Connection",
+      "Name" : "Steel City Connection",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Steer-Towners",
+      "Name" : "Steer-Towners, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Steve Cropper",
+      "Name" : "Steve Cropper",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stevedreez",
+      "Name" : "Stevedreez",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stevie Ray Vaughan",
+      "Name" : "Stevie Ray Vaughan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stevie Wonder",
+      "Name" : "Stevie Wonder",
+      "NumSongs" : 9
+    },
+    {
+      "Artist" : "Stevie's",
+      "Name" : "Stevie`s",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stone Foundation",
+      "Name" : "Stone Foundation",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Stone Roses",
+      "Name" : "Stone Roses, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Str4ta",
+      "Name" : "Str4ta",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Stranger And Patsy",
+      "Name" : "Stranger And Patsy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Streets",
+      "Name" : "Streets, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Strokes",
+      "Name" : "Strokes, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Style Council",
+      "Name" : "Style Council, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Stylistics",
+      "Name" : "Stylistics, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sugababes",
+      "Name" : "Sugababes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sugar Pie Desanto",
+      "Name" : "Sugar Pie Desanto",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Sugar Pie Desanto And Etta James",
+      "Name" : "Sugar Pie Desanto And Etta James",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sugarman Three And Co.",
+      "Name" : "Sugarman Three And Co.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Suki Soul And Leroy",
+      "Name" : "Suki Soul And Leroy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sun",
+      "Name" : "Sun",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sunnyboys",
+      "Name" : "Sunnyboys",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sunnyland Slim",
+      "Name" : "Sunnyland Slim",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Supergrass",
+      "Name" : "Supergrass",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Superorganism",
+      "Name" : "Superorganism",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Supershy",
+      "Name" : "Supershy",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Supershy And Tom Misch",
+      "Name" : "Supershy And Tom Misch",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Supremes",
+      "Name" : "Supremes, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Surface",
+      "Name" : "Surface",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Survivors",
+      "Name" : "Survivors, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Susan Cadogan",
+      "Name" : "Susan Cadogan",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Sy Hightower",
+      "Name" : "Sy Hightower",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Syd",
+      "Name" : "Syd",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Syl Johnson",
+      "Name" : "Syl Johnson",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Sylvers",
+      "Name" : "Sylvers, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Sylvester",
+      "Name" : "Sylvester",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Sylvia Striplin",
+      "Name" : "Sylvia Striplin",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Symarip",
+      "Name" : "Symarip",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Symba",
+      "Name" : "Symba",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "System Olympia",
+      "Name" : "System Olympia",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "T Bird And the Breaks",
+      "Name" : "T Bird And the Breaks",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "T Connection",
+      "Name" : "T Connection",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "T-Bone Walker",
+      "Name" : "T-Bone Walker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "T-Connection",
+      "Name" : "T-Connection",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "T.J. Johnson",
+      "Name" : "T.J. Johnson",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "T.Z. Junior",
+      "Name" : "T.Z. Junior",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Taana Gardner",
+      "Name" : "Taana Gardner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tabby Thomas",
+      "Name" : "Tabby Thomas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Taj Mahal And Ry Cooder",
+      "Name" : "Taj Mahal And Ry Cooder",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Take Three",
+      "Name" : "Take Three",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tala A.M.",
+      "Name" : "Tala A.M.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Talk Talk",
+      "Name" : "Talk Talk",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Talking Heads",
+      "Name" : "Talking Heads",
+      "NumSongs" : 12
+    },
+    {
+      "Artist" : "Tall Black Guy And Kevin Moore",
+      "Name" : "Tall Black Guy And Kevin Moore",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tammi Terrell",
+      "Name" : "Tammi Terrell",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Tammi Terrell And Marvin Gaye",
+      "Name" : "Tammi Terrell And Marvin Gaye",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Tammy Tucker",
+      "Name" : "Tammy Tucker",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tanika Charles",
+      "Name" : "Tanika Charles",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tapper Zukie",
+      "Name" : "Tapper Zukie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tate McRae",
+      "Name" : "Tate McRae",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Tavares",
+      "Name" : "Tavares",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Taylor Swift",
+      "Name" : "Taylor Swift",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tayrell And Nic Hanson",
+      "Name" : "Tayrell And Nic Hanson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Teddy Davis",
+      "Name" : "Teddy Davis",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Teddy Pendergrass",
+      "Name" : "Teddy Pendergrass",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Tedeschi Trucks Band",
+      "Name" : "Tedeschi Trucks Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Teena Marie",
+      "Name" : "Teena Marie",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "The Temptations",
+      "Name" : "Temptations, The",
+      "NumSongs" : 7
+    },
+    {
+      "Artist" : "Tenor Saw",
+      "Name" : "Tenor Saw",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tensnake And Ninetails",
+      "Name" : "Tensnake And Ninetails",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tensnake And Panama",
+      "Name" : "Tensnake And Panama",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Terry And Deep South",
+      "Name" : "Terry And Deep South",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Terry Callier",
+      "Name" : "Terry Callier",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tertia May",
+      "Name" : "Tertia May",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Teskey Brothers",
+      "Name" : "Teskey Brothers, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The The",
+      "Name" : "The The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Thee Marloes",
+      "Name" : "Thee Marloes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Thee Sacred Souls",
+      "Name" : "Thee Sacred Souls",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Thee Sinseers And Joey Quinones",
+      "Name" : "Thee Sinseers And Joey Quinones",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Thelma Houston",
+      "Name" : "Thelma Houston",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Theo Beckford",
+      "Name" : "Theo Beckford",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Theophilus London",
+      "Name" : "Theophilus London",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Third Coast Kings",
+      "Name" : "Third Coast Kings",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Third Coast Kings",
+      "Name" : "Third Coast Kings, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Third Degree",
+      "Name" : "Third Degree, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Thomas Broussard And Ben L'Oncle Soul",
+      "Name" : "Thomas Broussard And Ben L`Oncle Soul",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Three Degrees",
+      "Name" : "Three Degrees, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Thundercat",
+      "Name" : "Thundercat",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Thutmose",
+      "Name" : "Thutmose",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Tibbs",
+      "Name" : "Tibbs, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tierra",
+      "Name" : "Tierra",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tiger",
+      "Name" : "Tiger",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Timbaland",
+      "Name" : "Timbaland",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Time",
+      "Name" : "Time, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Timmy Thomas",
+      "Name" : "Timmy Thomas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tina Turner",
+      "Name" : "Tina Turner",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tobi Lark",
+      "Name" : "Tobi Lark",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tom Grennan",
+      "Name" : "Tom Grennan",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Tom Misch",
+      "Name" : "Tom Misch",
+      "NumSongs" : 4
+    },
+    {
+      "Artist" : "Tom Misch, Yussef Dayes",
+      "Name" : "Tom Misch, Yussef Dayes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Tom Robinson Band",
+      "Name" : "Tom Robinson Band, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tommie Young",
+      "Name" : "Tommie Young",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tommy McCook",
+      "Name" : "Tommy McCook",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Tommy Stewart",
+      "Name" : "Tommy Stewart",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tonho Crocco",
+      "Name" : "Tonho Crocco",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tony Clarke",
+      "Name" : "Tony Clarke",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tony Jackson",
+      "Name" : "Tony Jackson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tony Momrelle",
+      "Name" : "Tony Momrelle",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tony Owens",
+      "Name" : "Tony Owens",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tony Tribe",
+      "Name" : "Tony Tribe",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Toots And The Maytals",
+      "Name" : "Toots And The Maytals",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Toro Y Moi",
+      "Name" : "Toro Y Moi",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Totally Enormous Extinct Dinosaurs",
+      "Name" : "Totally Enormous Extinct Dinosaurs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tower of Power",
+      "Name" : "Tower of Power",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Traffic",
+      "Name" : "Traffic, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Trammps",
+      "Name" : "Trammps, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Trevor Hartley",
+      "Name" : "Trevor Hartley",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Trinikas",
+      "Name" : "Trinikas, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Trinity",
+      "Name" : "Trinity, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Trombone Shorty",
+      "Name" : "Trombone Shorty",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Twang",
+      "Name" : "Twang, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Twin Atlantic",
+      "Name" : "Twin Atlantic",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Two Another",
+      "Name" : "Two Another",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Tycho",
+      "Name" : "Tycho",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tyree Glenn Jr.",
+      "Name" : "Tyree Glenn Jr.",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Tyrone Davis",
+      "Name" : "Tyrone Davis",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "Tyrone Taylor",
+      "Name" : "Tyrone Taylor",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "UB40",
+      "Name" : "UB40",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ujima",
+      "Name" : "Ujima",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Ultimate",
+      "Name" : "Ultimate",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Umoja I-Nity",
+      "Name" : "Umoja I-Nity",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Uncle Louie",
+      "Name" : "Uncle Louie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Underbelly",
+      "Name" : "Underbelly, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Undisputed Truth",
+      "Name" : "Undisputed Truth, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Uneda Dennard And Shandells Band",
+      "Name" : "Uneda Dennard And Shandells Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Uniques",
+      "Name" : "Uniques, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "United 8",
+      "Name" : "United 8",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "United Freedom Collective And Billy Blond",
+      "Name" : "United Freedom Collective And Billy Blond",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Universal Togetherness Band",
+      "Name" : "Universal Togetherness Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Unomas",
+      "Name" : "Unomas",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Upsetters",
+      "Name" : "Upsetters, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Uptown Funk Empire",
+      "Name" : "Uptown Funk Empire",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Usher",
+      "Name" : "Usher",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Valerie Carter",
+      "Name" : "Valerie Carter",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Valerie June",
+      "Name" : "Valerie June",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Van Morrison",
+      "Name" : "Van Morrison",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Vaughan Mason And Butch Dayo",
+      "Name" : "Vaughan Mason And Butch Dayo",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Vaughan Mason And Crew",
+      "Name" : "Vaughan Mason And Crew",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Velvelettes",
+      "Name" : "Velvelettes, The",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Vera Hall",
+      "Name" : "Vera Hall",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Versatiles",
+      "Name" : "Versatiles, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Viceroys",
+      "Name" : "Viceroys, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The View",
+      "Name" : "View, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Vin Zee",
+      "Name" : "Vin Zee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Vision",
+      "Name" : "Vision, The",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "The Volcanos",
+      "Name" : "Volcanos, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Wailers",
+      "Name" : "Wailers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Walter And The Admerations",
+      "Name" : "Walter And The Admerations",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wang Chung",
+      "Name" : "Wang Chung",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "War",
+      "Name" : "War",
+      "NumSongs" : 8
+    },
+    {
+      "Artist" : "Warren Lee",
+      "Name" : "Warren Lee",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Watts 103rd. Street Rhythm Band",
+      "Name" : "Watts 103rd. Street Rhythm Band, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wayne Carson",
+      "Name" : "Wayne Carson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wayne Cochran",
+      "Name" : "Wayne Cochran",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wayne Smith",
+      "Name" : "Wayne Smith",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wayne Snow",
+      "Name" : "Wayne Snow",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "West Side Oasis Band",
+      "Name" : "West Side Oasis Band",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Whispers",
+      "Name" : "Whispers, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Whitney Houston",
+      "Name" : "Whitney Houston",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Whyte Horses",
+      "Name" : "Whyte Horses",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wil Collins And Willpower",
+      "Name" : "Wil Collins And Willpower",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wilbur Bascomb And The Blue Zodiact",
+      "Name" : "Wilbur Bascomb And The Blue Zodiact",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wild Cherry",
+      "Name" : "Wild Cherry",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Wild Magnolias",
+      "Name" : "Wild Magnolias, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wildchild",
+      "Name" : "Wildchild",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Will Sessions",
+      "Name" : "Will Sessions",
+      "NumSongs" : 5
+    },
+    {
+      "Artist" : "William Bell",
+      "Name" : "William Bell",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "William Bell And Mavis Staples",
+      "Name" : "William Bell And Mavis Staples",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie Dixon",
+      "Name" : "Willie Dixon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie Hobbs",
+      "Name" : "Willie Hobbs",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie Hutch",
+      "Name" : "Willie Hutch",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie J Healey",
+      "Name" : "Willie J Healey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie Mabon",
+      "Name" : "Willie Mabon",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Willie Williams",
+      "Name" : "Willie Williams",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Willow Band",
+      "Name" : "Willow Band, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wilson Pickett",
+      "Name" : "Wilson Pickett",
+      "NumSongs" : 3
+    },
+    {
+      "Artist" : "Windjammer",
+      "Name" : "Windjammer",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Winston Surfshirt",
+      "Name" : "Winston Surfshirt",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Womack And Womack",
+      "Name" : "Womack And Womack",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "World Premiere",
+      "Name" : "World Premiere",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Wynonie Harris",
+      "Name" : "Wynonie Harris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Xyando",
+      "Name" : "Xyando",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yarbrough And Peoples",
+      "Name" : "Yarbrough And Peoples",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yazmin Lacey",
+      "Name" : "Yazmin Lacey",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yazoo",
+      "Name" : "Yazoo",
+      "NumSongs" : 2
+    },
+    {
+      "Artist" : "Yebba",
+      "Name" : "Yebba",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yellowman",
+      "Name" : "Yellowman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yk Osiris",
+      "Name" : "Yk Osiris",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yola",
+      "Name" : "Yola",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yoladisko",
+      "Name" : "Yoladisko",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Young Franco And Franc Moody",
+      "Name" : "Young Franco And Franc Moody",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Young Jessie",
+      "Name" : "Young Jessie",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Youngr, Equanimous And Larisa Gosla",
+      "Name" : "Youngr, Equanimous And Larisa Gosla",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yuna",
+      "Name" : "Yuna",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yung Bae",
+      "Name" : "Yung Bae",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Yvonne Elliman",
+      "Name" : "Yvonne Elliman",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Zak Abel",
+      "Name" : "Zak Abel",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Zapp",
+      "Name" : "Zapp",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Zara Larsson",
+      "Name" : "Zara Larsson",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Zhane",
+      "Name" : "Zhane",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "Zilla Mayes",
+      "Name" : "Zilla Mayes",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "The Zodiacs",
+      "Name" : "Zodiacs, The",
+      "NumSongs" : 1
+    },
+    {
+      "Artist" : "ZZ Top",
+      "Name" : "ZZ Top",
+      "NumSongs" : 1
+    }
+  ],
+  "ElapsedTime" : "0.0292 seconds",
+  "Hash" : "630d25736b93ac540a8fe7ea2c4cc647",
+  "Success" : true,
+  "Templates" : [
+    800
+  ],
+  "Token" : "REDACTED-TOKEN-0000",
+  "TopupAllowed" : true
+}

@@ -1,0 +1,31 @@
+{
+  "Actions" : [
+
+  ],
+  "ElapsedTime" : "0.0365 seconds",
+  "Sections" : [
+    {
+      "Custom" : {
+        "Batch" : 500,
+        "Offset" : 0,
+        "Store" : {
+          "PageUrlPrefix" : "",
+          "PageUrlSuffix" : "%26partnerId%3D2003",
+          "SearchUrl" : "http://itunes.apple.com/search?entity=musicTrack&limit=1&country=gb&partnerId=2003&term="
+        },
+        "TopupAllowed" : true,
+        "Total" : 0
+      },
+      "Items" : [
+
+      ],
+      "ItemTypeId" : 2,
+      "Templates" : [
+        200
+      ],
+      "Title" : "Results for 'beatles'"
+    }
+  ],
+  "Success" : true,
+  "Token" : "REDACTED-TOKEN-0000"
+}

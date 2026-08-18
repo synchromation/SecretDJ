@@ -298,16 +298,25 @@ enum CreditsAPITests {
 			#expect(parameters["sig"] != nil)
 		}
 
-		/// // LIVE-CAPTURE: no legacy fixture exists for this endpoint; the
-		/// count-as-display-string contract is documented but not captured
+		/// `Live/NumPaidCredits.json` — a production `numpaidcredits`
+		/// capture (S1's R2 live-capture pass) for an account with no paid
+		/// credits, confirming the count-as-display-string contract
 		/// (`secretdjv3/TopUpAPIAccess.swift`'s `parseNumPaidCreditsSuccess`).
+		/// No legacy fixture existed for this endpoint. The live response
+		/// also carries a `Response.NumCredits` field ``NumPaidCreditsPayload``
+		/// doesn't model — harmless, since it only ever reads `Response.Text`,
+		/// matching legacy's `parseNumPaidCreditsSuccess`.
 		@Test func `decodes the credit count as a display string`() async throws {
-			let json = Data(#"{"Success": true, "Response": {"Text": "3"}}"#.utf8)
-			let client = CreditsAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+			let client = CreditsAPITests.makeClient(
+				transport: FakeAPITransport(outcome: .success(Fixture.liveData("NumPaidCredits"))),
+			)
 
 			let response = try await client.numPaidCredits(userId: "u", credential: CreditsAPITests.credential)
 
-			#expect(response.payload.text == "3")
+			#expect(
+				response.payload
+					.text == "You don't have any paid credits at the moment. Select a top-up to get some more.",
+			)
 		}
 	}
 }
