@@ -198,11 +198,11 @@ fixtures.
         `// D1:` marker sits in the group file.)
   - [x] S1.3b User: `userdetails`, `setuserdetails`, avatar upload
         (`newavatar`), delete account (`requestdeleteaccount`).
-  - [ ] S1.3c Feeds: places nearby, venue, activity/event history,
+  - [x] S1.3c Feeds: places nearby, venue, activity/event history,
         profile, now playing, `extracontent`, `promote`.
-  - [ ] S1.3d Search: `musicsearch`, `artistsavailable` (and the
+  - [x] S1.3d Search: `musicsearch`, `artistsavailable` (and the
         songs-for-artist path).
-  - [ ] S1.3e Music selection: digest/selection/mood feeds, `styleinfo`.
+  - [x] S1.3e Music selection: digest/selection/mood feeds, `styleinfo`.
   - [ ] S1.3f Jukebox writes: `requestsong` (including the ReturnCode -8
         out-of-credits contract), `like`/`unlike` (ItemType bitmask),
         `machinecontrol` (server-granted moderation).
@@ -246,7 +246,7 @@ with correct laziness, action dispatch, refresh, pagination, and change
 detection, proven by package tests plus a demo feed in both apps'
 previews.
 
-- [ ] S3.1 Map Domain templates → `SectionKind`s and cell/section views
+- [x] S3.1 Map Domain templates → `SectionKind`s and cell/section views
       (list, carousel/container, grid, hidden data sections); unknown
       kinds dropped per lazy-sections (see the S1.1 boundary note).
 - [ ] S3.2 Cell library for the legacy template set (song, artist, venue,
@@ -549,9 +549,9 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | in progress (S1.3c–i remain) |
+| S1 Domain & API | in progress (S1.3f–i remain) |
 | S2 Design system | **done** |
-| S3 Feed engine | not started |
+| S3 Feed engine | in progress (S3.1 done) |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |

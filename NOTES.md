@@ -220,3 +220,26 @@ work happens; every commit includes this file's delta.
   asset names), every symbol name pinned by a parameterized
   platform-resolution test; SF-Symbols-first policy recorded, legacy
   asset re-cuts deferred to consuming tasks. Full verify green.
+- S1.3c+d+e done (TDD, sonnet subagent; SecretDJAPI now 186 tests /
+  85 suites): SectionListDecoder — the template-driven payload
+  dispatch S1.1 deferred, tolerant per legacy (malformed item drops,
+  section survives; unknown template → .unsupported items, sections
+  kept for FeedUI to drop) — plus feed endpoints (placesnearby, venue,
+  eventhistory, profile, playhistory, extracontent, promote), search
+  (musicsearch, songs-for-artist via the legacy artists-query quirk,
+  artistsavailable flat payload), and selection/digest/styleinfo.
+  Seven legacy fixtures copied and cited. IMPORTANT: real fixtures
+  exposed two S1.1 Domain bugs — Action.itemId and
+  Venue.hasMachineControl decode strictly as Int where the wire sends
+  string/bool variants, silently dropping all request-action songs and
+  most venues; currently pinned as known-gap regression tests, fix
+  follows immediately.
+- S3.1 done (TDD, sonnet subagent; FeedUI now 51 tests / 15 suites):
+  FeedSectionKind mapping (list/carousel/grid/hidden families per the
+  legacy template table; unsupported → nil, dropped with
+  DroppedSection reporting so callers can log — FeedUI never imports
+  Observability), FeedDisplayModel projection with typed hidden-
+  section accessors and stable server-derived ids, and the concrete
+  FeedView/FeedSectionView dispatch per the lazy-sections exemplar
+  with themed placeholder cells (S3.2 replaces them). FeedUI now
+  depends on DesignSystem per the architecture diagram.

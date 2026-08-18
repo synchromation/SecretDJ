@@ -1,4 +1,5 @@
 import Foundation
+import SecretDJDomain
 
 /// Orchestrates one API call end to end: builds the signed request
 /// (``APIRequestBuilder``), sends it over the injected ``APITransport``,
@@ -47,7 +48,7 @@ public struct APIClient: Sendable {
 			signed: signed,
 			credential: credential,
 		)
-		return try await send(request)
+		return try await send(request) { try decoder.decode(Payload.self, from: $0) }
 	}
 
 	/// Calls a `multipart/form-data` endpoint (`newavatar`; S1.3g's
@@ -74,15 +75,41 @@ public struct APIClient: Sendable {
 			fileData: fileData,
 			credential: credential,
 		)
-		return try await send(request)
+		return try await send(request) { try decoder.decode(Payload.self, from: $0) }
+	}
+
+	/// Calls a feed endpoint (S1.3c–e: `placesnearby`, `venuedetails`,
+	/// `eventhistory`, `persondetails`, `playhistory`, `extracontent`,
+	/// `musicsearch`, `musicselection`, `musicdigest`, `styleinfo`),
+	/// decoding its body with ``SectionListDecoder`` rather than a
+	/// caller-supplied `Decodable` type — ``SecretDJDomain/SectionList``
+	/// deliberately isn't `Decodable` (S1.1's architecture split; see
+	/// `SecretDJDomain.Item`'s doc comment). `artistsavailable`'s flat,
+	/// non-`SectionList` response shape doesn't go through this — see
+	/// ``APIClient/artistsAvailable(userId:venueId:hash:credential:)``.
+	public func executeFeed(
+		endpoint: String,
+		parameters: [String: String],
+		signed: Bool,
+		credential: APICredential?,
+	) async throws(APIError) -> APIResponse<SecretDJDomain.SectionList> {
+		let request = try requestBuilder.request(
+			endpoint: endpoint,
+			parameters: parameters,
+			signed: signed,
+			credential: credential,
+		)
+		return try await send(request) { try SectionListDecoder().decode($0) }
 	}
 
 	/// The shared transport-send → envelope-check → payload-decode pipeline
-	/// both `execute` overloads run, differing only in how they built
-	/// `request`.
-	private func send<Payload: Decodable & Sendable>(_ request: URLRequest) async throws(APIError)
-		-> APIResponse<Payload>
-	{
+	/// every `execute`/`executeFeed` call runs, differing only in how they
+	/// built `request` and how `decode` turns the response body into
+	/// `Payload`.
+	private func send<Payload: Sendable>(
+		_ request: URLRequest,
+		decode: (Data) throws -> Payload,
+	) async throws(APIError) -> APIResponse<Payload> {
 		let data: Data
 		do {
 			data = try await transport.send(request)
@@ -103,7 +130,7 @@ public struct APIClient: Sendable {
 
 		let payload: Payload
 		do {
-			payload = try decoder.decode(Payload.self, from: data)
+			payload = try decode(data)
 		} catch {
 			throw .decoding(error)
 		}

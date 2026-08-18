@@ -1,0 +1,44 @@
+{
+    "ElapsedTime": "0.0029 seconds",
+    "Sections": [{
+                 "Title": "",
+                 "ItemTypeId": 262144,
+                 "Templates": [1001],
+                 "Items": [{
+                           "Text": "Daytime",
+                           "Image": {},
+                           "Data": {
+                           "Id": 679,
+                           "ItemTypeId": 262144,
+                           "BgCol": "#fffa9c",
+                           "FgCol": "#303030",
+                           "Action": {
+                           "Id": 400,
+                           "ItemId": 679,
+                           "ItemTypeId": 262144,
+                           "Value": "",
+                           "Url": ""
+                           }
+                           }
+                           }],
+                 "Custom": {
+                 "Min": 30,
+                 "Max": 300,
+                 "Default": 45,
+                 "Granularity": 15,
+                 "Batch": 500,
+                 "Offset": 0,
+                 "Total": 1
+                 },
+                 "Index": 1
+                 }],
+    "Actions": [{
+                "Id": 200,
+                "Button": 300,
+                "Value": "",
+                "Url": "",
+                "Index": 1
+                }],
+    "Success": true,
+    "Token": "cJPLdKmz6CCT2fiGgpc1HzcR1nE="
+}
