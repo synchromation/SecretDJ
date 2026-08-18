@@ -102,6 +102,43 @@ enum FeedActionRouterTests {
 		}
 	}
 
+	struct `Song jukebox correlation` {
+		@Test func `a song's jukeboxGotoItem action navigates to the jukebox sharing its itemId`() {
+			let router = FeedActionRouter(installedApps: FakeInstalledApps())
+			let jukeboxes = [
+				makeJukebox(jukeboxId: 1, action: makeAction(kind: .jukeboxGotoItem, itemId: 100)),
+				makeJukebox(jukeboxId: 2, action: makeAction(kind: .jukeboxGotoItem, itemId: 200)),
+			]
+			let item = displayItem(.song(makeSong(
+				songId: "1",
+				action: makeAction(kind: .jukeboxGotoItem, itemId: 200),
+			)))
+
+			#expect(router.outcome(forTap: item, jukeboxList: jukeboxes) == .showJukebox(jukeboxId: 2))
+		}
+
+		@Test func `a song's jukeboxGotoItem action with no matching jukebox produces no outcome`() {
+			let router = FeedActionRouter(installedApps: FakeInstalledApps())
+			let jukeboxes = [makeJukebox(jukeboxId: 1, action: makeAction(kind: .jukeboxGotoItem, itemId: 100))]
+			let item = displayItem(.song(makeSong(
+				songId: "1",
+				action: makeAction(kind: .jukeboxGotoItem, itemId: 999),
+			)))
+
+			#expect(router.outcome(forTap: item, jukeboxList: jukeboxes) == nil)
+		}
+
+		@Test func `a song's jukeboxGotoItem action produces no outcome when no jukebox list is supplied`() {
+			let router = FeedActionRouter(installedApps: FakeInstalledApps())
+			let item = displayItem(.song(makeSong(
+				songId: "1",
+				action: makeAction(kind: .jukeboxGotoItem, itemId: 100),
+			)))
+
+			#expect(router.outcome(forTap: item) == nil)
+		}
+	}
+
 	struct `Promotion routing` {
 		@Test func `a promotion with no URL pings the engagement endpoint`() {
 			let router = FeedActionRouter(installedApps: FakeInstalledApps())
@@ -205,7 +242,7 @@ private func displayItem(_ item: Item) -> FeedDisplayItem {
 	FeedDisplayItem(id: item.stableID, item: item, text: item.displayText ?? "", template: .song)
 }
 
-private func makeSong(songId: String) -> Song {
+private func makeSong(songId: String, action: Action? = nil) -> Song {
 	Song(
 		songId: songId,
 		title: "",
@@ -214,7 +251,7 @@ private func makeSong(songId: String) -> Song {
 		likeInfo: LikeInfo(likedByYou: false, info: ""),
 		text: "",
 		sortIndex: 0,
-		action: nil,
+		action: action,
 		actions: [],
 	)
 }

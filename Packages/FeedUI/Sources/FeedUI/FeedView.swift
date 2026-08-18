@@ -23,6 +23,15 @@ public struct FeedView: View {
 	/// non-interactive. Routing the tap to a ``FeedActionOutcome`` (S3.3) is
 	/// the caller's job — this view performs no navigation itself.
 	public let onItemTap: ((FeedDisplayItem) -> Void)?
+	/// Called each time the last section appears — the event-driven stand-in
+	/// for the legacy "within 2000pt of the bottom" infinite-scroll trigger
+	/// (LEGACY.md "Refresh rules"). `LazyVStack` materializes a section
+	/// shortly before it reaches the viewport, so this fires with a similar
+	/// lead time without the continuous scroll-offset tracking
+	/// lazy-sections' scroll-performance rules rule out. The caller
+	/// (``FeedScreenModel/loadNextPage()``) is already safe to call
+	/// repeatedly, so this may fire more than once near the bottom.
+	public let onApproachingEnd: (() -> Void)?
 
 	private static let topAnchorID = "top"
 
@@ -30,10 +39,12 @@ public struct FeedView: View {
 		sections: [FeedDisplayModel.VisibleSection],
 		generation: Int,
 		onItemTap: ((FeedDisplayItem) -> Void)? = nil,
+		onApproachingEnd: (() -> Void)? = nil,
 	) {
 		self.sections = sections
 		self.generation = generation
 		self.onItemTap = onItemTap
+		self.onApproachingEnd = onApproachingEnd
 	}
 
 	public var body: some View {
@@ -52,6 +63,10 @@ public struct FeedView: View {
 									.padding(.bottom, Spacing.small)
 							} header: {
 								FeedSectionHeader(title: section.title)
+							}
+							.onAppear {
+								guard section.id == sections.last?.id else { return }
+								onApproachingEnd?()
 							}
 						}
 					}

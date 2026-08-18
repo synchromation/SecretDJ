@@ -21,13 +21,27 @@ public struct FeedActionRouter: Sendable {
 	/// artist branching on song count, promotion's deep-link rules, ...).
 	/// Returns `nil` when nothing in this build knows how to handle the tap
 	/// — dropped, consistent with the engine's unknown-kind rule.
-	public func outcome(forTap item: FeedDisplayItem) -> FeedActionOutcome? {
+	///
+	/// `jukeboxList` is the feed's hidden `hiddenJukeboxList` section
+	/// (``FeedDisplayModel/jukeboxList``), needed only for a song row
+	/// carrying `.jukeboxGotoItem` — the "browse this jukebox" row the
+	/// music digest renders as a song (`FeedActionProvider.actionGotoJukebox
+	/// (song:sectionList:)`). It's unused by every other tap, so callers
+	/// without pagination or a digest screen can omit it.
+	public func outcome(forTap item: FeedDisplayItem, jukeboxList: [Jukebox] = []) -> FeedActionOutcome? {
 		// A jukebox row's `.jukeboxGotoItem` action names the tapped row
 		// itself (`actionGotoJukebox(jukebox:)`), not something resolvable
 		// from the bare action below — resolved here, ahead of the generic
 		// gate.
 		if case .jukebox(let jukebox) = item.item, let action = jukebox.action, action.kind == .jukeboxGotoItem {
 			return .showJukebox(jukeboxId: jukebox.jukeboxId)
+		}
+
+		// A song carrying the same action instead correlates by itemId
+		// against the hidden jukebox list, rather than naming a jukebox
+		// directly (`FeedActionProvider.actionGotoJukebox(song:sectionList:)`).
+		if case .song(let song) = item.item, let action = song.action, action.kind == .jukeboxGotoItem {
+			return outcome(forJukeboxGotoItem: song, jukeboxList: jukeboxList)
 		}
 
 		if let action = item.item.action, action.kind.isRecognized {
@@ -124,6 +138,19 @@ public struct FeedActionRouter: Sendable {
 
 	private func outcome(forSong song: Song) -> FeedActionOutcome? {
 		song.isIntermission ? nil : .showSong(.song(songId: song.songId))
+	}
+
+	/// Finds the jukebox whose own action shares `song`'s `itemId` and
+	/// navigates there, mirroring `FeedActionProvider.actionGotoJukebox
+	/// (song:sectionList:)`'s `filteredItems` correlation. Returns `nil` when
+	/// the song carries no itemId or no hidden-list jukebox matches — nothing
+	/// to navigate to, consistent with the engine's unknown-target rule.
+	private func outcome(forJukeboxGotoItem song: Song, jukeboxList: [Jukebox]) -> FeedActionOutcome? {
+		guard let songItemId = song.action?.itemId else { return nil }
+
+		guard let jukebox = jukeboxList.first(where: { $0.action?.itemId == songItemId }) else { return nil }
+
+		return .showJukebox(jukeboxId: jukebox.jukeboxId)
 	}
 
 	private func outcome(forArtist artist: Artist) -> FeedActionOutcome {
