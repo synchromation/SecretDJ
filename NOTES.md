@@ -342,3 +342,17 @@ work happens; every commit includes this file's delta.
   two articulations worth folding into the lazy-sections skill later
   (RemoteArtworkView's fixed-frame contract; explicit unreachable-case
   handling) — noted for a future skill-authoring pass.
+- S4.1+S4.2 done (TDD, sonnet subagent): the consumer app's login
+  feature — gate-on-launch in the composition root (SessionStore +
+  APIClient constructed there, placeholder replaced; signed-in interim
+  screen until S5's tabs), LoginModel/SignUpModel/
+  ForgottenPasswordModel over an AuthenticationServicing seam with an
+  in-memory fake, ProfileDetailsValidator ported as spec (regexes
+  cited to legacy source), 41 localized keys in five languages
+  (needs_review; "screen name" added to the glossary), full
+  instrumentation with tests proving credentials/identifying values
+  never hit diagnostics. Production smoke (R3): one-shot sign-in via
+  the app's own stack succeeded on attempt 1 as nickbot — no tokens
+  recorded. SecretDJTests now hosts real feature tests (83 across the
+  suite); test target gained Domain/API package deps in pbxproj.
+  Full verify green.

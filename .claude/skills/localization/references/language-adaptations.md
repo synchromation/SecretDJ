@@ -83,6 +83,7 @@ coexist in one language.
 | sign in / sign up | Use each platform's conventional informal pairing; never "log in" as a verb in English source. |
 | top-up | Pick one target-language term and use it for every purchase-related string. |
 | restore purchases | Use Apple's own localized StoreKit terminology per language. |
+| screen name | es *nombre de usuario*, fr *nom d'utilisateur*, de *Benutzername*, nl *gebruikersnaam* — the account handle (distinct from a person's real first/last name). |
 
 When the assistant drafts a glossary term or any non-trivial translation,
 it enters the catalog as `needs_review` until a native speaker confirms.

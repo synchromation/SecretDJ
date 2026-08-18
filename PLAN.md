@@ -295,14 +295,15 @@ reset a password, complete onboarding (screen name → details/photo per
 route), sign out, and delete the account; session survives relaunch; all
 flows accessible and localized.
 
-- [ ] S4.1 Login flow shell: gate-on-launch (no cached session → login),
+- [x] S4.1 Login flow shell: gate-on-launch (no cached session → login),
       overlay presentation model re-thought for SwiftUI navigation.
-- [ ] S4.2 Native sign-in, sign-up, and forgotten password: credential
+- [x] S4.2 Native sign-in, sign-up, and forgotten password: credential
       validation rules ported from `ProfileDetailsValidator` (as spec,
       via TDD), hash-compatible credential handling (S1.2),
       `resetpassword` flow (screenname-or-email input, server-message
       confirmation). Exit includes a smoke test against the production
-      backend with a real account (R3).
+      backend with a real account (R3). (Smoke passed 2026-08-18:
+      one-shot production sign-in succeeded on attempt 1.)
 - [ ] S4.3 Sign in with Apple: first-auth name/email caching semantics
       (Apple only supplies them once — keychain, per LEGACY.md), the
       day-of-year `auth` digest (S1.2). Exit includes a production smoke
@@ -569,7 +570,7 @@ what it blocks.
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
-| S4 Identity & session | not started |
+| S4 Identity & session | in progress (S4.1, S4.2 done) |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |
 | S7 Kiosk app | not started |

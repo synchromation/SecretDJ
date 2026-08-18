@@ -1,21 +1,43 @@
 import Observability
 import ObservabilitySentry
 import ObservabilityTelemetryDeck
+import SecretDJAPI
 import SwiftUI
+import UIKit
 
 @main
 struct SecretDJApp: App {
-	@State private var counterModel = CounterModel(
-		store: UserDefaultsCounterStore(),
-		observability: .live,
+	@State private var sessionStore = SessionStore(
+		snapshotStore: UserDefaultsSessionSnapshotStore(),
+		credentialStore: KeychainCredentialStore(),
+	)
+
+	private let apiClient = APIClient(
+		configuration: .live,
+		implicitParameters: DeviceImplicitParameterProvider(),
+		transport: URLSessionAPITransport(),
 	)
 
 	var body: some Scene {
 		WindowGroup {
-			CounterView(model: counterModel)
+			RootView(sessionStore: sessionStore, apiClient: apiClient, observability: .live)
 				.environment(\.observability, .live)
 		}
 	}
+}
+
+extension APIClientConfiguration {
+	/// The production configuration: the live backend, this install's
+	/// device identity, and the app's own marketing version
+	/// (`secretdjv3/AppConfiguration.swift`'s device/version identity, per
+	/// LEGACY.md "Backend API and Spotify integration" → "Session config").
+	static let live = APIClientConfiguration(
+		environment: .production,
+		deviceIdentifier: UIDevice.current.identifierForVendor?.uuidString ?? UUID().uuidString,
+		screenWidth: Int(UIScreen.main.bounds.width),
+		clientVersion: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0.0",
+		isKiosk: false,
+	)
 }
 
 extension ObservabilityPipeline {

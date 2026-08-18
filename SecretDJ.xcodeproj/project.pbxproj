@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		000000000000000310000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000300000000 /* Observability */; };
 		000000000000000330000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000320000000 /* Observability */; };
+		000000000000000811000000 /* SecretDJDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000810000000 /* SecretDJDomain */; };
+		000000000000000821000000 /* SecretDJAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000820000000 /* SecretDJAPI */; };
 		000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000340000000 /* ObservabilityTelemetryDeck */; };
 		000000000000000370000000 /* ObservabilitySentry in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000360000000 /* ObservabilitySentry */; };
 		000000000000000611000000 /* SecretDJDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000610000000 /* SecretDJDomain */; };
@@ -101,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			files = (
 				000000000000000330000000 /* Observability in Frameworks */,
+				000000000000000811000000 /* SecretDJDomain in Frameworks */,
+				000000000000000821000000 /* SecretDJAPI in Frameworks */,
 			);
 		};
 		000000000000000430000000 /* Frameworks */ = {
@@ -193,6 +197,8 @@
 			name = "SecretDJTests";
 			packageProductDependencies = (
 				000000000000000320000000 /* Observability */,
+				000000000000000810000000 /* SecretDJDomain */,
+				000000000000000820000000 /* SecretDJAPI */,
 			);
 			productName = "SecretDJTests";
 			productReference = 000000000000000000000220 /* SecretDJTests.xctest */;
@@ -893,6 +899,14 @@
 		000000000000000750000000 /* SharedFeatures */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedFeatures;
+		};
+		000000000000000810000000 /* SecretDJDomain */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJDomain;
+		};
+		000000000000000820000000 /* SecretDJAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SecretDJAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
