@@ -203,3 +203,20 @@ work happens; every commit includes this file's delta.
   Superseded and deleted the S0.3 FeedRenderState placeholder; the
   SharedFeatures placeholder was updated to compose the new detector
   (haiku subagent). Full verify green.
+- S1.3a+b done (TDD, sonnet subagent; SecretDJAPI now 121 tests / 56
+  suites): auth endpoints (signin/createuser/applesignin/resetpassword
+  — facebooksignin deliberately absent behind D1) and user endpoints
+  (userdetails/setuserdetails/newavatar multipart/requestdeleteaccount)
+  as APIClient extensions, with legacy JSON fixtures copied into the
+  package's test resources and wire expectations cited to legacy
+  sources. Multipart construction ported byte-for-byte, with one
+  documented deliberate divergence: implicit parameters (incl. lang
+  per D11) ride multipart requests too. LIVE-CAPTURE markers record
+  what only production can confirm (userdetails layout, newavatar
+  response shape, requestdeleteaccount). PasswordChangeFail.json
+  proved the Success-true-with-negative-ReturnCode envelope quirk.
+- S2.3 done — stage S2 complete: Theme.Icon token set (21 semantic
+  roles mapped to SF Symbols, checked against the legacy action-bar
+  asset names), every symbol name pinned by a parameterized
+  platform-resolution test; SF-Symbols-first policy recorded, legacy
+  asset re-cuts deferred to consuming tasks. Full verify green.

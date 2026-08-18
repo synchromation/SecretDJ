@@ -193,9 +193,10 @@ fixtures.
 - [ ] S1.3 Endpoints (one sub-checkbox per group; fixtures captured from
       the live API and the legacy test resources; cross-check the group
       contents against LEGACY.md's endpoint catalog before checking off):
-  - [ ] S1.3a Auth: `signin`, `createuser`, `facebooksignin` (behind D1),
-        `applesignin`, `resetpassword`.
-  - [ ] S1.3b User: `userdetails`, `setuserdetails`, avatar upload
+  - [x] S1.3a Auth: `signin`, `createuser`, `facebooksignin` (behind D1),
+        `applesignin`, `resetpassword`. (facebooksignin awaits D1 — a
+        `// D1:` marker sits in the group file.)
+  - [x] S1.3b User: `userdetails`, `setuserdetails`, avatar upload
         (`newavatar`), delete account (`requestdeleteaccount`).
   - [ ] S1.3c Feeds: places nearby, venue, activity/event history,
         profile, now playing, `extracontent`, `promote`.
@@ -232,7 +233,7 @@ tokens.)
 - [x] S2.2 Components: primary/secondary buttons, toast presentation (the
       legacy server-driven toast contract), banners/ticker chrome, empty
       and error state surfaces, progress indicators.
-- [ ] S2.3 Iconography and imagery pipeline: SF Symbols first; remaining
+- [x] S2.3 Iconography and imagery pipeline: SF Symbols first; remaining
       legacy Paintcode/Photoshop-derived assets re-cut only where a
       symbol can't replace them.
 
@@ -548,8 +549,8 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | in progress (S1.1, S1.2, S1.4, S1.5 done; S1.3 remains) |
-| S2 Design system | in progress (S2.1, S2.2 done) |
+| S1 Domain & API | in progress (S1.3c–i remain) |
+| S2 Design system | **done** |
 | S3 Feed engine | not started |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |
