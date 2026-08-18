@@ -155,3 +155,7 @@ work happens; every commit includes this file's delta.
   styles + weight/design only). Brand violet accent, lightened in
   dark mode where the base hue fails contrast. Full verify green
   across six packages and both schemes after both lanes landed.
+- Remote wired: github.com/synchromation/SecretDJ (remote name
+  "SecretDJ"), main tracking SecretDJ/main, full history pushed. The
+  checkpoints convention's push-after-every-commit is now live —
+  earlier "no remote" notes are superseded.
