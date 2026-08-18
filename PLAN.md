@@ -177,7 +177,7 @@ fixtures.
       `unsupported` case for logging/metrics only; the Domain→SectionKind
       mapping in FeedUI (S3.1) then follows lazy-sections' rule verbatim:
       unknown kinds map to nil and those sections are dropped.
-- [ ] S1.2 API client core: base environments, request building with the
+- [x] S1.2 API client core: base environments, request building with the
       full implicit parameter set — location, `appmask`, client version,
       the device language on every request (BCP-47 preferred language;
       the coordinated backend addition from D11 that makes server copy
@@ -229,7 +229,7 @@ tokens.)
 
 - [ ] S2.1 Theme: semantic color/typography/spacing tokens; dark mode;
       contrast verified (4.5:1 text) in both appearances.
-- [ ] S2.2 Components: primary/secondary buttons, toast presentation (the
+- [x] S2.2 Components: primary/secondary buttons, toast presentation (the
       legacy server-driven toast contract), banners/ticker chrome, empty
       and error state surfaces, progress indicators.
 - [ ] S2.3 Iconography and imagery pipeline: SF Symbols first; remaining
@@ -548,8 +548,8 @@ what it blocks.
 | Stage | Status |
 |---|---|
 | S0 Foundations | **done** |
-| S1 Domain & API | in progress (S1.1 done) |
-| S2 Design system | in progress (S2.1 done) |
+| S1 Domain & API | in progress (S1.1, S1.2 done) |
+| S2 Design system | in progress (S2.1, S2.2 done) |
 | S3 Feed engine | not started |
 | S4 Identity & session | not started |
 | S5 Consumer shell | not started |

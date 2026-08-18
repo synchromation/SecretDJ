@@ -1,0 +1,121 @@
+import Foundation
+
+/// Builds `URLRequest`s for the Secret DJ API, reproducing the legacy
+/// client's wire format byte-for-byte where the server requires it
+/// (LEGACY.md "Backend API and Spotify integration").
+///
+/// This type only assembles requests — it never sends them. Endpoint
+/// methods with typed parameters/payloads land in S1.3, calling into this
+/// builder (usually via ``APIClient``).
+public struct APIRequestBuilder: Sendable {
+	private let configuration: APIClientConfiguration
+	private let implicitParameters: any ImplicitParameterProviding
+	private let signer: any RequestSigning
+
+	public init(
+		configuration: APIClientConfiguration,
+		implicitParameters: any ImplicitParameterProviding,
+		signer: any RequestSigning = HMACSHA1RequestSigner(),
+	) {
+		self.configuration = configuration
+		self.implicitParameters = implicitParameters
+		self.signer = signer
+	}
+
+	/// Builds a GET request for `endpoint` (the server's raw path, e.g.
+	/// `"signin"` — no leading slash), merging `parameters` with the
+	/// implicit parameter set and, when `signed`, a `sig` computed from
+	/// `credential`.
+	///
+	/// Precedence on key collisions matches the legacy client exactly:
+	/// implicit parameters overwrite same-named explicit ones, and `sig`
+	/// (when present) overwrites last (`secretdjv3/NetworkAccess.swift:202-223`).
+	/// - Throws: ``APIError/missingCredential`` when `signed` is `true` and
+	///   `credential` is `nil`; ``APIError/requestGeneration`` if the result
+	///   would not be a valid URL.
+	public func request(
+		endpoint: String,
+		parameters: [String: String],
+		signed: Bool,
+		credential: APICredential?,
+	) throws(APIError) -> URLRequest {
+		var allParameters = parameters
+		for (key, value) in implicitParameterValues() {
+			allParameters[key] = value
+		}
+
+		if signed {
+			guard let credential else {
+				throw .missingCredential
+			}
+			allParameters["sig"] = signer.signature(token: credential.token, passwordHash: credential.passwordHash)
+		}
+
+		let url = try Self.buildURL(
+			baseURL: configuration.environment.baseURL,
+			endpoint: endpoint,
+			parameters: allParameters,
+		)
+
+		var request = URLRequest(url: url)
+		for (field, value) in configuration.headers {
+			request.setValue(value, forHTTPHeaderField: field)
+		}
+		return request
+	}
+
+	private func implicitParameterValues() -> [String: String] {
+		var values: [String: String] = [
+			"appmask": String(implicitParameters.installedApps.rawValue),
+			"lang": implicitParameters.preferredLanguage,
+		]
+		if let location = implicitParameters.location {
+			values["coords"] = location.queryValue
+		}
+		if configuration.isKiosk {
+			values["appmodel"] = "1"
+		}
+		return values
+	}
+
+	/// The server needs more percent-escaping than Apple's default query
+	/// encoding provides; this reproduces the AFNetworking-compatible
+	/// character set the legacy client used, including the `+`/`=`
+	/// signature-escaping quirk (`secretdjv3/NetworkingParameterProvider.swift:54-113`).
+	private static let legacyAllowedCharacters: CharacterSet = {
+		var set = CharacterSet.urlQueryAllowed
+		set.remove(charactersIn: "!$&'()*+,;=")
+		set.remove(charactersIn: ":#[]@")
+		return set
+	}()
+
+	/// Both failure guards below are defensive: every ``APIEnvironment``
+	/// case yields a valid `https` URL, so neither is reachable through
+	/// this package's public inputs today. They stay typed errors rather
+	/// than preconditions because a future environment or endpoint source
+	/// could make them reachable, and a malformed request should never
+	/// crash the app.
+	private static func buildURL(
+		baseURL: URL,
+		endpoint: String,
+		parameters: [String: String],
+	) throws(APIError) -> URL {
+		guard let scheme = baseURL.scheme, let host = baseURL.host else {
+			throw .requestGeneration
+		}
+
+		let encodedQuery = parameters
+			.compactMap { key, value -> String? in
+				guard let encodedValue = value.addingPercentEncoding(withAllowedCharacters: legacyAllowedCharacters) else {
+					return nil
+				}
+				return "\(key)=\(encodedValue)"
+			}
+			.joined(separator: "&")
+
+		guard let url = URL(string: "\(scheme)://\(host)/\(endpoint)?\(encodedQuery)") else {
+			throw .requestGeneration
+		}
+		return url
+	}
+}

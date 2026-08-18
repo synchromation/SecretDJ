@@ -159,3 +159,30 @@ work happens; every commit includes this file's delta.
   "SecretDJ"), main tracking SecretDJ/main, full history pushed. The
   checkpoints convention's push-after-every-commit is now live —
   earlier "no remote" notes are superseded.
+
+## 2026-08-18
+
+- Remote renamed to "origin" (tracking carried over).
+- S1.2 done (TDD, 60 tests / 35 suites, sonnet subagent): SecretDJAPI
+  request core — APIRequestBuilder with the AFNetworking-compatible
+  query encoding pinned against the legacy NetworkAccessTests
+  known answers, HMAC-SHA1 request signing (wire compatibility per D7,
+  documented as such), SHA-1 password hashing, the applesignin
+  day-of-year digest with injected clock/calendar (timezone fragility
+  ported deliberately, proven by test), the full implicit parameter
+  set (location, appmask OptionSet, client version, device language
+  per D11, appmodel=1 kiosk flag) behind a protocol seam, structured
+  User-Agent, the ReturnCode/Message envelope as a typed primitive for
+  S1.3, and an async transport seam with fake. No endpoint methods yet
+  (S1.3).
+- S2.2 done (TDD for logic, 33 tests / 14 suites, sonnet subagent +
+  code-reviewer pass): DesignSystem components — primary/secondary
+  ButtonStyles (44pt targets, token-only theming), ToastQueue
+  (@Observable, injected clock, FIFO one-at-a-time with per-toast
+  timers) + toastPresenter modifier (VoiceOver announcements,
+  reduce-motion cross-fade), BannerSurface chrome, Empty/Error/
+  Progress state surfaces that own zero copy. Three contrast-proven
+  Theme additions (accentText, accentPressed, accent-on-secondary)
+  ride the existing sanctioned-pairings test. Reviewer caught and
+  fixed a sub-44pt toast tap area and missing preview variants.
+  Full verify green across six packages and both schemes.
