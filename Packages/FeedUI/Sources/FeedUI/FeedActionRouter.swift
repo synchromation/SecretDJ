@@ -190,8 +190,28 @@ public struct FeedActionRouter: Sendable {
 	}
 }
 
+extension ActionButton {
+	/// Whether this build maps this button code to a renderable nav-bar icon
+	/// — `ActionBarButtonItem.customButton(_:)`'s switch (insert-coin/hail-taxi/search
+	/// only); the legacy "no button" sentinel and any other unmapped code
+	/// both become ``ActionButton/unsupported(_:)`` and are dropped, per
+	/// ``FeedDisplayModel/actionButtons``'s gate.
+	var isRenderable: Bool {
+		switch self {
+		case .insertCoin,
+		     .hailTaxi,
+		     .launchSearch: true
+		case .unsupported: false
+		}
+	}
+}
+
 extension ActionKind {
-	fileprivate var isRecognized: Bool {
+	/// Whether this build recognizes the action code — shared with
+	/// ``FeedDisplayModel/actionButtons``'s own gate
+	/// (`ActionBarButtonItem.init?`'s `appAction.actionType != .unknown`
+	/// half), not `fileprivate` to this file for that reason.
+	var isRecognized: Bool {
 		if case .unsupported = self {
 			return false
 		}

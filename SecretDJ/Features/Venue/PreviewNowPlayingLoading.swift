@@ -28,7 +28,18 @@ struct PreviewNowPlayingLoading: FeedLoading {
 					],
 				),
 			],
-			actions: [],
+			// Exercises the S6.12 hail-taxi nav-bar action button in the Loaded
+			// preview.
+			actions: [
+				Action(
+					kind: .launchUberApp,
+					itemId: nil,
+					itemTypeId: nil,
+					value: nil,
+					url: "https://m.uber.com/ul/?action=setPickup",
+					button: .hailTaxi,
+				),
+			],
 		))
 	}
 

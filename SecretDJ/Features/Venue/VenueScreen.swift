@@ -113,6 +113,9 @@ struct VenueScreen: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
 		.navigationTitle(Text("Venue", comment: "Navigation title of a venue's screen."))
+		.toolbar {
+			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
+		}
 		.onChange(of: model.venueDetails) { _, venue in
 			guard let venue else { return }
 
@@ -255,6 +258,15 @@ struct VenueScreen: View {
 		default:
 			router.handle(outcome: outcome, venueId: venueId)
 		}
+	}
+
+	/// A server-driven nav-bar action button tap (S6.12) — routed through
+	/// this screen's own ``handle(outcome:)`` exactly like a cell tap, so
+	/// this screen's own venue-context resolution (`.launchSearch` →
+	/// `.search(venueId:)`) applies to a search bar button too.
+	private func handleBarButtonTap(_ action: Action) {
+		guard let outcome = model.outcome(forBarButton: action) else { return }
+		handle(outcome: outcome)
 	}
 
 	/// `secretdjv3/FeedActionProvider.swift:319-324`'s deep-link-else-browser

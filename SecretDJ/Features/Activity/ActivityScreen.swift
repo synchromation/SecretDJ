@@ -1,6 +1,7 @@
 import DesignSystem
 import FeedUI
 import Observability
+import SecretDJDomain
 import SwiftUI
 
 /// Tab 2 (LEGACY.md "Tab 2 — Activity feed"): the "rabbit feed" of
@@ -61,6 +62,9 @@ struct ActivityScreen: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
 		.navigationTitle(Text("Activity", comment: "Navigation title of the Activity tab."))
+		.toolbar {
+			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
+		}
 		.tracksScreen("Activity")
 	}
 
@@ -70,6 +74,13 @@ struct ActivityScreen: View {
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
 		router.handle(outcome: outcome)
+	}
+
+	/// A server-driven nav-bar action button tap (S6.12) — routed through
+	/// this screen's own ``handle(outcome:)`` exactly like a cell tap.
+	private func handleBarButtonTap(_ action: Action) {
+		guard let outcome = model.outcome(forBarButton: action) else { return }
+		handle(outcome: outcome)
 	}
 
 	/// The legacy "jukebox changed" toast (`kJukeboxUpdatedText`), inherited

@@ -26,6 +26,19 @@ public struct FeedDisplayModel: Sendable {
 	/// Sections whose template this build doesn't recognize, preserved for
 	/// logging (see ``DroppedSection``).
 	public let droppedSections: [DroppedSection]
+	/// The section list's own nav-bar action buttons (`SectionList.actions`),
+	/// kept in the server's own order and filtered to the ones
+	/// `ActionBarButtonItem.init?`'s legacy guard would have rendered — a
+	/// recognized button icon (``ActionButton/isRenderable``) *and* a
+	/// recognized underlying action (``ActionKind/isRecognized``); an action
+	/// this build can't map to either becomes ``ActionButton/unsupported(_:)``/
+	/// ``ActionKind/unsupported(_:)`` and is dropped rather than rendered
+	/// blank, per the engine's unknown-kind rule. No UIKit-style reversal is
+	/// needed here — `rightBarButtonItems` lays its array out right-to-left,
+	/// which is why `ActionBarButtonProvider` reversed the server's order;
+	/// `ToolbarItemGroup` already lays its items out left-to-right in
+	/// declaration order, so the server's own order already reads correctly.
+	public let actionButtons: [Action]
 
 	/// Projects a fetched feed into render-ready sections, routing each of
 	/// `sectionList`'s sections to ``visibleSections``, ``hiddenSections``,
@@ -80,6 +93,7 @@ public struct FeedDisplayModel: Sendable {
 		visibleSections = visible
 		hiddenSections = hidden
 		droppedSections = dropped
+		actionButtons = sectionList.actions.filter { $0.button.isRenderable && $0.kind.isRecognized }
 	}
 
 	/// A section's server-derived id: its template and index, plus its own

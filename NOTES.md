@@ -606,3 +606,16 @@ work happens; every commit includes this file's delta.
   updateScreenName (TDD). Deliberate divergence recorded: outcomes
   toast rather than the pilot's silent pop. Twenty-six localized keys.
   Full verify green.
+- S6.12 done — stage S6 complete, the consumer app is functionally
+  complete (TDD, sonnet subagent; resumed once after a wait-stall):
+  server-driven toolbar buttons now render — FeedDisplayModel exposes
+  SectionList.actions filtered by legacy's double guard (renderable
+  button + recognized kind, mirrored from ActionBarButtonItem.init?),
+  FeedScreenModel republishes them on full loads only and exposes
+  outcome(forBarButton:); a ToolbarContent component maps
+  insertCoin/hailTaxi/launchSearch to Theme icons with localized
+  accessible labels and routes taps through each screen's existing
+  outcome handler, so hail-taxi breadcrumbs and side effects apply
+  unchanged. Wired on PlacesNearby/Venue/NowPlaying/Activity per
+  legacy's ActionBarButtonProvider usage. One new localized key.
+  Full verify green.

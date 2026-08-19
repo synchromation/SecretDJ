@@ -18,7 +18,22 @@ struct PreviewVenueLoading: FeedLoading {
 		PreviewVenueLoading(sectionList: SectionList(
 			hash: FeedHash(rawValue: "preview"),
 			sections: [venueDetailsSection(), socialsSection(), songSection()],
-			actions: [],
+			// Exercises the S6.12 nav-bar action buttons in the Loaded preview
+			// — all three recognized icons, since a venue screen is where
+			// legacy's search bar button (venue context) can appear alongside
+			// insert-coin/hail-taxi.
+			actions: [
+				Action(kind: .showTopup, itemId: nil, itemTypeId: nil, value: nil, url: nil, button: .insertCoin),
+				Action(
+					kind: .launchUberApp,
+					itemId: nil,
+					itemTypeId: nil,
+					value: nil,
+					url: "https://m.uber.com/ul/?action=setPickup",
+					button: .hailTaxi,
+				),
+				Action(kind: .launchSearch, itemId: nil, itemTypeId: nil, value: nil, url: nil, button: .launchSearch),
+			],
 		))
 	}
 

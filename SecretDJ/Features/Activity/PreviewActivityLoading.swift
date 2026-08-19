@@ -19,7 +19,11 @@ struct PreviewActivityLoading: FeedLoading {
 		PreviewActivityLoading(sectionList: SectionList(
 			hash: FeedHash(rawValue: "preview"),
 			sections: [rabbitFeedSection(), checkInSection(), awardSection()],
-			actions: [],
+			// Exercises the S6.12 insert-coin nav-bar action button in the
+			// Loaded preview.
+			actions: [
+				Action(kind: .showTopup, itemId: nil, itemTypeId: nil, value: nil, url: nil, button: .insertCoin),
+			],
 		))
 	}
 

@@ -30,7 +30,20 @@ struct PreviewPlacesNearbyLoading: FeedLoading {
 					],
 				),
 			],
-			actions: [],
+			// Exercises the S6.12 nav-bar action buttons in the Loaded preview
+			// — a `Button(nil)` (raw 0, LEGACY.md's "no button" sentinel) mixed
+			// in confirms the unrecognized one is silently dropped, not rendered.
+			actions: [
+				Action(kind: .showTopup, itemId: nil, itemTypeId: nil, value: nil, url: nil, button: .insertCoin),
+				Action(
+					kind: .unsupported(999),
+					itemId: nil,
+					itemTypeId: nil,
+					value: nil,
+					url: nil,
+					button: .unsupported(0),
+				),
+			],
 		))
 	}
 

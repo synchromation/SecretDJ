@@ -408,7 +408,7 @@ exclusions.
       map/call/SMS-share screen is deliberately not ported, cited in
       code. hailRide URLs, previously an unwired no-op, now open
       externally from every outcome-forwarding screen.)
-- [ ] S6.12 Server-driven nav-bar action buttons: render the toolbar
+- [x] S6.12 Server-driven nav-bar action buttons: render the toolbar
       buttons SectionList.actions carries (insert-coin, hail-taxi,
       search — LEGACY.md's ActionBarButtonProvider) on the feed screens;
       the router mapping already exists and is tested — only the
@@ -598,7 +598,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (only S6.12 remains) |
+| S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

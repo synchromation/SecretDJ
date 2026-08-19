@@ -48,6 +48,14 @@ public final class FeedScreenModel {
 	/// no such section; republished after every full load, same timing as
 	/// ``venueDetails``.
 	public private(set) var personDetails: Person?
+	/// The current feed's nav-bar action buttons
+	/// (``FeedDisplayModel/actionButtons``) — legacy's `ActionBarButtonProvider`
+	/// rendering (S6.12), republished after every full load (initial/pull-to-refresh/
+	/// auto-refresh), same timing as ``venueDetails``/``personDetails``; a
+	/// paginated page never updates this, matching `FeedInteractor.fetchFeed`
+	/// being the only caller of legacy's `show(sectionList:)` (`fetchNextFeedPage`
+	/// never is).
+	public private(set) var actionButtons: [Action] = []
 
 	private let loader: any FeedLoading
 	private let router: FeedActionRouter
@@ -123,6 +131,13 @@ public final class FeedScreenModel {
 		router.outcome(forTap: item, jukeboxList: jukeboxList)
 	}
 
+	/// Routes a tap on one of ``actionButtons`` to its ``FeedActionOutcome``
+	/// — the bar-button counterpart of ``outcome(forTap:)``
+	/// (`ActionBarButtonItem.buttonTapped()`).
+	public func outcome(forBarButton action: Action) -> FeedActionOutcome? {
+		router.outcome(forBarButton: action)
+	}
+
 	// MARK: - Loading
 
 	private func performFullLoad(resetsScrollPosition: Bool) async {
@@ -150,6 +165,7 @@ public final class FeedScreenModel {
 		jukeboxList = displayModel.jukeboxList
 		venueDetails = displayModel.venueDetails
 		personDetails = displayModel.profile
+		actionButtons = displayModel.actionButtons
 		nextPage = 1
 		hasMorePages = true
 		phase = displayModel.visibleSections.isEmpty ? .empty : .loaded

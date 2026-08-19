@@ -2,6 +2,7 @@ import DesignSystem
 import FeedUI
 import Observability
 import SecretDJAPI
+import SecretDJDomain
 import SwiftUI
 
 /// Tab 1 (LEGACY.md "Tab 1 — Places Nearby"): the nearby-venues feed over
@@ -93,6 +94,7 @@ struct PlacesNearbyScreen: View {
 					Button("Map", systemImage: Theme.Icon.map.systemName, action: openMap)
 				}
 			}
+			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
 		}
 		.navigationDestination(isPresented: $isShowingMap) {
 			VenueMapScreen(
@@ -148,6 +150,15 @@ struct PlacesNearbyScreen: View {
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
 		router.handle(outcome: outcome)
+	}
+
+	/// A server-driven nav-bar action button tap (S6.12) — routed through
+	/// the same ``FeedUI/FeedActionRouter`` mapping and ``handle(outcome:)``
+	/// every cell tap already uses, so hail-taxi's breadcrumb and every
+	/// other outcome-specific side effect apply unchanged.
+	private func handleBarButtonTap(_ action: Action) {
+		guard let outcome = model.outcome(forBarButton: action) else { return }
+		handle(outcome: outcome)
 	}
 
 	/// The legacy "jukebox changed" toast (`kJukeboxUpdatedText`) — purely

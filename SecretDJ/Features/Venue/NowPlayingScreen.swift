@@ -1,6 +1,7 @@
 import DesignSystem
 import FeedUI
 import Observability
+import SecretDJDomain
 import SwiftUI
 
 /// The venue's now-playing/play-history feed (`playhistory`, LEGACY.md
@@ -55,6 +56,9 @@ struct NowPlayingScreen: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
 		.navigationTitle(Text("Now Playing", comment: "Navigation title of the venue's now-playing screen."))
+		.toolbar {
+			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
+		}
 		.tracksScreen("NowPlaying")
 	}
 
@@ -64,6 +68,13 @@ struct NowPlayingScreen: View {
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
 		router.handle(outcome: outcome, venueId: venueId)
+	}
+
+	/// A server-driven nav-bar action button tap (S6.12) — routed through
+	/// this screen's own ``handle(outcome:)`` exactly like a cell tap.
+	private func handleBarButtonTap(_ action: Action) {
+		guard let outcome = model.outcome(forBarButton: action) else { return }
+		handle(outcome: outcome)
 	}
 
 	private func handleJukeboxChanged() {

@@ -354,7 +354,7 @@
       }
     },
     "Search": {
-      "comment": "Title of the coming-soon placeholder shown in place of the search screen.",
+      "comment": "Title of the coming-soon placeholder shown in place of the search screen; also the label of the search nav-bar action button on feed screens that carry venue context (LEGACY.md's server-driven ActionBarButtonProvider).",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -499,7 +499,7 @@
       }
     },
     "Top Up": {
-      "comment": "Title of the coming-soon placeholder shown in place of the credits top-up screen.",
+      "comment": "Title of the coming-soon placeholder shown in place of the credits top-up screen; also the label of the insert-coin nav-bar action button (LEGACY.md's server-driven ActionBarButtonProvider).",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -929,6 +929,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Wachtwoord vergeten?"
+          }
+        }
+      }
+    },
+    "Get a Taxi": {
+      "comment": "Label of the hail-taxi nav-bar action button, offered when the server detects a ride-hailing app installed (LEGACY.md's server-driven ActionBarButtonProvider).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Taxi rufen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pedir un taxi"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Appeler un taxi"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Taxi bestellen"
           }
         }
       }
