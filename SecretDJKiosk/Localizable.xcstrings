@@ -30,6 +30,64 @@
         }
       }
     },
+    "Downloading this venue's look" : {
+      "comment" : "Accessibility label for the kiosk's skin-download progress bar.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Design dieses Ortes wird heruntergeladen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Descargando el diseño de este lugar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Téléchargement de l'apparence de ce lieu"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Vormgeving van deze locatie wordt gedownload"
+          }
+        }
+      }
+    },
+    "Getting ready" : {
+      "comment" : "Heading shown while the kiosk downloads its venue's look after signing in.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wird vorbereitet"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Preparando todo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Préparation en cours"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Alles wordt klaargezet"
+          }
+        }
+      }
+    },
     "Reset Kiosk" : {
       "comment" : "Destructive confirm button on the staff reset dialog; signs the venue out and clears kiosk caches.",
       "localizations" : {
@@ -84,6 +142,35 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Deze kiosk resetten?"
+          }
+        }
+      }
+    },
+    "Setup didn't finish" : {
+      "comment" : "Title shown when the kiosk can't download its venue skin after signing in.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Einrichtung nicht abgeschlossen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La configuración no se completó"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "La configuration n'a pas abouti"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Instellen niet gelukt"
           }
         }
       }
@@ -175,6 +262,35 @@
         }
       }
     },
+    "Sorry, we couldn't download this venue's look. Check the connection and try again." : {
+      "comment" : "Body text under the kiosk skin-download failure title; a retry button follows.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, wir konnten das Design dieses Ortes nicht herunterladen. Bitte prüfe die Verbindung und versuche es erneut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lo sentimos, no hemos podido descargar el diseño de este lugar. Comprueba la conexión e inténtalo de nuevo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Désolé, nous n'avons pas pu télécharger l'apparence de ce lieu. Vérifie la connexion et réessaie."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, we konden de vormgeving van deze locatie niet downloaden. Controleer de verbinding en probeer het opnieuw."
+          }
+        }
+      }
+    },
     "Sorry, we couldn't sign you in.\n\nPlease check that you have a good connection to your cellular data or WiFi network." : {
       "comment" : "Error shown when kiosk venue sign-in fails before reaching the server (offline, timeout).",
       "localizations" : {
@@ -229,6 +345,35 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Hierdoor wordt de locatie uitgelogd en wordt alles wat op dit apparaat is opgeslagen, gewist. Je moet opnieuw inloggen."
+          }
+        }
+      }
+    },
+    "Try Again" : {
+      "comment" : "Retry button on the kiosk skin-download failure screen.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Erneut versuchen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Inténtalo de nuevo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Réessayer"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Opnieuw proberen"
           }
         }
       }

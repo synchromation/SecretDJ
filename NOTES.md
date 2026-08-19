@@ -635,3 +635,17 @@ work happens; every commit includes this file's delta.
   cache clears (URLCache now; a documented seam for S7.2's skin
   assets) → back to sign-in, no exit(0). Twelve localized kiosk keys.
   Full verify green.
+- S7.2 done (TDD, sonnet subagent, direct; 566 app tests): the skin
+  system — SkinModel over loading/asset-download/store seams (bounded
+  4-way concurrent asset fetch with observable progress; cache-hit
+  relaunches skip the network; any failure blocks kiosk entry behind a
+  retry-only surface per legacy; the skin store registers with the
+  staff reset). KioskBehavioralConfig derives attractURL + 10s
+  attract/idle defaults cited to legacy's KioskAppConfig — S7.3's
+  contract. Chrome per D10: KioskSkin resolves manifest colors with a
+  runtime WCAG 4.5:1 check on the toast pairing — a failing or
+  unparsable server color drops BOTH colors of the pair back to
+  Theme's sanctioned tokens together, and ResolvedSkinColor carries
+  provenance so tests assert the fallback. New #AARRGGBB parser
+  alongside DesignSystem's 6-digit one. Five localized kiosk keys.
+  Full verify green.

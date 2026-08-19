@@ -433,7 +433,7 @@ landscape with attract mode; shares S1–S3 + SharedFeatures wholesale.
       legacy `?RESTART?` search incantation — clears session, skin, and
       caches and returns to sign-in without exit(0) (trigger mechanism is
       a small product decision, part of D10's conversation).
-- [ ] S7.2 Skin system (D10): typed skin manifest over `skinresources`
+- [x] S7.2 Skin system (D10): typed skin manifest over `skinresources`
       replacing the legacy magic numeric ids; post-login download with
       progress and blocking retry-on-failure; skin-driven chrome/toast
       colors reconciled with DesignSystem theming; behavioral config
@@ -599,7 +599,7 @@ what it blocks.
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
-| S7 Kiosk app | in progress (S7.1 done) |
+| S7 Kiosk app | in progress (S7.1, S7.2 done) |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
 
