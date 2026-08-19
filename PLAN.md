@@ -334,11 +334,11 @@ Goal: the consumer app's skeleton on the new stack. Exit: three-tab
 structure (Places Nearby, Activity, Profile) navigates, composition root
 wires packages, login gating from S4 works end to end.
 
-- [ ] S5.1 Composition root: dependency construction, environment wiring,
+- [x] S5.1 Composition root: dependency construction, environment wiring,
       Observability `.live` pipeline, screen tracking on every root.
-- [ ] S5.2 Tab scaffold + navigation model (NavigationStack per tab, deep
+- [x] S5.2 Tab scaffold + navigation model (NavigationStack per tab, deep
       navigation from feed actions via the S3.3 handler).
-- [ ] S5.3 Location services: modern one-shot + when-in-use flow feeding
+- [x] S5.3 Location services: modern one-shot + when-in-use flow feeding
       the API's implicit location parameters; permission-denied surface
       (the legacy full-screen overlay, re-designed) with Settings link.
 
@@ -579,7 +579,7 @@ what it blocks.
 | S2 Design system | **done** |
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
-| S5 Consumer shell | not started |
+| S5 Consumer shell | **done** |
 | S6 Consumer features | not started |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |

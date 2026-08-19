@@ -267,7 +267,7 @@
       }
     },
     "Open Settings": {
-      "comment": "Alert button on the onboarding photo step that deep-links to the app's Settings page when camera access is denied.",
+      "comment": "Button that deep-links to the app's Settings page when a required permission is denied (the onboarding photo step's camera-permission alert; LocationPermissionDeniedView).",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -2379,6 +2379,64 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Sorry, we konden je niet met Facebook aanmelden.\n\nProbeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Location Access Needed": {
+      "comment": "Title shown full-screen wherever the app needs location and access is denied or restricted.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Standortzugriff erforderlich"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se necesita acceso a la ubicación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Accès à la position requis"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Locatietoegang nodig"
+          }
+        }
+      }
+    },
+    "To find venues near you, allow Secret DJ to use your location in Settings.": {
+      "comment": "Body shown full-screen wherever the app needs location and access is denied or restricted.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Um Orte in deiner Nähe zu finden, erlaube Secret DJ den Standortzugriff in den Einstellungen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Para encontrar lugares cerca de ti, permite que Secret DJ use tu ubicación desde Ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pour trouver des lieux près de toi, autorise Secret DJ à utiliser ta position dans les Réglages."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Om plekken in de buurt te vinden, geef Secret DJ toegang tot je locatie via Instellingen."
           }
         }
       }

@@ -11,6 +11,7 @@ import SwiftUI
 struct RootView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
+	let locationService: LocationService
 	let observability: ObservabilityPipeline
 
 	@State private var appleAuthorizing = ASAuthorizationControllerAppleAuthorizing()
@@ -38,7 +39,12 @@ struct RootView: View {
 			// `AccountFlowView`'s doc comment for why.
 			AccountFlowView(model: accountModel, onFinished: { self.accountModel = nil })
 		} else if sessionStore.isSignedIn {
-			TabsView(sessionStore: sessionStore, onDeleteAccount: startAccountDeletion, observability: observability)
+			TabsView(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				onDeleteAccount: startAccountDeletion,
+				observability: observability,
+			)
 		} else {
 			LoginFlow(
 				authService: APIClientAuthenticationService(client: apiClient),

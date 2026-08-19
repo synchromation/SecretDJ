@@ -13,20 +13,39 @@ struct SecretDJApp: App {
 		snapshotStore: UserDefaultsSessionSnapshotStore(),
 		credentialStore: KeychainCredentialStore(),
 	)
+	/// Created in ``init()`` alongside ``apiClient`` so both share the same
+	/// ``LocationCoordinateBox`` (S5.3) — the coordinate ``LocationService``
+	/// resolves is the same one `apiClient` appends to every request.
+	@State private var locationService: LocationService
 
-	private let apiClient = APIClient(
-		configuration: .live,
-		implicitParameters: DeviceImplicitParameterProvider(),
-		transport: URLSessionAPITransport(),
-	)
+	private let apiClient: APIClient
+
+	init() {
+		let coordinateBox = LocationCoordinateBox()
+		_locationService = State(initialValue: LocationService(
+			provider: CLLocationManagerLocationProviding(),
+			coordinateBox: coordinateBox,
+			observability: .live,
+		))
+		apiClient = APIClient(
+			configuration: .live,
+			implicitParameters: DeviceImplicitParameterProvider(coordinateBox: coordinateBox),
+			transport: URLSessionAPITransport(),
+		)
+	}
 
 	var body: some Scene {
 		WindowGroup {
-			RootView(sessionStore: sessionStore, apiClient: apiClient, observability: .live)
-				.environment(\.observability, .live)
-				.onOpenURL { url in
-					_ = appDelegate.application(UIApplication.shared, open: url)
-				}
+			RootView(
+				sessionStore: sessionStore,
+				apiClient: apiClient,
+				locationService: locationService,
+				observability: .live,
+			)
+			.environment(\.observability, .live)
+			.onOpenURL { url in
+				_ = appDelegate.application(UIApplication.shared, open: url)
+			}
 		}
 	}
 }

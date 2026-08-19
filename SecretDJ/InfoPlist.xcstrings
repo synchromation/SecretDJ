@@ -58,6 +58,35 @@
           }
         }
       }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "comment": "Location-when-in-use permission prompt, shown the first time a screen that needs the user's location (Places Nearby) requests authorization.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ braucht deinen Standort, um Orte in deiner Nähe zu finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ necesita tu ubicación para encontrar lugares cerca de ti."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ a besoin de ta position pour trouver des lieux près de toi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Secret DJ heeft je locatie nodig om plekken in de buurt te vinden."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

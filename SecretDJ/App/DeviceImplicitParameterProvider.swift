@@ -2,13 +2,17 @@ import Foundation
 import SecretDJAPI
 
 /// The composition root's ``ImplicitParameterProviding``: supplies the
-/// request-time values every API call needs. Location and installed-app
-/// detection arrive with the features that need them
+/// request-time values every API call needs. Location comes from
+/// ``LocationCoordinateBox`` — the thread-safe bridge from
+/// ``LocationService``'s `@MainActor` state to this nonisolated read
+/// (S5.3). Installed-app detection arrives with the feature that needs it
 /// (``InstalledAppsMask``'s doc comment) — until then this always reports
-/// no fix and no installed apps.
+/// no installed apps.
 struct DeviceImplicitParameterProvider: ImplicitParameterProviding {
+	let coordinateBox: LocationCoordinateBox
+
 	var location: APICoordinate? {
-		nil
+		coordinateBox.current
 	}
 
 	var installedApps: InstalledAppsMask {

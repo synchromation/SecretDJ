@@ -432,3 +432,25 @@ work happens; every commit includes this file's delta.
   layer was written tests-with-implementation rather than strictly
   red-first. Live FB smoke pending real Meta credentials. Full verify
   green.
+- S5.1+S5.2 done (TDD, sonnet subagent, direct): the real three-tab
+  consumer shell — TabView with per-tab NavigationStacks over
+  @Observable TabRouters, a typed AppDestination vocabulary mapped
+  failably from FeedActionOutcome (side-effect outcomes deliberately
+  return nil — S6's job), TabsModel with the legacy cross-tab
+  show(tab:) affordance, tab roots screen-tracked and switches
+  breadcrumbed; Profile tab absorbed sign-out/delete-account entry.
+  Eleven localized keys; ComingSoon destination screens keep
+  navigation exercisable until S6 lands real screens.
+- S5.3 done — stage S5 complete (TDD, sonnet subagent, direct):
+  LocationService (@Observable, implementing FeedUI's
+  GPSFixAgeProviding with a first-fix-only timestamp) over a
+  CoreLocation-free LocationProviding seam; a Mutex-backed
+  nonisolated LocationCoordinateBox bridges MainActor state to
+  SecretDJAPI's synchronous implicit-parameter read (explicit
+  nonisolated needed under default MainActor isolation — caught by
+  verify); permission-denied surface wired into Places Nearby with
+  foreground re-check; localized when-in-use usage description.
+  Coordinates never reach diagnostics. The agent mutation-tested its
+  guards (six deliberate reverts, six matching failures) and caught
+  its own vacuous ARC-deallocated instrumentation test. Full verify
+  green.

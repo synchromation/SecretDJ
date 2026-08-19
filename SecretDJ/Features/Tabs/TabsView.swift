@@ -11,6 +11,7 @@ import SwiftUI
 /// already wired here.
 struct TabsView: View {
 	let sessionStore: SessionStore
+	let locationService: LocationService
 	/// Starts the ``AccountFlowView`` delete-account flow, forwarded to the
 	/// Profile tab — owned by `RootView`, see its doc comment for why.
 	let onDeleteAccount: () -> Void
@@ -19,10 +20,12 @@ struct TabsView: View {
 
 	init(
 		sessionStore: SessionStore,
+		locationService: LocationService,
 		onDeleteAccount: @escaping () -> Void,
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.sessionStore = sessionStore
+		self.locationService = locationService
 		self.onDeleteAccount = onDeleteAccount
 		_model = State(initialValue: TabsModel(observability: observability))
 	}
@@ -31,7 +34,7 @@ struct TabsView: View {
 		TabView(selection: selectedTab) {
 			Tab("Places Nearby", systemImage: Theme.Icon.venue.systemName, value: AppTab.placesNearby) {
 				tabStack(for: .placesNearby) {
-					PlacesNearbyPlaceholderScreen()
+					PlacesNearbyPlaceholderScreen(locationService: locationService)
 				}
 			}
 
@@ -75,10 +78,18 @@ struct TabsView: View {
 }
 
 #Preview("Signed in") {
-	TabsView(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
+	TabsView(
+		sessionStore: PreviewSessionStore.signedIn(),
+		locationService: PreviewLocationService.authorized(),
+		onDeleteAccount: {},
+	)
 }
 
 #Preview("Accessibility text size") {
-	TabsView(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
-		.environment(\.dynamicTypeSize, .accessibility5)
+	TabsView(
+		sessionStore: PreviewSessionStore.signedIn(),
+		locationService: PreviewLocationService.authorized(),
+		onDeleteAccount: {},
+	)
+	.environment(\.dynamicTypeSize, .accessibility5)
 }
