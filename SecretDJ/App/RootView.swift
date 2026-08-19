@@ -17,14 +17,19 @@ struct RootView: View {
 	@State private var appleAuthorizing = ASAuthorizationControllerAppleAuthorizing()
 	@State private var appleUsernameModel: AppleUsernameModel?
 	@State private var onboardingModel: OnboardingModel?
+	@State private var accountModel: AccountModel?
 
 	var body: some View {
 		if let appleUsernameModel {
 			AppleUsernameView(model: appleUsernameModel, onComplete: finishAppleUsernameStep)
 		} else if let onboardingModel {
 			OnboardingFlowView(model: onboardingModel, onFinished: { self.onboardingModel = nil })
+		} else if let accountModel {
+			// Shown in place of `SignedInPlaceholderView`, not as a sheet on
+			// top of it — see `AccountFlowView`'s doc comment for why.
+			AccountFlowView(model: accountModel, onFinished: { self.accountModel = nil })
 		} else if sessionStore.isSignedIn {
-			SignedInPlaceholderView(sessionStore: sessionStore)
+			SignedInPlaceholderView(sessionStore: sessionStore, onDeleteAccount: startAccountDeletion)
 		} else {
 			LoginFlow(
 				authService: APIClientAuthenticationService(client: apiClient),
@@ -67,6 +72,20 @@ struct RootView: View {
 			personId: user.personId,
 			credential: credential,
 			onboardingService: APIClientOnboardingService(client: apiClient),
+			sessionStore: sessionStore,
+			observability: observability,
+		)
+	}
+
+	private func startAccountDeletion() {
+		guard let user = sessionStore.user, let credential = sessionStore.credential else {
+			return
+		}
+
+		accountModel = AccountModel(
+			personId: user.personId,
+			credential: credential,
+			accountService: APIClientAccountService(client: apiClient),
 			sessionStore: sessionStore,
 			observability: observability,
 		)

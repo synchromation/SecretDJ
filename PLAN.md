@@ -320,7 +320,7 @@ flows accessible and localized.
       permissions with localized usage strings). (Native route folds
       gender into S4.2's details form, so its remaining step is photo;
       apple/facebook route tables are modeled and await S4.3/S4.4.)
-- [ ] S4.6 Account management: sign out, delete account (server flow +
+- [x] S4.6 Account management: sign out, delete account (server flow +
       local wipe; no exit(0) gates — a sane blocked-state screen).
 
 ## S5 — Consumer app shell

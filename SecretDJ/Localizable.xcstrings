@@ -1715,6 +1715,296 @@
           }
         }
       }
+    },
+    "Sign Out?": {
+      "comment": "Title of the confirmation dialog shown before signing out, from the Sign Out button on the signed-in placeholder screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abmelden?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Cerrar sesión?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se déconnecter ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uitloggen?"
+          }
+        }
+      }
+    },
+    "Delete Account": {
+      "comment": "Title Case label reused for: the entry point to account deletion on the signed-in placeholder screen, the delete-account screen's title, and the destructive confirm button in its confirmation dialog.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Konto löschen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Eliminar cuenta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Supprimer le compte"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Account verwijderen"
+          }
+        }
+      }
+    },
+    "Delete Account?": {
+      "comment": "Title of the destructive confirmation dialog shown after tapping Delete Account, before requestdeleteaccount is called.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Konto löschen?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Eliminar cuenta?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Supprimer le compte ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Account verwijderen?"
+          }
+        }
+      }
+    },
+    "This can't be undone.": {
+      "comment": "Message under the delete-account confirmation dialog's title, reinforcing that the action is irreversible.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Das kann nicht rückgängig gemacht werden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esto no se puede deshacer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cette action est irréversible."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dit kan niet ongedaan worden gemaakt."
+          }
+        }
+      }
+    },
+    "DELETE ACCOUNT": {
+      "comment": "All-caps primary button on the delete-account screen that opens the destructive confirmation dialog.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "KONTO LÖSCHEN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ELIMINAR CUENTA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SUPPRIMER LE COMPTE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ACCOUNT VERWIJDEREN"
+          }
+        }
+      }
+    },
+    "DELETING YOUR ACCOUNT...": {
+      "comment": "All-caps in-progress state of the delete-account screen's primary button, shown while requestdeleteaccount is in flight.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "KONTO WIRD GELÖSCHT..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ELIMINANDO TU CUENTA..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SUPPRESSION DE TON COMPTE..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ACCOUNT WORDT VERWIJDERD..."
+          }
+        }
+      }
+    },
+    "Deleting your account asks us to permanently remove your profile, your credits, and your activity. Once you confirm this, we can't undo it from the app — you won't be able to sign back in with this account.": {
+      "comment": "Full explanation on the delete-account screen of what deletion means, shown above the destructive confirm button — deliberately longer than usual per the tone guide's irreversible-consequence exception.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wenn du dein Konto löschst, bittest du uns, dein Profil, deine Guthaben und deine Aktivitäten dauerhaft zu entfernen. Sobald du das bestätigst, können wir das in der App nicht mehr rückgängig machen — du kannst dich mit diesem Konto nicht mehr anmelden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Al eliminar tu cuenta, nos pides que eliminemos permanentemente tu perfil, tus créditos y tu actividad. Una vez que confirmes esto, no podremos deshacerlo desde la aplicación: no podrás volver a iniciar sesión con esta cuenta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En supprimant ton compte, tu nous demandes de supprimer définitivement ton profil, tes crédits et ton activité. Une fois que tu auras confirmé, nous ne pourrons pas annuler cela depuis l'application : tu ne pourras plus te reconnecter avec ce compte."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Als je je account verwijdert, vraag je ons om je profiel, je tegoeden en je activiteit permanent te verwijderen. Zodra je dit bevestigt, kunnen we dit niet meer ongedaan maken in de app — je kunt niet meer inloggen met dit account."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't request that.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Error shown when requesting account deletion fails, including before reaching the server.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Leider konnten wir das nicht anfordern.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido enviar esa solicitud.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu envoyer cette demande.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dat konden we niet aanvragen.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Deletion Requested": {
+      "comment": "Title of the calm terminal screen shown after requestdeleteaccount succeeds and the local session has been wiped.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Löschung angefragt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Eliminación solicitada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suppression demandée"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Verwijdering aangevraagd"
+          }
+        }
+      }
+    },
+    "We've received your request and we're processing it. You've been signed out of this device, and there's nothing more for you to do here.": {
+      "comment": "Body copy on the calm terminal screen shown after account deletion is requested, explaining what happens next.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wir haben deine Anfrage erhalten und bearbeiten sie. Du wurdest auf diesem Gerät abgemeldet — hier gibt es für dich nichts weiter zu tun."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hemos recibido tu solicitud y la estamos procesando. Se ha cerrado tu sesión en este dispositivo — no tienes que hacer nada más aquí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nous avons bien reçu ta demande et nous la traitons. Tu as été déconnecté de cet appareil — il n'y a rien de plus à faire ici."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "We hebben je aanvraag ontvangen en verwerken deze. Je bent uitgelogd op dit apparaat — er is hier verder niets meer te doen."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

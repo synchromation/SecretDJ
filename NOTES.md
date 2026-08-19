@@ -396,3 +396,16 @@ work happens; every commit includes this file's delta.
   for the delegation ladder: nested sub-orchestration caused the
   stalls and a mid-flight write race; direct single-agent completion
   briefs work better for assembly tasks.
+- S4.6 done (TDD, sonnet subagent, direct/no-subagents): Features/
+  Account — two-step sober deletion flow (explanation screen + native
+  destructive confirmation) over an AccountServicing seam, sign-out
+  wiping both stores on success, and a calm deletion-requested
+  terminal screen replacing legacy's blocking-alert + exit(0). No
+  client-side blocked flag persisted (the legacy trap's rationale
+  cited in doc comments; the server owns the account's fate). Flow
+  presented from RootView above the signed-in gate — a sheet would be
+  torn down the instant sign-out flips the gate. Sign-out kept
+  model-less per the scope rule (one call + breadcrumb). 10 localized
+  keys (German uses "Leider" per the sober-context tone rule);
+  requestdeleteaccount fake-tested only, never smoked. Consumer suite
+  163 tests; full verify green.
