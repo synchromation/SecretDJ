@@ -1,6 +1,35 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "NSUserTrackingUsageDescription": {
+      "comment": "App Tracking Transparency prompt, shown when the user first attempts Facebook sign-in or taps \"use my Facebook photo\" (S4.4) — the only two features that touch the Facebook SDK. Candid about what the app itself does vs. what Facebook might do, per LEGACY.md's original phrasing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wir verfolgen dich nicht, aber wenn du dich mit Facebook anmeldest, könnten die das tun."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nosotros no te rastreamos, pero si inicias sesión con Facebook, puede que ellos sí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nous ne te suivons pas, mais si tu te connectes avec Facebook, eux pourraient le faire."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wij volgen jou niet, maar als je inlogt met Facebook, doen zij dat misschien wel."
+          }
+        }
+      }
+    },
     "NSCameraUsageDescription": {
       "comment": "Camera permission prompt, shown when the onboarding photo step's camera capture button is first tapped.",
       "localizations": {

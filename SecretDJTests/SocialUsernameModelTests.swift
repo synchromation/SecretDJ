@@ -5,7 +5,7 @@ import Testing
 @testable import SecretDJ
 
 @MainActor
-enum AppleUsernameModelTests {
+enum SocialUsernameModelTests {
 	private static func makeSessionStore() -> SessionStore {
 		let store = SessionStore(
 			snapshotStore: InMemorySessionSnapshotStore(),
@@ -20,11 +20,11 @@ enum AppleUsernameModelTests {
 	}
 
 	private static func makeModel(
-		usernameService: InMemoryAppleUsernameService = InMemoryAppleUsernameService(),
+		usernameService: InMemorySocialUsernameService = InMemorySocialUsernameService(),
 		sessionStore: SessionStore? = nil,
 		observability: ObservabilityPipeline = .disabled,
-	) -> AppleUsernameModel {
-		AppleUsernameModel(
+	) -> SocialUsernameModel {
+		SocialUsernameModel(
 			personId: "9",
 			credential: APICredential(token: "tok", passwordHash: "hash"),
 			usernameService: usernameService,
@@ -35,7 +35,7 @@ enum AppleUsernameModelTests {
 
 	struct `Starting up` {
 		@Test func `starts with an empty screen name, unable to submit, and no error`() {
-			let model = AppleUsernameModelTests.makeModel()
+			let model = SocialUsernameModelTests.makeModel()
 
 			#expect(model.screenName.isEmpty)
 			#expect(model.canSubmit == false)
@@ -46,7 +46,7 @@ enum AppleUsernameModelTests {
 
 	struct `Validating the screen name` {
 		@Test func `canSubmit becomes true once a valid screen name is set`() {
-			let model = AppleUsernameModelTests.makeModel()
+			let model = SocialUsernameModelTests.makeModel()
 
 			model.updateScreenName("TurboTim")
 
@@ -54,7 +54,7 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `canSubmit stays false for a screen name that's too short`() {
-			let model = AppleUsernameModelTests.makeModel()
+			let model = SocialUsernameModelTests.makeModel()
 
 			model.updateScreenName("Tim")
 
@@ -62,7 +62,7 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `canSubmit stays false for an empty screen name`() {
-			let model = AppleUsernameModelTests.makeModel()
+			let model = SocialUsernameModelTests.makeModel()
 
 			#expect(model.canSubmit == false)
 		}
@@ -70,8 +70,8 @@ enum AppleUsernameModelTests {
 
 	struct Submitting {
 		@Test func `does nothing when the screen name is invalid, but records the submit attempt`() async {
-			let service = InMemoryAppleUsernameService()
-			let model = AppleUsernameModelTests.makeModel(usernameService: service)
+			let service = InMemorySocialUsernameService()
+			let model = SocialUsernameModelTests.makeModel(usernameService: service)
 
 			await model.submit()
 
@@ -81,14 +81,14 @@ enum AppleUsernameModelTests {
 
 		@Test func `calls setScreenName with the right userId, screenName, and credential, and completes on success`(
 		) async {
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .success(ScreenNameUpdateOutcome(
 					succeeded: true,
 					message: nil,
 					rotatedToken: nil,
 				)),
 			)
-			let model = AppleUsernameModelTests.makeModel(usernameService: service)
+			let model = SocialUsernameModelTests.makeModel(usernameService: service)
 			model.updateScreenName("TurboTim")
 
 			await model.submit()
@@ -102,14 +102,14 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `surfaces the server's message on a failed outcome and does not complete`() async {
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .success(ScreenNameUpdateOutcome(
 					succeeded: false,
 					message: "That screen name is taken.",
 					rotatedToken: nil,
 				)),
 			)
-			let model = AppleUsernameModelTests.makeModel(usernameService: service)
+			let model = SocialUsernameModelTests.makeModel(usernameService: service)
 			model.updateScreenName("TurboTim")
 
 			await model.submit()
@@ -119,10 +119,10 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `surfaces the server's message on a thrown server error`() async {
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .failure(.server(message: "That screen name is taken.")),
 			)
-			let model = AppleUsernameModelTests.makeModel(usernameService: service)
+			let model = SocialUsernameModelTests.makeModel(usernameService: service)
 			model.updateScreenName("TurboTim")
 
 			await model.submit()
@@ -132,8 +132,8 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `surfaces a fallback message on a thrown connection error`() async {
-			let service = InMemoryAppleUsernameService(setScreenNameResult: .failure(.connection))
-			let model = AppleUsernameModelTests.makeModel(usernameService: service)
+			let service = InMemorySocialUsernameService(setScreenNameResult: .failure(.connection))
+			let model = SocialUsernameModelTests.makeModel(usernameService: service)
 			model.updateScreenName("TurboTim")
 
 			await model.submit()
@@ -143,15 +143,15 @@ enum AppleUsernameModelTests {
 		}
 
 		@Test func `rotates the session's token when the outcome carries one`() async {
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .success(ScreenNameUpdateOutcome(
 					succeeded: true,
 					message: nil,
 					rotatedToken: "new-tok",
 				)),
 			)
-			let sessionStore = AppleUsernameModelTests.makeSessionStore()
-			let model = AppleUsernameModelTests.makeModel(usernameService: service, sessionStore: sessionStore)
+			let sessionStore = SocialUsernameModelTests.makeSessionStore()
+			let model = SocialUsernameModelTests.makeModel(usernameService: service, sessionStore: sessionStore)
 			model.updateScreenName("TurboTim")
 
 			await model.submit()
@@ -161,16 +161,16 @@ enum AppleUsernameModelTests {
 	}
 
 	struct Instrumentation {
-		@Test func `a successful submit leaves a setAppleScreenName interaction breadcrumb`() async {
+		@Test func `a successful submit leaves a setSocialScreenName interaction breadcrumb`() async {
 			let recorder = RecordingDestination()
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .success(ScreenNameUpdateOutcome(
 					succeeded: true,
 					message: nil,
 					rotatedToken: nil,
 				)),
 			)
-			let model = AppleUsernameModelTests.makeModel(
+			let model = SocialUsernameModelTests.makeModel(
 				usernameService: service,
 				observability: ObservabilityPipeline(destinations: [recorder]),
 			)
@@ -178,15 +178,15 @@ enum AppleUsernameModelTests {
 
 			await model.submit()
 
-			#expect(recorder.breadcrumbs.contains(.interaction(description: "setAppleScreenName")))
+			#expect(recorder.breadcrumbs.contains(.interaction(description: "setSocialScreenName")))
 		}
 
 		@Test func `a failed submit is reported, without leaking the screen name into diagnostic messages`() async {
 			let recorder = RecordingDestination()
-			let service = InMemoryAppleUsernameService(
+			let service = InMemorySocialUsernameService(
 				setScreenNameResult: .failure(.server(message: "That screen name is taken.")),
 			)
-			let model = AppleUsernameModelTests.makeModel(
+			let model = SocialUsernameModelTests.makeModel(
 				usernameService: service,
 				observability: ObservabilityPipeline(destinations: [recorder]),
 			)

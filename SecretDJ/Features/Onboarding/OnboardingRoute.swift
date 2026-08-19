@@ -11,12 +11,13 @@ enum OnboardingRoute: Equatable {
 	/// `createuser`, so the only step left here is the photo.
 	case native
 	/// Sign-in with Apple. The native details form was never shown, so
-	/// gender still needs collecting before the photo — unreachable until
-	/// S4.3 builds the Apple sign-in screen that constructs this case.
+	/// gender still needs collecting before the photo. Constructed by
+	/// `RootView` once `AppleSignInModel` and the shared
+	/// `SocialUsernameModel` step have both run.
 	case apple
 	/// Sign-in with Facebook, which never collects gender at all — only the
-	/// photo is left. Unreachable until S4.4 builds the Facebook sign-in
-	/// screen that constructs this case.
+	/// photo is left. Constructed by `RootView` once `FacebookSignInModel`
+	/// and the shared `SocialUsernameModel` step have both run.
 	case facebook
 
 	/// The steps this route still needs, in display order.

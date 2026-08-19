@@ -52,7 +52,7 @@ enum AppleSignInModelTests {
 		issuedCredential: String? = "issued-credential",
 		rotatedToken: String? = "tok",
 	) -> InMemoryAuthenticationService {
-		InMemoryAuthenticationService(appleSignInResult: .success(AppleAuthenticatedSession(
+		InMemoryAuthenticationService(appleSignInResult: .success(SocialAuthenticatedSession(
 			personId: "41",
 			screenName: "TurboTim",
 			created: created,

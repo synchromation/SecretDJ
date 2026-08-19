@@ -1,13 +1,14 @@
+import SecretDJDomain
 import Testing
 
 @testable import SecretDJ
 
 @MainActor
-enum InMemoryAuthenticationServiceAppleSignInTests {
-	struct `Apple sign-in` {
+enum InMemoryAuthenticationServiceFacebookSignInTests {
+	struct `Facebook sign-in` {
 		@Test func `records the full invocation`() async throws {
 			let service = InMemoryAuthenticationService(
-				appleSignInResult: .success(SocialAuthenticatedSession(
+				facebookSignInResult: .success(SocialAuthenticatedSession(
 					personId: "41",
 					screenName: "TurboTim",
 					created: true,
@@ -16,17 +17,21 @@ enum InMemoryAuthenticationServiceAppleSignInTests {
 				)),
 			)
 
-			_ = try await service.appleSignIn(
-				appleUserId: "apple-user-id",
+			_ = try await service.facebookSignIn(
+				facebookUserId: "facebook-user-id",
+				accessToken: "fb-token",
 				auth: "auth-digest",
+				gender: .female,
 				firstName: "Turbo",
 				lastName: "Tim",
 				email: "turbo@example.com",
 			)
 
-			let invocation = try #require(service.appleSignInInvocations.first)
-			#expect(invocation.appleUserId == "apple-user-id")
+			let invocation = try #require(service.facebookSignInInvocations.first)
+			#expect(invocation.facebookUserId == "facebook-user-id")
+			#expect(invocation.accessToken == "fb-token")
 			#expect(invocation.auth == "auth-digest")
+			#expect(invocation.gender == .female)
 			#expect(invocation.firstName == "Turbo")
 			#expect(invocation.lastName == "Tim")
 			#expect(invocation.email == "turbo@example.com")
@@ -40,11 +45,13 @@ enum InMemoryAuthenticationServiceAppleSignInTests {
 				issuedCredential: "issued-credential",
 				rotatedToken: "tok",
 			)
-			let service = InMemoryAuthenticationService(appleSignInResult: .success(session))
+			let service = InMemoryAuthenticationService(facebookSignInResult: .success(session))
 
-			let result = try await service.appleSignIn(
-				appleUserId: "apple-user-id",
+			let result = try await service.facebookSignIn(
+				facebookUserId: "facebook-user-id",
+				accessToken: "fb-token",
 				auth: "auth-digest",
+				gender: nil,
 				firstName: nil,
 				lastName: nil,
 				email: nil,
@@ -54,12 +61,14 @@ enum InMemoryAuthenticationServiceAppleSignInTests {
 		}
 
 		@Test func `throws the scripted failure value`() async {
-			let service = InMemoryAuthenticationService(appleSignInResult: .failure(.server(message: "Nope.")))
+			let service = InMemoryAuthenticationService(facebookSignInResult: .failure(.server(message: "Nope.")))
 
 			await #expect(throws: AuthenticationError.server(message: "Nope.")) {
-				try await service.appleSignIn(
-					appleUserId: "apple-user-id",
+				try await service.facebookSignIn(
+					facebookUserId: "facebook-user-id",
+					accessToken: "fb-token",
 					auth: "auth-digest",
+					gender: nil,
 					firstName: nil,
 					lastName: nil,
 					email: nil,

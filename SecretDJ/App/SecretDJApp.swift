@@ -7,6 +7,8 @@ import UIKit
 
 @main
 struct SecretDJApp: App {
+	@UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+
 	@State private var sessionStore = SessionStore(
 		snapshotStore: UserDefaultsSessionSnapshotStore(),
 		credentialStore: KeychainCredentialStore(),
@@ -22,6 +24,9 @@ struct SecretDJApp: App {
 		WindowGroup {
 			RootView(sessionStore: sessionStore, apiClient: apiClient, observability: .live)
 				.environment(\.observability, .live)
+				.onOpenURL { url in
+					_ = appDelegate.application(UIApplication.shared, open: url)
+				}
 		}
 	}
 }

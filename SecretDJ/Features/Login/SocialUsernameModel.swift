@@ -3,19 +3,20 @@ import Observability
 import Observation
 import SecretDJAPI
 
-/// Drives the Apple sign-up route's post-signup username step — the
-/// screen-name-only form that runs before onboarding's gender/photo steps
-/// and isn't ``OnboardingModel``'s job (see ``OnboardingRoute``'s doc
-/// comment). Constructed only once ``AppleSignInModel`` has already created
-/// and signed in the account, so, like ``OnboardingModel``, it never needs
-/// to handle "not signed in mid-flow".
+/// Drives the post-signup username step shared by the Apple and Facebook
+/// sign-up routes — the screen-name-only form that runs before onboarding's
+/// remaining steps and isn't ``OnboardingModel``'s job (see
+/// ``OnboardingRoute``'s doc comment). Constructed only once
+/// ``AppleSignInModel``/``FacebookSignInModel`` has already created and
+/// signed in the account, so, like ``OnboardingModel``, it never needs to
+/// handle "not signed in mid-flow".
 ///
 /// `credential` is captured at init, not re-read live from
 /// ``SessionStore``, and kept in step with it locally via
 /// ``SecretDJAPI/SessionStore/rotateToken(_:)`` whenever a call returns a
 /// fresh token (see ``OnboardingModel``'s doc comment for why).
 @Observable
-final class AppleUsernameModel {
+final class SocialUsernameModel {
 	private(set) var screenName = ""
 	private(set) var isSubmitting = false
 	private(set) var errorMessage: String?
@@ -29,14 +30,14 @@ final class AppleUsernameModel {
 
 	private let personId: String
 	private var credential: APICredential
-	private let usernameService: any AppleUsernameServicing
+	private let usernameService: any SocialUsernameServicing
 	private let sessionStore: SessionStore
 	private let observability: ObservabilityPipeline
 
 	init(
 		personId: String,
 		credential: APICredential,
-		usernameService: any AppleUsernameServicing,
+		usernameService: any SocialUsernameServicing,
 		sessionStore: SessionStore,
 		observability: ObservabilityPipeline = .disabled,
 	) {
@@ -65,7 +66,7 @@ final class AppleUsernameModel {
 			return
 		}
 
-		observability.interaction("setAppleScreenName")
+		observability.interaction("setSocialScreenName")
 		isSubmitting = true
 		errorMessage = nil
 
@@ -112,7 +113,7 @@ final class AppleUsernameModel {
 	private static var fallbackErrorMessage: String {
 		String(
 			localized: "Sorry, we couldn't save that.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
-			comment: "Error shown when saving the Apple sign-up route's screen name fails, including before reaching the server.",
+			comment: "Error shown when saving the post-signup username step's screen name fails, including before reaching the server.",
 		)
 	}
 }

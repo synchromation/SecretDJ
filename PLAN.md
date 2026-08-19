@@ -310,10 +310,14 @@ flows accessible and localized.
       test (R3). — built and fully fake-tested; the live SIWA smoke
       **remains pending a real device/human** (Apple's auth UI can't run
       headlessly) — verify at S9.3 at the latest.
-- [ ] S4.4 Facebook sign-in — **D1 resolved: kept.** Current FB SDK, ATT
+- [x] S4.4 Facebook sign-in — **D1 resolved: kept.** Current FB SDK, ATT
       prompt flow rebuilt per current policy, the `facebooksignin`
       endpoint (deferred from S1.3a), and the Facebook plist config +
-      queryable schemes S0.6 omitted.
+      queryable schemes S0.6 omitted. — **Needs from the product owner:
+      the FacebookClientToken** (Meta App Dashboard → Settings →
+      Advanced → Client Token); until it replaces the placeholder the
+      FB button doesn't render and the SDK never initializes (the app
+      runs fully without it). Live FB smoke pending real credentials.
 - [x] S4.5 Onboarding steps per route (gender/photo/details/username
       ordering per LEGACY.md "Consumer app: features and flows" → "Login,
       sign-up, onboarding"), avatar capture/pick + upload (camera/photo
@@ -574,7 +578,7 @@ what it blocks.
 | S1 Domain & API | **done** (LIVE-CAPTURE markers await production fixtures) |
 | S2 Design system | **done** |
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
-| S4 Identity & session | in progress (S4.1–S4.3, S4.5 done; S4.4, S4.6 remain) |
+| S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | not started |
 | S6 Consumer features | not started |
 | S7 Kiosk app | not started |

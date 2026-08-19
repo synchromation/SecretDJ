@@ -3,12 +3,12 @@ import Observability
 import SecretDJAPI
 import SwiftUI
 
-/// The Apple sign-up route's screen-name step: the one field
-/// `setuserdetails` needs before onboarding's gender and photo steps
+/// The Apple and Facebook sign-up routes' shared screen-name step: the one
+/// field `setuserdetails` needs before onboarding's remaining steps
 /// (LEGACY.md "Login, sign-up, onboarding": Apple → username → gender →
-/// photo).
-struct AppleUsernameView: View {
-	let model: AppleUsernameModel
+/// photo; Facebook → username → photo).
+struct SocialUsernameView: View {
+	let model: SocialUsernameModel
 	let onComplete: () -> Void
 
 	@FocusState private var isScreenNameFocused: Bool
@@ -39,7 +39,7 @@ struct AppleUsernameView: View {
 		}
 		.scrollDismissesKeyboard(.interactively)
 		.background(Theme.ColorRole.background.color)
-		.tracksScreen("AppleUsername")
+		.tracksScreen("SocialUsername")
 		.onChange(of: model.isComplete) { _, complete in
 			if complete {
 				onComplete()
@@ -110,19 +110,19 @@ struct AppleUsernameView: View {
 }
 
 #Preview("Fresh") {
-	AppleUsernameView(model: AppleUsernameModel.preview(), onComplete: {})
+	SocialUsernameView(model: SocialUsernameModel.preview(), onComplete: {})
 }
 
 #Preview("Validation error") {
-	let model = AppleUsernameModel.preview()
+	let model = SocialUsernameModel.preview()
 	model.updateScreenName("Tim")
-	return AppleUsernameView(model: model, onComplete: {})
+	return SocialUsernameView(model: model, onComplete: {})
 }
 
 #Preview("Server error") {
-	AppleUsernameView(
-		model: AppleUsernameModel.preview(
-			usernameService: InMemoryAppleUsernameService(
+	SocialUsernameView(
+		model: SocialUsernameModel.preview(
+			usernameService: InMemorySocialUsernameService(
 				setScreenNameResult: .failure(.server(message: "That screen name is taken.")),
 			),
 		),
@@ -131,17 +131,17 @@ struct AppleUsernameView: View {
 }
 
 #Preview("Accessibility text size") {
-	AppleUsernameView(model: AppleUsernameModel.preview(), onComplete: {})
+	SocialUsernameView(model: SocialUsernameModel.preview(), onComplete: {})
 		.environment(\.dynamicTypeSize, .accessibility5)
 }
 
-extension AppleUsernameModel {
+extension SocialUsernameModel {
 	/// Previews only — never production (previews always inject fakes, per
 	/// swiftui-views).
 	fileprivate static func preview(
-		usernameService: InMemoryAppleUsernameService = InMemoryAppleUsernameService(),
-	) -> AppleUsernameModel {
-		AppleUsernameModel(
+		usernameService: InMemorySocialUsernameService = InMemorySocialUsernameService(),
+	) -> SocialUsernameModel {
+		SocialUsernameModel(
 			personId: "9",
 			credential: APICredential(token: "tok", passwordHash: "hash"),
 			usernameService: usernameService,

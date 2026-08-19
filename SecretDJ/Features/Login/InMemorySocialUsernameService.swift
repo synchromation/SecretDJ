@@ -1,18 +1,18 @@
 import SecretDJAPI
 
-/// One recorded call to ``InMemoryAppleUsernameService/setScreenName``.
+/// One recorded call to ``InMemorySocialUsernameService/setScreenName``.
 struct SetScreenNameInvocation: Equatable {
 	let userId: String
 	let screenName: String
 	let credential: APICredential
 }
 
-/// A scriptable ``AppleUsernameServicing`` fake for tests and previews —
+/// A scriptable ``SocialUsernameServicing`` fake for tests and previews —
 /// never touches the network. Each call records its arguments and returns
 /// the result configured for it, so tests can both seed outcomes and assert
 /// on what was sent.
 @MainActor
-final class InMemoryAppleUsernameService: AppleUsernameServicing {
+final class InMemorySocialUsernameService: SocialUsernameServicing {
 	var setScreenNameResult: Result<ScreenNameUpdateOutcome, AuthenticationError>
 	private(set) var setScreenNameInvocations: [SetScreenNameInvocation] = []
 

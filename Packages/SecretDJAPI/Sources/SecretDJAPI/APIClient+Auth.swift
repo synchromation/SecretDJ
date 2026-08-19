@@ -1,15 +1,10 @@
 import Foundation
 import SecretDJDomain
 
-// D1: facebooksignin is not ported. Default per PLAN.md's decision log:
-// not-ported unless legacy analytics show meaningful `facebooksignin`
-// usage — native sign-in and Sign in with Apple cover new accounts, and
-// existing Facebook-account users need a migration story either way.
-
-/// `signin`/`createuser`/`applesignin`/`resetpassword` — the endpoints the
-/// legacy auth scheme's sig-exclusion list exempts from signing (LEGACY.md
-/// "Backend API and Spotify integration" → "Auth scheme: rotating token +
-/// HMAC signature"), typed over ``APIClient``.
+/// `signin`/`createuser`/`applesignin`/`facebooksignin`/`resetpassword` — the
+/// endpoints the legacy auth scheme's sig-exclusion list exempts from
+/// signing (LEGACY.md "Backend API and Spotify integration" → "Auth scheme:
+/// rotating token + HMAC signature"), typed over ``APIClient``.
 extension APIClient {
 	/// `signin` — ported from `secretdjv3/LoginAPIAccess.swift`'s
 	/// `login(screenName:password:)`. `passwordHash` is the SHA-1 hex digest
@@ -101,7 +96,51 @@ extension APIClient {
 			parameters: parameters,
 			signed: false,
 			credential: nil,
-			decodingPayloadAs: AppleSignInWirePayload.self,
+			decodingPayloadAs: SocialSignInWirePayload.self,
+		)
+		return APIResponse(
+			payload: LoginDetails(
+				personId: response.payload.personId,
+				screenName: response.payload.screenName,
+				created: response.payload.created,
+				forcedVenueId: nil,
+				issuedCredential: response.payload.issuedCredential,
+			),
+			rotatedToken: response.rotatedToken,
+		)
+	}
+
+	/// `facebooksignin` — ported from `secretdjv3/LoginAPIAccess.swift`'s
+	/// `login(facebookId:accessToken:firstName:lastName:email:completion:)`.
+	/// `auth` is the pre-computed day-of-year digest
+	/// (``FacebookSignInAuthDigest/compute(facebookUserId:date:calendar:)``).
+	/// Unlike ``appleSignIn(appleUserId:auth:firstName:lastName:email:)``,
+	/// Facebook's Graph `me` request runs on every sign-in attempt, not just
+	/// the first, so `gender`/`firstName`/`lastName`/`email` are each sent
+	/// independently whenever the caller has them, with no all-or-nothing
+	/// gating (LEGACY.md's endpoint catalog: "`fbid`, `state` (FB access
+	/// token), `gender`,`firstname`,`lastname`,`email`, `auth`").
+	public func facebookSignIn(
+		facebookUserId: String,
+		accessToken: String,
+		auth: String,
+		gender: Gender? = nil,
+		firstName: String? = nil,
+		lastName: String? = nil,
+		email: String? = nil,
+	) async throws(APIError) -> APIResponse<LoginDetails> {
+		var parameters = ["fbid": facebookUserId, "state": accessToken, "auth": auth]
+		if let gender { parameters["gender"] = gender.wireValue }
+		if let firstName { parameters["firstname"] = firstName }
+		if let lastName { parameters["lastname"] = lastName }
+		if let email { parameters["email"] = email }
+
+		let response = try await execute(
+			endpoint: "facebooksignin",
+			parameters: parameters,
+			signed: false,
+			credential: nil,
+			decodingPayloadAs: SocialSignInWirePayload.self,
 		)
 		return APIResponse(
 			payload: LoginDetails(
@@ -196,14 +235,13 @@ struct CreateUserWirePayload: Hashable, Decodable {
 	}
 }
 
-/// `applesignin`'s wire shape: `User`, `ScreenName`, `Param` (the
-/// server-issued credential), `Created`
-/// (`secretdjv3/LoginAPIAccess.swift`'s `appleLoginDetails`). LEGACY.md's
-/// endpoint catalog documents `applesignin`'s response as "same as
-/// facebook" — pinned here against `FacebookSignIn.json` since D1 doesn't
-/// port `facebooksignin` itself, but the two endpoints share this response
-/// shape.
-struct AppleSignInWirePayload: Hashable, Decodable {
+/// The shared wire shape `applesignin` and `facebooksignin` both respond
+/// with: `User`, `ScreenName`, `Param` (the server-issued credential),
+/// `Created` (`secretdjv3/LoginAPIAccess.swift`'s `appleLoginDetails` /
+/// `facebookLoginDetails`). LEGACY.md's endpoint catalog documents
+/// `applesignin`'s response as "same as facebook" — pinned here against
+/// `FacebookSignIn.json`.
+struct SocialSignInWirePayload: Hashable, Decodable {
 	let personId: String
 	let screenName: String
 	let issuedCredential: String

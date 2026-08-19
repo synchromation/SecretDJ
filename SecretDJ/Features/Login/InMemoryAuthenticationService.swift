@@ -19,6 +19,17 @@ struct AppleSignInInvocation: Equatable {
 	let email: String?
 }
 
+/// One recorded call to ``InMemoryAuthenticationService/facebookSignIn``.
+struct FacebookSignInInvocation: Equatable {
+	let facebookUserId: String
+	let accessToken: String
+	let auth: String
+	let gender: Gender?
+	let firstName: String?
+	let lastName: String?
+	let email: String?
+}
+
 /// A scriptable ``AuthenticationServicing`` fake for tests and previews —
 /// never touches the network. Each call records its arguments and returns
 /// the result configured for it, so tests can both seed outcomes and assert
@@ -28,24 +39,28 @@ final class InMemoryAuthenticationService: AuthenticationServicing {
 	var signInResult: Result<AuthenticatedSession, AuthenticationError>
 	var createUserResult: Result<AuthenticatedSession, AuthenticationError>
 	var resetPasswordResult: Result<PasswordResetOutcome, AuthenticationError>
-	var appleSignInResult: Result<AppleAuthenticatedSession, AuthenticationError>
+	var appleSignInResult: Result<SocialAuthenticatedSession, AuthenticationError>
+	var facebookSignInResult: Result<SocialAuthenticatedSession, AuthenticationError>
 
 	private(set) var signInInvocations: [(screenName: String, passwordHash: String)] = []
 	private(set) var createUserInvocations: [CreateUserInvocation] = []
 	private(set) var resetPasswordScreenNameInvocations: [String] = []
 	private(set) var resetPasswordEmailInvocations: [String] = []
 	private(set) var appleSignInInvocations: [AppleSignInInvocation] = []
+	private(set) var facebookSignInInvocations: [FacebookSignInInvocation] = []
 
 	init(
 		signInResult: Result<AuthenticatedSession, AuthenticationError> = .failure(.connection),
 		createUserResult: Result<AuthenticatedSession, AuthenticationError> = .failure(.connection),
 		resetPasswordResult: Result<PasswordResetOutcome, AuthenticationError> = .failure(.connection),
-		appleSignInResult: Result<AppleAuthenticatedSession, AuthenticationError> = .failure(.connection),
+		appleSignInResult: Result<SocialAuthenticatedSession, AuthenticationError> = .failure(.connection),
+		facebookSignInResult: Result<SocialAuthenticatedSession, AuthenticationError> = .failure(.connection),
 	) {
 		self.signInResult = signInResult
 		self.createUserResult = createUserResult
 		self.resetPasswordResult = resetPasswordResult
 		self.appleSignInResult = appleSignInResult
+		self.facebookSignInResult = facebookSignInResult
 	}
 
 	func signIn(screenName: String, passwordHash: String) async throws(AuthenticationError) -> AuthenticatedSession {
@@ -112,7 +127,7 @@ final class InMemoryAuthenticationService: AuthenticationServicing {
 		firstName: String?,
 		lastName: String?,
 		email: String?,
-	) async throws(AuthenticationError) -> AppleAuthenticatedSession {
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession {
 		appleSignInInvocations.append(AppleSignInInvocation(
 			appleUserId: appleUserId,
 			auth: auth,
@@ -121,6 +136,33 @@ final class InMemoryAuthenticationService: AuthenticationServicing {
 			email: email,
 		))
 		switch appleSignInResult {
+		case .success(let session):
+			return session
+
+		case .failure(let error):
+			throw error
+		}
+	}
+
+	func facebookSignIn(
+		facebookUserId: String,
+		accessToken: String,
+		auth: String,
+		gender: Gender?,
+		firstName: String?,
+		lastName: String?,
+		email: String?,
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession {
+		facebookSignInInvocations.append(FacebookSignInInvocation(
+			facebookUserId: facebookUserId,
+			accessToken: accessToken,
+			auth: auth,
+			gender: gender,
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+		))
+		switch facebookSignInResult {
 		case .success(let session):
 			return session
 

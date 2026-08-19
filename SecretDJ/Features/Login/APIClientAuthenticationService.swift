@@ -75,7 +75,7 @@ struct APIClientAuthenticationService: AuthenticationServicing {
 		firstName: String?,
 		lastName: String?,
 		email: String?,
-	) async throws(AuthenticationError) -> AppleAuthenticatedSession {
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession {
 		do {
 			let response = try await client.appleSignIn(
 				appleUserId: appleUserId,
@@ -84,7 +84,38 @@ struct APIClientAuthenticationService: AuthenticationServicing {
 				lastName: lastName,
 				email: email,
 			)
-			return AppleAuthenticatedSession(
+			return SocialAuthenticatedSession(
+				personId: response.payload.personId,
+				screenName: response.payload.screenName,
+				created: response.payload.created,
+				issuedCredential: response.payload.issuedCredential,
+				rotatedToken: response.rotatedToken,
+			)
+		} catch {
+			throw AuthenticationError(error)
+		}
+	}
+
+	func facebookSignIn(
+		facebookUserId: String,
+		accessToken: String,
+		auth: String,
+		gender: Gender?,
+		firstName: String?,
+		lastName: String?,
+		email: String?,
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession {
+		do {
+			let response = try await client.facebookSignIn(
+				facebookUserId: facebookUserId,
+				accessToken: accessToken,
+				auth: auth,
+				gender: gender,
+				firstName: firstName,
+				lastName: lastName,
+				email: email,
+			)
+			return SocialAuthenticatedSession(
 				personId: response.payload.personId,
 				screenName: response.payload.screenName,
 				created: response.payload.created,

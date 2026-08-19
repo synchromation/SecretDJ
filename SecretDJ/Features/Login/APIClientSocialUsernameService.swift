@@ -1,9 +1,9 @@
 import SecretDJAPI
 
-/// The production ``AppleUsernameServicing``: calls straight through to
+/// The production ``SocialUsernameServicing``: calls straight through to
 /// ``SecretDJAPI/APIClient/setUserDetails(userId:firstName:lastName:screenName:email:gender:passwordHash:credential:)``,
 /// mapping ``APIError`` to this feature's own ``AuthenticationError``.
-struct APIClientAppleUsernameService: AppleUsernameServicing {
+struct APIClientSocialUsernameService: SocialUsernameServicing {
 	private let client: APIClient
 
 	init(client: APIClient) {

@@ -4,15 +4,15 @@ import Testing
 @testable import SecretDJ
 
 @MainActor
-enum SessionStoreAppleSignInTests {
+enum SessionStoreSocialSignInTests {
 	private static func makeSessionStore() -> SessionStore {
 		SessionStore(snapshotStore: InMemorySessionSnapshotStore(), credentialStore: InMemoryCredentialStore())
 	}
 
-	struct `Signing in from an Apple session` {
+	struct `Signing in from a social session` {
 		@Test func `signs the session in when both a rotated token and an issued credential are present`() {
-			let sessionStore = SessionStoreAppleSignInTests.makeSessionStore()
-			let session = AppleAuthenticatedSession(
+			let sessionStore = SessionStoreSocialSignInTests.makeSessionStore()
+			let session = SocialAuthenticatedSession(
 				personId: "41",
 				screenName: "TurboTim",
 				created: true,
@@ -29,8 +29,8 @@ enum SessionStoreAppleSignInTests {
 		}
 
 		@Test func `leaves the venue nil on success`() {
-			let sessionStore = SessionStoreAppleSignInTests.makeSessionStore()
-			let session = AppleAuthenticatedSession(
+			let sessionStore = SessionStoreSocialSignInTests.makeSessionStore()
+			let session = SocialAuthenticatedSession(
 				personId: "41",
 				screenName: "TurboTim",
 				created: true,
@@ -44,8 +44,8 @@ enum SessionStoreAppleSignInTests {
 		}
 
 		@Test func `returns false and leaves the session signed out when there is no rotated token`() {
-			let sessionStore = SessionStoreAppleSignInTests.makeSessionStore()
-			let session = AppleAuthenticatedSession(
+			let sessionStore = SessionStoreSocialSignInTests.makeSessionStore()
+			let session = SocialAuthenticatedSession(
 				personId: "41",
 				screenName: "TurboTim",
 				created: true,
@@ -60,8 +60,8 @@ enum SessionStoreAppleSignInTests {
 		}
 
 		@Test func `returns false and leaves the session signed out when there is no issued credential`() {
-			let sessionStore = SessionStoreAppleSignInTests.makeSessionStore()
-			let session = AppleAuthenticatedSession(
+			let sessionStore = SessionStoreSocialSignInTests.makeSessionStore()
+			let session = SocialAuthenticatedSession(
 				personId: "41",
 				screenName: "TurboTim",
 				created: true,

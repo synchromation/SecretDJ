@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000000000000000901000000 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000900000000 /* FacebookLogin */; };
+		000000000000000911000000 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000910000000 /* FacebookCore */; };
 		000000000000000310000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000300000000 /* Observability */; };
 		000000000000000330000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000320000000 /* Observability */; };
 		000000000000000811000000 /* SecretDJDomain in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000810000000 /* SecretDJDomain */; };
@@ -89,6 +91,8 @@
 		000000000000000130000000 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				000000000000000901000000 /* FacebookLogin in Frameworks */,
+				000000000000000911000000 /* FacebookCore in Frameworks */,
 				000000000000000310000000 /* Observability in Frameworks */,
 				000000000000000370000000 /* ObservabilitySentry in Frameworks */,
 				000000000000000350000000 /* ObservabilityTelemetryDeck in Frameworks */,
@@ -166,6 +170,8 @@
 			);
 			name = "SecretDJ";
 			packageProductDependencies = (
+				000000000000000900000000 /* FacebookLogin */,
+				000000000000000910000000 /* FacebookCore */,
 				000000000000000300000000 /* Observability */,
 				000000000000000340000000 /* ObservabilityTelemetryDeck */,
 				000000000000000360000000 /* ObservabilitySentry */,
@@ -289,6 +295,7 @@
 			mainGroup = 000000000000000000000001;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				000000000000000000000130 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 				000000000000000000000040 /* XCLocalSwiftPackageReference "Packages/Observability" */,
 				000000000000000000000070 /* XCLocalSwiftPackageReference "Packages/SecretDJDomain" */,
 				000000000000000000000080 /* XCLocalSwiftPackageReference "Packages/SecretDJAPI" */,
@@ -523,6 +530,7 @@
 				INFOPLIST_FILE = SecretDJ/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Secret DJ";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Secret DJ needs your camera so you can take a profile picture.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We don't track you ourselves, but if you sign in with Facebook, they might.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -567,6 +575,7 @@
 				INFOPLIST_FILE = SecretDJ/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Secret DJ";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Secret DJ needs your camera so you can take a profile picture.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We don't track you ourselves, but if you sign in with Facebook, they might.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -845,7 +854,28 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		000000000000000000000130 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		000000000000000900000000 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000000130 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+		000000000000000910000000 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000000130 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
 		000000000000000300000000 /* Observability */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Observability;

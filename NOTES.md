@@ -409,3 +409,26 @@ work happens; every commit includes this file's delta.
   keys (German uses "Leider" per the sober-context tone rule);
   requestdeleteaccount fake-tested only, never smoked. Consumer suite
   163 tests; full verify green.
+- S4.4 done — stage S4 complete (sonnet subagent, direct): Facebook
+  sign-in on facebook-ios-sdk 18.1.0, consumer target only. Config
+  ported from the legacy plist (FacebookAppID 144876722233890, fb URL
+  scheme, queryable schemes, auto-log-events and advertiser-ID
+  collection both off); FacebookClientToken ships as a marked
+  placeholder — the modern SDK requires it, legacy predates it, ONLY
+  the Meta dashboard has it: until supplied, the button doesn't
+  render and the SDK never initializes, so the app runs fully without
+  it. facebookSignIn endpoint landed in SecretDJAPI (D1 marker
+  replaced; the wire payload generalized to SocialSignInWirePayload;
+  Facebook's distinct digest salt verified independently; API package
+  244 tests). FacebookSignInModel mirrors Apple's shape behind
+  FacebookAuthorizing + TrackingAuthorizing seams; a Swift 6
+  data-race with the SDK's non-Sendable AccessToken was caught and
+  fixed by extracting Sendable fields in the completion. The Apple
+  username step generalized to SocialUsername* (renames, not copies)
+  and AppleAuthenticatedSession to SocialAuthenticatedSession.
+  Legacy's 1s ATT-grant delay workaround deliberately not ported
+  (2022-era SDK bug, unverifiable here — flagged). ATT usage
+  description localized. Flagged TDD deviation: the model/wiring
+  layer was written tests-with-implementation rather than strictly
+  red-first. Live FB smoke pending real Meta credentials. Full verify
+  green.

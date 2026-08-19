@@ -236,8 +236,8 @@ enum AuthAPITests {
 
 		/// LEGACY.md documents `applesignin`'s response as "same as facebook";
 		/// `FacebookSignIn.json` pins that shared shape (`User`, `ScreenName`,
-		/// `Param`, `Created`, `Token`) since D1 doesn't port `facebooksignin`
-		/// itself.
+		/// `Param`, `Created`, `Token`) — see `FacebookSignInAPITests` for the
+		/// same fixture exercised through `facebookSignIn` itself.
 		@Test func `decodes the server-issued credential and screen name`() async throws {
 			let client = AuthAPITests.makeClient(
 				transport: FakeAPITransport(outcome: .success(Fixture.data("FacebookSignIn"))),

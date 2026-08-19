@@ -1,6 +1,15 @@
 {
-  "originHash" : "0e4912fadb5a5eb56cd86412967590d406481803f44e53da71daf1fcd49dd1d8",
+  "originHash" : "094a392f696abac36cb97e89901d7bad7829b20123da25234a3529f8acf8bffe",
   "pins" : [
+    {
+      "identity" : "facebook-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/facebook-ios-sdk",
+      "state" : {
+        "revision" : "3818dd2ccb6547c6d320ff68a1bd599789c3a44f",
+        "version" : "18.1.0"
+      }
+    },
     {
       "identity" : "sentry-cocoa",
       "kind" : "remoteSourceControl",

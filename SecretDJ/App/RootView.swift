@@ -3,25 +3,35 @@ import SecretDJAPI
 import SwiftUI
 
 /// The app's root: what a freshly created account still owes takes priority
-/// over everything else — the Apple route's screen-name step first (its
-/// `applesignin` call signs the session in before that step has run), then
-/// S4.5's onboarding flow; otherwise it gates on whether a session was
-/// restored at launch — no session shows the login flow, an existing one
-/// shows a placeholder for the signed-in state (S5 replaces this with the
-/// real three-tab shell).
+/// over everything else — a social route's screen-name step first (its
+/// `applesignin`/`facebooksignin` call signs the session in before that step
+/// has run), then S4.5's onboarding flow; otherwise it gates on whether a
+/// session was restored at launch — no session shows the login flow, an
+/// existing one shows a placeholder for the signed-in state (S5 replaces
+/// this with the real three-tab shell).
 struct RootView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
 	let observability: ObservabilityPipeline
 
 	@State private var appleAuthorizing = ASAuthorizationControllerAppleAuthorizing()
-	@State private var appleUsernameModel: AppleUsernameModel?
+	/// `nil` while ``FacebookConfiguration/isConfigured`` is `false` — no
+	/// Facebook SDK type is ever touched in that case (S4.4).
+	@State private var facebookAuthorizing: (any FacebookAuthorizing)? =
+		FacebookConfiguration.isConfigured ? LoginManagerFacebookAuthorizing() : nil
+	@State private var trackingAuthorizing = ATTrackingManagerTrackingAuthorizing()
+	@State private var socialUsernameModel: SocialUsernameModel?
+	/// Which onboarding route ``finishSocialUsernameStep()`` continues into
+	/// — set alongside ``socialUsernameModel`` by whichever social sign-in
+	/// route started this step (``SocialUsernameModel`` itself doesn't know
+	/// or need to know which route it's serving).
+	@State private var pendingOnboardingRoute = OnboardingRoute.apple
 	@State private var onboardingModel: OnboardingModel?
 	@State private var accountModel: AccountModel?
 
 	var body: some View {
-		if let appleUsernameModel {
-			AppleUsernameView(model: appleUsernameModel, onComplete: finishAppleUsernameStep)
+		if let socialUsernameModel {
+			SocialUsernameView(model: socialUsernameModel, onComplete: finishSocialUsernameStep)
 		} else if let onboardingModel {
 			OnboardingFlowView(model: onboardingModel, onFinished: { self.onboardingModel = nil })
 		} else if let accountModel {
@@ -35,31 +45,35 @@ struct RootView: View {
 				authService: APIClientAuthenticationService(client: apiClient),
 				appleAuthorizing: appleAuthorizing,
 				appleUserInfoStore: KeychainAppleUserInfoStore(),
+				facebookAuthorizing: facebookAuthorizing,
+				trackingAuthorizing: trackingAuthorizing,
 				sessionStore: sessionStore,
 				observability: observability,
 				onAccountCreated: startOnboarding,
-				onAppleAccountCreated: startAppleUsernameStep,
+				onAppleAccountCreated: { startSocialUsernameStep(route: .apple) },
+				onFacebookAccountCreated: { startSocialUsernameStep(route: .facebook) },
 			)
 		}
 	}
 
-	private func startAppleUsernameStep() {
+	private func startSocialUsernameStep(route: OnboardingRoute) {
 		guard let user = sessionStore.user, let credential = sessionStore.credential else {
 			return
 		}
 
-		appleUsernameModel = AppleUsernameModel(
+		pendingOnboardingRoute = route
+		socialUsernameModel = SocialUsernameModel(
 			personId: user.personId,
 			credential: credential,
-			usernameService: APIClientAppleUsernameService(client: apiClient),
+			usernameService: APIClientSocialUsernameService(client: apiClient),
 			sessionStore: sessionStore,
 			observability: observability,
 		)
 	}
 
-	private func finishAppleUsernameStep() {
-		appleUsernameModel = nil
-		startOnboarding(route: .apple)
+	private func finishSocialUsernameStep() {
+		socialUsernameModel = nil
+		startOnboarding(route: pendingOnboardingRoute)
 	}
 
 	private func startOnboarding(route: OnboardingRoute) {

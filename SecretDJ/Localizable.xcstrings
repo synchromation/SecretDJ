@@ -2005,6 +2005,64 @@
           }
         }
       }
+    },
+    "Sign in with Facebook": {
+      "comment": "Button on the login screen that starts the Facebook sign-in flow.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mit Facebook anmelden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Iniciar sesión con Facebook"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Se connecter avec Facebook"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aanmelden met Facebook"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't sign you in with Facebook.\n\nPlease try again.": {
+      "comment": "Error shown on the login screen when the Facebook sign-in flow fails for a reason other than the user cancelling it.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, die Anmeldung mit Facebook hat nicht geklappt.\n\nVersuch es bitte noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido iniciar tu sesión con Facebook.\n\nInténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, on n'a pas réussi à te connecter avec Facebook.\n\nRéessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je niet met Facebook aanmelden.\n\nProbeer het opnieuw."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

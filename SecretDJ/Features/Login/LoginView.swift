@@ -9,6 +9,9 @@ import SwiftUI
 struct LoginView: View {
 	let model: LoginModel
 	let appleModel: AppleSignInModel
+	/// `nil` while ``FacebookConfiguration/isConfigured`` is `false` — the
+	/// Facebook button doesn't render at all in that case (S4.4).
+	let facebookModel: FacebookSignInModel?
 	let onSignUp: () -> Void
 	let onForgotPassword: () -> Void
 	/// Called when Sign in with Apple created a brand-new account, which
@@ -16,6 +19,9 @@ struct LoginView: View {
 	/// `didCreateAccount`). An existing account needs nothing here — the
 	/// session is already signed in.
 	let onAppleAccountCreated: () -> Void
+	/// The Facebook equivalent of ``onAppleAccountCreated``
+	/// (``FacebookSignInModel``'s `didCreateAccount`).
+	let onFacebookAccountCreated: () -> Void
 
 	@FocusState private var focusedField: Field?
 
@@ -41,6 +47,10 @@ struct LoginView: View {
 
 				appleSignIn
 
+				if let facebookModel {
+					facebookSignIn(facebookModel)
+				}
+
 				Button("Forgotten Your Password?", action: onForgotPassword)
 					.font(Theme.TextStyle.body.font)
 					.foregroundStyle(Theme.ColorRole.accent.color)
@@ -56,6 +66,11 @@ struct LoginView: View {
 		.onChange(of: appleModel.didCreateAccount) { _, created in
 			if created {
 				onAppleAccountCreated()
+			}
+		}
+		.onChange(of: facebookModel?.didCreateAccount) { _, created in
+			if created == true {
+				onFacebookAccountCreated()
 			}
 		}
 	}
@@ -110,6 +125,17 @@ struct LoginView: View {
 		}
 	}
 
+	private func facebookSignIn(_ facebookModel: FacebookSignInModel) -> some View {
+		VStack(spacing: Spacing.small) {
+			FacebookSignInButton(action: { signInWithFacebook(facebookModel) })
+				.disabled(!facebookModel.canSignIn)
+
+			if let errorMessage = facebookModel.errorMessage {
+				errorText(errorMessage)
+			}
+		}
+	}
+
 	private func errorText(_ message: String) -> some View {
 		Text(message)
 			.font(Theme.TextStyle.body.font)
@@ -143,15 +169,24 @@ struct LoginView: View {
 			await appleModel.signInWithApple()
 		}
 	}
+
+	private func signInWithFacebook(_ facebookModel: FacebookSignInModel) {
+		focusedField = nil
+		Task {
+			await facebookModel.signInWithFacebook()
+		}
+	}
 }
 
 #Preview("Fresh") {
 	LoginView(
 		model: LoginModel(authService: InMemoryAuthenticationService(), sessionStore: PreviewSessionStore.signedOut()),
 		appleModel: AppleSignInModel.preview(),
+		facebookModel: FacebookSignInModel.preview(),
 		onSignUp: {},
 		onForgotPassword: {},
 		onAppleAccountCreated: {},
+		onFacebookAccountCreated: {},
 	)
 }
 
@@ -165,9 +200,35 @@ struct LoginView: View {
 	return LoginView(
 		model: model,
 		appleModel: AppleSignInModel.preview(),
+		facebookModel: FacebookSignInModel.preview(),
 		onSignUp: {},
 		onForgotPassword: {},
 		onAppleAccountCreated: {},
+		onFacebookAccountCreated: {},
+	)
+}
+
+#Preview("Facebook not configured") {
+	LoginView(
+		model: LoginModel(authService: InMemoryAuthenticationService(), sessionStore: PreviewSessionStore.signedOut()),
+		appleModel: AppleSignInModel.preview(),
+		facebookModel: nil,
+		onSignUp: {},
+		onForgotPassword: {},
+		onAppleAccountCreated: {},
+		onFacebookAccountCreated: {},
+	)
+}
+
+#Preview("Facebook tracking denied") {
+	LoginView(
+		model: LoginModel(authService: InMemoryAuthenticationService(), sessionStore: PreviewSessionStore.signedOut()),
+		appleModel: AppleSignInModel.preview(),
+		facebookModel: FacebookSignInModel.preview(trackingStatus: .denied),
+		onSignUp: {},
+		onForgotPassword: {},
+		onAppleAccountCreated: {},
+		onFacebookAccountCreated: {},
 	)
 }
 
@@ -175,9 +236,11 @@ struct LoginView: View {
 	LoginView(
 		model: LoginModel(authService: InMemoryAuthenticationService(), sessionStore: PreviewSessionStore.signedOut()),
 		appleModel: AppleSignInModel.preview(),
+		facebookModel: FacebookSignInModel.preview(),
 		onSignUp: {},
 		onForgotPassword: {},
 		onAppleAccountCreated: {},
+		onFacebookAccountCreated: {},
 	)
 	.environment(\.dynamicTypeSize, .accessibility5)
 }
@@ -189,6 +252,19 @@ extension AppleSignInModel {
 		AppleSignInModel(
 			appleAuthorizing: InMemoryAppleAuthorizing(),
 			appleUserInfoStore: InMemoryAppleUserInfoStore(),
+			authService: InMemoryAuthenticationService(),
+			sessionStore: PreviewSessionStore.signedOut(),
+		)
+	}
+}
+
+extension FacebookSignInModel {
+	/// Previews only — never production (previews always inject fakes, per
+	/// swiftui-views).
+	fileprivate static func preview(trackingStatus: TrackingAuthorizationStatus = .authorized) -> FacebookSignInModel {
+		FacebookSignInModel(
+			trackingAuthorizing: InMemoryTrackingAuthorizing(status: trackingStatus),
+			facebookAuthorizing: InMemoryFacebookAuthorizing(),
 			authService: InMemoryAuthenticationService(),
 			sessionStore: PreviewSessionStore.signedOut(),
 		)

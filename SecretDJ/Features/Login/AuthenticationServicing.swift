@@ -36,5 +36,22 @@ protocol AuthenticationServicing: Sendable {
 		firstName: String?,
 		lastName: String?,
 		email: String?,
-	) async throws(AuthenticationError) -> AppleAuthenticatedSession
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession
+
+	/// `facebooksignin`. `auth` is the caller's pre-computed day-of-year
+	/// digest (``SecretDJAPI/FacebookSignInAuthDigest``);
+	/// `gender`/`firstName`/`lastName`/`email` are sent independently
+	/// whenever present, unlike Apple's all-or-nothing first-authorization
+	/// gating
+	/// (``SecretDJAPI/APIClient/facebookSignIn(facebookUserId:accessToken:auth:gender:firstName:lastName:email:)``'s
+	/// doc comment).
+	func facebookSignIn(
+		facebookUserId: String,
+		accessToken: String,
+		auth: String,
+		gender: Gender?,
+		firstName: String?,
+		lastName: String?,
+		email: String?,
+	) async throws(AuthenticationError) -> SocialAuthenticatedSession
 }
