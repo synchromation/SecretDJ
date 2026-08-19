@@ -39,6 +39,7 @@ struct ProfileScreen: View {
 	@State private var model: ProfileScreenModel
 	@State private var showsAvatarPicker = false
 	@State private var isConfirmingSignOut = false
+	@Environment(\.openURL) private var openURL
 
 	init(
 		personId: String,
@@ -84,7 +85,7 @@ struct ProfileScreen: View {
 				onChangeAvatar: { showsAvatarPicker = true },
 			)
 
-			FeedScreen(model: feedModel, copy: Self.copy, onOutcome: router.handle(outcome:))
+			FeedScreen(model: feedModel, copy: Self.copy, onOutcome: handle(outcome:))
 
 			if model.isOwnProfile {
 				footer
@@ -151,6 +152,14 @@ struct ProfileScreen: View {
 	private func signOut() {
 		observability.interaction("signOut")
 		sessionStore.signOut()
+	}
+
+	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
+	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
+	/// before.
+	private func handle(outcome: FeedActionOutcome) {
+		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		router.handle(outcome: outcome)
 	}
 
 	/// ``SharedFeatures/OptimisticLikeModel`` owns no fallback copy of its

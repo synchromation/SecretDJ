@@ -1,5 +1,6 @@
 import DesignSystem
 import FeedUI
+import MapKit
 import Observability
 import SecretDJDomain
 import SharedFeatures
@@ -10,25 +11,31 @@ import SwiftUI
 /// S6.1 pattern (``PlacesNearbyScreen``), plus what the venue screen adds on
 /// top: the header (``VenueHeaderView``, sourced from
 /// ``FeedUI/FeedScreenModel/venueDetails``) hosting the venue's like/unlike
-/// toggle (``OptimisticLikeModel``) and the entry point into
-/// ``NowPlayingScreen``; the client-side social-links reorder
+/// toggle (``OptimisticLikeModel``), check-in (``CheckInModel``, S6.8),
+/// directions (S6.10 — an Apple Maps walking-directions hand-off, this
+/// screen's own doc comment on ``openDirections()``), and the entry point
+/// into ``NowPlayingScreen``; the client-side social-links reorder
 /// (``VenueSocialLinksOrdering``, applied by ``SocialOrderingFeedLoading``
 /// before this screen's model ever sees a fetched feed); and the
-/// non-navigational outcomes a promotion tap can produce
+/// non-navigational outcomes a promotion tap (or a server-driven hail-ride
+/// action button) can produce
 /// (``FeedUI/FeedActionOutcome/openSocialApp(platform:identifier:webFallbackURL:)``/
-/// ``FeedUI/FeedActionOutcome/openURL(_:)``/``FeedUI/FeedActionOutcome/engagePromotion(promotionId:)``),
-/// which — unlike every navigational outcome — this screen handles directly
-/// rather than handing to ``TabRouter``.
+/// ``FeedUI/FeedActionOutcome/openURL(_:)``/``FeedUI/FeedActionOutcome/engagePromotion(promotionId:)``/
+/// ``FeedUI/FeedActionOutcome/hailRide(url:)``), which — unlike every
+/// navigational outcome — this screen handles directly rather than handing
+/// to ``TabRouter``.
 struct VenueScreen: View {
 	let venueId: String
 	let router: TabRouter
 	let toastQueue: ToastQueue
 	let likeToggling: any LikeToggling
+	let checkingIn: any CheckingIn
 	let observability: ObservabilityPipeline
 	let promotionEngaging: any PromotionEngaging
 
 	@State private var model: FeedScreenModel
 	@State private var likeModel: OptimisticLikeModel?
+	@State private var checkInModel: CheckInModel?
 	@Environment(\.openURL) private var openURL
 
 	init(
@@ -38,6 +45,7 @@ struct VenueScreen: View {
 		router: TabRouter,
 		toastQueue: ToastQueue,
 		likeToggling: any LikeToggling,
+		checkingIn: any CheckingIn,
 		observability: ObservabilityPipeline = .disabled,
 		promotionEngaging: any PromotionEngaging,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
@@ -46,6 +54,7 @@ struct VenueScreen: View {
 		self.router = router
 		self.toastQueue = toastQueue
 		self.likeToggling = likeToggling
+		self.checkingIn = checkingIn
 		self.observability = observability
 		self.promotionEngaging = promotionEngaging
 		_model = State(initialValue: FeedScreenModel(
@@ -62,12 +71,14 @@ struct VenueScreen: View {
 
 	var body: some View {
 		VStack(spacing: 0) {
-			if let venue = model.venueDetails, let likeModel {
+			if let venue = model.venueDetails, let likeModel, let checkInModel {
 				VenueHeaderView(
 					venueName: venue.name,
 					venueAddress: venue.address,
 					likeModel: likeModel,
+					checkInModel: checkInModel,
 					onNowPlaying: { openNowPlaying() },
+					onDirections: { openDirections(venue: venue) },
 				)
 			}
 
@@ -100,10 +111,36 @@ struct VenueScreen: View {
 					observability: observability,
 				)
 			}
+
+			if let checkInModel {
+				checkInModel.reconcile(with: venue.checkedIn)
+			} else {
+				checkInModel = CheckInModel(
+					venueId: venue.venueId,
+					checkedIn: venue.checkedIn,
+					checkingIn: checkingIn,
+					observability: observability,
+				)
+			}
 		}
 		.onChange(of: likeModel?.failureEvent) { _, event in
 			guard let event else { return }
 			toastQueue.enqueue(ToastItem(message: event.message ?? Self.likeFailureFallbackMessage))
+		}
+		.onChange(of: checkInModel?.successEvent) { _, event in
+			guard let event else { return }
+			// LEGACY.md's `ToastHandler`: a response URL is opened *instead
+			// of* the toast, never alongside it.
+			if let url = event.url {
+				observability.interaction("openCheckInURL")
+				openURL(url)
+			} else if let message = event.message, !message.isEmpty {
+				toastQueue.enqueue(ToastItem(message: message))
+			}
+		}
+		.onChange(of: checkInModel?.failureEvent) { _, event in
+			guard let event else { return }
+			toastQueue.enqueue(ToastItem(message: event.message ?? Self.checkInFailureFallbackMessage))
 		}
 		.tracksScreen("Venue")
 	}
@@ -113,6 +150,31 @@ struct VenueScreen: View {
 		router.push(.nowPlaying(venueId: venueId))
 	}
 
+	/// LEGACY.md "Venue screen": "Directions → `VenueDirectionsViewController`:
+	/// MapKit map with venue pin + walking route from current location
+	/// (`DirectionsProvider.swift`), phone-call button, and pre-filled
+	/// SMS/email share." That screen's own routing half —
+	/// `secretdjv3/DirectionsProvider.swift`'s `MKDirections.Request` with
+	/// `transportType = .walking` from the current location to the venue's
+	/// coordinate — is what this hands off to Apple's own Maps app rather
+	/// than re-building in-app: modern Maps already renders the walking
+	/// route, and (unlike 2017) already offers a call button and a share
+	/// sheet from the destination pin itself, which is what
+	/// `DirectionsMessageProvider.swift`'s pre-filled SMS/email hand-off
+	/// existed to approximate by hand. That hand-built share flow isn't
+	/// ported here — it's materially separate from what PLAN.md S6.10 asks
+	/// for ("directions surface; server-driven Uber/taxi actions preserved
+	/// via `appmask`").
+	private func openDirections(venue: Venue) {
+		observability.interaction("openDirections")
+
+		let location = CLLocation(latitude: venue.lat, longitude: venue.lng)
+		let address = MKAddress(fullAddress: venue.address, shortAddress: nil)
+		let mapItem = MKMapItem(location: location, address: address)
+		mapItem.name = venue.name
+		mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking])
+	}
+
 	/// Every navigational outcome (song/jukebox/person/venue/...) still goes
 	/// through ``TabRouter`` exactly like every other S6 feed screen —
 	/// ``TabRouter/handle(outcome:venueId:)`` supplies this screen's own
@@ -120,9 +182,10 @@ struct VenueScreen: View {
 	/// (``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``/
 	/// ``FeedUI/FeedActionOutcome/launchSearch``/
 	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)``) — only the
-	/// three outcomes a promotion tap can produce are this screen's own side
-	/// effect (``AppDestination/init(outcome:)``'s doc comment: "S6 hangs
-	/// its own handling... directly off the outcome").
+	/// outcomes a promotion tap or a server-driven hail-ride action button
+	/// can produce are this screen's own side effect
+	/// (``AppDestination/init(outcome:)``'s doc comment: "S6 hangs its own
+	/// handling... directly off the outcome").
 	private func handle(outcome: FeedActionOutcome) {
 		switch outcome {
 		case .openSocialApp(let platform, let identifier, let webFallbackURL):
@@ -139,6 +202,9 @@ struct VenueScreen: View {
 		case .engagePromotion(let promotionId):
 			observability.interaction("engagePromotion")
 			Task { await promotionEngaging.engage(venueId: venueId, promotionId: promotionId) }
+
+		case .hailRide:
+			HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability)
 
 		default:
 			router.handle(outcome: outcome, venueId: venueId)
@@ -180,6 +246,16 @@ struct VenueScreen: View {
 		String(
 			localized: "Sorry, we couldn't update that — please try again.",
 			comment: "Toast shown when liking or unliking something fails.",
+		)
+	}
+
+	/// ``CheckInModel`` owns no fallback copy of its own (mirrors this
+	/// type's own ``likeFailureFallbackMessage``) when a check-in failure
+	/// carries no server message.
+	static var checkInFailureFallbackMessage: String {
+		String(
+			localized: "Sorry, we couldn't check you in — please try again.",
+			comment: "Toast shown when checking in at a venue fails.",
 		)
 	}
 
@@ -227,6 +303,7 @@ struct VenueScreen: View {
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
 			likeToggling: InMemoryLikeToggling(),
+			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
@@ -241,6 +318,7 @@ struct VenueScreen: View {
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
 			likeToggling: InMemoryLikeToggling(),
+			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
@@ -255,6 +333,7 @@ struct VenueScreen: View {
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
 			likeToggling: InMemoryLikeToggling(),
+			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}

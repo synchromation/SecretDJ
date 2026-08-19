@@ -4586,6 +4586,122 @@
           }
         }
       }
+    },
+    "Check In": {
+      "comment": "Title of the venue screen's check-in button before checking in.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Einchecken"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registrarse"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "S'enregistrer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inchecken"
+          }
+        }
+      }
+    },
+    "Checked In": {
+      "comment": "Title of the venue screen's check-in button once checked in.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Eingecheckt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Registrado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Enregistré"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ingecheckt"
+          }
+        }
+      }
+    },
+    "Directions": {
+      "comment": "Title of the venue screen's directions button, opening Apple Maps with walking directions to the venue.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Route"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cómo llegar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Itinéraire"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Route"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't check you in — please try again.": {
+      "comment": "Toast shown when checking in at a venue fails.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten dich nicht einchecken — versuch's bitte noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido registrarte — inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu t'enregistrer — réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je niet inchecken — probeer het opnieuw."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

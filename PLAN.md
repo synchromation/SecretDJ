@@ -396,14 +396,23 @@ exclusions.
       `numpaidcredits` drives the nothing-to-restore message), voucher
       redemption (`redeemjukeboxvoucher`), and a transaction-listener
       design replacing the legacy resubmit-on-every-screen loop.
-- [ ] S6.8 Check-in: venue check-in flow (scope=everyone, optimistic UI
+- [x] S6.8 Check-in: venue check-in flow (scope=everyone, optimistic UI
       with rollback on failure) and the server-driven toast/URL response.
 - [ ] S6.9 Extra content ticker: the venue/places bottom banner rotating
       now-playing songs and people, with its scroll-direction show/hide
       behavior re-evaluated (D9).
-- [ ] S6.10 Directions and taxi: directions surface; server-driven
+- [x] S6.10 Directions and taxi: directions surface; server-driven
       Uber/taxi actions preserved via `appmask` (LEGACY.md "Gaps and
       cross-checks" — keep the client→server installed-apps signal).
+      (Directions is an Apple Maps walking hand-off — the legacy custom
+      map/call/SMS-share screen is deliberately not ported, cited in
+      code. hailRide URLs, previously an unwired no-op, now open
+      externally from every outcome-forwarding screen.)
+- [ ] S6.12 Server-driven nav-bar action buttons: render the toolbar
+      buttons SectionList.actions carries (insert-coin, hail-taxi,
+      search — LEGACY.md's ActionBarButtonProvider) on the feed screens;
+      the router mapping already exists and is tested — only the
+      rendering is missing (found during S6.10).
 - [ ] S6.11 Settings: auto-lock preference (in-app, replacing the
       Settings-bundle toggle), change profile details / password / gender
       (`userdetails`/`setuserdetails`, reusing S4.2 validation; the
@@ -589,7 +598,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1–S6.7 done; S6.8–S6.11 remain) |
+| S6 Consumer features | in progress (S6.1–S6.8, S6.10 done; S6.9, S6.11, S6.12 remain) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

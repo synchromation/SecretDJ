@@ -561,3 +561,19 @@ work happens; every commit includes this file's delta.
   vs noCredits header contexts wired; .topUps destination is real.
   Sixteen localized keys with glossary-consistent terms. Full verify
   green.
+- S6.8 + S6.10 done (TDD, sonnet subagent; resumed once after a
+  wait-stall; suite 413 consumer tests): check-in as a one-directional
+  optimistic model (legacy never un-checks; reconcile never regresses
+  true on stale refreshes), server URL replacing the toast per
+  legacy's ToastHandler rule; directions as an Apple Maps walking
+  hand-off — the 2017 custom map/call/SMS screen deliberately not
+  ported (cited in code and on the S6.10 checkbox). Real finds: the
+  hailRide outcome was a silent no-op (now opens externally from every
+  outcome-forwarding screen) and VenueScreen was never passed
+  observability (its instrumentation would have been dead in
+  production). New gap scheduled as S6.12: SectionList.actions'
+  toolbar buttons are mapped and tested but never rendered. Four
+  localized keys + two glossary rows. Full verify green. (The Stop
+  hook's mid-flight verify collision with the agent's own run produced
+  one spurious terminated-verify report — both subsequent full runs
+  were green.)

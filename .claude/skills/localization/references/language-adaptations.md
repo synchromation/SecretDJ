@@ -84,6 +84,8 @@ coexist in one language.
 | top-up | Pick one target-language term and use it for every purchase-related string. |
 | restore purchases | Use Apple's own localized StoreKit terminology per language. |
 | screen name | es *nombre de usuario*, fr *nom d'utilisateur*, de *Benutzername*, nl *gebruikersnaam* — the account handle (distinct from a person's real first/last name). |
+| check in (venue) | es *Registrarse* / *Registrado*, fr *S'enregistrer* / *Enregistré*, de *Einchecken* / *Eingecheckt*, nl *Inchecken* / *Ingecheckt* — action/state pair for the venue check-in button. |
+| directions | es *Cómo llegar*, fr *Itinéraire*, de *Route*, nl *Route* — matches each language's own Maps app convention rather than a literal translation. |
 
 When the assistant drafts a glossary term or any non-trivial translation,
 it enters the catalog as `needs_review` until a native speaker confirms.

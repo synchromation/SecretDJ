@@ -20,6 +20,9 @@ struct ActivityScreen: View {
 	let router: TabRouter
 	let toastQueue: ToastQueue
 
+	@Environment(\.observability) private var observability
+	@Environment(\.openURL) private var openURL
+
 	@State private var model: FeedScreenModel
 
 	init(
@@ -52,13 +55,21 @@ struct ActivityScreen: View {
 		FeedScreen(
 			model: model,
 			copy: Self.copy,
-			onOutcome: router.handle(outcome:),
+			onOutcome: handle(outcome:),
 			onJukeboxChanged: handleJukeboxChanged,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
 		.navigationTitle(Text("Activity", comment: "Navigation title of the Activity tab."))
 		.tracksScreen("Activity")
+	}
+
+	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
+	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
+	/// before.
+	private func handle(outcome: FeedActionOutcome) {
+		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		router.handle(outcome: outcome)
 	}
 
 	/// The legacy "jukebox changed" toast (`kJukeboxUpdatedText`), inherited

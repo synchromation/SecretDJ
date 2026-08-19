@@ -47,6 +47,7 @@ struct TabsView: View {
 	/// presents above the tab bar rather than getting clipped to one tab's
 	/// own stack.
 	@State private var toastQueue = ToastQueue()
+	@Environment(\.openURL) private var openURL
 
 	init(
 		sessionStore: SessionStore,
@@ -177,7 +178,7 @@ struct TabsView: View {
 			MusicSearchScreen(
 				searching: APIClientMusicSearching(client: apiClient, sessionStore: sessionStore, venueId: venueId),
 				copy: Self.musicSearchCopy,
-				onOutcome: { router.handle(outcome: $0, venueId: venueId) },
+				onOutcome: { handle(outcome: $0, router: router, venueId: venueId) },
 			)
 
 		case .songsForArtist(let venueId, let artist):
@@ -185,7 +186,7 @@ struct TabsView: View {
 				artistName: artist,
 				searching: APIClientMusicSearching(client: apiClient, sessionStore: sessionStore, venueId: venueId),
 				copy: Self.songsForArtistCopy,
-				onOutcome: { router.handle(outcome: $0, venueId: venueId) },
+				onOutcome: { handle(outcome: $0, router: router, venueId: venueId) },
 			)
 
 		case .topUps(let context):
@@ -234,6 +235,8 @@ struct TabsView: View {
 			router: router,
 			toastQueue: toastQueue,
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
+			checkingIn: APIClientCheckingIn(client: apiClient, sessionStore: sessionStore),
+			observability: observability,
 			promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
 		)
 	}
@@ -302,7 +305,7 @@ struct TabsView: View {
 			atmosphereChanging: APIClientAtmosphereChanging(client: apiClient, sessionStore: sessionStore),
 			toastQueue: toastQueue,
 			copy: Self.musicSelectionCopy,
-			onOutcome: { router.handle(outcome: $0, venueId: venueId) },
+			onOutcome: { handle(outcome: $0, router: router, venueId: venueId) },
 			onJukeboxChanged: { toastQueue.enqueue(ToastItem(message: Self.jukeboxChangedMessage)) },
 		)
 	}
@@ -315,6 +318,16 @@ struct TabsView: View {
 
 	private func path(for router: TabRouter) -> Binding<[AppDestination]> {
 		Binding(get: { router.path }, set: { router.setPath($0) })
+	}
+
+	/// Every screen this shell composes with a venue-context `onOutcome`
+	/// (music search, songs-for-artist, music selection) forwards its
+	/// outcomes here rather than straight to `router.handle(outcome:venueId:)`
+	/// — ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
+	/// (S6.10), falling through to the router for everything else.
+	private func handle(outcome: FeedActionOutcome, router: TabRouter, venueId: String) {
+		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		router.handle(outcome: outcome, venueId: venueId)
 	}
 }
 
