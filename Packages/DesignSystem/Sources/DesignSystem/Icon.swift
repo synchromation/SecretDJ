@@ -16,7 +16,7 @@ extension Theme {
 		case topUp
 		/// The hail-taxi nav-bar action and Uber deep link.
 		case taxi
-		/// Venue directions.
+		/// Venue directions, and the Places Nearby tab's map bar button.
 		case map
 		/// Checking in at a venue.
 		case checkIn

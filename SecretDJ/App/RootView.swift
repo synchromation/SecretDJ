@@ -41,6 +41,7 @@ struct RootView: View {
 		} else if sessionStore.isSignedIn {
 			TabsView(
 				sessionStore: sessionStore,
+				apiClient: apiClient,
 				locationService: locationService,
 				onDeleteAccount: startAccountDeletion,
 				observability: observability,

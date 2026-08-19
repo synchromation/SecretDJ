@@ -2440,6 +2440,354 @@
           }
         }
       }
+    },
+    "No Venues Nearby": {
+      "comment": "Title shown on the Places Nearby feed when no venues are nearby.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Orte in der Nähe"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No hay locales cerca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucun lieu à proximité"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen plekken in de buurt"
+          }
+        }
+      }
+    },
+    "We couldn't find any Secret DJ venues near you right now — check back soon.": {
+      "comment": "Body shown on the Places Nearby feed when no venues are nearby.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wir konnten gerade keine Secret DJ Orte in deiner Nähe finden — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ahora mismo no encontramos locales de Secret DJ cerca de ti — vuelve a intentarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nous n'avons trouvé aucun lieu Secret DJ près de toi pour le moment — reviens bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "We konden nu geen Secret DJ-plekken in de buurt vinden — kom snel terug."
+          }
+        }
+      }
+    },
+    "Something Went Wrong": {
+      "comment": "Title shown on the Places Nearby feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Etwas ist schiefgelaufen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Algo salió mal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Un problème est survenu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er ging iets mis"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load the venues near you.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the Places Nearby feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten die Orte in deiner Nähe nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar los locales cerca de ti.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger les lieux près de toi.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden de plekken in de buurt niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "You're Offline": {
+      "comment": "Title shown on the Places Nearby feed when the device has no internet connection.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Du bist offline"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Estás sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu es hors ligne"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je bent offline"
+          }
+        }
+      }
+    },
+    "Check your connection and try again.": {
+      "comment": "Body shown on the Places Nearby feed when the device has no internet connection.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prüfe deine Verbindung und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Comprueba tu conexión e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérifie ta connexion et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Controleer je verbinding en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "comment": "Button that retries loading the Places Nearby feed after a failure.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Erneut versuchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Intentar de nuevo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réessayer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Opnieuw proberen"
+          }
+        }
+      }
+    },
+    "Jukebox Updated": {
+      "comment": "Toast shown when a paginated feed's content changed underneath the user (LEGACY.md's kJukeboxUpdatedText).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jukebox aktualisiert"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jukebox actualizada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jukebox mise à jour"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jukebox bijgewerkt"
+          }
+        }
+      }
+    },
+    "Map": {
+      "comment": "Navigation title of the Places Nearby venue map, and the map bar button's label.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Karte"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mapa"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Carte"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kaart"
+          }
+        }
+      }
+    },
+    "No Venues to Show": {
+      "comment": "Title shown on the venue map when there are no nearby venues to plot.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Orte zum Anzeigen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No hay locales que mostrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucun lieu à afficher"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen plekken om te tonen"
+          }
+        }
+      }
+    },
+    "We couldn't find any venues to show on the map right now.": {
+      "comment": "Body shown on the venue map when there are no nearby venues to plot.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wir konnten gerade keine Orte für die Karte finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ahora mismo no encontramos locales para mostrar en el mapa."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nous n'avons trouvé aucun lieu à afficher sur la carte pour le moment."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "We konden nu geen plekken vinden om op de kaart te tonen."
+          }
+        }
+      }
+    },
+    "Has a jukebox": {
+      "comment": "Accessibility value read for a Places Nearby map pin at a venue with a jukebox.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hat eine Jukebox"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tiene jukebox"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dispose d'un jukebox"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Heeft een jukebox"
+          }
+        }
+      }
     }
   },
   "version": "1.1"
