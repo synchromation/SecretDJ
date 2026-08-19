@@ -350,7 +350,7 @@ Each task below is one feature at the ground rules' definition of done.
 Exit for the stage: consumer feature parity with LEGACY.md minus scope
 exclusions.
 
-- [ ] S6.1 Places Nearby: nearby-venues feed; venue map (pins, jukebox
+- [x] S6.1 Places Nearby: nearby-venues feed; venue map (pins, jukebox
       badge, user location, zoom-to-fit) behind the map action.
 - [ ] S6.2 Venue screen and Now Playing: venue feed, now-playing feed
       with auto-refresh, jukebox navigation into selection/digest feeds,
@@ -374,7 +374,7 @@ exclusions.
       if the backend lands a fixed Content-Type, still unconfirmed
       under D2), 30s hard cap, stop-on-exit, cancel-during-download.
       (The listen-elsewhere sheet was dropped entirely — D12.)
-- [ ] S6.5 Activity feed: server-driven event history (check-ins,
+- [x] S6.5 Activity feed: server-driven event history (check-ins,
       requests, awards, people) on the feed engine; award templates
       render via S3.2 cells.
 - [ ] S6.6 Profile: own profile feed, avatar change (S4.5 components),
@@ -580,7 +580,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | not started |
+| S6 Consumer features | in progress (S6.1, S6.5 done) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

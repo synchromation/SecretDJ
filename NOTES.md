@@ -454,3 +454,21 @@ work happens; every commit includes this file's delta.
   guards (six deliberate reverts, six matching failures) and caught
   its own vacuous ARC-deallocated instrumentation test. Full verify
   green.
+- S6.1 done (TDD, sonnet subagent, direct): Places Nearby for real —
+  APIClientFeedLoading, the reusable app-side FeedLoading adapter
+  (fresh one-shot location before every load, session credentials
+  read fresh per fetch so auto-refresh outlives token rotation,
+  rotated tokens applied, typed error if a call outlives sign-out);
+  PlacesNearbyScreen at the legacy cadence with no pagination
+  (matching the legacy provider), venue-map screen deriving
+  annotations from the already-loaded feed (jukebox venues distinct
+  and accessible, camera fit, pin taps reuse showVenue), shell-level
+  ToastQueue composed for jukebox-changed. Twelve localized keys.
+- S6.5 done (TDD, sonnet subagent, direct): Activity feed as the
+  smallest adapter reuse — eventhistory, auto-refresh, no pagination
+  (legacy inheritance no-op, cited), fixture test from the live
+  EventHistory capture proving cell/route selection for event, award,
+  check-in, and person items. Three localized keys. Both tasks full
+  verify green. (Process slip recorded: these two commits went out
+  without their PLAN.md checkbox flips — statuses ride in this
+  follow-up commit instead. The checkpoints rule stands.)
