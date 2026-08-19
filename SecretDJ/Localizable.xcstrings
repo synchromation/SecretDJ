@@ -4122,6 +4122,470 @@
           }
         }
       }
+    },
+    "Get More Songs": {
+      "comment": "Navigation title of the credits top-up screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mehr Songs holen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Consigue más canciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Plus de chansons"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Meer nummers krijgen"
+          }
+        }
+      }
+    },
+    "Got a voucher code?": {
+      "comment": "Header above the voucher-code redemption bar on the top-up screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hast du einen Gutscheincode?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Tienes un código de vale?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu as un code cadeau ?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Heb je een vouchercode?"
+          }
+        }
+      }
+    },
+    "REDEEM": {
+      "comment": "Button that submits the voucher-code field on the top-up screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "EINLÖSEN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "CANJEAR"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "VALIDER"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "VERZILVEREN"
+          }
+        }
+      }
+    },
+    "REDEEMING...": {
+      "comment": "Redeem button title while a voucher code is being submitted.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WIRD EINGELÖST..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "CANJEANDO..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "VALIDATION..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "BEZIG..."
+          }
+        }
+      }
+    },
+    "Restore Purchases": {
+      "comment": "Button that re-triggers server credit for any interrupted App Store purchase.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Käufe wiederherstellen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restaurar compras"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Restaurer les achats"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aankopen herstellen"
+          }
+        }
+      }
+    },
+    "RESTORING...": {
+      "comment": "Restore Purchases button title while a restore is in progress.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WIRD WIEDERHERGESTELLT..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "RESTAURANDO..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "RESTAURATION..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "HERSTELLEN..."
+          }
+        }
+      }
+    },
+    "There's nothing to buy right now — check back soon.": {
+      "comment": "Body shown on the top-up screen when the server has no products to offer.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gerade gibt es nichts zu kaufen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ahora mismo no hay nada que comprar — vuelve a mirar pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Il n'y a rien à acheter pour le moment — reviens bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er is nu niets te koop — kom snel terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load the top-up options.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the top-up screen when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten die Aufladeoptionen nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar las opciones de recarga.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger les options de recharge.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden de opwaardeeropties niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Sorry, that purchase failed.\n\nNo payment was taken.": {
+      "comment": "Toast shown when a top-up purchase fails before any payment is taken — the SKU couldn't be resolved, or the App Store's own purchase sheet failed.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, der Kauf ist fehlgeschlagen.\n\nEs wurde keine Zahlung abgebucht."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, la compra ha fallado.\n\nNo se ha realizado ningún cargo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, l'achat a échoué.\n\nAucun paiement n'a été effectué."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, die aankoop is mislukt.\n\nEr is geen betaling afgeschreven."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't complete that top-up.\n\nPlease try again.": {
+      "comment": "Toast shown when a top-up purchase succeeds with the App Store but the server rejects it with no message of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diese Aufladung nicht abschließen.\n\nVersuch es bitte noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido completar esa recarga.\n\nInténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu finaliser cette recharge.\n\nRéessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden die opwaardering niet voltooien.\n\nProbeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't restore your purchases.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Toast shown when Restore Purchases fails before the App Store even responds.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten deine Käufe nicht wiederherstellen.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido restaurar tus compras.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu restaurer tes achats.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je aankopen niet herstellen.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "No purchases to restore.": {
+      "comment": "Toast title shown after Restore Purchases finds nothing to restore, followed by the server's own paid-credit count.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Käufe zum Wiederherstellen."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No hay compras que restaurar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucun achat à restaurer."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen aankopen om te herstellen."
+          }
+        }
+      }
+    },
+    "Please enter a voucher code": {
+      "comment": "Toast shown when Redeem is tapped with an empty voucher-code field.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bitte gib einen Gutscheincode ein"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Introduce un código de vale"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Saisis un code cadeau"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voer een vouchercode in"
+          }
+        }
+      }
+    },
+    "Voucher redeemed!": {
+      "comment": "Toast shown when a voucher code is redeemed successfully but the server sends no message of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gutschein eingelöst!"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¡Vale canjeado!"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Code utilisé !"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voucher verzilverd!"
+          }
+        }
+      }
+    },
+    "Sorry, that voucher code didn't work.": {
+      "comment": "Toast shown when a voucher code is rejected and the server sends no message of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dieser Gutscheincode hat nicht funktioniert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, ese código de vale no ha funcionado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, ce code cadeau n'a pas fonctionné."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, die vouchercode werkte niet."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't redeem that voucher.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Toast shown when redeeming a voucher code fails before reaching the server.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diesen Gutschein nicht einlösen.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido canjear ese vale.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu utiliser ce code cadeau.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden die voucher niet verzilveren.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

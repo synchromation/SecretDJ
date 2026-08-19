@@ -10,10 +10,7 @@ import UIKit
 struct SecretDJApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
-	@State private var sessionStore = SessionStore(
-		snapshotStore: UserDefaultsSessionSnapshotStore(),
-		credentialStore: KeychainCredentialStore(),
-	)
+	@State private var sessionStore: SessionStore
 	/// Created in ``init()`` alongside ``apiClient`` so both share the same
 	/// ``LocationCoordinateBox`` (S5.3) — the coordinate ``LocationService``
 	/// resolves is the same one `apiClient` appends to every request.
@@ -24,10 +21,26 @@ struct SecretDJApp: App {
 	/// (``SharedFeatures/PreviewPlayerModel``'s own doc comment on why
 	/// exactly one instance exists per app, never one per screen).
 	@State private var previewPlayerModel: PreviewPlayerModel
-
 	private let apiClient: APIClient
+	/// StoreKit 2 purchases (S6.7) — one instance for the app's lifetime,
+	/// shared by every ``TopUpsScreen`` presentation and by
+	/// ``topUpTransactionListener`` so a purchase and a later restore/drain
+	/// agree about the same underlying unfinished-transaction queue. A
+	/// plain `let`, not `@State`, matching ``apiClient`` — nothing here
+	/// ever replaces the instance, only mutates it internally.
+	private let productPurchasing = StoreKitProductPurchasing()
+	/// Started in ``body`` below, replacing legacy's resubmit-on-every-
+	/// screen-appearance loop (``TopUpTransactionListener``'s doc comment)
+	/// with a single startup drain.
+	private let topUpTransactionListener: TopUpTransactionListener
 
 	init() {
+		let sessionStore = SessionStore(
+			snapshotStore: UserDefaultsSessionSnapshotStore(),
+			credentialStore: KeychainCredentialStore(),
+		)
+		_sessionStore = State(initialValue: sessionStore)
+
 		let coordinateBox = LocationCoordinateBox()
 		_locationService = State(initialValue: LocationService(
 			provider: CLLocationManagerLocationProviding(),
@@ -44,6 +57,12 @@ struct SecretDJApp: App {
 			playerFactory: SystemAudioPlayerFactory(),
 			observability: .live,
 		))
+		topUpTransactionListener = TopUpTransactionListener(
+			purchasing: productPurchasing,
+			servicing: APIClientTopUpsService(client: apiClient),
+			sessionStore: sessionStore,
+			observability: .live,
+		)
 		AudioSessionConfiguration.configureForPreviewPlayback(observability: .live)
 	}
 
@@ -54,9 +73,12 @@ struct SecretDJApp: App {
 				apiClient: apiClient,
 				locationService: locationService,
 				previewPlayerModel: previewPlayerModel,
+				productPurchasing: productPurchasing,
+				topUpTransactionListener: topUpTransactionListener,
 				observability: .live,
 			)
 			.environment(\.observability, .live)
+			.task { await topUpTransactionListener.start() }
 			.onOpenURL { url in
 				_ = appDelegate.application(UIApplication.shared, open: url)
 			}

@@ -28,6 +28,17 @@ struct TabsView: View {
 	/// Starts the ``AccountFlowView`` delete-account flow, forwarded to the
 	/// Profile tab — owned by `RootView`, see its doc comment for why.
 	let onDeleteAccount: () -> Void
+	/// StoreKit 2 purchases, threaded from the composition root
+	/// (`SecretDJApp`) so ``TopUpsScreen`` and its
+	/// ``TopUpTransactionListener`` share the exact same seam a real
+	/// purchase and a later restore/drain both need to agree about
+	/// unfinished transactions.
+	let productPurchasing: any ProductPurchasing
+	/// Owns "Restore Purchases" and the startup unfinished-transaction
+	/// drain — started once at the composition root
+	/// (``TopUpTransactionListener``'s doc comment), never per screen
+	/// presentation.
+	let topUpTransactionListener: TopUpTransactionListener
 	let observability: ObservabilityPipeline
 
 	@State private var model: TabsModel
@@ -43,6 +54,8 @@ struct TabsView: View {
 		locationService: LocationService,
 		previewPlayerModel: PreviewPlayerModel,
 		onDeleteAccount: @escaping () -> Void,
+		productPurchasing: any ProductPurchasing,
+		topUpTransactionListener: TopUpTransactionListener,
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.sessionStore = sessionStore
@@ -50,6 +63,8 @@ struct TabsView: View {
 		self.locationService = locationService
 		self.previewPlayerModel = previewPlayerModel
 		self.onDeleteAccount = onDeleteAccount
+		self.productPurchasing = productPurchasing
+		self.topUpTransactionListener = topUpTransactionListener
 		self.observability = observability
 		_model = State(initialValue: TabsModel(observability: observability))
 	}
@@ -173,9 +188,34 @@ struct TabsView: View {
 				onOutcome: { router.handle(outcome: $0, venueId: venueId) },
 			)
 
+		case .topUps(let context):
+			topUpsScreen(context: context)
+
 		default:
 			ComingSoonScreen(destination: destination)
 		}
+	}
+
+	private func topUpsScreen(context: FeedActionOutcome.TopUpContext) -> some View {
+		TopUpsScreen(
+			loader: APIClientFeedLoading.sessionFeed(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				endpoint: { userId, credential, _ in try await apiClient.topUpDetails(
+					userId: userId,
+					venueId: nil,
+					context: context.apiContext,
+					vendor: .appleAppStore,
+					credential: credential,
+				) },
+			),
+			sessionStore: sessionStore,
+			toastQueue: toastQueue,
+			listener: topUpTransactionListener,
+			productPurchasing: productPurchasing,
+			topUpsServicing: APIClientTopUpsService(client: apiClient),
+			observability: observability,
+		)
 	}
 
 	private func venueScreen(venueId: String, router: TabRouter) -> some View {
@@ -288,6 +328,12 @@ struct TabsView: View {
 			playerFactory: InMemoryAudioPlayerFactory(),
 		),
 		onDeleteAccount: {},
+		productPurchasing: FakeProductPurchasing(),
+		topUpTransactionListener: TopUpTransactionListener(
+			purchasing: FakeProductPurchasing(),
+			servicing: InMemoryTopUpsServicing(),
+			sessionStore: PreviewSessionStore.signedIn(),
+		),
 	)
 }
 
@@ -301,6 +347,12 @@ struct TabsView: View {
 			playerFactory: InMemoryAudioPlayerFactory(),
 		),
 		onDeleteAccount: {},
+		productPurchasing: FakeProductPurchasing(),
+		topUpTransactionListener: TopUpTransactionListener(
+			purchasing: FakeProductPurchasing(),
+			servicing: InMemoryTopUpsServicing(),
+			sessionStore: PreviewSessionStore.signedIn(),
+		),
 	)
 	.environment(\.dynamicTypeSize, .accessibility5)
 }

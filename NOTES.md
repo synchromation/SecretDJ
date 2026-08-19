@@ -543,3 +543,21 @@ work happens; every commit includes this file's delta.
   FeedScreenModel.personDetails off the hiddenProfile section.
   Single "Profile" tracking name matching legacy's undistinguished
   analytics. Six localized keys. Full verify green.
+- S6.7 done (TDD, sonnet subagent, direct; suite now 1372 tests):
+  top-ups on StoreKit 2 behind a ProductPurchasing seam (scriptable
+  fake with a simulated transaction stream; the real actor adapter
+  verified against the actual iOS 27 SDK and compiled by verify but
+  never unit-touched). The finish/no-finish rule lives in one shared
+  TopUpNotifySubmitter: credited/alreadyProcessed finish, retryable
+  and transport errors stay unfinished — StoreKit 2's durable
+  unfinished-transaction queue replaces legacy's finish-before-verify
+  ordering and PendingTopUps resubmit-on-every-screen machinery. The
+  launch-time listener drains unfinished transactions once; Restore =
+  AppStore.sync + purchaseRestored notifies, with numpaidcredits
+  driving the nothing-to-restore message per legacy. "No payment was
+  taken." used only where truthful (pre-charge failures), per-language
+  fixed renderings from the adaptation sheets; post-charge notify
+  failures show the server's message instead. Voucher bar + insertCoin
+  vs noCredits header contexts wired; .topUps destination is real.
+  Sixteen localized keys with glossary-consistent terms. Full verify
+  green.

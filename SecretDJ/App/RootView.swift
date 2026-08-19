@@ -14,6 +14,11 @@ struct RootView: View {
 	let apiClient: APIClient
 	let locationService: LocationService
 	let previewPlayerModel: PreviewPlayerModel
+	/// StoreKit 2 purchases and the top-up transaction listener (S6.7),
+	/// both constructed once at the true composition root (`SecretDJApp`)
+	/// and forwarded here to `TabsView`.
+	let productPurchasing: any ProductPurchasing
+	let topUpTransactionListener: TopUpTransactionListener
 	let observability: ObservabilityPipeline
 
 	@State private var appleAuthorizing = ASAuthorizationControllerAppleAuthorizing()
@@ -47,6 +52,8 @@ struct RootView: View {
 				locationService: locationService,
 				previewPlayerModel: previewPlayerModel,
 				onDeleteAccount: startAccountDeletion,
+				productPurchasing: productPurchasing,
+				topUpTransactionListener: topUpTransactionListener,
 				observability: observability,
 			)
 		} else {
