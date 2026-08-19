@@ -3832,6 +3832,122 @@
           }
         }
       }
+    },
+    "Song Preview": {
+      "comment": "Accessible name of the TuneIn screen's play/stop 30-second preview button.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Songvorschau"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vista previa de la canción"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aperçu de la chanson"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummervoorbeeld"
+          }
+        }
+      }
+    },
+    "Playing": {
+      "comment": "Accessibility value of the TuneIn screen's preview button while the preview is playing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird abgespielt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproduciendo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lecture en cours"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wordt afgespeeld"
+          }
+        }
+      }
+    },
+    "Not Playing": {
+      "comment": "Accessibility value of the TuneIn screen's preview button while no preview is playing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird nicht abgespielt"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No se está reproduciendo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas en cours de lecture"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wordt niet afgespeeld"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't play that preview. Please try again.": {
+      "comment": "Toast shown when a song preview fails to download or decode.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entschuldigung, wir konnten diese Vorschau nicht abspielen. Bitte versuch es noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido reproducir esa vista previa. Inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu lire cet aperçu. Réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden dat voorbeeld niet afspelen. Probeer het opnieuw."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

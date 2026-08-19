@@ -2,6 +2,7 @@ import Observability
 import ObservabilitySentry
 import ObservabilityTelemetryDeck
 import SecretDJAPI
+import SharedFeatures
 import SwiftUI
 import UIKit
 
@@ -17,6 +18,12 @@ struct SecretDJApp: App {
 	/// ``LocationCoordinateBox`` (S5.3) — the coordinate ``LocationService``
 	/// resolves is the same one `apiClient` appends to every request.
 	@State private var locationService: LocationService
+	/// The app-wide shared song-preview player (S6.4) — constructed once
+	/// here, at the true composition root, and threaded down through
+	/// `RootView`/`TabsView` to every `TuneInScreen`
+	/// (``SharedFeatures/PreviewPlayerModel``'s own doc comment on why
+	/// exactly one instance exists per app, never one per screen).
+	@State private var previewPlayerModel: PreviewPlayerModel
 
 	private let apiClient: APIClient
 
@@ -32,6 +39,12 @@ struct SecretDJApp: App {
 			implicitParameters: DeviceImplicitParameterProvider(coordinateBox: coordinateBox),
 			transport: URLSessionAPITransport(),
 		)
+		_previewPlayerModel = State(initialValue: PreviewPlayerModel(
+			downloading: URLSessionPreviewDownloading(),
+			playerFactory: SystemAudioPlayerFactory(),
+			observability: .live,
+		))
+		AudioSessionConfiguration.configureForPreviewPlayback(observability: .live)
 	}
 
 	var body: some Scene {
@@ -40,6 +53,7 @@ struct SecretDJApp: App {
 				sessionStore: sessionStore,
 				apiClient: apiClient,
 				locationService: locationService,
+				previewPlayerModel: previewPlayerModel,
 				observability: .live,
 			)
 			.environment(\.observability, .live)

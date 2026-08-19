@@ -1,5 +1,6 @@
 import Observability
 import SecretDJAPI
+import SharedFeatures
 import SwiftUI
 
 /// The app's root: what a freshly created account still owes takes priority
@@ -12,6 +13,7 @@ struct RootView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
 	let locationService: LocationService
+	let previewPlayerModel: PreviewPlayerModel
 	let observability: ObservabilityPipeline
 
 	@State private var appleAuthorizing = ASAuthorizationControllerAppleAuthorizing()
@@ -43,6 +45,7 @@ struct RootView: View {
 				sessionStore: sessionStore,
 				apiClient: apiClient,
 				locationService: locationService,
+				previewPlayerModel: previewPlayerModel,
 				onDeleteAccount: startAccountDeletion,
 				observability: observability,
 			)

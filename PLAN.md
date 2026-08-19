@@ -376,7 +376,7 @@ exclusions.
       nav-bar action), song buzz/like, and the server-granted skip/
       blacklist moderation buttons (`machinecontrol`) that appear for
       entitled users.
-- [ ] S6.4 Audio previews (SharedFeatures): **download-then-decode**
+- [x] S6.4 Audio previews (SharedFeatures): **download-then-decode**
       preview playback (`AVAudioPlayer(data:)` — the backend serves
       previews as `.pbz` with a generic Content-Type that AVPlayer
       refuses, LEGACY.md "Audio and playback"; streaming AVPlayer only
@@ -589,7 +589,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1–S6.3, S6.5 done) |
+| S6 Consumer features | in progress (S6.1–S6.5 done) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

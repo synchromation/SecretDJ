@@ -18,6 +18,7 @@ struct TuneInDestinationScreen: View {
 	let apiClient: APIClient
 	let sessionStore: SessionStore
 	let toastQueue: ToastQueue
+	let previewPlayerModel: PreviewPlayerModel
 	let router: TabRouter
 	let observability: ObservabilityPipeline
 
@@ -30,6 +31,7 @@ struct TuneInDestinationScreen: View {
 				apiClient: apiClient,
 				sessionStore: sessionStore,
 				toastQueue: toastQueue,
+				previewPlayerModel: previewPlayerModel,
 				router: router,
 				observability: observability,
 			)
@@ -41,6 +43,7 @@ struct TuneInDestinationScreen: View {
 				apiClient: apiClient,
 				sessionStore: sessionStore,
 				toastQueue: toastQueue,
+				previewPlayerModel: previewPlayerModel,
 				router: router,
 				observability: observability,
 			)
@@ -58,6 +61,7 @@ private struct TuneInArtistResolvingScreen: View {
 	let apiClient: APIClient
 	let sessionStore: SessionStore
 	let toastQueue: ToastQueue
+	let previewPlayerModel: PreviewPlayerModel
 	let router: TabRouter
 	let observability: ObservabilityPipeline
 
@@ -69,6 +73,7 @@ private struct TuneInArtistResolvingScreen: View {
 		apiClient: APIClient,
 		sessionStore: SessionStore,
 		toastQueue: ToastQueue,
+		previewPlayerModel: PreviewPlayerModel,
 		router: TabRouter,
 		observability: ObservabilityPipeline,
 	) {
@@ -77,6 +82,7 @@ private struct TuneInArtistResolvingScreen: View {
 		self.apiClient = apiClient
 		self.sessionStore = sessionStore
 		self.toastQueue = toastQueue
+		self.previewPlayerModel = previewPlayerModel
 		self.router = router
 		self.observability = observability
 		_model = State(initialValue: TuneInArtistResolvingModel(
@@ -106,6 +112,7 @@ private struct TuneInArtistResolvingScreen: View {
 				apiClient: apiClient,
 				sessionStore: sessionStore,
 				toastQueue: toastQueue,
+				previewPlayerModel: previewPlayerModel,
 				router: router,
 				observability: observability,
 			)
@@ -139,6 +146,10 @@ private struct TuneInArtistResolvingScreen: View {
 			apiClient: PreviewAPIClient.broken(),
 			sessionStore: PreviewSessionStore.signedIn(),
 			toastQueue: ToastQueue(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 			router: TabRouter(),
 			observability: .disabled,
 		)
@@ -153,6 +164,10 @@ private struct TuneInArtistResolvingScreen: View {
 			apiClient: PreviewAPIClient.broken(),
 			sessionStore: PreviewSessionStore.signedIn(),
 			toastQueue: ToastQueue(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 			router: TabRouter(),
 			observability: .disabled,
 		)

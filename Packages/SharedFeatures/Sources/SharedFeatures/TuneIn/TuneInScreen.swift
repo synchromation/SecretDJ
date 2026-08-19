@@ -4,11 +4,11 @@ import SecretDJDomain
 import SwiftUI
 
 /// The song/TuneIn screen (LEGACY.md "Song screen and the request flow
-/// (TuneIn)", PLAN.md S6.3b): artwork/title/artist, embedded buzz
+/// (TuneIn)", PLAN.md S6.3b/S6.4): artwork/title/artist, the play/stop
+/// preview button wired to the shared ``PreviewPlayerModel``, embedded buzz
 /// (``OptimisticLikeModel`` via ``TuneInScreenModel/likeModel``), the
 /// request button, and the server-granted skip/never-play moderation
-/// buttons. Song previews (S6.4) and "listen elsewhere" (dropped — D12)
-/// aren't this screen's concern.
+/// buttons. "Listen elsewhere" (dropped — D12) isn't this screen's concern.
 ///
 /// Artwork is always rendered through ``DesignSystem/RemoteArtworkView`` at
 /// its largest bucket — legacy's full-bleed-vs-blurred-centered distinction
@@ -29,6 +29,11 @@ public struct TuneInScreen: View {
 	/// itself, mirroring ``MusicSelectionScreen/onOutcome``'s own contract
 	/// for outcomes it doesn't self-handle.
 	public let onOutOfCredits: ((Bool) -> Void)?
+	/// The app-wide shared preview player (S6.4) — constructed **once** at
+	/// the composition root and threaded down to every ``TuneInScreen``,
+	/// never created here (``PreviewPlayerModel``'s own doc comment on why
+	/// it's a shared instance, not per-screen).
+	public let previewPlayer: PreviewPlayerModel
 
 	@State private var model: TuneInScreenModel
 	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -41,11 +46,13 @@ public struct TuneInScreen: View {
 		likeToggling: any LikeToggling,
 		copy: TuneInScreenCopy,
 		toastQueue: ToastQueue,
+		previewPlayer: PreviewPlayerModel,
 		onOutOfCredits: ((Bool) -> Void)? = nil,
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.copy = copy
 		self.toastQueue = toastQueue
+		self.previewPlayer = previewPlayer
 		self.onOutOfCredits = onOutOfCredits
 		_model = State(initialValue: TuneInScreenModel(
 			song: song,
@@ -62,6 +69,7 @@ public struct TuneInScreen: View {
 			VStack(spacing: Spacing.large) {
 				artwork
 				details
+				preview
 				buzz
 				actions
 			}
@@ -73,6 +81,8 @@ public struct TuneInScreen: View {
 		.onChange(of: model.toastEvent, showToast)
 		.onChange(of: model.likeModel.failureEvent, showLikeFailureToast)
 		.onChange(of: model.funnelEvent, forwardFunnelEvent)
+		.onChange(of: previewPlayer.failureEvent, showPreviewFailureToast)
+		.onDisappear(perform: stopOwnPreviewIfActive)
 		.tracksScreen("TuneIn")
 	}
 
@@ -98,6 +108,36 @@ public struct TuneInScreen: View {
 				.multilineTextAlignment(.center)
 		}
 	}
+
+	/// Hidden entirely when the song carries no preview URL (LEGACY.md
+	/// business rule 2), matching both legacy screens' own hidden/disabled
+	/// affordance for a preview-less song.
+	@ViewBuilder
+	private var preview: some View {
+		if let previewURL = model.song.previewURL, let url = URL(string: previewURL) {
+			previewButton(url: url)
+		}
+	}
+
+	private func previewButton(url: URL) -> some View {
+		let isThisSongActive = previewPlayer.activeSongId == model.song.songId
+		let action: () -> Void = { togglePreview(url: url) }
+
+		return Button(action: action) {
+			(isThisSongActive ? Theme.Icon.stopPreview : Theme.Icon.playPreview).image
+				.frame(minWidth: Self.minimumTapTarget, minHeight: Self.minimumTapTarget)
+				.contentShape(Rectangle())
+		}
+		.accessibilityLabel(copy.previewAccessibilityLabel)
+		.accessibilityValue(isThisSongActive ? copy.previewPlayingValue : copy.previewStoppedValue)
+	}
+
+	/// The system minimum for a comfortable tap target (accessibility
+	/// skill: "Hit targets at least 44×44 points") — mirrors
+	/// ``DesignSystem/LikeButton``'s own constant, applied for the same
+	/// reason (an icon-only control would otherwise shrink to the bare
+	/// glyph's bounds).
+	private static let minimumTapTarget: CGFloat = 44
 
 	private var buzz: some View {
 		LikeButton(
@@ -173,6 +213,33 @@ public struct TuneInScreen: View {
 		Task { await model.neverPlay() }
 	}
 
+	/// Single active preview app-wide: this song's own tap either starts it
+	/// (stopping whatever else was active) or, when this song is already
+	/// the active one, stops it — the shared player's own contract
+	/// (``PreviewPlayerModel/play(songId:url:)``'s doc comment).
+	private func togglePreview(url: URL) {
+		if previewPlayer.activeSongId == model.song.songId {
+			previewPlayer.stop()
+		} else {
+			previewPlayer.play(songId: model.song.songId, url: url)
+		}
+	}
+
+	/// Stops the shared player only when *this* screen's own song is the
+	/// one currently active — LEGACY.md business rule 1's "stop on screen
+	/// exit", scoped so popping back to an earlier TuneIn screen (e.g. from
+	/// an artist's song list) never stops a still-relevant preview that
+	/// screen itself started.
+	private func stopOwnPreviewIfActive() {
+		guard previewPlayer.activeSongId == model.song.songId else { return }
+		previewPlayer.stop()
+	}
+
+	private func showPreviewFailureToast(_: PreviewPlayerFailureEvent?, _ event: PreviewPlayerFailureEvent?) {
+		guard event != nil else { return }
+		toastQueue.enqueue(ToastItem(message: copy.previewFailureMessage))
+	}
+
 	private func showToast(_: TuneInToastEvent?, _ event: TuneInToastEvent?) {
 		guard let event else { return }
 		toastQueue.enqueue(ToastItem(message: event.message))
@@ -204,6 +271,28 @@ public struct TuneInScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			copy: .preview,
 			toastQueue: ToastQueue(),
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
+		)
+	}
+}
+
+#Preview("With a song preview") {
+	NavigationStack {
+		TuneInScreen(
+			song: PreviewSong.withPreview,
+			venueId: "v1",
+			songRequesting: InMemorySongRequesting(),
+			machineControlling: InMemoryMachineControlling(),
+			likeToggling: InMemoryLikeToggling(),
+			copy: .preview,
+			toastQueue: ToastQueue(),
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 		)
 	}
 }
@@ -218,6 +307,10 @@ public struct TuneInScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			copy: .preview,
 			toastQueue: ToastQueue(),
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 		)
 	}
 }
@@ -232,6 +325,10 @@ public struct TuneInScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			copy: .preview,
 			toastQueue: ToastQueue(),
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 		)
 	}
 }
@@ -246,6 +343,10 @@ public struct TuneInScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			copy: .preview,
 			toastQueue: ToastQueue(),
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)
@@ -262,82 +363,10 @@ extension TuneInScreenCopy {
 			skipButtonTitle: Text(verbatim: "Skip"),
 			neverPlayButtonTitle: Text(verbatim: "Never Play This"),
 			buzzAccessibilityLabel: Text(verbatim: "Like this song"),
-		)
-	}
-}
-
-/// Preview-only ``SecretDJDomain/Song`` fixtures.
-enum PreviewSong {
-	static var requestable: Song {
-		Song(
-			songId: "1",
-			title: "Yellow",
-			artist: "Coldplay",
-			previewURL: nil,
-			likeInfo: LikeInfo(likedByYou: false, info: ""),
-			text: "",
-			sortIndex: 0,
-			action: nil,
-			actions: [Action(
-				kind: .jukeboxRequestSong,
-				itemId: 1,
-				itemTypeId: nil,
-				value: nil,
-				url: nil,
-				button: .unsupported(0),
-			)],
-		)
-	}
-
-	static var moderatable: Song {
-		Song(
-			songId: "2",
-			title: "Clocks",
-			artist: "Coldplay",
-			previewURL: nil,
-			likeInfo: LikeInfo(likedByYou: false, info: ""),
-			text: "",
-			sortIndex: 0,
-			action: nil,
-			actions: [
-				Action(
-					kind: .jukeboxSkipSong,
-					itemId: 2,
-					itemTypeId: nil,
-					value: nil,
-					url: nil,
-					button: .unsupported(0),
-				),
-				Action(
-					kind: .jukeboxBlacklistSong,
-					itemId: 2,
-					itemTypeId: nil,
-					value: nil,
-					url: nil,
-					button: .unsupported(0),
-				),
-			],
-		)
-	}
-
-	static var liked: Song {
-		Song(
-			songId: "3",
-			title: "Fix You",
-			artist: "Coldplay",
-			previewURL: nil,
-			likeInfo: LikeInfo(likedByYou: true, info: "24 people buzzed this"),
-			text: "",
-			sortIndex: 0,
-			action: nil,
-			actions: [Action(
-				kind: .jukeboxRequestSong,
-				itemId: 3,
-				itemTypeId: nil,
-				value: nil,
-				url: nil,
-				button: .unsupported(0),
-			)],
+			previewAccessibilityLabel: Text(verbatim: "Song Preview"),
+			previewPlayingValue: Text(verbatim: "Playing"),
+			previewStoppedValue: Text(verbatim: "Not Playing"),
+			previewFailureMessage: "Sorry, we couldn't play that preview.",
 		)
 	}
 }

@@ -21,6 +21,7 @@ struct ResolvedTuneInScreen: View {
 	let apiClient: APIClient
 	let sessionStore: SessionStore
 	let toastQueue: ToastQueue
+	let previewPlayerModel: PreviewPlayerModel
 	let router: TabRouter
 	let observability: ObservabilityPipeline
 
@@ -36,6 +37,7 @@ struct ResolvedTuneInScreen: View {
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
 			copy: Self.copy,
 			toastQueue: toastQueue,
+			previewPlayer: previewPlayerModel,
 			onOutOfCredits: handleOutOfCredits,
 			observability: observability,
 		)
@@ -113,6 +115,22 @@ struct ResolvedTuneInScreen: View {
 				"Like this song",
 				comment: "Accessible name of the TuneIn screen's like/buzz toggle button.",
 			),
+			previewAccessibilityLabel: Text(
+				"Song Preview",
+				comment: "Accessible name of the TuneIn screen's play/stop 30-second preview button.",
+			),
+			previewPlayingValue: Text(
+				"Playing",
+				comment: "Accessibility value of the TuneIn screen's preview button while the preview is playing.",
+			),
+			previewStoppedValue: Text(
+				"Not Playing",
+				comment: "Accessibility value of the TuneIn screen's preview button while no preview is playing.",
+			),
+			previewFailureMessage: String(
+				localized: "Sorry, we couldn't play that preview. Please try again.",
+				comment: "Toast shown when a song preview fails to download or decode.",
+			),
 		)
 	}
 
@@ -157,6 +175,10 @@ struct ResolvedTuneInScreen: View {
 			apiClient: PreviewAPIClient.broken(),
 			sessionStore: PreviewSessionStore.signedIn(),
 			toastQueue: ToastQueue(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 			router: TabRouter(),
 			observability: .disabled,
 		)
@@ -171,6 +193,10 @@ struct ResolvedTuneInScreen: View {
 			apiClient: PreviewAPIClient.broken(),
 			sessionStore: PreviewSessionStore.signedIn(),
 			toastQueue: ToastQueue(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 			router: TabRouter(),
 			observability: .disabled,
 		)
@@ -185,6 +211,10 @@ struct ResolvedTuneInScreen: View {
 			apiClient: PreviewAPIClient.broken(),
 			sessionStore: PreviewSessionStore.signedIn(),
 			toastQueue: ToastQueue(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
 			router: TabRouter(),
 			observability: .disabled,
 		)

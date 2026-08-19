@@ -518,3 +518,16 @@ work happens; every commit includes this file's delta.
   keys, money-adjacent copy plain. Suite: consumer 321, SharedFeatures
   76, FeedUI 167, Domain 135, API 240, DesignSystem 51 — full verify
   green.
+- S6.4 done (TDD, sonnet subagent, direct): the shared preview player
+  in SharedFeatures/Playback — download-then-decode per the .pbz
+  contract (AVAudioPlayer(data:) behind AudioPlaying/PreviewDownloading
+  seams), single active preview app-wide with a generation counter
+  killing stale downloads, 30s cap on an injected clock,
+  cancel-during-download, stop-on-exit scoped to the owning screen's
+  song. isPlaying spans download+playback (matching legacy's
+  notification timing) and is the documented S7.3 attract-suppression
+  signal. Song.previewURL was already modeled — no Domain change.
+  TuneIn gains the play/stop button (hidden without a preview URI);
+  AVAudioSession .playback configured at the root with legacy's
+  IOBufferDuration cargo-cult deliberately dropped. Four localized
+  keys. Full verify green.

@@ -19,6 +19,11 @@ struct TabsView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
 	let locationService: LocationService
+	/// The app-wide shared song-preview player (S6.4), threaded from the
+	/// composition root down to whichever `TuneInDestinationScreen` a tab's
+	/// stack pushes — see `SecretDJApp`'s own doc comment on why exactly one
+	/// instance exists.
+	let previewPlayerModel: PreviewPlayerModel
 	/// Starts the ``AccountFlowView`` delete-account flow, forwarded to the
 	/// Profile tab — owned by `RootView`, see its doc comment for why.
 	let onDeleteAccount: () -> Void
@@ -35,12 +40,14 @@ struct TabsView: View {
 		sessionStore: SessionStore,
 		apiClient: APIClient,
 		locationService: LocationService,
+		previewPlayerModel: PreviewPlayerModel,
 		onDeleteAccount: @escaping () -> Void,
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.sessionStore = sessionStore
 		self.apiClient = apiClient
 		self.locationService = locationService
+		self.previewPlayerModel = previewPlayerModel
 		self.onDeleteAccount = onDeleteAccount
 		self.observability = observability
 		_model = State(initialValue: TabsModel(observability: observability))
@@ -129,6 +136,7 @@ struct TabsView: View {
 				apiClient: apiClient,
 				sessionStore: sessionStore,
 				toastQueue: toastQueue,
+				previewPlayerModel: previewPlayerModel,
 				router: router,
 				observability: observability,
 			)
@@ -342,6 +350,10 @@ struct TabsView: View {
 		sessionStore: PreviewSessionStore.signedIn(),
 		apiClient: PreviewAPIClient.broken(),
 		locationService: PreviewLocationService.authorized(),
+		previewPlayerModel: PreviewPlayerModel(
+			downloading: InMemoryPreviewDownloading(),
+			playerFactory: InMemoryAudioPlayerFactory(),
+		),
 		onDeleteAccount: {},
 	)
 }
@@ -351,6 +363,10 @@ struct TabsView: View {
 		sessionStore: PreviewSessionStore.signedIn(),
 		apiClient: PreviewAPIClient.broken(),
 		locationService: PreviewLocationService.authorized(),
+		previewPlayerModel: PreviewPlayerModel(
+			downloading: InMemoryPreviewDownloading(),
+			playerFactory: InMemoryAudioPlayerFactory(),
+		),
 		onDeleteAccount: {},
 	)
 	.environment(\.dynamicTypeSize, .accessibility5)
