@@ -113,10 +113,15 @@ struct VenueScreen: View {
 	}
 
 	/// Every navigational outcome (song/jukebox/person/venue/...) still goes
-	/// through ``TabRouter`` exactly like every other S6 feed screen; only
-	/// the three outcomes a promotion tap can produce are this screen's own
-	/// side effect (``AppDestination/init(outcome:)``'s doc comment: "S6
-	/// hangs its own handling... directly off the outcome").
+	/// through ``TabRouter`` exactly like every other S6 feed screen —
+	/// ``TabRouter/handle(outcome:venueId:)`` supplies this screen's own
+	/// venue id for the three outcomes that need one
+	/// (``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``/
+	/// ``FeedUI/FeedActionOutcome/launchSearch``/
+	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)``) — only the
+	/// three outcomes a promotion tap can produce are this screen's own side
+	/// effect (``AppDestination/init(outcome:)``'s doc comment: "S6 hangs
+	/// its own handling... directly off the outcome").
 	private func handle(outcome: FeedActionOutcome) {
 		switch outcome {
 		case .openSocialApp(let platform, let identifier, let webFallbackURL):
@@ -135,7 +140,7 @@ struct VenueScreen: View {
 			Task { await promotionEngaging.engage(venueId: venueId, promotionId: promotionId) }
 
 		default:
-			router.handle(outcome: outcome)
+			router.handle(outcome: outcome, venueId: venueId)
 		}
 	}
 

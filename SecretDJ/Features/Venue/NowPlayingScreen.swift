@@ -13,18 +13,21 @@ import SwiftUI
 /// the song screen (S6.3) and audio previews (S6.4), so it isn't ported
 /// here — the current song still renders, through the ordinary song row.
 struct NowPlayingScreen: View {
+	let venueId: String
 	let router: TabRouter
 	let toastQueue: ToastQueue
 
 	@State private var model: FeedScreenModel
 
 	init(
+		venueId: String,
 		loader: any FeedLoading,
 		locationService: LocationService,
 		router: TabRouter,
 		toastQueue: ToastQueue,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
+		self.venueId = venueId
 		self.router = router
 		self.toastQueue = toastQueue
 		_model = State(initialValue: FeedScreenModel(
@@ -43,7 +46,7 @@ struct NowPlayingScreen: View {
 		FeedScreen(
 			model: model,
 			copy: Self.copy,
-			onOutcome: router.handle(outcome:),
+			onOutcome: { router.handle(outcome: $0, venueId: venueId) },
 			onJukeboxChanged: handleJukeboxChanged,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -97,6 +100,7 @@ struct NowPlayingScreen: View {
 #Preview("Loaded") {
 	NavigationStack {
 		NowPlayingScreen(
+			venueId: "v1",
 			loader: PreviewNowPlayingLoading.loaded(),
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
@@ -108,6 +112,7 @@ struct NowPlayingScreen: View {
 #Preview("Empty") {
 	NavigationStack {
 		NowPlayingScreen(
+			venueId: "v1",
 			loader: PreviewNowPlayingLoading.empty(),
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
@@ -119,6 +124,7 @@ struct NowPlayingScreen: View {
 #Preview("Accessibility text size") {
 	NavigationStack {
 		NowPlayingScreen(
+			venueId: "v1",
 			loader: PreviewNowPlayingLoading.loaded(),
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),

@@ -485,3 +485,19 @@ work happens; every commit includes this file's delta.
   section escaping the cap, a sub-44pt like target, untested
   promotion-engagement view logic (extracted to a seamed model), and
   stale like state across refreshes. Eleven localized keys.
+- S6.3 first half done (TDD, sonnet subagent, direct): SharedFeatures
+  gains MusicSelection (screen over injected FeedLoading; MoodTileModel
+  over an AtmosphereChanging seam with server-copy toast; consumer
+  injects surfaceChange, kiosk will inject reloadInPlace) and
+  MusicSearch (SearchModel: artist mode fetches once then filters and
+  A-Z groups locally, track mode debounces via an injected clock with
+  stale-response suppression) — both zero-copy per the FeedScreenCopy
+  pattern, backend access only through seams (package never sees
+  SecretDJAPI). DesignSystem gains SectionIndexStrip (one combined
+  adjustable accessibility element, tested geometry). FeedUI gains an
+  event-driven scrollRequest binding. Consumer wires real screens
+  behind .jukebox/.search/.songsForArtist (destinations now carry
+  venueId, resolved by the calling screen). Ten localized keys.
+  Deferred within S6.3: the legacy mood-duration picker — tiles use a
+  documented 30-minute default; noted on the S6.3 checkbox. Full
+  verify green (DesignSystem 51, SharedFeatures 26, FeedUI 167).

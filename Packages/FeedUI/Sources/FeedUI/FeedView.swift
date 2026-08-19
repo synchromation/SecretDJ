@@ -32,6 +32,15 @@ public struct FeedView: View {
 	/// (``FeedScreenModel/loadNextPage()``) is already safe to call
 	/// repeatedly, so this may fire more than once near the bottom.
 	public let onApproachingEnd: (() -> Void)?
+	/// A section id to jump to, event-driven (lazy-sections: "Programmatic
+	/// scrolling is event-driven ... don't drive it from a
+	/// `.scrollPosition(id:)` binding"). The caller sets this — e.g. from
+	/// `DesignSystem/SectionIndexStrip`'s `onSelect`, the legacy refactor's
+	/// `SectionIndexStrip` A–Z rail jumping "via `FeedView`'s new
+	/// `scrollRequest` binding" (LEGACY.md "Refactor branch") — and is
+	/// responsible for clearing it back to `nil` once consumed; `nil` never
+	/// triggers a scroll.
+	public var scrollRequest: Binding<String?>?
 
 	private static let topAnchorID = "top"
 
@@ -40,11 +49,13 @@ public struct FeedView: View {
 		generation: Int,
 		onItemTap: ((FeedDisplayItem) -> Void)? = nil,
 		onApproachingEnd: (() -> Void)? = nil,
+		scrollRequest: Binding<String?>? = nil,
 	) {
 		self.sections = sections
 		self.generation = generation
 		self.onItemTap = onItemTap
 		self.onApproachingEnd = onApproachingEnd
+		self.scrollRequest = scrollRequest
 	}
 
 	public var body: some View {
@@ -84,6 +95,11 @@ public struct FeedView: View {
 			}
 			.onChange(of: generation) {
 				proxy.scrollTo(Self.topAnchorID, anchor: .top) // not animated → instant
+			}
+			.onChange(of: scrollRequest?.wrappedValue) { _, newValue in
+				guard let newValue else { return }
+				proxy.scrollTo(newValue, anchor: .top)
+				scrollRequest?.wrappedValue = nil
 			}
 		}
 	}

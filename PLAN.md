@@ -357,6 +357,12 @@ exclusions.
       venue like/unlike (optimistic toggle with rollback, server-supplied
       likeInfo copy), the social-links rule (Instagram first, max three).
 - [ ] S6.3 Music selection and search (SharedFeatures — kiosk reuses it):
+      — in progress: selection/digest/mood feeds, search (artist A–Z +
+      track debounce), songs-for-artist, and the atmosphere-change seam
+      are done and wired in the consumer app; the TuneIn screen with the
+      request funnel, song buzz, and moderation buttons remains (S6.3b).
+      Deferred within scope: the legacy mood-duration picker (tiles use
+      a documented 30-minute default for now).
       digest/selection/mood feeds, artist and track search against the
       backend (D2), A–Z index (the SwiftUI `SectionIndexStrip` idea from
       the legacy refactor, rebuilt), and the song/TuneIn screen: request

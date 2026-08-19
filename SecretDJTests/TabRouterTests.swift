@@ -43,6 +43,48 @@ enum TabRouterTests {
 		}
 	}
 
+	struct `Routing venue-context outcomes` {
+		@Test func `showJukebox pushes the jukebox destination with the supplied venue id`() {
+			let router = TabRouter()
+
+			router.handle(outcome: .showJukebox(jukeboxId: 7), venueId: "v1")
+
+			#expect(router.path == [.jukebox(venueId: "v1", jukeboxId: 7)])
+		}
+
+		@Test func `launchSearch pushes the search destination with the supplied venue id`() {
+			let router = TabRouter()
+
+			router.handle(outcome: .launchSearch, venueId: "v1")
+
+			#expect(router.path == [.search(venueId: "v1")])
+		}
+
+		@Test func `showSongsForArtist pushes the songsForArtist destination with the supplied venue id`() {
+			let router = TabRouter()
+
+			router.handle(outcome: .showSongsForArtist(artist: "Adele"), venueId: "v1")
+
+			#expect(router.path == [.songsForArtist(venueId: "v1", artist: "Adele")])
+		}
+
+		@Test func `an outcome AppDestination already resolves ignores the supplied venue id`() {
+			let router = TabRouter()
+
+			router.handle(outcome: .showVenue(venueId: "v2"), venueId: "v1")
+
+			#expect(router.path == [.venue(venueId: "v2")])
+		}
+
+		@Test func `a non-navigational outcome pushes nothing`() {
+			let router = TabRouter()
+
+			router.handle(outcome: .requestSong(itemId: 1), venueId: "v1")
+
+			#expect(router.path.isEmpty)
+		}
+	}
+
 	struct `Mirroring SwiftUI's own pops` {
 		@Test func `setPath replaces the router's path`() {
 			let router = TabRouter()

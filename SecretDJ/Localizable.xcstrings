@@ -3194,6 +3194,296 @@
           }
         }
       }
+    },
+    "This jukebox hasn't got anything to show yet — check back soon.": {
+      "comment": "Body shown on a jukebox's song list when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diese Jukebox hat noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esta jukebox todavía no tiene nada que mostrar — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ce jukebox n'a encore rien à montrer — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze jukebox heeft nog niets te laten zien — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load this jukebox.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on a jukebox's song list when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diese Jukebox nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar esta jukebox.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ce jukebox.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden deze jukebox niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Artists": {
+      "comment": "Search screen tab that searches by artist name.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Künstler"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artistas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artistes"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artiesten"
+          }
+        }
+      }
+    },
+    "Songs": {
+      "comment": "Search screen tab that searches by song title.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Songs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Canciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chansons"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummers"
+          }
+        }
+      }
+    },
+    "No Results": {
+      "comment": "Title shown on the search screen when a search finds nothing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Ergebnisse"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin resultados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucun résultat"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen resultaten"
+          }
+        }
+      }
+    },
+    "Try a different search.": {
+      "comment": "Body shown on the search screen when a search finds nothing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Versuche es mit einer anderen Suche."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prueba con otra búsqueda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Essaie une autre recherche."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Probeer een andere zoekopdracht."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't search right now.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the search screen when a search fails.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten gerade nicht suchen.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido buscar en este momento.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu lancer la recherche.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden nu niet zoeken.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "No Songs": {
+      "comment": "Title shown on an artist's song list when they have no songs here yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Songs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin canciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucune chanson"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen nummers"
+          }
+        }
+      }
+    },
+    "This artist hasn't got anything to show yet — check back soon.": {
+      "comment": "Body shown on an artist's song list when they have no songs here yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dieser Künstler hat noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este artista todavía no tiene nada que mostrar — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cet artiste n'a encore rien à montrer — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze artiest heeft nog niets te laten zien — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load these songs.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on an artist's song list when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diese Songs nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar estas canciones.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ces chansons.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden deze nummers niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

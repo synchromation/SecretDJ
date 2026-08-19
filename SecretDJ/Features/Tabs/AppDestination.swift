@@ -9,7 +9,11 @@ enum AppDestination: Hashable {
 	/// The song/TuneIn screen (S6.3).
 	case song(FeedActionOutcome.TuneInTarget)
 	/// An artist's song list — an artist row with more than one song (S6.3).
-	case songsForArtist(artist: String)
+	/// Carries `venueId` because ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)``
+	/// doesn't (no venue identity is known at FeedUI's layer) — resolved by
+	/// ``TabRouter/handle(outcome:venueId:)`` instead of this type's own
+	/// `init(outcome:)`.
+	case songsForArtist(venueId: String, artist: String)
 	/// A venue's feed (S6.2).
 	case venue(venueId: String)
 	/// A venue's now-playing/play-history feed (S6.2) — reached from the
@@ -19,28 +23,37 @@ enum AppDestination: Hashable {
 	/// A person's profile (S6.6).
 	case person(personId: String)
 	/// A jukebox/mood's song list — the music digest/selection stack (S6.3).
-	case jukebox(jukeboxId: Int)
+	/// Carries `venueId` for the same reason ``songsForArtist(venueId:artist:)``
+	/// does.
+	case jukebox(venueId: String, jukeboxId: Int)
 	/// The credits top-up screen (S6.7).
 	case topUps(context: FeedActionOutcome.TopUpContext)
-	/// The artist/song search screen (S6.3).
-	case search
+	/// The artist/song search screen (S6.3). Carries `venueId` for the same
+	/// reason ``songsForArtist(venueId:artist:)`` does — LEGACY.md "Search"
+	/// is "only ever server-offered with a venue".
+	case search(venueId: String)
 }
 
 extension AppDestination {
 	/// Maps a routed feed outcome to the screen it opens, when the outcome
-	/// is navigational. Non-navigational outcomes — server actions like
+	/// is navigational *and* resolvable without extra context. Three
+	/// navigational outcomes return `nil` here despite being navigational —
+	/// ``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``,
+	/// ``FeedUI/FeedActionOutcome/launchSearch``,
+	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)`` — because
+	/// their destinations need a venue id FeedUI's outcome vocabulary never
+	/// carries; ``TabRouter/handle(outcome:venueId:)`` resolves those
+	/// instead, using whichever venue the calling screen already knows.
+	/// Every other non-navigational outcome (server actions like
 	/// ``FeedActionOutcome/requestSong(itemId:)``/``FeedActionOutcome/machineControl(action:itemId:)``,
 	/// or external hand-offs like ``FeedActionOutcome/hailRide(url:)``/
-	/// ``FeedActionOutcome/openSocialApp(platform:identifier:webFallbackURL:)``
-	/// — return `nil`: S6 wires those up as their own side effects off
+	/// ``FeedActionOutcome/openSocialApp(platform:identifier:webFallbackURL:)``)
+	/// also returns `nil`: S6 wires those up as their own side effects off
 	/// `FeedScreen`'s outcome closure directly, not as a pushed screen.
 	init?(outcome: FeedActionOutcome) {
 		switch outcome {
 		case .showSong(let target):
 			self = .song(target)
-
-		case .showSongsForArtist(let artist):
-			self = .songsForArtist(artist: artist)
 
 		case .showVenue(let venueId):
 			self = .venue(venueId: venueId)
@@ -48,16 +61,13 @@ extension AppDestination {
 		case .showPerson(let personId):
 			self = .person(personId: personId)
 
-		case .showJukebox(let jukeboxId):
-			self = .jukebox(jukeboxId: jukeboxId)
-
 		case .showTopUps(let context):
 			self = .topUps(context: context)
 
-		case .launchSearch:
-			self = .search
-
-		case .changeAtmosphere,
+		case .showSongsForArtist,
+		     .showJukebox,
+		     .launchSearch,
+		     .changeAtmosphere,
 		     .requestSong,
 		     .machineControl,
 		     .openURL,

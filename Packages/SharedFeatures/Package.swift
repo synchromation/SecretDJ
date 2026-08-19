@@ -15,6 +15,7 @@ let package = Package(
 		.package(path: "../SecretDJDomain"),
 		.package(path: "../FeedUI"),
 		.package(path: "../DesignSystem"),
+		.package(path: "../Observability"),
 	],
 	targets: [
 		.target(
@@ -23,6 +24,7 @@ let package = Package(
 				"SecretDJDomain",
 				"FeedUI",
 				"DesignSystem",
+				"Observability",
 			],
 		),
 		.testTarget(name: "SharedFeaturesTests", dependencies: ["SharedFeatures"]),

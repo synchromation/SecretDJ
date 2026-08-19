@@ -21,6 +21,32 @@ final class TabRouter {
 		path.append(destination)
 	}
 
+	/// Routes an outcome that needs venue context to resolve —
+	/// ``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``,
+	/// ``FeedUI/FeedActionOutcome/launchSearch``,
+	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)`` — the three
+	/// cases ``AppDestination/init(outcome:)`` can't resolve alone, since
+	/// FeedUI's outcome vocabulary carries no venue identity
+	/// (``AppDestination/init(outcome:)``'s doc comment). Every other
+	/// outcome routes through ``handle(outcome:)`` unmodified, ignoring
+	/// `venueId` — e.g. ``FeedUI/FeedActionOutcome/showVenue(venueId:)``
+	/// already names its own venue directly.
+	func handle(outcome: FeedActionOutcome, venueId: String) {
+		switch outcome {
+		case .showJukebox(let jukeboxId):
+			path.append(.jukebox(venueId: venueId, jukeboxId: jukeboxId))
+
+		case .launchSearch:
+			path.append(.search(venueId: venueId))
+
+		case .showSongsForArtist(let artist):
+			path.append(.songsForArtist(venueId: venueId, artist: artist))
+
+		default:
+			handle(outcome: outcome)
+		}
+	}
+
 	/// Pushes `destination` directly — for a navigation trigger that isn't a
 	/// routed feed outcome, e.g. the venue screen's own "Now Playing" button
 	/// (S6.2; legacy's own path there is the extra-content ticker, S6.9,

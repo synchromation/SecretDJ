@@ -1,6 +1,9 @@
 import DesignSystem
+import FeedUI
 import Observability
 import SecretDJAPI
+import SecretDJDomain
+import SharedFeatures
 import SwiftUI
 
 /// The signed-in app's real shell (PLAN.md S5.2): three tabs — Places
@@ -118,38 +121,27 @@ struct TabsView: View {
 	private func destination(for destination: AppDestination, router: TabRouter) -> some View {
 		switch destination {
 		case .venue(let venueId):
-			VenueScreen(
-				venueId: venueId,
-				loader: APIClientFeedLoading.sessionFeed(
-					sessionStore: sessionStore,
-					locationService: locationService,
-					endpoint: { userId, credential, _ in try await apiClient.venue(
-						userId: userId,
-						venueId: venueId,
-						credential: credential,
-					) },
-				),
-				locationService: locationService,
-				router: router,
-				toastQueue: toastQueue,
-				likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
-				promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
-			)
+			venueScreen(venueId: venueId, router: router)
 
 		case .nowPlaying(let venueId):
-			NowPlayingScreen(
-				loader: APIClientFeedLoading.sessionFeed(
-					sessionStore: sessionStore,
-					locationService: locationService,
-					endpoint: { userId, credential, _ in try await apiClient.nowPlaying(
-						userId: userId,
-						venueId: venueId,
-						credential: credential,
-					) },
-				),
-				locationService: locationService,
-				router: router,
-				toastQueue: toastQueue,
+			nowPlayingScreen(venueId: venueId, router: router)
+
+		case .jukebox(let venueId, let jukeboxId):
+			musicSelectionScreen(venueId: venueId, jukeboxId: jukeboxId, router: router)
+
+		case .search(let venueId):
+			MusicSearchScreen(
+				searching: APIClientMusicSearching(client: apiClient, sessionStore: sessionStore, venueId: venueId),
+				copy: Self.musicSearchCopy,
+				onOutcome: { router.handle(outcome: $0, venueId: venueId) },
+			)
+
+		case .songsForArtist(let venueId, let artist):
+			SongsForArtistScreen(
+				artistName: artist,
+				searching: APIClientMusicSearching(client: apiClient, sessionStore: sessionStore, venueId: venueId),
+				copy: Self.songsForArtistCopy,
+				onOutcome: { router.handle(outcome: $0, venueId: venueId) },
 			)
 
 		default:
@@ -157,8 +149,178 @@ struct TabsView: View {
 		}
 	}
 
+	private func venueScreen(venueId: String, router: TabRouter) -> some View {
+		VenueScreen(
+			venueId: venueId,
+			loader: APIClientFeedLoading.sessionFeed(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				endpoint: { userId, credential, _ in try await apiClient.venue(
+					userId: userId,
+					venueId: venueId,
+					credential: credential,
+				) },
+			),
+			locationService: locationService,
+			router: router,
+			toastQueue: toastQueue,
+			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
+			promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
+		)
+	}
+
+	private func nowPlayingScreen(venueId: String, router: TabRouter) -> some View {
+		NowPlayingScreen(
+			venueId: venueId,
+			loader: APIClientFeedLoading.sessionFeed(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				endpoint: { userId, credential, _ in try await apiClient.nowPlaying(
+					userId: userId,
+					venueId: venueId,
+					credential: credential,
+				) },
+			),
+			locationService: locationService,
+			router: router,
+			toastQueue: toastQueue,
+		)
+	}
+
+	private func musicSelectionScreen(venueId: String, jukeboxId: Int, router: TabRouter) -> some View {
+		MusicSelectionScreen(
+			venueId: venueId,
+			loader: APIClientFeedLoading.sessionFeed(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				endpoint: { userId, credential, page in try await apiClient.musicSelection(
+					userId: userId,
+					venueId: venueId,
+					offset: (page ?? 0) * Self.musicSelectionBatchSize,
+					batchSize: Self.musicSelectionBatchSize,
+					item: jukeboxId,
+					type: Int64(ItemType.song.rawValue),
+					hash: nil,
+					credential: credential,
+				) },
+			),
+			atmosphereChanging: APIClientAtmosphereChanging(client: apiClient, sessionStore: sessionStore),
+			toastQueue: toastQueue,
+			copy: Self.musicSelectionCopy,
+			onOutcome: { router.handle(outcome: $0, venueId: venueId) },
+			onJukeboxChanged: { toastQueue.enqueue(ToastItem(message: Self.jukeboxChangedMessage)) },
+		)
+	}
+
+	/// The legacy 50-song page size for `musicselection`/`musicdigest`
+	/// (LEGACY.md "Choosing music": "hash-checked pagination in 50-song
+	/// batches with server-adjustable batch size" — kept as a fixed client
+	/// default since the server-adjustable half of that isn't modeled yet).
+	private static let musicSelectionBatchSize = 50
+
 	private func path(for router: TabRouter) -> Binding<[AppDestination]> {
 		Binding(get: { router.path }, set: { router.setPath($0) })
+	}
+
+	/// Reused verbatim from ``VenueScreen``/``NowPlayingScreen``'s own
+	/// jukebox-changed toast — the same String Catalog key, not a second one
+	/// (LEGACY.md's `kJukeboxUpdatedText`).
+	private static var jukeboxChangedMessage: String {
+		String(
+			localized: "Jukebox Updated",
+			comment: "Toast shown when a paginated feed's content changed underneath the user (LEGACY.md's kJukeboxUpdatedText).",
+		)
+	}
+
+	private static var musicSelectionCopy: FeedScreenCopy {
+		FeedScreenCopy(
+			emptySystemImage: Theme.Icon.jukebox.systemName,
+			emptyTitle: Text(
+				"Nothing Here Yet",
+				comment: "Title shown on a jukebox's song list when it has no content yet.",
+			),
+			emptyMessage: Text(
+				"This jukebox hasn't got anything to show yet — check back soon.",
+				comment: "Body shown on a jukebox's song list when it has no content yet.",
+			),
+			errorTitle: Text(
+				"Something Went Wrong",
+				comment: "Title shown on a jukebox's song list when it fails to load.",
+			),
+			errorMessage: Text(
+				"Sorry, we couldn't load this jukebox.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
+				comment: "Body shown on a jukebox's song list when it fails to load.",
+			),
+			offlineTitle: Text(
+				"You're Offline",
+				comment: "Title shown on a jukebox's song list when the device has no internet connection.",
+			),
+			offlineMessage: Text(
+				"Check your connection and try again.",
+				comment: "Body shown on a jukebox's song list when the device has no internet connection.",
+			),
+			retryTitle: Text(
+				"Try Again",
+				comment: "Button that retries loading a jukebox's song list after a failure.",
+			),
+		)
+	}
+
+	private static var musicSearchCopy: MusicSearchScreenCopy {
+		MusicSearchScreenCopy(
+			navigationTitle: Text("Search", comment: "Navigation title of the artist/song search screen."),
+			artistModeLabel: Text("Artists", comment: "Search screen tab that searches by artist name."),
+			trackModeLabel: Text("Songs", comment: "Search screen tab that searches by song title."),
+			searchFieldPlaceholder: Text(
+				"Search",
+				comment: "Placeholder text in the search screen's text field, before the user types anything.",
+			),
+			emptyTitle: Text("No Results", comment: "Title shown on the search screen when a search finds nothing."),
+			emptyMessage: Text(
+				"Try a different search.",
+				comment: "Body shown on the search screen when a search finds nothing.",
+			),
+			errorTitle: Text("Something Went Wrong", comment: "Title shown on the search screen when a search fails."),
+			errorMessage: Text(
+				"Sorry, we couldn't search right now.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
+				comment: "Body shown on the search screen when a search fails.",
+			),
+			retryTitle: Text("Try Again", comment: "Button that retries a failed search."),
+		)
+	}
+
+	private static var songsForArtistCopy: FeedScreenCopy {
+		FeedScreenCopy(
+			emptySystemImage: Theme.Icon.song.systemName,
+			emptyTitle: Text(
+				"No Songs",
+				comment: "Title shown on an artist's song list when they have no songs here yet.",
+			),
+			emptyMessage: Text(
+				"This artist hasn't got anything to show yet — check back soon.",
+				comment: "Body shown on an artist's song list when they have no songs here yet.",
+			),
+			errorTitle: Text(
+				"Something Went Wrong",
+				comment: "Title shown on an artist's song list when it fails to load.",
+			),
+			errorMessage: Text(
+				"Sorry, we couldn't load these songs.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
+				comment: "Body shown on an artist's song list when it fails to load.",
+			),
+			offlineTitle: Text(
+				"You're Offline",
+				comment: "Title shown on an artist's song list when the device has no internet connection.",
+			),
+			offlineMessage: Text(
+				"Check your connection and try again.",
+				comment: "Body shown on an artist's song list when the device has no internet connection.",
+			),
+			retryTitle: Text(
+				"Try Again",
+				comment: "Button that retries loading an artist's song list after a failure.",
+			),
+		)
 	}
 }
 
