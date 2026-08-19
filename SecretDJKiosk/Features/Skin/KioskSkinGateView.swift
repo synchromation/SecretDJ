@@ -1,6 +1,7 @@
 import DesignSystem
 import Observability
 import SecretDJAPI
+import SharedFeatures
 import SwiftUI
 
 /// Sits between venue sign-in and the kiosk home screen: a signed-in
@@ -15,6 +16,8 @@ import SwiftUI
 /// S7.3+ pushes from there) to read.
 struct KioskSkinGateView: View {
 	let sessionStore: SessionStore
+	let previewPlayer: PreviewPlayerModel
+	let observability: ObservabilityPipeline
 
 	@State private var skinModel: SkinModel
 
@@ -23,9 +26,12 @@ struct KioskSkinGateView: View {
 		apiClient: APIClient,
 		sessionStore: SessionStore,
 		skinStoring: any SkinStoring,
+		previewPlayer: PreviewPlayerModel,
 		observability: ObservabilityPipeline,
 	) {
 		self.sessionStore = sessionStore
+		self.previewPlayer = previewPlayer
+		self.observability = observability
 		_skinModel = State(initialValue: SkinModel(
 			venueId: venueId,
 			loading: APIClientSkinLoading(client: apiClient, sessionStore: sessionStore),
@@ -37,8 +43,18 @@ struct KioskSkinGateView: View {
 
 	/// Test/preview-only entry point — injects the ``SkinModel`` directly
 	/// rather than building production dependencies from an `APIClient`.
-	init(sessionStore: SessionStore, skinModel: SkinModel) {
+	init(
+		sessionStore: SessionStore,
+		skinModel: SkinModel,
+		previewPlayer: PreviewPlayerModel = PreviewPlayerModel(
+			downloading: InMemoryPreviewDownloading(),
+			playerFactory: InMemoryAudioPlayerFactory(),
+		),
+		observability: ObservabilityPipeline = .disabled,
+	) {
 		self.sessionStore = sessionStore
+		self.previewPlayer = previewPlayer
+		self.observability = observability
 		_skinModel = State(initialValue: skinModel)
 	}
 
@@ -59,9 +75,15 @@ struct KioskSkinGateView: View {
 		case .failed:
 			failureView
 
-		case .ready(let skin, _):
-			KioskHomeView(sessionStore: sessionStore)
-				.environment(\.kioskSkin, skin)
+		case .ready(let skin, let behavioralConfig):
+			AttractIdleContainerView(
+				behavioralConfig: behavioralConfig,
+				previewPlayer: previewPlayer,
+				observability: observability,
+			) {
+				KioskHomeView(sessionStore: sessionStore)
+			}
+			.environment(\.kioskSkin, skin)
 		}
 	}
 

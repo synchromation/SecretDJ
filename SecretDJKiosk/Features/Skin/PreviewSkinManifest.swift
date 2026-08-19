@@ -22,6 +22,26 @@ enum PreviewSkinManifest {
 		return try! JSONDecoder().decode(SkinManifest.self, from: Data(json.utf8))
 	}()
 
+	/// A manifest carrying every S7.3 attract/idle behavioral property, for
+	/// ``AttractIdleContainerView``'s own preview — ``withOneImage`` leaves
+	/// `attractURL` unset (S7.2 never needed it), which would never arm
+	/// this feature's attract countdown at all.
+	static let withAttract: SkinManifest = {
+		let json = """
+		{"Response": {
+			"Images": [],
+			"Properties": [
+				{"Id": 1020, "Text": "https://example.com/attract.html"},
+				{"Id": 1021, "Text": "8"},
+				{"Id": 1004, "Text": "20"}
+			]
+		}}
+		"""
+
+		// swiftlint:disable:next force_try
+		return try! JSONDecoder().decode(SkinManifest.self, from: Data(json.utf8))
+	}()
+
 	/// Pre-seeds `storing` with ``withOneImage`` already "downloaded" for
 	/// `venueId`, so a preview's ``SkinModel`` resolves straight to
 	/// ``SkinModel/Phase/ready`` via the cache-hit path — the same path a

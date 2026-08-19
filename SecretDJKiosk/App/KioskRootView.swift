@@ -1,6 +1,8 @@
 import Observability
 import SecretDJAPI
+import SharedFeatures
 import SwiftUI
+import UIKit
 
 /// The kiosk's root gate — the same shape as the consumer app's own
 /// `RootView`, minus every consumer-only step: no onboarding, no social
@@ -17,6 +19,7 @@ import SwiftUI
 struct KioskRootView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
+	let previewPlayer: PreviewPlayerModel
 	let observability: ObservabilityPipeline
 
 	private let skinStoring: any SkinStoring
@@ -27,12 +30,14 @@ struct KioskRootView: View {
 	init(
 		sessionStore: SessionStore,
 		apiClient: APIClient,
+		previewPlayer: PreviewPlayerModel,
 		cacheClearing: [any KioskCacheClearing] = [URLCacheClearing()],
 		skinStoring: any SkinStoring = FileManagerSkinStoring(),
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.sessionStore = sessionStore
 		self.apiClient = apiClient
+		self.previewPlayer = previewPlayer
 		self.skinStoring = skinStoring
 		self.observability = observability
 		_gestureModel = State(initialValue: StaffResetGestureModel())
@@ -51,6 +56,20 @@ struct KioskRootView: View {
 	var body: some View {
 		content
 			.staffResetOverlay(gestureModel: gestureModel, resetModel: resetModel)
+			// The kiosk runs unattended as a fixed self-service terminal
+			// while signed in — unlike the consumer app's own user-facing
+			// toggle (S6.11's `AutoLockPreferenceModel`), there's no
+			// per-venue choice worth building UI for (legacy's own control
+			// was the same one-way `DisableAutoLock` Settings-bundle switch,
+			// LEGACY.md "Boot and composition"). Physically stopping the
+			// screen from locking or being walked away with is an
+			// OS-level concern this app can't reach — real venue hardware
+			// is assumed to run under Guided Access or MDM lockdown
+			// (LEGACY.md's own inference, unconfirmed in legacy's source;
+			// R1 tracks re-verifying this on real venue iPads).
+			.onChange(of: sessionStore.isSignedIn, initial: true) { _, isSignedIn in
+				UIApplication.shared.isIdleTimerDisabled = isSignedIn
+			}
 	}
 
 	@ViewBuilder
@@ -65,6 +84,7 @@ struct KioskRootView: View {
 				apiClient: apiClient,
 				sessionStore: sessionStore,
 				skinStoring: skinStoring,
+				previewPlayer: previewPlayer,
 				observability: observability,
 			)
 		} else {

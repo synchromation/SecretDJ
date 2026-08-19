@@ -649,3 +649,23 @@ work happens; every commit includes this file's delta.
   provenance so tests assert the fallback. New #AARRGGBB parser
   alongside DesignSystem's 6-digit one. Five localized kiosk keys.
   Full verify green.
+
+## 2026-08-20
+
+- S7.3 done (TDD, sonnet subagent; resumed once after a wait-stall):
+  the attract/idle system — IdleTimerModel with legacy's exact
+  semantics cited to KioskTimer/KioskApplication (one-shot countdowns
+  always restarted at FULL duration; preview playback cancels both
+  outright — true suspension; idle no-ops while attract shows; no
+  attractURL means no attract, idle still runs); interaction observed
+  via a root simultaneousGesture that never consumes touches,
+  replacing the UIApplication sendEvent subclass; AttractScreen is one
+  VoiceOver-labelled Button wrapping a non-interactive WKWebView at
+  the skin's URL with a visible Tap to Continue pill (legacy's
+  invisible dismiss had no VoiceOver at all); the kiosk root now
+  constructs the shared PreviewPlayerModel (one app-wide instance per
+  its contract) and sets isIdleTimerDisabled while signed in
+  (guided-access assumption doc-flagged against R1). One localized
+  key. Watch item: IdleTimerModelTests' attract-breadcrumb test failed
+  ONCE with zero diagnostics and passed both full reruns — if it
+  recurs in S7.7/S8 runs, investigate rather than retry.

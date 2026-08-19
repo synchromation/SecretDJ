@@ -439,7 +439,7 @@ landscape with attract mode; shares S1–S3 + SharedFeatures wholesale.
       colors reconciled with DesignSystem theming; behavioral config
       consumed from skin texts — `attractURL`, `attractTimeoutSeconds`,
       `idleTimeoutSeconds` — feeding S7.3.
-- [ ] S7.3 Attract/idle system: idle detection rebuilt with scene-level
+- [x] S7.3 Attract/idle system: idle detection rebuilt with scene-level
       interaction observation (no UIApplication subclass), attract screen
       driven by the skin's attract URL, timed return-to-attract using the
       skin's timeouts, timers **paused while an audio preview is
@@ -599,7 +599,7 @@ what it blocks.
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
-| S7 Kiosk app | in progress (S7.1, S7.2 done) |
+| S7 Kiosk app | in progress (S7.1–S7.3 done) |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
 

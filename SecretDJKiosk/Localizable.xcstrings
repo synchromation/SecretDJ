@@ -320,6 +320,35 @@
         }
       }
     },
+    "Tap to Continue" : {
+      "comment" : "Visible hint and VoiceOver label on the kiosk's full-screen attract-mode screensaver; tapping anywhere dismisses it.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tippen, um fortzufahren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Toca para continuar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Touche pour continuer"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tik om door te gaan"
+          }
+        }
+      }
+    },
     "This signs the venue out and clears everything cached on this device. You'll need to sign in again." : {
       "comment" : "Body text of the staff reset confirmation dialog, explaining what the reset does.",
       "localizations" : {

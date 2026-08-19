@@ -1,6 +1,7 @@
 import Foundation
 import Observability
 import SecretDJAPI
+import SharedFeatures
 import SwiftUI
 import UIKit
 
@@ -15,6 +16,17 @@ import UIKit
 @main
 struct SecretDJKioskApp: App {
 	@State private var sessionStore: SessionStore
+	/// The kiosk-wide shared song-preview player (S6.4's design, S7.3's
+	/// first consumer): constructed here, at the true composition root, even
+	/// though no kiosk screen starts a preview yet (that's S7.6's job) —
+	/// ``IdleTimerModel`` needs to observe ``PreviewPlayerModel/isPlaying``
+	/// from the moment the kiosk home shows, and `PreviewPlayerModel`'s own
+	/// doc comment is explicit that exactly one instance should exist
+	/// app-wide, never one per screen. Building it early (always idle, since
+	/// nothing calls `play(songId:url:)` yet) costs nothing and avoids
+	/// threading an `Optional` through every S7.3+ screen only to make it
+	/// non-optional again in S7.6.
+	@State private var previewPlayerModel: PreviewPlayerModel
 	private let apiClient: APIClient
 
 	init() {
@@ -29,6 +41,12 @@ struct SecretDJKioskApp: App {
 			implicitParameters: KioskDeviceImplicitParameterProvider(),
 			transport: URLSessionAPITransport(),
 		)
+
+		_previewPlayerModel = State(initialValue: PreviewPlayerModel(
+			downloading: URLSessionPreviewDownloading(),
+			playerFactory: SystemAudioPlayerFactory(),
+			observability: .live,
+		))
 	}
 
 	var body: some Scene {
@@ -36,6 +54,7 @@ struct SecretDJKioskApp: App {
 			KioskRootView(
 				sessionStore: sessionStore,
 				apiClient: apiClient,
+				previewPlayer: previewPlayerModel,
 				observability: .live,
 			)
 			.environment(\.observability, .live)
