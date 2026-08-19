@@ -41,6 +41,16 @@ public struct FeedView: View {
 	/// responsible for clearing it back to `nil` once consumed; `nil` never
 	/// triggers a scroll.
 	public var scrollRequest: Binding<String?>?
+	/// Called only when the scroll direction actually changes (never per
+	/// frame) — the extra-content ticker's show/hide signal (PLAN.md S6.9).
+	/// `nil` for every feed screen without a ticker, which also skips the
+	/// `onScrollGeometryChange` observation entirely (see `body`) — this
+	/// stays a zero-cost opt-in for the ~dozen other ``FeedView`` call
+	/// sites. See ``FeedScrollDirection``'s doc comment for the legacy
+	/// mapping this reproduces.
+	public let onScrollDirectionChange: ((FeedScrollDirection) -> Void)?
+
+	@State private var lastEmittedScrollDirection: FeedScrollDirection?
 
 	private static let topAnchorID = "top"
 
@@ -50,12 +60,14 @@ public struct FeedView: View {
 		onItemTap: ((FeedDisplayItem) -> Void)? = nil,
 		onApproachingEnd: (() -> Void)? = nil,
 		scrollRequest: Binding<String?>? = nil,
+		onScrollDirectionChange: ((FeedScrollDirection) -> Void)? = nil,
 	) {
 		self.sections = sections
 		self.generation = generation
 		self.onItemTap = onItemTap
 		self.onApproachingEnd = onApproachingEnd
 		self.scrollRequest = scrollRequest
+		self.onScrollDirectionChange = onScrollDirectionChange
 	}
 
 	public var body: some View {
@@ -100,6 +112,25 @@ public struct FeedView: View {
 				guard let newValue else { return }
 				proxy.scrollTo(newValue, anchor: .top)
 				scrollRequest?.wrappedValue = nil
+			}
+			// Reads only `contentOffset.y` (a single CGFloat) — never a full
+			// `ScrollGeometry`/`GeometryReader` — and the comparison below is
+			// O(1), so this stays cheap even though SwiftUI re-evaluates it
+			// on every geometry update while the user drags. The
+			// state write (`lastEmittedScrollDirection`) and the outward
+			// call to `onScrollDirectionChange` only happen on an actual
+			// direction flip (``FeedScrollDirection/from(oldOffset:newOffset:threshold:)``),
+			// a handful of times per gesture rather than every frame — the
+			// coarse, event-driven signal lazy-sections requires. `nil`
+			// short-circuits immediately for every ``FeedView`` that isn't
+			// hosting a ticker.
+			.onScrollGeometryChange(for: CGFloat.self, of: \.contentOffset.y) { oldValue, newValue in
+				guard let onScrollDirectionChange else { return }
+				guard let direction = FeedScrollDirection.from(oldOffset: oldValue, newOffset: newValue) else { return }
+				guard direction != lastEmittedScrollDirection else { return }
+
+				lastEmittedScrollDirection = direction
+				onScrollDirectionChange(direction)
 			}
 		}
 	}

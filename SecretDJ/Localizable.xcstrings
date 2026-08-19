@@ -2992,6 +2992,35 @@
         }
       }
     },
+    "Now playing…": {
+      "comment": "Small caption above a song's title/artist in the extra-content ticker shown on Places Nearby and a venue's screen (LEGACY.md's extra-content ticker; the legacy literal \"Now playing...\").",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Läuft gerade …"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sonando ahora…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En cours de lecture…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nu speelt…"
+          }
+        }
+      }
+    },
     "Nothing Here Yet": {
       "comment": "Title shown on the venue feed when it has no content yet.",
       "localizations": {

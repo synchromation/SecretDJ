@@ -1,6 +1,7 @@
 import DesignSystem
 import FeedUI
 import Observability
+import SecretDJAPI
 import SwiftUI
 
 /// Tab 1 (LEGACY.md "Tab 1 — Places Nearby"): the nearby-venues feed over
@@ -11,17 +12,22 @@ import SwiftUI
 /// already established, and a map bar button
 /// (``PlacesNearbyMapConfiguration``) pushing ``VenueMapScreen``. Tap
 /// outcomes and the venue map's own annotation taps both route through the
-/// same ``TabRouter``.
+/// same ``TabRouter``. Also hosts the extra-content ticker (PLAN.md S6.9,
+/// `screenid` 1) — see ``TickerView``.
 struct PlacesNearbyScreen: View {
 	let locationService: LocationService
 	let router: TabRouter
 	let toastQueue: ToastQueue
+	/// Jumps to the Activity tab — a person ticker entry's tap destination
+	/// (``ExtraContentTapRoute/activity``).
+	let onShowActivity: () -> Void
 
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(\.observability) private var observability
 	@Environment(\.openURL) private var openURL
 
 	@State private var model: FeedScreenModel
+	@State private var extraContentModel: ExtraContentModel
 	@State private var isShowingMap = false
 
 	init(
@@ -29,11 +35,15 @@ struct PlacesNearbyScreen: View {
 		locationService: LocationService,
 		router: TabRouter,
 		toastQueue: ToastQueue,
+		extraContentLoading: any ExtraContentLoading,
+		onShowActivity: @escaping () -> Void,
+		observability: ObservabilityPipeline = .disabled,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
 		self.locationService = locationService
 		self.router = router
 		self.toastQueue = toastQueue
+		self.onShowActivity = onShowActivity
 		_model = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
@@ -44,19 +54,34 @@ struct PlacesNearbyScreen: View {
 			),
 			gpsFixAge: locationService,
 		))
+		_extraContentModel = State(initialValue: ExtraContentModel(
+			screen: .placesNearby,
+			hostVenueId: nil,
+			loading: extraContentLoading,
+			observability: observability,
+		))
 	}
 
 	var body: some View {
-		Group {
-			if locationService.authorizationStatus == .denied || locationService.authorizationStatus == .restricted {
-				LocationPermissionDeniedView()
-			} else {
-				FeedScreen(
-					model: model,
-					copy: Self.copy,
-					onOutcome: handle(outcome:),
-					onJukeboxChanged: handleJukeboxChanged,
-				)
+		ZStack(alignment: .bottom) {
+			Group {
+				if locationService.authorizationStatus == .denied || locationService
+					.authorizationStatus == .restricted
+				{
+					LocationPermissionDeniedView()
+				} else {
+					FeedScreen(
+						model: model,
+						copy: Self.copy,
+						onOutcome: handle(outcome:),
+						onJukeboxChanged: handleJukeboxChanged,
+						onScrollDirectionChange: extraContentModel.handleScrollDirectionChange,
+					)
+				}
+			}
+
+			if let currentEntry = extraContentModel.currentEntry {
+				TickerView(entry: currentEntry, isVisible: extraContentModel.isVisible, onTap: handleTickerTap)
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -80,10 +105,16 @@ struct PlacesNearbyScreen: View {
 			locationService.requestAuthorizationIfNeeded()
 			locationService.requestLocation()
 		}
+		.task {
+			await extraContentModel.fetch()
+		}
 		.onChange(of: scenePhase) { _, newPhase in
 			guard newPhase == .active else { return }
 
 			locationService.refreshAuthorizationStatus()
+		}
+		.onDisappear {
+			extraContentModel.stop()
 		}
 		.tracksScreen("PlacesNearby")
 	}
@@ -91,6 +122,24 @@ struct PlacesNearbyScreen: View {
 	private func openMap() {
 		observability.interaction("openVenueMap")
 		isShowingMap = true
+	}
+
+	/// Routes the ticker's current entry (``ExtraContentModel/tapCurrentEntry()``)
+	/// — a song always resolves to `nil` on this screen (no venue context,
+	/// see ``ExtraContentEntry/tapRoute(hostVenueId:)``), so only a person
+	/// entry (jump to Activity) is ever reachable here in practice; the
+	/// `.nowPlaying` case is still handled for symmetry with ``VenueScreen``.
+	private func handleTickerTap() {
+		switch extraContentModel.tapCurrentEntry() {
+		case .nowPlaying(let venueId):
+			router.push(.nowPlaying(venueId: venueId))
+
+		case .activity:
+			onShowActivity()
+
+		case nil:
+			break
+		}
 	}
 
 	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
@@ -154,6 +203,8 @@ struct PlacesNearbyScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 }
@@ -165,6 +216,8 @@ struct PlacesNearbyScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 }
@@ -176,6 +229,8 @@ struct PlacesNearbyScreen: View {
 			locationService: PreviewLocationService.denied(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 }
@@ -187,6 +242,8 @@ struct PlacesNearbyScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

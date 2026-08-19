@@ -2,6 +2,7 @@ import DesignSystem
 import FeedUI
 import MapKit
 import Observability
+import SecretDJAPI
 import SecretDJDomain
 import SharedFeatures
 import SwiftUI
@@ -32,10 +33,14 @@ struct VenueScreen: View {
 	let checkingIn: any CheckingIn
 	let observability: ObservabilityPipeline
 	let promotionEngaging: any PromotionEngaging
+	/// Jumps to the Activity tab — a person ticker entry's tap destination
+	/// (``ExtraContentTapRoute/activity``).
+	let onShowActivity: () -> Void
 
 	@State private var model: FeedScreenModel
 	@State private var likeModel: OptimisticLikeModel?
 	@State private var checkInModel: CheckInModel?
+	@State private var extraContentModel: ExtraContentModel
 	@Environment(\.openURL) private var openURL
 
 	init(
@@ -48,6 +53,8 @@ struct VenueScreen: View {
 		checkingIn: any CheckingIn,
 		observability: ObservabilityPipeline = .disabled,
 		promotionEngaging: any PromotionEngaging,
+		extraContentLoading: any ExtraContentLoading,
+		onShowActivity: @escaping () -> Void,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
 		self.venueId = venueId
@@ -57,6 +64,7 @@ struct VenueScreen: View {
 		self.checkingIn = checkingIn
 		self.observability = observability
 		self.promotionEngaging = promotionEngaging
+		self.onShowActivity = onShowActivity
 		_model = State(initialValue: FeedScreenModel(
 			loader: SocialOrderingFeedLoading(base: loader),
 			router: FeedActionRouter(installedApps: installedApps),
@@ -67,27 +75,40 @@ struct VenueScreen: View {
 			),
 			gpsFixAge: locationService,
 		))
+		_extraContentModel = State(initialValue: ExtraContentModel(
+			screen: .venueDetails,
+			hostVenueId: venueId,
+			loading: extraContentLoading,
+			observability: observability,
+		))
 	}
 
 	var body: some View {
-		VStack(spacing: 0) {
-			if let venue = model.venueDetails, let likeModel, let checkInModel {
-				VenueHeaderView(
-					venueName: venue.name,
-					venueAddress: venue.address,
-					likeModel: likeModel,
-					checkInModel: checkInModel,
-					onNowPlaying: { openNowPlaying() },
-					onDirections: { openDirections(venue: venue) },
+		ZStack(alignment: .bottom) {
+			VStack(spacing: 0) {
+				if let venue = model.venueDetails, let likeModel, let checkInModel {
+					VenueHeaderView(
+						venueName: venue.name,
+						venueAddress: venue.address,
+						likeModel: likeModel,
+						checkInModel: checkInModel,
+						onNowPlaying: { openNowPlaying() },
+						onDirections: { openDirections(venue: venue) },
+					)
+				}
+
+				FeedScreen(
+					model: model,
+					copy: Self.copy,
+					onOutcome: handle(outcome:),
+					onJukeboxChanged: handleJukeboxChanged,
+					onScrollDirectionChange: extraContentModel.handleScrollDirectionChange,
 				)
 			}
 
-			FeedScreen(
-				model: model,
-				copy: Self.copy,
-				onOutcome: handle(outcome:),
-				onJukeboxChanged: handleJukeboxChanged,
-			)
+			if let currentEntry = extraContentModel.currentEntry {
+				TickerView(entry: currentEntry, isVisible: extraContentModel.isVisible, onTap: handleTickerTap)
+			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
@@ -142,12 +163,37 @@ struct VenueScreen: View {
 			guard let event else { return }
 			toastQueue.enqueue(ToastItem(message: event.message ?? Self.checkInFailureFallbackMessage))
 		}
+		.task {
+			await extraContentModel.fetch()
+		}
+		.onDisappear {
+			extraContentModel.stop()
+		}
 		.tracksScreen("Venue")
 	}
 
 	private func openNowPlaying() {
 		observability.interaction("openNowPlaying")
 		router.push(.nowPlaying(venueId: venueId))
+	}
+
+	/// Routes the ticker's current entry
+	/// (``ExtraContentModel/tapCurrentEntry()``) — a song entry always
+	/// resolves to *this* venue's Now Playing screen (reusing
+	/// ``openNowPlaying()`` directly, since the ticker's own `venueId` is
+	/// always this screen's own — ``ExtraContentEntry/tapRoute(hostVenueId:)``'s
+	/// doc comment), a person entry jumps to Activity.
+	private func handleTickerTap() {
+		switch extraContentModel.tapCurrentEntry() {
+		case .nowPlaying:
+			openNowPlaying()
+
+		case .activity:
+			onShowActivity()
+
+		case nil:
+			break
+		}
 	}
 
 	/// LEGACY.md "Venue screen": "Directions → `VenueDirectionsViewController`:
@@ -305,6 +351,8 @@ struct VenueScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 }
@@ -320,6 +368,8 @@ struct VenueScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 }
@@ -335,6 +385,8 @@ struct VenueScreen: View {
 			likeToggling: InMemoryLikeToggling(),
 			checkingIn: InMemoryCheckingIn(),
 			promotionEngaging: InMemoryPromotionEngaging(),
+			extraContentLoading: InMemoryExtraContentLoading(),
+			onShowActivity: {},
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

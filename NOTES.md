@@ -577,3 +577,17 @@ work happens; every commit includes this file's delta.
   hook's mid-flight verify collision with the agent's own run produced
   one spurious terminated-verify report — both subsequent full runs
   were green.)
+- S6.9 done (TDD, sonnet subagent, direct): the extra-content ticker —
+  ExtraContentModel over loading + clock seams (10s rotation, paused
+  while hidden, forced visible on first fetch per legacy's bounce-in),
+  TickerView on BannerSurface deliberately not keyed by entry id so
+  rotations update in place without stealing VoiceOver focus; scroll
+  direction per D9 verbatim via a new pure FeedScrollDirection +
+  FeedView.onScrollGeometryChange reading only contentOffset.y and
+  emitting only on direction flips (justified against lazy-sections'
+  scrollPosition warning; nil-gated to zero cost elsewhere); legacy's
+  pan-translation semantics mapped and documented. Tap routing: song →
+  venue's Now Playing when a venue context exists (nil on Places per
+  legacy's failed cast), person → activity tab. Red proven by stubbing
+  behavior to no-ops (16/24 failed as expected). One localized key.
+  Full verify green.

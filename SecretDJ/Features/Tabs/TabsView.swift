@@ -86,6 +86,12 @@ struct TabsView: View {
 						locationService: locationService,
 						router: router,
 						toastQueue: toastQueue,
+						extraContentLoading: APIClientExtraContentLoading(
+							client: apiClient,
+							sessionStore: sessionStore,
+						),
+						onShowActivity: { model.show(tab: .activity) },
+						observability: observability,
 					)
 				}
 			}
@@ -238,6 +244,8 @@ struct TabsView: View {
 			checkingIn: APIClientCheckingIn(client: apiClient, sessionStore: sessionStore),
 			observability: observability,
 			promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
+			extraContentLoading: APIClientExtraContentLoading(client: apiClient, sessionStore: sessionStore),
+			onShowActivity: { model.show(tab: .activity) },
 		)
 	}
 

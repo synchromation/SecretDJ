@@ -17,17 +17,23 @@ public struct FeedScreen: View {
 	/// a toast and deciding what "reload" means for the app's navigation
 	/// stack (LEGACY.md "Change detection") are this closure's job.
 	public let onJukeboxChanged: (() -> Void)?
+	/// Forwarded to ``FeedView``'s own parameter of the same name — see its
+	/// doc comment (PLAN.md S6.9's extra-content ticker). `nil` for every
+	/// screen without a ticker.
+	public let onScrollDirectionChange: ((FeedScrollDirection) -> Void)?
 
 	public init(
 		model: FeedScreenModel,
 		copy: FeedScreenCopy,
 		onOutcome: ((FeedActionOutcome) -> Void)? = nil,
 		onJukeboxChanged: (() -> Void)? = nil,
+		onScrollDirectionChange: ((FeedScrollDirection) -> Void)? = nil,
 	) {
 		self.model = model
 		self.copy = copy
 		self.onOutcome = onOutcome
 		self.onJukeboxChanged = onJukeboxChanged
+		self.onScrollDirectionChange = onScrollDirectionChange
 	}
 
 	public var body: some View {
@@ -71,6 +77,7 @@ public struct FeedScreen: View {
 					onOutcome?(outcome)
 				},
 				onApproachingEnd: { Task { await model.loadNextPage() } },
+				onScrollDirectionChange: onScrollDirectionChange,
 			)
 			.refreshable { await model.refresh() }
 		}

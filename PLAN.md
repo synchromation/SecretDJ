@@ -398,7 +398,7 @@ exclusions.
       design replacing the legacy resubmit-on-every-screen loop.
 - [x] S6.8 Check-in: venue check-in flow (scope=everyone, optimistic UI
       with rollback on failure) and the server-driven toast/URL response.
-- [ ] S6.9 Extra content ticker: the venue/places bottom banner rotating
+- [x] S6.9 Extra content ticker: the venue/places bottom banner rotating
       now-playing songs and people, with its scroll-direction show/hide
       behavior re-evaluated (D9).
 - [x] S6.10 Directions and taxi: directions surface; server-driven
@@ -598,7 +598,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1–S6.8, S6.10 done; S6.9, S6.11, S6.12 remain) |
+| S6 Consumer features | in progress (S6.11, S6.12 remain) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
