@@ -531,3 +531,15 @@ work happens; every commit includes this file's delta.
   AVAudioSession .playback configured at the root with legacy's
   IOBufferDuration cargo-cult deliberately dropped. Four localized
   keys. Full verify green.
+- S6.6 done (TDD, sonnet subagent, direct): ProfileScreen serves both
+  the own-profile tab root and others' profiles via .person (personId
+  parameterized, own-ness read live against the session per legacy);
+  header with circular avatar, fixed "My Profile" vs verbatim screen
+  name, person like on others' profiles only (legacy hides it on your
+  own — cited); avatar change reuses the OnboardingServicing upload
+  seam and the extracted picker components (third reuse), success
+  refreshes the feed and toasts any reward copy; no auto-refresh
+  (matched to the legacy provider). FeedUI gains
+  FeedScreenModel.personDetails off the hiddenProfile section.
+  Single "Profile" tracking name matching legacy's undistinguished
+  analytics. Six localized keys. Full verify green.

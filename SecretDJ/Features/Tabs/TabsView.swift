@@ -9,12 +9,13 @@ import SwiftUI
 /// The signed-in app's real shell (PLAN.md S5.2): three tabs — Places
 /// Nearby, Activity, Profile — each with its own `NavigationStack` driven by
 /// a ``TabRouter`` (LEGACY.md "Launch and root navigation"). Places Nearby
-/// hosts its real feed as of S6.1, Activity as of S6.5, and any tab's stack
-/// can push a real ``VenueScreen``/``NowPlayingScreen`` as of S6.2; Profile
-/// still hosts a themed placeholder root pending S6.6. Also composes the
-/// shell-wide ``DesignSystem/ToastQueue`` every S6 feed screen's
-/// jukebox-changed toast (and later, other server-driven toasts) presents
-/// through.
+/// hosts its real feed as of S6.1, Activity as of S6.5, Profile as of S6.6
+/// (its tab root is the signed-in user's own profile, ``profileScreen(personId:router:onDeleteAccount:)``
+/// resolving the session's own id), and any tab's stack can push a real
+/// ``VenueScreen``/``NowPlayingScreen``/``ProfileScreen`` as of S6.2/S6.6.
+/// Also composes the shell-wide ``DesignSystem/ToastQueue`` every S6 feed
+/// screen's jukebox-changed toast (and later, other server-driven toasts)
+/// presents through.
 struct TabsView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
@@ -92,8 +93,12 @@ struct TabsView: View {
 			}
 
 			Tab("Profile", systemImage: Theme.Icon.profile.systemName, value: AppTab.profile) {
-				tabStack(for: .profile) { _ in
-					ProfilePlaceholderScreen(sessionStore: sessionStore, onDeleteAccount: onDeleteAccount)
+				tabStack(for: .profile) { router in
+					profileScreen(
+						personId: sessionStore.user?.personId ?? "",
+						router: router,
+						onDeleteAccount: onDeleteAccount,
+					)
 				}
 			}
 		}
@@ -144,6 +149,9 @@ struct TabsView: View {
 		case .venue(let venueId):
 			venueScreen(venueId: venueId, router: router)
 
+		case .person(let personId):
+			profileScreen(personId: personId, router: router, onDeleteAccount: nil)
+
 		case .nowPlaying(let venueId):
 			nowPlayingScreen(venueId: venueId, router: router)
 
@@ -187,6 +195,32 @@ struct TabsView: View {
 			toastQueue: toastQueue,
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
 			promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
+		)
+	}
+
+	/// Shared by the Profile tab root (`onDeleteAccount` forwarded, `personId`
+	/// the session's own) and ``AppDestination/person(personId:)`` (no
+	/// delete-account entry point — someone else's profile never renders
+	/// this screen's footer at all, see ``ProfileScreen``'s own doc comment).
+	private func profileScreen(personId: String, router: TabRouter, onDeleteAccount: (() -> Void)?) -> some View {
+		ProfileScreen(
+			personId: personId,
+			loader: APIClientFeedLoading.sessionFeed(
+				sessionStore: sessionStore,
+				locationService: locationService,
+				endpoint: { userId, credential, _ in try await apiClient.profile(
+					userId: userId,
+					profileUserId: personId,
+					credential: credential,
+				) },
+			),
+			router: router,
+			toastQueue: toastQueue,
+			sessionStore: sessionStore,
+			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
+			onboardingService: APIClientOnboardingService(client: apiClient),
+			onDeleteAccount: onDeleteAccount,
+			observability: observability,
 		)
 	}
 
@@ -241,107 +275,6 @@ struct TabsView: View {
 
 	private func path(for router: TabRouter) -> Binding<[AppDestination]> {
 		Binding(get: { router.path }, set: { router.setPath($0) })
-	}
-
-	/// Reused verbatim from ``VenueScreen``/``NowPlayingScreen``'s own
-	/// jukebox-changed toast — the same String Catalog key, not a second one
-	/// (LEGACY.md's `kJukeboxUpdatedText`).
-	private static var jukeboxChangedMessage: String {
-		String(
-			localized: "Jukebox Updated",
-			comment: "Toast shown when a paginated feed's content changed underneath the user (LEGACY.md's kJukeboxUpdatedText).",
-		)
-	}
-
-	private static var musicSelectionCopy: FeedScreenCopy {
-		FeedScreenCopy(
-			emptySystemImage: Theme.Icon.jukebox.systemName,
-			emptyTitle: Text(
-				"Nothing Here Yet",
-				comment: "Title shown on a jukebox's song list when it has no content yet.",
-			),
-			emptyMessage: Text(
-				"This jukebox hasn't got anything to show yet — check back soon.",
-				comment: "Body shown on a jukebox's song list when it has no content yet.",
-			),
-			errorTitle: Text(
-				"Something Went Wrong",
-				comment: "Title shown on a jukebox's song list when it fails to load.",
-			),
-			errorMessage: Text(
-				"Sorry, we couldn't load this jukebox.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
-				comment: "Body shown on a jukebox's song list when it fails to load.",
-			),
-			offlineTitle: Text(
-				"You're Offline",
-				comment: "Title shown on a jukebox's song list when the device has no internet connection.",
-			),
-			offlineMessage: Text(
-				"Check your connection and try again.",
-				comment: "Body shown on a jukebox's song list when the device has no internet connection.",
-			),
-			retryTitle: Text(
-				"Try Again",
-				comment: "Button that retries loading a jukebox's song list after a failure.",
-			),
-		)
-	}
-
-	private static var musicSearchCopy: MusicSearchScreenCopy {
-		MusicSearchScreenCopy(
-			navigationTitle: Text("Search", comment: "Navigation title of the artist/song search screen."),
-			artistModeLabel: Text("Artists", comment: "Search screen tab that searches by artist name."),
-			trackModeLabel: Text("Songs", comment: "Search screen tab that searches by song title."),
-			searchFieldPlaceholder: Text(
-				"Search",
-				comment: "Placeholder text in the search screen's text field, before the user types anything.",
-			),
-			emptyTitle: Text("No Results", comment: "Title shown on the search screen when a search finds nothing."),
-			emptyMessage: Text(
-				"Try a different search.",
-				comment: "Body shown on the search screen when a search finds nothing.",
-			),
-			errorTitle: Text("Something Went Wrong", comment: "Title shown on the search screen when a search fails."),
-			errorMessage: Text(
-				"Sorry, we couldn't search right now.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
-				comment: "Body shown on the search screen when a search fails.",
-			),
-			retryTitle: Text("Try Again", comment: "Button that retries a failed search."),
-		)
-	}
-
-	private static var songsForArtistCopy: FeedScreenCopy {
-		FeedScreenCopy(
-			emptySystemImage: Theme.Icon.song.systemName,
-			emptyTitle: Text(
-				"No Songs",
-				comment: "Title shown on an artist's song list when they have no songs here yet.",
-			),
-			emptyMessage: Text(
-				"This artist hasn't got anything to show yet — check back soon.",
-				comment: "Body shown on an artist's song list when they have no songs here yet.",
-			),
-			errorTitle: Text(
-				"Something Went Wrong",
-				comment: "Title shown on an artist's song list when it fails to load.",
-			),
-			errorMessage: Text(
-				"Sorry, we couldn't load these songs.\n\nPlease check that you have a good connection to your cellular data or WiFi network.",
-				comment: "Body shown on an artist's song list when it fails to load.",
-			),
-			offlineTitle: Text(
-				"You're Offline",
-				comment: "Title shown on an artist's song list when the device has no internet connection.",
-			),
-			offlineMessage: Text(
-				"Check your connection and try again.",
-				comment: "Body shown on an artist's song list when the device has no internet connection.",
-			),
-			retryTitle: Text(
-				"Try Again",
-				comment: "Button that retries loading an artist's song list after a failure.",
-			),
-		)
 	}
 }
 

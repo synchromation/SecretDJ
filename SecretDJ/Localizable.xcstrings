@@ -3948,6 +3948,180 @@
           }
         }
       }
+    },
+    "Change your profile picture": {
+      "comment": "Accessible name of the profile screen's own avatar, tapped to change your profile picture.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profilbild ändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar tu foto de perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Changer ta photo de profil"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wijzig je profielfoto"
+          }
+        }
+      }
+    },
+    "Like this person": {
+      "comment": "Accessible name of the profile screen's like/buzz toggle button.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diese Person mit „Gefällt mir“ markieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Indicar que te gusta esta persona"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Indiquer que tu aimes cette personne"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aangeven dat je deze persoon leuk vindt"
+          }
+        }
+      }
+    },
+    "My Profile": {
+      "comment": "Title shown in place of your own screen name on your own profile screen (legacy's fixed \"My Profile\" header).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mein Profil"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mi perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mon profil"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mijn profiel"
+          }
+        }
+      }
+    },
+    "Change Photo": {
+      "comment": "Navigation title of the sheet for changing your own profile picture.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Foto ändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar foto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Changer la photo"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Foto wijzigen"
+          }
+        }
+      }
+    },
+    "Nothing to show here yet — check back soon.": {
+      "comment": "Body shown on the profile feed when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier gibt es noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no hay nada que mostrar aquí — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Il n'y a encore rien à montrer ici — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier is nog niets te zien — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load this profile.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the profile feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten dieses Profil nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar este perfil.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ce profil.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden dit profiel niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
     }
   },
   "version": "1.1"

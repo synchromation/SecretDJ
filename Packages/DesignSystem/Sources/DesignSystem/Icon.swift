@@ -37,6 +37,8 @@ extension Theme {
 		case stopPreview
 		/// The signed-in user's profile, and person cells.
 		case profile
+		/// The own-profile avatar-change affordance (S6.6).
+		case changePhoto
 		/// A venue/place, and the Places Nearby tab.
 		case venue
 		/// The activity feed ("rabbit feed" — LEGACY.md "Tab 2 — Activity
@@ -84,6 +86,7 @@ extension Theme.Icon {
 		case .playPreview: "play.fill"
 		case .stopPreview: "stop.fill"
 		case .profile: "person.crop.circle.fill"
+		case .changePhoto: "camera.circle.fill"
 		case .venue: "mappin.circle.fill"
 		case .activity: "waveform.path.ecg"
 		case .jukebox: "music.note.list"

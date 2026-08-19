@@ -386,7 +386,7 @@ exclusions.
 - [x] S6.5 Activity feed: server-driven event history (check-ins,
       requests, awards, people) on the feed engine; award templates
       render via S3.2 cells.
-- [ ] S6.6 Profile: own profile feed, avatar change (S4.5 components),
+- [x] S6.6 Profile: own profile feed, avatar change (S4.5 components),
       person like/unlike on profile headers (optimistic + rollback),
       others' profiles via feed actions.
 - [ ] S6.7 Credits and top-ups: StoreKit 2 purchase flow at parity with
@@ -589,7 +589,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1–S6.5 done) |
+| S6 Consumer features | in progress (S6.1–S6.6 done) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

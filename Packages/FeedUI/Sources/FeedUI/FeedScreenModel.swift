@@ -39,6 +39,15 @@ public final class FeedScreenModel {
 	/// feed with no such section; republished after every full load
 	/// (initial/pull-to-refresh/auto-refresh), same timing as `jukeboxList`.
 	public private(set) var venueDetails: Venue?
+	/// The current feed's `hiddenProfile` payload
+	/// (``FeedDisplayModel/profile``), when it carried one — the profile
+	/// screen's header data (S6.6), sourced identically whether the feed is
+	/// showing the signed-in user's own profile or someone else's
+	/// (`persondetails` returns the same section shape for both — LEGACY.md
+	/// "Tab 3 — Profile"). `nil` before the first load and for any feed with
+	/// no such section; republished after every full load, same timing as
+	/// ``venueDetails``.
+	public private(set) var personDetails: Person?
 
 	private let loader: any FeedLoading
 	private let router: FeedActionRouter
@@ -140,6 +149,7 @@ public final class FeedScreenModel {
 		visibleSections = displayModel.visibleSections
 		jukeboxList = displayModel.jukeboxList
 		venueDetails = displayModel.venueDetails
+		personDetails = displayModel.profile
 		nextPage = 1
 		hasMorePages = true
 		phase = displayModel.visibleSections.isEmpty ? .empty : .loaded
