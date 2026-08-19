@@ -7,8 +7,7 @@ import SwiftUI
 /// `applesignin`/`facebooksignin` call signs the session in before that step
 /// has run), then S4.5's onboarding flow; otherwise it gates on whether a
 /// session was restored at launch — no session shows the login flow, an
-/// existing one shows a placeholder for the signed-in state (S5 replaces
-/// this with the real three-tab shell).
+/// existing one shows the real three-tab shell (S5.2).
 struct RootView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
@@ -35,11 +34,11 @@ struct RootView: View {
 		} else if let onboardingModel {
 			OnboardingFlowView(model: onboardingModel, onFinished: { self.onboardingModel = nil })
 		} else if let accountModel {
-			// Shown in place of `SignedInPlaceholderView`, not as a sheet on
-			// top of it — see `AccountFlowView`'s doc comment for why.
+			// Shown in place of `TabsView`, not as a sheet on top of it — see
+			// `AccountFlowView`'s doc comment for why.
 			AccountFlowView(model: accountModel, onFinished: { self.accountModel = nil })
 		} else if sessionStore.isSignedIn {
-			SignedInPlaceholderView(sessionStore: sessionStore, onDeleteAccount: startAccountDeletion)
+			TabsView(sessionStore: sessionStore, onDeleteAccount: startAccountDeletion, observability: observability)
 		} else {
 			LoginFlow(
 				authService: APIClientAuthenticationService(client: apiClient),

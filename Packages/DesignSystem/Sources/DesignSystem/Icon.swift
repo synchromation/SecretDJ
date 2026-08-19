@@ -39,6 +39,9 @@ extension Theme {
 		case profile
 		/// A venue/place, and the Places Nearby tab.
 		case venue
+		/// The activity feed ("rabbit feed" — LEGACY.md "Tab 2 — Activity
+		/// feed") and the Activity tab.
+		case activity
 		/// A jukebox, and jukebox menu/cells.
 		case jukebox
 		/// An award cell.
@@ -80,6 +83,7 @@ extension Theme.Icon {
 		case .stopPreview: "stop.fill"
 		case .profile: "person.crop.circle.fill"
 		case .venue: "mappin.circle.fill"
+		case .activity: "waveform.path.ecg"
 		case .jukebox: "music.note.list"
 		case .award: "trophy.fill"
 		case .settings: "gearshape.fill"

@@ -3,11 +3,11 @@ import Observability
 import SecretDJAPI
 import SwiftUI
 
-/// A themed placeholder for the signed-in state: the session's screen name,
-/// a way to sign out, and the entry point into account deletion
-/// (`// S6.11:` relocates that entry point into Settings). S5 replaces this
-/// with the real three-tab shell.
-struct SignedInPlaceholderView: View {
+/// The Profile tab's root, until S6.6 lands the real own-profile feed
+/// (LEGACY.md "Tab 3 — Profile"). Carries the session's screen name and the
+/// sign-out/delete-account entry points S5's pre-tabs signed-in placeholder
+/// used to host (`// S6.11:` relocates delete-account into Settings).
+struct ProfilePlaceholderScreen: View {
 	let sessionStore: SessionStore
 	/// Starts the ``AccountFlowView`` delete-account flow, owned by
 	/// `RootView` — see its doc comment for why that flow isn't simply
@@ -20,12 +20,13 @@ struct SignedInPlaceholderView: View {
 
 	var body: some View {
 		VStack(spacing: Spacing.large) {
-			Text("You're signed in")
-				.font(Theme.TextStyle.screenTitle.font)
-				.foregroundStyle(Theme.ColorRole.primaryText.color)
+			Image(systemName: Theme.Icon.profile.systemName)
+				.font(.system(size: 40))
+				.foregroundStyle(Theme.ColorRole.secondaryText.color)
+				.accessibilityHidden(true)
 
 			if let screenName = sessionStore.user?.screenName {
-				Text("Signed in as \(screenName)")
+				Text("Signed in as \(screenName)", comment: "Shows the current user's screen name on the Profile tab.")
 					.font(Theme.TextStyle.body.font)
 					.foregroundStyle(Theme.ColorRole.secondaryText.color)
 			}
@@ -44,7 +45,8 @@ struct SignedInPlaceholderView: View {
 		.padding(Spacing.large)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
-		.tracksScreen("SignedInPlaceholder")
+		.navigationTitle(Text("Profile", comment: "Navigation title of the Profile tab."))
+		.tracksScreen("Profile")
 		.confirmationDialog(
 			"Sign Out?",
 			isPresented: $isConfirmingSignOut,
@@ -62,10 +64,14 @@ struct SignedInPlaceholderView: View {
 }
 
 #Preview("Signed in") {
-	SignedInPlaceholderView(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
+	NavigationStack {
+		ProfilePlaceholderScreen(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
+	}
 }
 
 #Preview("Accessibility text size") {
-	SignedInPlaceholderView(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
-		.environment(\.dynamicTypeSize, .accessibility5)
+	NavigationStack {
+		ProfilePlaceholderScreen(sessionStore: PreviewSessionStore.signedIn(), onDeleteAccount: {})
+	}
+	.environment(\.dynamicTypeSize, .accessibility5)
 }

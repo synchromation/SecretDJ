@@ -3,10 +3,10 @@ import Observability
 import Observation
 import SecretDJAPI
 
-/// Drives account deletion, reached from the signed-in placeholder
+/// Drives account deletion, reached from the Profile tab's placeholder
 /// (`// S6.11:` relocates the entry point into Settings). Sign-out has no
 /// branching logic of its own — a single call plus a breadcrumb — so it
-/// stays directly on ``SignedInPlaceholderView`` rather than gaining a
+/// stays directly on ``ProfilePlaceholderScreen`` rather than gaining a
 /// model (ios-architecture: seams exist per real dependency, not per
 /// possibility).
 ///
