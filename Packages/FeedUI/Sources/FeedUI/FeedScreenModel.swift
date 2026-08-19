@@ -33,6 +33,12 @@ public final class FeedScreenModel {
 	/// show its toast and decide what "reload" means for its navigation
 	/// stack.
 	public private(set) var jukeboxChangedEvent: JukeboxChangedEvent?
+	/// The current feed's `hiddenVenueDetails` payload
+	/// (``FeedDisplayModel/venueDetails``), when it carried one — the venue
+	/// screen's header data (S6.2). `nil` before the first load and for any
+	/// feed with no such section; republished after every full load
+	/// (initial/pull-to-refresh/auto-refresh), same timing as `jukeboxList`.
+	public private(set) var venueDetails: Venue?
 
 	private let loader: any FeedLoading
 	private let router: FeedActionRouter
@@ -133,6 +139,7 @@ public final class FeedScreenModel {
 		let displayModel = FeedDisplayModel(sectionList: sectionList)
 		visibleSections = displayModel.visibleSections
 		jukeboxList = displayModel.jukeboxList
+		venueDetails = displayModel.venueDetails
 		nextPage = 1
 		hasMorePages = true
 		phase = displayModel.visibleSections.isEmpty ? .empty : .loaded

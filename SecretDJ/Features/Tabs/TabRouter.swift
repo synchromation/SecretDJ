@@ -21,6 +21,14 @@ final class TabRouter {
 		path.append(destination)
 	}
 
+	/// Pushes `destination` directly — for a navigation trigger that isn't a
+	/// routed feed outcome, e.g. the venue screen's own "Now Playing" button
+	/// (S6.2; legacy's own path there is the extra-content ticker, S6.9,
+	/// which doesn't exist yet in this rewrite).
+	func push(_ destination: AppDestination) {
+		path.append(destination)
+	}
+
 	/// Mirrors SwiftUI's own pops (back button, swipe-back) into this
 	/// router's state — the setter half of the `Binding` a
 	/// `NavigationStack(path:)` needs.

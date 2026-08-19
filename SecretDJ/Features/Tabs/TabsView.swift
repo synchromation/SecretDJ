@@ -6,10 +6,12 @@ import SwiftUI
 /// The signed-in app's real shell (PLAN.md S5.2): three tabs — Places
 /// Nearby, Activity, Profile — each with its own `NavigationStack` driven by
 /// a ``TabRouter`` (LEGACY.md "Launch and root navigation"). Places Nearby
-/// hosts its real feed as of S6.1, Activity as of S6.5; Profile still hosts
-/// a themed placeholder root pending S6.6. Also composes the shell-wide
-/// ``DesignSystem/ToastQueue`` every S6 feed screen's jukebox-changed toast
-/// (and later, other server-driven toasts) presents through.
+/// hosts its real feed as of S6.1, Activity as of S6.5, and any tab's stack
+/// can push a real ``VenueScreen``/``NowPlayingScreen`` as of S6.2; Profile
+/// still hosts a themed placeholder root pending S6.6. Also composes the
+/// shell-wide ``DesignSystem/ToastQueue`` every S6 feed screen's
+/// jukebox-changed toast (and later, other server-driven toasts) presents
+/// through.
 struct TabsView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
@@ -104,8 +106,54 @@ struct TabsView: View {
 		return NavigationStack(path: path(for: router)) {
 			root(router)
 				.navigationDestination(for: AppDestination.self) { destination in
-					ComingSoonScreen(destination: destination)
+					self.destination(for: destination, router: router)
 				}
+		}
+	}
+
+	/// Every ``AppDestination`` case S6 has a real screen for; everything
+	/// else still falls through to ``ComingSoonScreen`` (PLAN.md S5.2's
+	/// exercisable-before-built navigation model).
+	@ViewBuilder
+	private func destination(for destination: AppDestination, router: TabRouter) -> some View {
+		switch destination {
+		case .venue(let venueId):
+			VenueScreen(
+				venueId: venueId,
+				loader: APIClientFeedLoading.sessionFeed(
+					sessionStore: sessionStore,
+					locationService: locationService,
+					endpoint: { userId, credential, _ in try await apiClient.venue(
+						userId: userId,
+						venueId: venueId,
+						credential: credential,
+					) },
+				),
+				locationService: locationService,
+				router: router,
+				toastQueue: toastQueue,
+				likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
+				promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
+			)
+
+		case .nowPlaying(let venueId):
+			NowPlayingScreen(
+				loader: APIClientFeedLoading.sessionFeed(
+					sessionStore: sessionStore,
+					locationService: locationService,
+					endpoint: { userId, credential, _ in try await apiClient.nowPlaying(
+						userId: userId,
+						venueId: venueId,
+						credential: credential,
+					) },
+				),
+				locationService: locationService,
+				router: router,
+				toastQueue: toastQueue,
+			)
+
+		default:
+			ComingSoonScreen(destination: destination)
 		}
 	}
 

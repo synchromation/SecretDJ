@@ -12,6 +12,10 @@ enum AppDestination: Hashable {
 	case songsForArtist(artist: String)
 	/// A venue's feed (S6.2).
 	case venue(venueId: String)
+	/// A venue's now-playing/play-history feed (S6.2) — reached from the
+	/// venue screen directly (``TabRouter/push(_:)``), never through a
+	/// routed feed outcome.
+	case nowPlaying(venueId: String)
 	/// A person's profile (S6.6).
 	case person(personId: String)
 	/// A jukebox/mood's song list — the music digest/selection stack (S6.3).
@@ -73,6 +77,7 @@ extension AppDestination {
 		case .song: "ComingSoon-Song"
 		case .songsForArtist: "ComingSoon-SongsForArtist"
 		case .venue: "ComingSoon-Venue"
+		case .nowPlaying: "ComingSoon-NowPlaying"
 		case .person: "ComingSoon-Person"
 		case .jukebox: "ComingSoon-Jukebox"
 		case .topUps: "ComingSoon-TopUps"

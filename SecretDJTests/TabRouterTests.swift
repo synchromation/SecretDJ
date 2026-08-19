@@ -53,4 +53,23 @@ enum TabRouterTests {
 			#expect(router.path.isEmpty)
 		}
 	}
+
+	struct `Pushing a destination directly` {
+		@Test func `push appends a destination not reachable through a feed outcome`() {
+			let router = TabRouter()
+
+			router.push(.nowPlaying(venueId: "v1"))
+
+			#expect(router.path == [.nowPlaying(venueId: "v1")])
+		}
+
+		@Test func `push appends after any outcome-routed destinations`() {
+			let router = TabRouter()
+			router.handle(outcome: .showVenue(venueId: "v1"))
+
+			router.push(.nowPlaying(venueId: "v1"))
+
+			#expect(router.path == [.venue(venueId: "v1"), .nowPlaying(venueId: "v1")])
+		}
+	}
 }

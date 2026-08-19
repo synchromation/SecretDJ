@@ -528,7 +528,7 @@
       }
     },
     "Venue": {
-      "comment": "Title of the coming-soon placeholder shown in place of a venue's screen.",
+      "comment": "Title of the coming-soon placeholder shown in place of a venue's screen, and the navigation title of the real venue screen (S6.2).",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -2872,6 +2872,325 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Heeft een jukebox"
+          }
+        }
+      }
+    },
+    "Like this venue": {
+      "comment": "Accessible name of the venue screen's like/buzz toggle button.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diesen Ort mit „Gefällt mir“ markieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Indicar que te gusta este local"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Indiquer que tu aimes ce lieu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aangeven dat je deze locatie leuk vindt"
+          }
+        }
+      }
+    },
+    "Liked": {
+      "comment": "Accessibility value of a like button when the item has no server-provided like summary yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gefällt dir"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Te gusta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu aimes"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vind je leuk"
+          }
+        }
+      }
+    },
+    "Not liked": {
+      "comment": "Accessibility value of a like button when the item has no server-provided like summary yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gefällt dir noch nicht"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no te gusta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu n'aimes pas encore"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vind je nog niet leuk"
+          }
+        }
+      }
+    },
+    "Now Playing": {
+      "comment": "Title of the venue screen's now-playing button, the venue's now-playing screen's navigation title, and the coming-soon placeholder shown in its place.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Läuft gerade"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sonando ahora"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "En cours de lecture"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nu speelt"
+          }
+        }
+      }
+    },
+    "Nothing Here Yet": {
+      "comment": "Title shown on the venue feed when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier gibt's noch nichts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no hay nada aquí"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rien ici pour l'instant"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier is nog niets"
+          }
+        }
+      }
+    },
+    "This venue hasn't got anything to show yet — check back soon.": {
+      "comment": "Body shown on the venue feed when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dieser Ort hat noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este local todavía no tiene nada que mostrar — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ce lieu n'a encore rien à montrer — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze locatie heeft nog niets te laten zien — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load this venue.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the venue feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diesen Ort nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar este local.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ce lieu.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden deze locatie niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Nothing Playing Yet": {
+      "comment": "Title shown on the now-playing feed when nothing has played yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Es läuft noch nichts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no suena nada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rien ne joue pour l'instant"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er speelt nog niets"
+          }
+        }
+      }
+    },
+    "Nothing's played at this venue yet — check back soon.": {
+      "comment": "Body shown on the now-playing feed when nothing has played yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "An diesem Ort ist noch nichts gelaufen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no ha sonado nada en este local — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rien n'a encore été joué dans ce lieu — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er is nog niets gespeeld op deze locatie — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load what's playing.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the now-playing feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten nicht laden, was gerade läuft.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar lo que está sonando.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ce qui est en cours de lecture.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden niet laden wat er nu speelt.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't update that — please try again.": {
+      "comment": "Toast shown when liking or unliking something fails.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, das konnten wir nicht aktualisieren — versuch's bitte noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido actualizar eso — inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu mettre ça à jour — réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dat konden we niet bijwerken — probeer het opnieuw."
           }
         }
       }

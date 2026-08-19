@@ -25,6 +25,12 @@ struct ComingSoonScreen: View {
 		case .venue:
 			Text("Venue", comment: "Title of the coming-soon placeholder shown in place of a venue's screen.")
 
+		case .nowPlaying:
+			Text(
+				"Now Playing",
+				comment: "Title of the coming-soon placeholder shown in place of a venue's now-playing screen.",
+			)
+
 		case .person:
 			Text("Profile", comment: "Title of the coming-soon placeholder shown in place of a person's profile.")
 

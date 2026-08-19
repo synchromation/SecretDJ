@@ -44,6 +44,8 @@ extension Theme {
 		case activity
 		/// A jukebox, and jukebox menu/cells.
 		case jukebox
+		/// The venue screen's entry point into its now-playing feed.
+		case nowPlaying
 		/// An award cell.
 		case award
 		/// The settings entry point.
@@ -85,6 +87,7 @@ extension Theme.Icon {
 		case .venue: "mappin.circle.fill"
 		case .activity: "waveform.path.ecg"
 		case .jukebox: "music.note.list"
+		case .nowPlaying: "antenna.radiowaves.left.and.right"
 		case .award: "trophy.fill"
 		case .settings: "gearshape.fill"
 		case .disclosure: "chevron.right"

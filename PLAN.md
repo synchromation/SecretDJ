@@ -352,7 +352,7 @@ exclusions.
 
 - [x] S6.1 Places Nearby: nearby-venues feed; venue map (pins, jukebox
       badge, user location, zoom-to-fit) behind the map action.
-- [ ] S6.2 Venue screen and Now Playing: venue feed, now-playing feed
+- [x] S6.2 Venue screen and Now Playing: venue feed, now-playing feed
       with auto-refresh, jukebox navigation into selection/digest feeds,
       venue like/unlike (optimistic toggle with rollback, server-supplied
       likeInfo copy), the social-links rule (Instagram first, max three).
@@ -580,7 +580,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1, S6.5 done) |
+| S6 Consumer features | in progress (S6.1, S6.2, S6.5 done) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

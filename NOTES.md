@@ -472,3 +472,16 @@ work happens; every commit includes this file's delta.
   verify green. (Process slip recorded: these two commits went out
   without their PLAN.md checkbox flips — statuses ride in this
   follow-up commit instead. The checkpoints rule stands.)
+- S6.2 done (TDD, sonnet subagent, direct; 306 tests across the
+  suite): VenueScreen + NowPlayingScreen over sessionFeed with
+  auto-refresh; the reusable OptimisticLikeModel in Support/Like
+  (synchronous flip, re-entry guard proven by reentrancy tests,
+  rollback + failure toast, server likeInfo adopted verbatim per D11,
+  reconcile(with:) so auto-refresh can't stomp an in-flight toggle);
+  the legacy social-links rule ported as a FeedLoading decorator
+  (Instagram first, cap three, cited to VenueFeedViewController) so
+  generic rendering needed no venue-specific views; AppDestination
+  gained nowPlaying. Self-review caught and fixed: an all-invalid-URL
+  section escaping the cap, a sub-44pt like target, untested
+  promotion-engagement view logic (extracted to a seamed model), and
+  stale like state across refreshes. Eleven localized keys.
