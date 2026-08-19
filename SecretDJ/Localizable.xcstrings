@@ -1803,6 +1803,35 @@
         }
       }
     },
+    "Your check-ins, requests, and awards will show up here as they happen.": {
+      "comment": "Body shown on the Activity feed when there's no activity yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deine Check-ins, Anfragen und Auszeichnungen erscheinen hier, sobald sie passieren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aquí aparecerán tus check-ins, peticiones y premios en cuanto sucedan."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tes check-ins, demandes et récompenses s'afficheront ici au fur et à mesure."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier verschijnen je check-ins, verzoeken en prijzen zodra ze gebeuren."
+          }
+        }
+      }
+    },
     "Your email": {
       "comment": "Placeholder for the email field on the sign-up form.",
       "localizations": {
@@ -2441,6 +2470,35 @@
         }
       }
     },
+    "No Activity Yet": {
+      "comment": "Title shown on the Activity feed when there's no activity yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Noch keine Aktivität"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aún no hay actividad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas encore d'activité"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nog geen activiteit"
+          }
+        }
+      }
+    },
     "No Venues Nearby": {
       "comment": "Title shown on the Places Nearby feed when no venues are nearby.",
       "localizations": {
@@ -2524,6 +2582,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Er ging iets mis"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load your activity.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Body shown on the Activity feed when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten deine Aktivität nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar tu actividad.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ton activité.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je activiteit niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
           }
         }
       }

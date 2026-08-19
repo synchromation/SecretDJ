@@ -6,8 +6,8 @@ import SwiftUI
 /// The signed-in app's real shell (PLAN.md S5.2): three tabs — Places
 /// Nearby, Activity, Profile — each with its own `NavigationStack` driven by
 /// a ``TabRouter`` (LEGACY.md "Launch and root navigation"). Places Nearby
-/// hosts its real feed as of S6.1; Activity and Profile still host a themed
-/// placeholder root pending S6.5/S6.6. Also composes the shell-wide
+/// hosts its real feed as of S6.1, Activity as of S6.5; Profile still hosts
+/// a themed placeholder root pending S6.6. Also composes the shell-wide
 /// ``DesignSystem/ToastQueue`` every S6 feed screen's jukebox-changed toast
 /// (and later, other server-driven toasts) presents through.
 struct TabsView: View {
@@ -60,8 +60,20 @@ struct TabsView: View {
 			}
 
 			Tab("Activity", systemImage: Theme.Icon.activity.systemName, value: AppTab.activity) {
-				tabStack(for: .activity) { _ in
-					ActivityPlaceholderScreen()
+				tabStack(for: .activity) { router in
+					ActivityScreen(
+						loader: APIClientFeedLoading.sessionFeed(
+							sessionStore: sessionStore,
+							locationService: locationService,
+							endpoint: { userId, credential, _ in try await apiClient.activity(
+								userId: userId,
+								credential: credential,
+							) },
+						),
+						locationService: locationService,
+						router: router,
+						toastQueue: toastQueue,
+					)
 				}
 			}
 
