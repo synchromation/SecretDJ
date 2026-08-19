@@ -1,31 +1,350 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Kiosk coming soon" : {
-      "comment" : "Placeholder title shown as the kiosk app's root screen until the real composition root lands.",
+    "Cancel" : {
+      "comment" : "Cancel button on the staff reset confirmation dialog.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kiosk in Kürze"
+            "state" : "needs_review",
+            "value" : "Abbrechen"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kiosco próximamente"
+            "state" : "needs_review",
+            "value" : "Cancelar"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kiosque à venir"
+            "state" : "needs_review",
+            "value" : "Annuler"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kiosk binnenkort"
+            "state" : "needs_review",
+            "value" : "Annuleren"
+          }
+        }
+      }
+    },
+    "Reset Kiosk" : {
+      "comment" : "Destructive confirm button on the staff reset dialog; signs the venue out and clears kiosk caches.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kiosk zurücksetzen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Reiniciar quiosco"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Réinitialiser le kiosque"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kiosk resetten"
+          }
+        }
+      }
+    },
+    "Reset This Kiosk?" : {
+      "comment" : "Title of the staff-only confirmation dialog reached by the hidden five-tap reset gesture.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Diesen Kiosk zurücksetzen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "¿Reiniciar este quiosco?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Réinitialiser ce kiosque ?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Deze kiosk resetten?"
+          }
+        }
+      }
+    },
+    "SIGN IN" : {
+      "comment" : "Primary button on the kiosk's venue sign-in screen.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ANMELDEN"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "INICIAR SESIÓN"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "SE CONNECTER"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "INLOGGEN"
+          }
+        }
+      }
+    },
+    "SIGNING IN..." : {
+      "comment" : "Sign-in button label while the kiosk's venue sign-in request is in flight.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ANMELDUNG..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "INICIANDO SESIÓN..."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "CONNEXION..."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "BEZIG MET INLOGGEN..."
+          }
+        }
+      }
+    },
+    "Sorry, this account isn't set up for a venue.\n\nPlease check your venue sign-in details and try again." : {
+      "comment" : "Error shown when the kiosk's credentials authenticate but aren't pinned to a venue (legacy: wrong type of signin).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, dieses Konto ist nicht für einen Ort eingerichtet.\n\nBitte überprüfe deine Ortsanmeldedaten und versuche es erneut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lo sentimos, esta cuenta no está configurada para un lugar.\n\nComprueba los datos de inicio de sesión del lugar e inténtalo de nuevo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Désolé, ce compte n'est pas configuré pour un lieu.\n\nVérifie tes identifiants de connexion du lieu et réessaie."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, dit account is niet ingesteld voor een locatie.\n\nControleer je locatiegegevens en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't sign you in.\n\nPlease check that you have a good connection to your cellular data or WiFi network." : {
+      "comment" : "Error shown when kiosk venue sign-in fails before reaching the server (offline, timeout).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, wir konnten dich nicht anmelden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Lo sentimos, no hemos podido iniciar tu sesión.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Désolé, nous n'avons pas pu te connecter.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sorry, we konden je niet inloggen.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "This signs the venue out and clears everything cached on this device. You'll need to sign in again." : {
+      "comment" : "Body text of the staff reset confirmation dialog, explaining what the reset does.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Dadurch wird der Ort abgemeldet und alle zwischengespeicherten Daten auf diesem Gerät gelöscht. Du musst dich danach erneut anmelden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Esto cierra la sesión del lugar y borra todo lo almacenado en este dispositivo. Tendrás que iniciar sesión de nuevo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cela déconnecte le lieu et efface tout ce qui est stocké sur cet appareil. Tu devras te reconnecter."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Hierdoor wordt de locatie uitgelogd en wordt alles wat op dit apparaat is opgeslagen, gewist. Je moet opnieuw inloggen."
+          }
+        }
+      }
+    },
+    "Venue password" : {
+      "comment" : "Placeholder for the password field on the kiosk's venue sign-in screen.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Passwort des Ortes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Contraseña del lugar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Mot de passe du lieu"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wachtwoord van de locatie"
+          }
+        }
+      }
+    },
+    "Venue screen name" : {
+      "comment" : "Placeholder for the screen name field on the kiosk's venue sign-in screen.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Benutzername des Ortes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nombre de usuario del lugar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nom d'utilisateur du lieu"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gebruikersnaam van de locatie"
+          }
+        }
+      }
+    },
+    "Venue Sign In" : {
+      "comment" : "Title on the kiosk's venue sign-in screen.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ortsanmeldung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Inicio de sesión del lugar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Connexion du lieu"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Locatie-aanmelding"
+          }
+        }
+      }
+    },
+    "Welcome" : {
+      "comment" : "Placeholder kiosk home screen heading, shown once a venue has signed in.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Willkommen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bienvenido"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Bienvenue"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Welkom"
           }
         }
       }

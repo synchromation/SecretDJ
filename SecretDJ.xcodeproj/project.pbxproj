@@ -25,6 +25,7 @@
 		000000000000000731000000 /* FeedUI in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000730000000 /* FeedUI */; };
 		000000000000000741000000 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000740000000 /* DesignSystem */; };
 		000000000000000751000000 /* SharedFeatures in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000750000000 /* SharedFeatures */; };
+		000000000000000761000000 /* Observability in Frameworks */ = {isa = PBXBuildFile; productRef = 000000000000000760000000 /* Observability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 				000000000000000731000000 /* FeedUI in Frameworks */,
 				000000000000000741000000 /* DesignSystem in Frameworks */,
 				000000000000000751000000 /* SharedFeatures in Frameworks */,
+				000000000000000761000000 /* Observability in Frameworks */,
 			);
 		};
 		000000000000000530000000 /* Frameworks */ = {
@@ -230,6 +232,7 @@
 				000000000000000730000000 /* FeedUI */,
 				000000000000000740000000 /* DesignSystem */,
 				000000000000000750000000 /* SharedFeatures */,
+				000000000000000760000000 /* Observability */,
 			);
 			productName = SecretDJKiosk;
 			productReference = 000000000000000000000420 /* SecretDJKiosk.app */;
@@ -933,6 +936,10 @@
 		000000000000000750000000 /* SharedFeatures */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharedFeatures;
+		};
+		000000000000000760000000 /* Observability */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Observability;
 		};
 		000000000000000810000000 /* SecretDJDomain */ = {
 			isa = XCSwiftPackageProductDependency;

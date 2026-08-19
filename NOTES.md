@@ -619,3 +619,19 @@ work happens; every commit includes this file's delta.
   unchanged. Wired on PlacesNearby/Venue/NowPlaying/Activity per
   legacy's ActionBarButtonProvider usage. One new localized key.
   Full verify green.
+- S7.1 done (TDD, sonnet subagent, direct; suite 530 tests): the kiosk
+  shell — composition root with a kiosk implicit-parameter provider
+  (appmodel=1 via APIClientConfiguration.isKiosk; location a
+  documented nil seam until a kiosk location feature exists), its own
+  keychain service per D5, console-only observability (vendor adapters
+  a documented follow-up), and the signed-in gate to a placeholder
+  kiosk home showing the venue. Venue sign-in over a thin kiosk-local
+  KioskSignInServicing (consumer's seam is target-internal and mostly
+  kiosk-irrelevant — justified); a response without Venues.Force is
+  rejected as not-a-venue-account per legacy; the forced venue is
+  stored (id stands in for the name until S7.4 resolves it). Staff
+  reset replaces ?RESTART?: five taps top-left in a 3s window
+  (injected clock, tested) → confirmation → sign-out + registered
+  cache clears (URLCache now; a documented seam for S7.2's skin
+  assets) → back to sign-in, no exit(0). Twelve localized kiosk keys.
+  Full verify green.

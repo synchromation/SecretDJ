@@ -427,7 +427,7 @@ Goal: the venue iPad app rebuilt. Exit: kiosk feature parity per
 LEGACY.md "Kiosk app: the venue iPad" minus exclusions; runs all day in
 landscape with attract mode; shares S1–S3 + SharedFeatures wholesale.
 
-- [ ] S7.1 Kiosk shell: composition root, landscape-only iPad
+- [x] S7.1 Kiosk shell: composition root, landscape-only iPad
       presentation, venue session sign-in (kiosk auth flow per LEGACY.md,
       no consumer onboarding), and a staff reset affordance replacing the
       legacy `?RESTART?` search incantation — clears session, skin, and
@@ -599,7 +599,7 @@ what it blocks.
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
-| S7 Kiosk app | not started |
+| S7 Kiosk app | in progress (S7.1 done) |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
 
