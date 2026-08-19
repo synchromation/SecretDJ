@@ -1,16 +1,17 @@
-import Observability
-import SecretDJDomain
 import Testing
 
-@testable import SecretDJ
+@testable import SharedFeatures
+
+import SecretDJDomain
 
 /// ``OptimisticLikeModel`` — the reusable like/unlike toggle S6.2 builds for
 /// the venue screen and S6.3 (songs)/S6.6 (people) reuse unmodified: an
 /// immediate optimistic flip, a rollback on failure, and the server's own
 /// like-summary copy adopted on success (D11 — server copy renders
-/// as-delivered).
-@MainActor
+/// as-delivered). Relocated from the consumer app's `SecretDJTests` for
+/// S6.3b, alongside the model itself.
 enum OptimisticLikeModelTests {
+	@MainActor
 	struct `Starting up` {
 		@Test func `starts with the initial likeInfo it was given`() {
 			let model = makeModel(likeInfo: LikeInfo(likedByYou: false, info: "Be the first to like this"))
@@ -19,6 +20,7 @@ enum OptimisticLikeModelTests {
 		}
 	}
 
+	@MainActor
 	struct `Toggling on success` {
 		@Test func `flips likedByYou immediately, before the call resolves`() async {
 			let toggling = InMemoryLikeToggling()
@@ -74,6 +76,7 @@ enum OptimisticLikeModelTests {
 		}
 	}
 
+	@MainActor
 	struct `Toggling on failure` {
 		@Test func `rolls back to the previous likeInfo`() async {
 			let toggling = InMemoryLikeToggling(result: .failure(.connection))
@@ -95,22 +98,23 @@ enum OptimisticLikeModelTests {
 			#expect(model.failureEvent?.message == "Sorry, that venue doesn't want to be liked")
 		}
 
-		@Test func `falls back to a generic message when the server sends none`() async {
+		@Test func `leaves the failure event's message nil when the server sends none, for the caller's own fallback`(
+		) async {
 			let toggling = InMemoryLikeToggling(result: .failure(.server(message: nil)))
 			let model = makeModel(likeToggling: toggling)
 
 			await model.toggle()
 
-			#expect(model.failureEvent?.message == OptimisticLikeModel.fallbackFailureMessage)
+			#expect(model.failureEvent?.message == nil)
 		}
 
-		@Test func `falls back to a generic message on a connection failure`() async {
+		@Test func `leaves the failure event's message nil on a connection failure`() async {
 			let toggling = InMemoryLikeToggling(result: .failure(.connection))
 			let model = makeModel(likeToggling: toggling)
 
 			await model.toggle()
 
-			#expect(model.failureEvent?.message == OptimisticLikeModel.fallbackFailureMessage)
+			#expect(model.failureEvent?.message == nil)
 		}
 
 		@Test func `a second failure produces a distinct failure event id`() async {
@@ -126,6 +130,7 @@ enum OptimisticLikeModelTests {
 		}
 	}
 
+	@MainActor
 	struct `Double-tap races` {
 		@Test func `a second toggle while one is in flight makes no extra call`() async {
 			let toggling = InMemoryLikeToggling()
@@ -167,6 +172,7 @@ enum OptimisticLikeModelTests {
 		}
 	}
 
+	@MainActor
 	struct `Reconciling with a fresh server snapshot` {
 		@Test func `adopts a fresh server likeInfo when idle`() {
 			let model = makeModel(likeInfo: LikeInfo(likedByYou: false, info: "Be the first"))

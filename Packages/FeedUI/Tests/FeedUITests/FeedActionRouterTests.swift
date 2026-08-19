@@ -12,11 +12,12 @@ import SecretDJDomain
 /// the project's file-length limit.
 enum FeedActionRouterTests {
 	struct `Default item taps` {
-		@Test func `a song shows TuneIn for that song`() {
+		@Test func `a song shows TuneIn carrying its own full payload`() {
 			let router = FeedActionRouter(installedApps: FakeInstalledApps())
-			let item = displayItem(.song(makeSong(songId: "42")))
+			let song = makeSong(songId: "42")
+			let item = displayItem(.song(song))
 
-			#expect(router.outcome(forTap: item) == .showSong(.song(songId: "42")))
+			#expect(router.outcome(forTap: item) == .showSong(.song(song)))
 		}
 
 		@Test func `the intermission song produces no outcome`() {

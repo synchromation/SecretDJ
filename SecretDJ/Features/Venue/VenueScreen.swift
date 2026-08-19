@@ -2,6 +2,7 @@ import DesignSystem
 import FeedUI
 import Observability
 import SecretDJDomain
+import SharedFeatures
 import SwiftUI
 
 /// The venue's own feed (`venuedetails`, LEGACY.md "Venue screen"),
@@ -102,7 +103,7 @@ struct VenueScreen: View {
 		}
 		.onChange(of: likeModel?.failureEvent) { _, event in
 			guard let event else { return }
-			toastQueue.enqueue(ToastItem(message: event.message))
+			toastQueue.enqueue(ToastItem(message: event.message ?? Self.likeFailureFallbackMessage))
 		}
 		.tracksScreen("Venue")
 	}
@@ -168,6 +169,18 @@ struct VenueScreen: View {
 			localized: "Jukebox Updated",
 			comment: "Toast shown when a paginated feed's content changed underneath the user (LEGACY.md's kJukeboxUpdatedText).",
 		)))
+	}
+
+	/// ``SharedFeatures/OptimisticLikeModel`` owns no fallback copy of its
+	/// own (package views own zero copy — mirrors `MoodTileModel`'s doc
+	/// comment) when a like/unlike failure carries no server message; this
+	/// is that fallback, shared verbatim with ``TuneInScreen``'s own buzz
+	/// toggle.
+	static var likeFailureFallbackMessage: String {
+		String(
+			localized: "Sorry, we couldn't update that — please try again.",
+			comment: "Toast shown when liking or unliking something fails.",
+		)
 	}
 
 	private static var copy: FeedScreenCopy {

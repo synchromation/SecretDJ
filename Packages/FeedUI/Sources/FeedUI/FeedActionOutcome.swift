@@ -54,7 +54,12 @@ public enum FeedActionOutcome: Sendable, Hashable {
 
 	/// Which screen a song-related outcome resolves to.
 	public enum TuneInTarget: Sendable, Hashable {
-		case song(songId: String)
+		/// The full ``SecretDJDomain/Song`` payload from the tap itself — S6.3b's
+		/// TuneIn screen needs artwork/title/artist/actions/likeInfo, and no
+		/// `songdetails`-by-id endpoint exists to re-fetch them (LEGACY.md's
+		/// endpoint catalog), so the tapped row's own Domain payload rides
+		/// along rather than being thinned to just its id.
+		case song(Song)
 		case artist(name: String)
 	}
 

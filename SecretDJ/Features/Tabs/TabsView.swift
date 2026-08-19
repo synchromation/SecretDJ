@@ -22,6 +22,7 @@ struct TabsView: View {
 	/// Starts the ``AccountFlowView`` delete-account flow, forwarded to the
 	/// Profile tab — owned by `RootView`, see its doc comment for why.
 	let onDeleteAccount: () -> Void
+	let observability: ObservabilityPipeline
 
 	@State private var model: TabsModel
 	/// Composed here, at the shell's root, so a toast raised by any tab's
@@ -41,6 +42,7 @@ struct TabsView: View {
 		self.apiClient = apiClient
 		self.locationService = locationService
 		self.onDeleteAccount = onDeleteAccount
+		self.observability = observability
 		_model = State(initialValue: TabsModel(observability: observability))
 	}
 
@@ -120,6 +122,17 @@ struct TabsView: View {
 	@ViewBuilder
 	private func destination(for destination: AppDestination, router: TabRouter) -> some View {
 		switch destination {
+		case .song(let venueId, let target):
+			TuneInDestinationScreen(
+				target: target,
+				venueId: venueId,
+				apiClient: apiClient,
+				sessionStore: sessionStore,
+				toastQueue: toastQueue,
+				router: router,
+				observability: observability,
+			)
+
 		case .venue(let venueId):
 			venueScreen(venueId: venueId, router: router)
 

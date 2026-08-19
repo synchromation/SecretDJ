@@ -137,7 +137,7 @@ public struct FeedActionRouter: Sendable {
 	}
 
 	private func outcome(forSong song: Song) -> FeedActionOutcome? {
-		song.isIntermission ? nil : .showSong(.song(songId: song.songId))
+		song.isIntermission ? nil : .showSong(.song(song))
 	}
 
 	/// Finds the jukebox whose own action shares `song`'s `itemId` and

@@ -22,9 +22,10 @@ final class TabRouter {
 	}
 
 	/// Routes an outcome that needs venue context to resolve —
+	/// ``FeedUI/FeedActionOutcome/showSong(_:)``,
 	/// ``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``,
 	/// ``FeedUI/FeedActionOutcome/launchSearch``,
-	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)`` — the three
+	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)`` — the four
 	/// cases ``AppDestination/init(outcome:)`` can't resolve alone, since
 	/// FeedUI's outcome vocabulary carries no venue identity
 	/// (``AppDestination/init(outcome:)``'s doc comment). Every other
@@ -33,6 +34,9 @@ final class TabRouter {
 	/// already names its own venue directly.
 	func handle(outcome: FeedActionOutcome, venueId: String) {
 		switch outcome {
+		case .showSong(let target):
+			path.append(.song(venueId: venueId, target: target))
+
 		case .showJukebox(let jukeboxId):
 			path.append(.jukebox(venueId: venueId, jukeboxId: jukeboxId))
 

@@ -501,3 +501,20 @@ work happens; every commit includes this file's delta.
   Deferred within S6.3: the legacy mood-duration picker — tiles use a
   documented 30-minute default; noted on the S6.3 checkbox. Full
   verify green (DesignSystem 51, SharedFeatures 26, FeedUI 167).
+- S6.3 complete (second half; TDD, sonnet subagent, direct): TuneIn in
+  SharedFeatures — TuneInScreenModel derives request/skip/never-play
+  visibility from the song's own server-granted actions (moderation
+  hides the request button per legacy business rule 7), drives
+  SongRequesting/MachineControlling seams with double-tap guards, and
+  embeds the OptimisticLikeModel, now relocated into SharedFeatures
+  (consumer keeps the APIClient adapter; LikeFailureEvent.message went
+  optional so package views never invent copy). The consumer funnel is
+  wired per business rule 5: no-picture → plain-copy confirm →
+  pic-for-credits sheet reusing extracted avatar components
+  (AvatarPickerButtons/CameraCapture) with the server reward toast and
+  a re-offer; has-picture → .topUps(noCredits) (ComingSoon until
+  S6.7). TuneInTarget.song widened to carry the full Song (no by-id
+  endpoint exists); .song destinations carry venueId. Twelve localized
+  keys, money-adjacent copy plain. Suite: consumer 321, SharedFeatures
+  76, FeedUI 167, Domain 135, API 240, DesignSystem 51 — full verify
+  green.

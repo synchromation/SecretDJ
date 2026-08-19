@@ -1,4 +1,5 @@
 import FeedUI
+import SecretDJDomain
 import Testing
 
 @testable import SecretDJ
@@ -44,6 +45,25 @@ enum TabRouterTests {
 	}
 
 	struct `Routing venue-context outcomes` {
+		@Test func `showSong pushes the song destination with the supplied venue id`() {
+			let router = TabRouter()
+			let song = Song(
+				songId: "42",
+				title: "Yellow",
+				artist: "Coldplay",
+				previewURL: nil,
+				likeInfo: LikeInfo(likedByYou: false, info: ""),
+				text: "",
+				sortIndex: 0,
+				action: nil,
+				actions: [],
+			)
+
+			router.handle(outcome: .showSong(.song(song)), venueId: "v1")
+
+			#expect(router.path == [.song(venueId: "v1", target: .song(song))])
+		}
+
 		@Test func `showJukebox pushes the jukebox destination with the supplied venue id`() {
 			let router = TabRouter()
 

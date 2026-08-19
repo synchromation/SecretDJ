@@ -7,18 +7,12 @@ import Testing
 
 /// Coverage for ``AppDestination/init(outcome:)`` — the outcome→destination
 /// mapping `TabRouter` pushes onto a tab's `NavigationPath` (PLAN.md S5.2).
-/// `showJukebox`/`launchSearch`/`showSongsForArtist` map to `nil` here: none
-/// of FeedUI's outcome vocabulary carries venue identity, so those three
-/// destinations (which need one) are resolved by ``TabRouter/handle(outcome:venueId:)``
-/// instead — see `TabRouterTests`.
+/// `showSong`/`showJukebox`/`launchSearch`/`showSongsForArtist` map to `nil`
+/// here: none of FeedUI's outcome vocabulary carries venue identity, so
+/// those four destinations (which need one) are resolved by
+/// ``TabRouter/handle(outcome:venueId:)`` instead — see `TabRouterTests`.
 enum AppDestinationTests {
 	struct `Navigational outcomes map to a destination` {
-		@Test func `showSong maps to the song destination`() {
-			let outcome = FeedActionOutcome.showSong(.song(songId: "42"))
-
-			#expect(AppDestination(outcome: outcome) == .song(.song(songId: "42")))
-		}
-
 		@Test func `showVenue maps to the venue destination`() {
 			let outcome = FeedActionOutcome.showVenue(venueId: "v1")
 
@@ -39,6 +33,22 @@ enum AppDestinationTests {
 	}
 
 	struct `Venue-context outcomes map to no destination, needing TabRouter's venueId-aware routing instead` {
+		@Test func `showSong produces no destination`() {
+			let song = Song(
+				songId: "42",
+				title: "Yellow",
+				artist: "Coldplay",
+				previewURL: nil,
+				likeInfo: LikeInfo(likedByYou: false, info: ""),
+				text: "",
+				sortIndex: 0,
+				action: nil,
+				actions: [],
+			)
+
+			#expect(AppDestination(outcome: .showSong(.song(song))) == nil)
+		}
+
 		@Test func `showSongsForArtist produces no destination`() {
 			#expect(AppDestination(outcome: .showSongsForArtist(artist: "Adele")) == nil)
 		}

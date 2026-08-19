@@ -1,5 +1,6 @@
 import DesignSystem
 import SecretDJDomain
+import SharedFeatures
 import SwiftUI
 
 /// The venue screen's header (S6.2) — legacy's `VenueSectionHeaderView`,

@@ -356,13 +356,16 @@ exclusions.
       with auto-refresh, jukebox navigation into selection/digest feeds,
       venue like/unlike (optimistic toggle with rollback, server-supplied
       likeInfo copy), the social-links rule (Instagram first, max three).
-- [ ] S6.3 Music selection and search (SharedFeatures — kiosk reuses it):
-      — in progress: selection/digest/mood feeds, search (artist A–Z +
-      track debounce), songs-for-artist, and the atmosphere-change seam
-      are done and wired in the consumer app; the TuneIn screen with the
-      request funnel, song buzz, and moderation buttons remains (S6.3b).
-      Deferred within scope: the legacy mood-duration picker (tiles use
-      a documented 30-minute default for now).
+- [x] S6.3 Music selection and search (SharedFeatures — kiosk reuses it):
+      done in two halves — selection/digest/mood feeds, search (artist
+      A–Z + track debounce), songs-for-artist, atmosphere changes, then
+      the TuneIn screen with the full request funnel (-8/ImageSize
+      branches: pic-for-credits sheet reusing the avatar components with
+      the server reward toast, or top-ups with noCredits context), song
+      buzz via the relocated shared OptimisticLikeModel, and the
+      server-granted skip/never-play moderation buttons. One deferral
+      stands: the legacy mood-duration picker (tiles use a documented
+      30-minute default) — revisit before S8.5's cross-check.
       digest/selection/mood feeds, artist and track search against the
       backend (D2), A–Z index (the SwiftUI `SectionIndexStrip` idea from
       the legacy refactor, rebuilt), and the song/TuneIn screen: request
@@ -586,7 +589,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.1, S6.2, S6.5 done) |
+| S6 Consumer features | in progress (S6.1–S6.3, S6.5 done) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

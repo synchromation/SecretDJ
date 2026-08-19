@@ -6,8 +6,12 @@ import FeedUI
 /// so the navigation model is exercisable end to end before any real feed
 /// exists.
 enum AppDestination: Hashable {
-	/// The song/TuneIn screen (S6.3).
-	case song(FeedActionOutcome.TuneInTarget)
+	/// The song/TuneIn screen (S6.3). Carries `venueId` for the same reason
+	/// ``songsForArtist(venueId:artist:)`` does — resolved by
+	/// ``TabRouter/handle(outcome:venueId:)``, not this type's own
+	/// `init(outcome:)`, since `requestsong`/`machinecontrol` both need a
+	/// venue id FeedUI's outcome vocabulary never carries.
+	case song(venueId: String, target: FeedActionOutcome.TuneInTarget)
 	/// An artist's song list — an artist row with more than one song (S6.3).
 	/// Carries `venueId` because ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)``
 	/// doesn't (no venue identity is known at FeedUI's layer) — resolved by
@@ -36,8 +40,9 @@ enum AppDestination: Hashable {
 
 extension AppDestination {
 	/// Maps a routed feed outcome to the screen it opens, when the outcome
-	/// is navigational *and* resolvable without extra context. Three
+	/// is navigational *and* resolvable without extra context. Four
 	/// navigational outcomes return `nil` here despite being navigational —
+	/// ``FeedUI/FeedActionOutcome/showSong(_:)``,
 	/// ``FeedUI/FeedActionOutcome/showJukebox(jukeboxId:)``,
 	/// ``FeedUI/FeedActionOutcome/launchSearch``,
 	/// ``FeedUI/FeedActionOutcome/showSongsForArtist(artist:)`` — because
@@ -52,9 +57,6 @@ extension AppDestination {
 	/// `FeedScreen`'s outcome closure directly, not as a pushed screen.
 	init?(outcome: FeedActionOutcome) {
 		switch outcome {
-		case .showSong(let target):
-			self = .song(target)
-
 		case .showVenue(let venueId):
 			self = .venue(venueId: venueId)
 
@@ -64,7 +66,8 @@ extension AppDestination {
 		case .showTopUps(let context):
 			self = .topUps(context: context)
 
-		case .showSongsForArtist,
+		case .showSong,
+		     .showSongsForArtist,
 		     .showJukebox,
 		     .launchSearch,
 		     .changeAtmosphere,

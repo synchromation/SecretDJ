@@ -3484,6 +3484,354 @@
           }
         }
       }
+    },
+    "Tune In": {
+      "comment": "Navigation title of the song request (TuneIn) screen.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sintonizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "À l'écoute"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Einschalten"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afstemmen"
+          }
+        }
+      }
+    },
+    "Play on the Jukebox": {
+      "comment": "Button that requests the current song be played on the venue's jukebox.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproducir en la jukebox"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jouer sur le jukebox"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Auf der Jukebox abspielen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afspelen op de jukebox"
+          }
+        }
+      }
+    },
+    "Skip": {
+      "comment": "Button, shown only to entitled users, that skips the current song on the jukebox.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Saltar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Passer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Überspringen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Overslaan"
+          }
+        }
+      }
+    },
+    "Never Play This": {
+      "comment": "Button, shown only to entitled users, that stops a song from ever playing on the jukebox again.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No reproducir nunca"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ne plus jamais jouer"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nie mehr abspielen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nooit meer afspelen"
+          }
+        }
+      }
+    },
+    "Like this song": {
+      "comment": "Accessible name of the TuneIn screen's like/buzz toggle button.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Me gusta esta canción"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "J'aime cette chanson"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diesen Song mögen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dit nummer leuk vinden"
+          }
+        }
+      }
+    },
+    "Add a Profile Picture?": {
+      "comment": "Title of the dialog offering free credits in exchange for a profile picture, shown when a song request runs out of credits.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Añadir una foto de perfil?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouter une photo de profil ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profilbild hinzufügen?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profielfoto toevoegen?"
+          }
+        }
+      }
+    },
+    "Add a profile picture and we'll top up your credits as a thank you.": {
+      "comment": "Body of the dialog offering free credits in exchange for a profile picture.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añade una foto de perfil y te recargaremos créditos como agradecimiento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajoute une photo de profil et on recharge tes crédits pour te remercier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Füg ein Profilbild hinzu und wir laden dein Guthaben als Dankeschön auf."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voeg een profielfoto toe en we vullen je tegoed aan als bedankje."
+          }
+        }
+      }
+    },
+    "Add a Profile Picture": {
+      "comment": "Confirm button on the dialog offering free credits in exchange for a profile picture.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añadir foto de perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajouter une photo de profil"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profilbild hinzufügen"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profielfoto toevoegen"
+          }
+        }
+      }
+    },
+    "Not Now": {
+      "comment": "Decline button on the dialog offering free credits in exchange for a profile picture.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ahora no"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas maintenant"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jetzt nicht"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Niet nu"
+          }
+        }
+      }
+    },
+    "Song Not Found": {
+      "comment": "Title shown when a single-song artist's own song can't be found.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Canción no encontrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chanson introuvable"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Song nicht gefunden"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummer niet gevonden"
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't find this artist's song.": {
+      "comment": "Body shown when a single-song artist's own song can't be found.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido encontrar la canción de este artista."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, on n'a pas trouvé la chanson de cet artiste."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten den Song dieses Künstlers nicht finden."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden het nummer van deze artiest niet vinden."
+          }
+        }
+      }
+    },
+    "Add a profile picture now and we'll top up your credits as a thank you.": {
+      "comment": "Body of the pic-for-credits upsell screen.",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Añade una foto de perfil ahora y te recargaremos créditos como agradecimiento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajoute une photo de profil maintenant et on recharge tes crédits pour te remercier."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Füg jetzt ein Profilbild hinzu und wir laden dein Guthaben als Dankeschön auf."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voeg nu een profielfoto toe en we vullen je tegoed aan als bedankje."
+          }
+        }
+      }
     }
   },
   "version": "1.1"
