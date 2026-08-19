@@ -226,7 +226,11 @@ struct SignUpView: View {
 }
 
 extension View {
-	fileprivate func fieldStyle() -> some View {
+	/// The standard text-field chrome shared by every plain-text form field
+	/// in the app (Login's sign-up form, Settings' change-details/change-
+	/// password forms): padding, a 44pt minimum hit target, and the rounded
+	/// `cellSurface` background.
+	func fieldStyle() -> some View {
 		padding()
 			.frame(minHeight: 44)
 			.background(Theme.ColorRole.cellSurface.color, in: .rect(cornerRadius: 12))

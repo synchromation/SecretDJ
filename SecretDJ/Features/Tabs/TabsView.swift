@@ -10,12 +10,13 @@ import SwiftUI
 /// Nearby, Activity, Profile — each with its own `NavigationStack` driven by
 /// a ``TabRouter`` (LEGACY.md "Launch and root navigation"). Places Nearby
 /// hosts its real feed as of S6.1, Activity as of S6.5, Profile as of S6.6
-/// (its tab root is the signed-in user's own profile, ``profileScreen(personId:router:onDeleteAccount:)``
+/// (its tab root is the signed-in user's own profile, ``profileScreen(personId:router:)``
 /// resolving the session's own id), and any tab's stack can push a real
-/// ``VenueScreen``/``NowPlayingScreen``/``ProfileScreen`` as of S6.2/S6.6.
-/// Also composes the shell-wide ``DesignSystem/ToastQueue`` every S6 feed
-/// screen's jukebox-changed toast (and later, other server-driven toasts)
-/// presents through.
+/// ``VenueScreen``/``NowPlayingScreen``/``ProfileScreen`` as of S6.2/S6.6, or
+/// ``SettingsScreen`` (S6.11) from the Profile tab's own gear toolbar
+/// button. Also composes the shell-wide ``DesignSystem/ToastQueue`` every S6
+/// feed screen's jukebox-changed toast (and later, other server-driven
+/// toasts) presents through.
 struct TabsView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
@@ -116,11 +117,7 @@ struct TabsView: View {
 
 			Tab("Profile", systemImage: Theme.Icon.profile.systemName, value: AppTab.profile) {
 				tabStack(for: .profile) { router in
-					profileScreen(
-						personId: sessionStore.user?.personId ?? "",
-						router: router,
-						onDeleteAccount: onDeleteAccount,
-					)
+					profileScreen(personId: sessionStore.user?.personId ?? "", router: router)
 				}
 			}
 		}
@@ -172,7 +169,10 @@ struct TabsView: View {
 			venueScreen(venueId: venueId, router: router)
 
 		case .person(let personId):
-			profileScreen(personId: personId, router: router, onDeleteAccount: nil)
+			profileScreen(personId: personId, router: router)
+
+		case .settings:
+			settingsScreen
 
 		case .nowPlaying(let venueId):
 			nowPlayingScreen(venueId: venueId, router: router)
@@ -249,11 +249,11 @@ struct TabsView: View {
 		)
 	}
 
-	/// Shared by the Profile tab root (`onDeleteAccount` forwarded, `personId`
-	/// the session's own) and ``AppDestination/person(personId:)`` (no
-	/// delete-account entry point — someone else's profile never renders
-	/// this screen's footer at all, see ``ProfileScreen``'s own doc comment).
-	private func profileScreen(personId: String, router: TabRouter, onDeleteAccount: (() -> Void)?) -> some View {
+	/// Shared by the Profile tab root (`personId` the session's own) and
+	/// ``AppDestination/person(personId:)`` — the gear toolbar button that
+	/// leads to ``settingsScreen`` only ever renders on the former
+	/// (``ProfileScreen``'s own doc comment).
+	private func profileScreen(personId: String, router: TabRouter) -> some View {
 		ProfileScreen(
 			personId: personId,
 			loader: APIClientFeedLoading.sessionFeed(
@@ -270,9 +270,27 @@ struct TabsView: View {
 			sessionStore: sessionStore,
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
 			onboardingService: APIClientOnboardingService(client: apiClient),
-			onDeleteAccount: onDeleteAccount,
 			observability: observability,
 		)
+	}
+
+	/// The Settings hub (S6.11), pushed from the Profile tab's own gear
+	/// toolbar button — relocates the sign-out/delete-account entry points
+	/// that used to live in `ProfileScreen`'s footer.
+	@ViewBuilder
+	private var settingsScreen: some View {
+		if let user = sessionStore.user, let credential = sessionStore.credential {
+			SettingsScreen(
+				personId: user.personId,
+				credential: credential,
+				sessionStore: sessionStore,
+				settingsService: APIClientSettingsService(client: apiClient),
+				onboardingService: APIClientOnboardingService(client: apiClient),
+				toastQueue: toastQueue,
+				onDeleteAccount: onDeleteAccount,
+				observability: observability,
+			)
+		}
 	}
 
 	private func nowPlayingScreen(venueId: String, router: TabRouter) -> some View {

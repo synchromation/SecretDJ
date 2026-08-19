@@ -36,6 +36,10 @@ enum AppDestination: Hashable {
 	/// reason ``songsForArtist(venueId:artist:)`` does — LEGACY.md "Search"
 	/// is "only ever server-offered with a venue".
 	case search(venueId: String)
+	/// The Settings hub (S6.11), reached from the Profile tab's own gear
+	/// toolbar button — never a routed feed outcome, pushed directly like
+	/// ``nowPlaying(venueId:)``.
+	case settings
 }
 
 extension AppDestination {
@@ -95,6 +99,10 @@ extension AppDestination {
 		case .jukebox: "ComingSoon-Jukebox"
 		case .topUps: "ComingSoon-TopUps"
 		case .search: "ComingSoon-Search"
+		// Unreachable in practice — `.settings` always renders the real
+		// `SettingsScreen` (its own `.tracksScreen("Settings")`), never
+		// `ComingSoonScreen`; kept only for this switch's exhaustiveness.
+		case .settings: "ComingSoon-Settings"
 		}
 	}
 }

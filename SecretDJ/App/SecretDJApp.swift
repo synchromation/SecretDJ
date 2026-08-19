@@ -9,6 +9,7 @@ import UIKit
 @main
 struct SecretDJApp: App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+	@Environment(\.scenePhase) private var scenePhase
 
 	@State private var sessionStore: SessionStore
 	/// Created in ``init()`` alongside ``apiClient`` so both share the same
@@ -81,6 +82,16 @@ struct SecretDJApp: App {
 			.task { await topUpTransactionListener.start() }
 			.onOpenURL { url in
 				_ = appDelegate.application(UIApplication.shared, open: url)
+			}
+			.onChange(of: scenePhase) { _, newPhase in
+				// Ports `secretdjv3/SceneDelegate.swift`'s `sceneDidBecomeActive`
+				// comment verbatim: "Set auto-lock (we do this here so that
+				// changes to the settings update automatically)" — S6.11's
+				// in-app toggle replaces the legacy Settings-bundle switch, but
+				// the scene-activation re-apply is unchanged.
+				if newPhase == .active {
+					AutoLockPreferenceModel.applyPersistedPreference(store: UserDefaultsAutoLockPreferenceStore())
+				}
 			}
 		}
 	}

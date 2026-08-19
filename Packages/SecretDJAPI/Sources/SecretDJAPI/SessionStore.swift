@@ -67,6 +67,30 @@ public final class SessionStore {
 		credentialStore.save(updated)
 	}
 
+	/// Updates the signed-in credential's password hash after a successful
+	/// password change (S6.11's Settings flow), keeping the current token —
+	/// mirrors ``rotateToken(_:)``'s shape but for the other half of
+	/// ``APICredential``. A no-op when not signed in.
+	public func updatePasswordHash(_ passwordHash: String) {
+		guard let credential else { return }
+
+		let updated = APICredential(token: credential.token, passwordHash: passwordHash)
+		self.credential = updated
+		credentialStore.save(updated)
+	}
+
+	/// Updates the signed-in user's screen name after a successful details
+	/// change (S6.11's Settings flow), keeping the current venue — mirrors
+	/// ``rotateToken(_:)``'s shape but for ``user`` instead of ``credential``.
+	/// A no-op when not signed in.
+	public func updateScreenName(_ screenName: String) {
+		guard let user else { return }
+
+		let updated = SessionUser(personId: user.personId, screenName: screenName)
+		self.user = updated
+		snapshotStore.save(SessionSnapshot(user: updated, venue: venue))
+	}
+
 	/// Clears the session and wipes both persistence stores.
 	public func signOut() {
 		user = nil

@@ -42,6 +42,12 @@ struct ComingSoonScreen: View {
 
 		case .search:
 			Text("Search", comment: "Title of the coming-soon placeholder shown in place of the search screen.")
+
+		// Unreachable in practice — TabsView renders the real `SettingsScreen`
+		// for `.settings` directly, never falling through to this default
+		// case; kept only for this switch's exhaustiveness.
+		case .settings:
+			Text("Settings", comment: "Title of the coming-soon placeholder shown in place of the Settings screen.")
 		}
 	}
 

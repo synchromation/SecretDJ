@@ -15,9 +15,9 @@ import SwiftUI
 /// unlike toggle on someone else's profile (``ProfileScreenModel/likeModel``,
 /// reconciled across refreshes like S6.2 did) and, on your own, the
 /// avatar-change flow (``AvatarChangeSheet``, reusing Onboarding's upload
-/// seam); a fixed footer with the sign-out/delete-account entry points S5's
-/// pre-tabs placeholder used to host (`// S6.11:` relocates delete-account
-/// into Settings), own-profile only.
+/// seam); own profile only, a gear toolbar button pushes ``SettingsScreen``
+/// (S6.11), which now hosts the sign-out/delete-account entry points a
+/// fixed footer used to host here.
 ///
 /// Unlike legacy, this rewrite doesn't auto-refresh the profile feed
 /// (`secretdjv3/FeedDataProvider.swift`'s `ProfileFeedDataProvider` never
@@ -29,16 +29,11 @@ struct ProfileScreen: View {
 	let router: TabRouter
 	let toastQueue: ToastQueue
 	let sessionStore: SessionStore
-	/// Starts the ``AccountFlowView`` delete-account flow, forwarded from
-	/// `RootView` via ``TabsView`` — `nil` on someone else's profile, where
-	/// the footer never renders at all.
-	let onDeleteAccount: (() -> Void)?
 	let observability: ObservabilityPipeline
 
 	@State private var feedModel: FeedScreenModel
 	@State private var model: ProfileScreenModel
 	@State private var showsAvatarPicker = false
-	@State private var isConfirmingSignOut = false
 	@Environment(\.openURL) private var openURL
 
 	init(
@@ -49,7 +44,6 @@ struct ProfileScreen: View {
 		sessionStore: SessionStore,
 		likeToggling: any LikeToggling,
 		onboardingService: any OnboardingServicing,
-		onDeleteAccount: (() -> Void)? = nil,
 		observability: ObservabilityPipeline = .disabled,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
@@ -57,7 +51,6 @@ struct ProfileScreen: View {
 		self.router = router
 		self.toastQueue = toastQueue
 		self.sessionStore = sessionStore
-		self.onDeleteAccount = onDeleteAccount
 		self.observability = observability
 		_feedModel = State(initialValue: FeedScreenModel(
 			loader: loader,
@@ -86,10 +79,6 @@ struct ProfileScreen: View {
 			)
 
 			FeedScreen(model: feedModel, copy: Self.copy, onOutcome: handle(outcome:))
-
-			if model.isOwnProfile {
-				footer
-			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.background(Theme.ColorRole.background.color)
@@ -97,6 +86,16 @@ struct ProfileScreen: View {
 			"Profile",
 			comment: "Navigation title of the Profile tab; also the coming-soon placeholder's title in place of a person's profile.",
 		))
+		.toolbar {
+			if model.isOwnProfile {
+				ToolbarItem(placement: .topBarTrailing) {
+					Button("Settings", systemImage: Theme.Icon.settings.systemName) {
+						router.push(.settings)
+					}
+					.labelStyle(.iconOnly)
+				}
+			}
+		}
 		.onChange(of: feedModel.personDetails) { _, person in
 			model.personDetailsChanged(person)
 		}
@@ -120,38 +119,6 @@ struct ProfileScreen: View {
 			)
 		}
 		.tracksScreen("Profile")
-	}
-
-	private var footer: some View {
-		VStack(spacing: Spacing.small) {
-			Divider()
-
-			Button("Sign Out") {
-				isConfirmingSignOut = true
-			}
-			.buttonStyle(.secondary)
-
-			// S6.11: relocate this entry point into Settings.
-			Button("Delete Account", action: { onDeleteAccount?() })
-				.font(Theme.TextStyle.body.font)
-				.foregroundStyle(Theme.ColorRole.danger.color)
-				.frame(minHeight: 44)
-		}
-		.padding(Spacing.medium)
-		.background(Theme.ColorRole.background.color)
-		.confirmationDialog(
-			"Sign Out?",
-			isPresented: $isConfirmingSignOut,
-			titleVisibility: .visible,
-		) {
-			Button("Sign Out", role: .destructive, action: signOut)
-			Button("Cancel", role: .cancel) {}
-		}
-	}
-
-	private func signOut() {
-		observability.interaction("signOut")
-		sessionStore.signOut()
 	}
 
 	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
@@ -213,7 +180,6 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
-			onDeleteAccount: {},
 		)
 	}
 }
@@ -242,7 +208,6 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
-			onDeleteAccount: {},
 		)
 	}
 }
@@ -257,7 +222,6 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
-			onDeleteAccount: {},
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

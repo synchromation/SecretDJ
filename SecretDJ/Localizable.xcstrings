@@ -1543,7 +1543,7 @@
       }
     },
     "Sign Out": {
-      "comment": "Button on the signed-in placeholder screen that signs the user out.",
+      "comment": "Button in the Settings hub that signs the user out.",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -2065,7 +2065,7 @@
       }
     },
     "Sign Out?": {
-      "comment": "Title of the confirmation dialog shown before signing out, from the Sign Out button on the signed-in placeholder screen.",
+      "comment": "Title of the confirmation dialog shown before signing out, from the Sign Out button in the Settings hub.",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -2094,7 +2094,7 @@
       }
     },
     "Delete Account": {
-      "comment": "Title Case label reused for: the entry point to account deletion on the signed-in placeholder screen, the delete-account screen's title, and the destructive confirm button in its confirmation dialog.",
+      "comment": "Title Case label reused for: the entry point to account deletion in the Settings hub, the delete-account screen's title, and the destructive confirm button in its confirmation dialog.",
       "localizations": {
         "de": {
           "stringUnit": {
@@ -4728,6 +4728,760 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Sorry, we konden je niet inchecken — probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load your details.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Toast shown when Settings' change-details screen fails to load the signed-in user's current details.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten deine Angaben nicht laden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar tus datos.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger tes informations.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je gegevens niet laden.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Your details have been updated.": {
+      "comment": "Fallback toast shown after Settings' change-details form saves successfully, when the server sent no confirmation copy of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deine Angaben wurden aktualisiert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tus datos se han actualizado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tes informations ont été mises à jour."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je gegevens zijn bijgewerkt."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't save your details.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Fallback toast shown when Settings' change-details form fails to save, when the server sent no error copy of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten deine Angaben nicht speichern.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido guardar tus datos.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu enregistrer tes informations.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je gegevens niet opslaan.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Your gender's been updated.": {
+      "comment": "Toast shown after Settings' change-gender screen saves successfully.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dein Geschlecht wurde aktualisiert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu género se ha actualizado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ton genre a été mis à jour."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je geslacht is bijgewerkt."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't update your gender.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Fallback toast shown when Settings' change-gender screen fails to save, when the server sent no error copy of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten dein Geschlecht nicht aktualisieren.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido actualizar tu género.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu mettre à jour ton genre.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je geslacht niet bijwerken.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Your password has been updated.": {
+      "comment": "Fallback toast shown after Settings' change-password form saves successfully, when the server sent no confirmation copy of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dein Passwort wurde aktualisiert."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu contraseña se ha actualizado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ton mot de passe a été mis à jour."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je wachtwoord is bijgewerkt."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't update your password.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Fallback toast shown when Settings' change-password form fails to save, when the server sent no error copy of its own.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten dein Passwort nicht aktualisieren.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido actualizar tu contraseña.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu mettre à jour ton mot de passe.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je wachtwoord niet bijwerken.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "SAVING...": {
+      "comment": "Button label on Settings' change-details form while a save is in flight.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WIRD GESPEICHERT..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GUARDANDO..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ENREGISTREMENT..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "BEZIG MET OPSLAAN..."
+          }
+        }
+      }
+    },
+    "SAVE CHANGES": {
+      "comment": "Button label that submits Settings' change-details form.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ÄNDERUNGEN SPEICHERN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GUARDAR CAMBIOS"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ENREGISTRER LES MODIFICATIONS"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WIJZIGINGEN OPSLAAN"
+          }
+        }
+      }
+    },
+    "UPDATING...": {
+      "comment": "Button label on Settings' change-password form while a save is in flight.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WIRD AKTUALISIERT..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ACTUALIZANDO..."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "MISE À JOUR..."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "BEZIG MET BIJWERKEN..."
+          }
+        }
+      }
+    },
+    "UPDATE PASSWORD": {
+      "comment": "Button label that submits Settings' change-password form.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "PASSWORT AKTUALISIEREN"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ACTUALIZAR CONTRASEÑA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "METTRE À JOUR LE MOT DE PASSE"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "WACHTWOORD BIJWERKEN"
+          }
+        }
+      }
+    },
+    "Current password": {
+      "comment": "Placeholder for the current-password field on Settings' change-password form.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aktuelles Passwort"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Contraseña actual"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mot de passe actuel"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Huidig wachtwoord"
+          }
+        }
+      }
+    },
+    "New password": {
+      "comment": "Placeholder for the new-password field on Settings' change-password form.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Neues Passwort"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nueva contraseña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nouveau mot de passe"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nieuw wachtwoord"
+          }
+        }
+      }
+    },
+    "Sorry, that's not your current password.": {
+      "comment": "Inline field error on Settings' change-password form when the entered current password doesn't match the account's stored password.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, das ist nicht dein aktuelles Passwort."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, esa no es tu contraseña actual."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, ce n'est pas ton mot de passe actuel."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dat is niet je huidige wachtwoord."
+          }
+        }
+      }
+    },
+    "Settings": {
+      "comment": "Navigation title of the Settings screen, reached from the Profile tab's gear toolbar button; also that button's accessibility label.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Einstellungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ajustes"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réglages"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Instellingen"
+          }
+        }
+      }
+    },
+    "Change Details": {
+      "comment": "Row label in the Settings hub's Account section that opens the change-details screen; also that screen's own navigation title.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Angaben ändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar datos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Modifier les informations"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gegevens wijzigen"
+          }
+        }
+      }
+    },
+    "Change Password": {
+      "comment": "Row label in the Settings hub's Account section that opens the change-password screen; also that screen's own navigation title.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Passwort ändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar contraseña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Modifier le mot de passe"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wachtwoord wijzigen"
+          }
+        }
+      }
+    },
+    "Change Gender": {
+      "comment": "Row label in the Settings hub's Account section that opens the change-gender screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geschlecht ändern"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cambiar género"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Modifier le genre"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geslacht wijzigen"
+          }
+        }
+      }
+    },
+    "Account": {
+      "comment": "Section header in the Settings hub, above the change-details/change-password/change-gender rows.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Konto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cuenta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Compte"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Account"
+          }
+        }
+      }
+    },
+    "Preferences": {
+      "comment": "Section header in the Settings hub, above the auto-lock toggle.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voreinstellungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preferencias"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Préférences"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voorkeuren"
+          }
+        }
+      }
+    },
+    "About": {
+      "comment": "Section header in the Settings hub, above the app version and legal links.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Info"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Acerca de"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "À propos"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Over"
+          }
+        }
+      }
+    },
+    "Disable Auto-Lock": {
+      "comment": "Title of the Settings toggle that keeps the screen from auto-locking.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Automatische Sperre deaktivieren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Desactivar bloqueo automático"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désactiver le verrouillage automatique"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Automatische vergrendeling uitschakelen"
+          }
+        }
+      }
+    },
+    "Keep your screen awake while Secret DJ is open.": {
+      "comment": "Explanatory subtitle under the Settings 'Disable Auto-Lock' toggle.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hält deinen Bildschirm wach, während Secret DJ geöffnet ist."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mantiene la pantalla encendida mientras Secret DJ está abierta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Empêche ton écran de s'éteindre tant que Secret DJ est ouverte."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Houdt je scherm wakker terwijl Secret DJ open is."
+          }
+        }
+      }
+    },
+    "Version": {
+      "comment": "Label for the app version/build row in Settings' About section.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Version"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Versión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Version"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Versie"
+          }
+        }
+      }
+    },
+    "Terms of Service": {
+      "comment": "Row label in Settings' About section that opens the terms-of-service page in an in-app browser.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nutzungsbedingungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Términos del servicio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Conditions d'utilisation"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gebruiksvoorwaarden"
+          }
+        }
+      }
+    },
+    "Privacy Policy": {
+      "comment": "Row label in Settings' About section that opens the privacy-policy page in an in-app browser.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Datenschutzerklärung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Política de privacidad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Politique de confidentialité"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Privacybeleid"
           }
         }
       }

@@ -591,3 +591,18 @@ work happens; every commit includes this file's delta.
   legacy's failed cast), person → activity tab. Red proven by stubbing
   behavior to no-ops (16/24 failed as expected). One localized key.
   Full verify green.
+- S6.11 done (TDD, sonnet subagent, direct): Settings behind a gear on
+  the own profile (sign-out/delete-account relocated; footer + markers
+  removed) — change details (prefill/validate/save per the legacy
+  SwiftUI pilot, cited), change password (current password checked
+  LOCALLY against the stored SHA-1, never sent — legacy contract),
+  change gender (submit-on-tap per the legacy flow, reusing an
+  extracted GenderPicker), auto-lock as an in-app toggle on the legacy
+  DisableAutoLock key applied immediately and re-applied on scene
+  activation (cited), about/legal rows with S9.2-placeholder URLs in
+  an SFSafariViewController wrapper. New SettingsServicing seam only
+  for the permutations nothing else modeled; gender reuses
+  OnboardingServicing. SessionStore gains updatePasswordHash/
+  updateScreenName (TDD). Deliberate divergence recorded: outcomes
+  toast rather than the pilot's silent pop. Twenty-six localized keys.
+  Full verify green.

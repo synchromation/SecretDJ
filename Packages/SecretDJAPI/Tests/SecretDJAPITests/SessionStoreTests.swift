@@ -260,4 +260,94 @@ enum SessionStoreTests {
 			#expect(credentialStore.saveInvocations.isEmpty)
 		}
 	}
+
+	@MainActor
+	struct `Updating the password hash` {
+		@Test func `updatePasswordHash updates the credential's hash while keeping the token`() {
+			let store = SessionStore(
+				snapshotStore: InMemorySessionSnapshotStore(),
+				credentialStore: InMemoryCredentialStore(),
+			)
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "nick"),
+				venue: nil,
+				credential: APICredential(token: "tok", passwordHash: "old-hash"),
+			)
+
+			store.updatePasswordHash("new-hash")
+
+			#expect(store.credential == APICredential(token: "tok", passwordHash: "new-hash"))
+		}
+
+		@Test func `updatePasswordHash persists the updated credential to the credential store`() {
+			let credentialStore = InMemoryCredentialStore()
+			let store = SessionStore(snapshotStore: InMemorySessionSnapshotStore(), credentialStore: credentialStore)
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "nick"),
+				venue: nil,
+				credential: APICredential(token: "tok", passwordHash: "old-hash"),
+			)
+
+			store.updatePasswordHash("new-hash")
+
+			#expect(credentialStore.savedCredential() == APICredential(token: "tok", passwordHash: "new-hash"))
+		}
+
+		@Test func `updatePasswordHash while signed out does nothing`() {
+			let credentialStore = InMemoryCredentialStore()
+			let store = SessionStore(snapshotStore: InMemorySessionSnapshotStore(), credentialStore: credentialStore)
+
+			store.updatePasswordHash("new-hash")
+
+			#expect(store.credential == nil)
+			#expect(credentialStore.saveInvocations.isEmpty)
+		}
+	}
+
+	@MainActor
+	struct `Updating the screen name` {
+		@Test func `updateScreenName updates the user's screen name while keeping the personId`() {
+			let store = SessionStore(
+				snapshotStore: InMemorySessionSnapshotStore(),
+				credentialStore: InMemoryCredentialStore(),
+			)
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "OldName"),
+				venue: nil,
+				credential: APICredential(token: "tok", passwordHash: "hash"),
+			)
+
+			store.updateScreenName("NewName")
+
+			#expect(store.user == SessionUser(personId: "41", screenName: "NewName"))
+		}
+
+		@Test func `updateScreenName persists the updated snapshot, keeping the venue`() {
+			let snapshotStore = InMemorySessionSnapshotStore()
+			let store = SessionStore(snapshotStore: snapshotStore, credentialStore: InMemoryCredentialStore())
+			let venue = SessionVenue(venueId: "7", name: "The Fox")
+			store.signIn(
+				user: SessionUser(personId: "41", screenName: "OldName"),
+				venue: venue,
+				credential: APICredential(token: "tok", passwordHash: "hash"),
+			)
+
+			store.updateScreenName("NewName")
+
+			#expect(snapshotStore.savedSnapshot() == SessionSnapshot(
+				user: SessionUser(personId: "41", screenName: "NewName"),
+				venue: venue,
+			))
+		}
+
+		@Test func `updateScreenName while signed out does nothing`() {
+			let snapshotStore = InMemorySessionSnapshotStore()
+			let store = SessionStore(snapshotStore: snapshotStore, credentialStore: InMemoryCredentialStore())
+
+			store.updateScreenName("NewName")
+
+			#expect(store.user == nil)
+			#expect(snapshotStore.saveInvocations.isEmpty)
+		}
+	}
 }

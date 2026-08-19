@@ -413,7 +413,7 @@ exclusions.
       search — LEGACY.md's ActionBarButtonProvider) on the feed screens;
       the router mapping already exists and is tested — only the
       rendering is missing (found during S6.10).
-- [ ] S6.11 Settings: auto-lock preference (in-app, replacing the
+- [x] S6.11 Settings: auto-lock preference (in-app, replacing the
       Settings-bundle toggle), change profile details / password / gender
       (`userdetails`/`setuserdetails`, reusing S4.2 validation; the
       legacy SwiftUI Settings flow is the behavioral reference),
@@ -598,7 +598,7 @@ what it blocks.
 | S3 Feed engine | **done** (Instruments pass deferred to S8.4 as planned) |
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
-| S6 Consumer features | in progress (S6.11, S6.12 remain) |
+| S6 Consumer features | in progress (only S6.12 remains) |
 | S7 Kiosk app | not started |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |

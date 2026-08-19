@@ -9,8 +9,6 @@ import SwiftUI
 struct GenderStepView: View {
 	let model: OnboardingModel
 
-	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
-
 	var body: some View {
 		ScrollView {
 			VStack(spacing: Spacing.large) {
@@ -18,7 +16,7 @@ struct GenderStepView: View {
 					.font(Theme.TextStyle.screenTitle.font)
 					.foregroundStyle(Theme.ColorRole.primaryText.color)
 
-				options
+				GenderPicker(selected: model.gender, onSelect: model.updateGender)
 
 				continueButton
 
@@ -30,52 +28,6 @@ struct GenderStepView: View {
 		}
 		.background(Theme.ColorRole.background.color)
 		.tracksScreen("OnboardingGender")
-	}
-
-	private var options: some View {
-		Group {
-			if dynamicTypeSize.isAccessibilitySize {
-				VStack(spacing: Spacing.small) {
-					optionButtons
-				}
-			} else {
-				HStack(spacing: Spacing.small) {
-					optionButtons
-				}
-			}
-		}
-	}
-
-	@ViewBuilder
-	private var optionButtons: some View {
-		option(title: "Female", gender: .female)
-		option(title: "Male", gender: .male)
-		option(title: "Prefer Not To Say", gender: .unisex)
-	}
-
-	private func option(title: LocalizedStringResource, gender: Gender) -> some View {
-		let isSelected = model.gender == gender
-
-		return Button {
-			model.updateGender(gender)
-		} label: {
-			HStack(spacing: Spacing.extraSmall) {
-				Text(title)
-				if isSelected {
-					Image(systemName: "checkmark.circle.fill")
-						.accessibilityHidden(true)
-				}
-			}
-			.frame(maxWidth: .infinity)
-			.padding()
-			.frame(minHeight: 44)
-			.background(
-				isSelected ? Theme.ColorRole.accent.color : Theme.ColorRole.cellSurface.color,
-				in: .rect(cornerRadius: 12),
-			)
-			.foregroundStyle(isSelected ? Theme.ColorRole.accentText.color : Theme.ColorRole.primaryText.color)
-		}
-		.accessibilityAddTraits(isSelected ? [.isSelected] : [])
 	}
 
 	private var continueButton: some View {
