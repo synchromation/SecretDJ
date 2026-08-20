@@ -833,3 +833,28 @@ work happens; every commit includes this file's delta.
   review. The automatable surface of the entire plan is now
   exhausted: remaining work is exclusively human/device/backend-gated
   and enumerated in the cutover plan's launch gates.
+- Legacy brand ported (sonnet subagent): Theme re-seeded from the
+  legacy AppColors table — dark appearance is the legacy palette
+  verbatim (darkestGrey background, 83%-white text, the #15BB9F teal
+  accent) with exactly two minimal contrast adjustments documented per
+  the S2.1 mechanism (textPlaceHolder lightened for AA; the teal
+  darkened ~x0.62 on light surfaces only); light appearance is a
+  derived brand rendition (rule documented per token). All 24
+  sanctioned pairings clear WCAG AA, lowest margin 4.73:1. The legacy
+  1024 production icon (alpha-flattened) replaces both placeholder
+  icons — legacy shipped one icon for both targets (differentiated
+  kiosk icon noted as a product option in PLAN). Non-ports recorded:
+  HelveticaNeue-Light, GradientJukeboxiPad, facebookBlue/alpha border.
+  uitest contrast allow-list unchanged. Full verify and uitest green.
+- INCIDENT, disclosed: the first attempt at this commit ran in the
+  wrong working directory (the legacy checkout left over from asset
+  scouting) — it committed a stray NOTES.md plus a pre-existing local
+  TopUp.swift modification to the LEGACY repo's refactor branch and
+  pushed. Corrected within a minute: the commit was reverted
+  (4f2a895b reverted by 9cabfe64, both pushed), the local TopUp.swift
+  modification restored unstaged exactly as found, and the stray file
+  removed. The legacy branch history now carries the commit+revert
+  pair; the owner may reset refactor to 4fef6ac9 and force-push if
+  pristine history is preferred. Lesson: commit commands must assert
+  their repo (git rev-parse --show-toplevel) after any cross-repo
+  scouting.

@@ -538,8 +538,11 @@ Prereqs: S8.
       — in progress: the document halves are drafted for review in
       Store/ (privacy-labels.md from the actual code with per-claim
       citations; metadata drafts for both apps in five languages within
-      Apple's field limits). Remaining: real icons, screenshots,
-      product review, App Store Connect entry.
+      Apple's field limits). The legacy production app icon now ships
+      on both targets and the legacy brand palette (teal on dark) seeds
+      the Theme — 2026-08-20. Remaining: screenshots, product review,
+      App Store Connect entry (and a differentiated kiosk icon if the
+      product wants one — legacy shipped the same icon on both).
 - [ ] S9.3 TestFlight: internal builds of both apps, venue pilot for the
       kiosk (R1 verified on real venue hardware).
 - [x] S9.4 Cutover plan: account continuity verified (existing users sign

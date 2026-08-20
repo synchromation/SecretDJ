@@ -39,69 +39,152 @@ extension Theme {
 
 extension Theme.ColorRole {
 	/// This role's light and dark sRGB components.
+	///
+	/// ### Brand provenance (S9.2)
+	/// Dark appearance ports `secretdjv3/AppConfiguration.swift`'s
+	/// `AppColors` verbatim wherever the legacy value itself clears
+	/// `Theme.sanctionedPairings`' 4.5:1 threshold — legacy shipped
+	/// dark-only, so its own values are the ground truth there. Light
+	/// appearance has no legacy counterpart (it never existed): it's a
+	/// systematically *derived* rendition of the same brand — the achromatic
+	/// grey ladder inverted into light neutrals, and the teal accent
+	/// darkened by a fixed factor until it clears AA on light surfaces —
+	/// documented per token below. Where a legacy value itself fails a
+	/// sanctioned pairing (`textPlaceHolder`), it's adjusted by the minimum
+	/// amount needed to pass, the same mechanism S2.1 used for the brand
+	/// violet accent it replaces. Every pairing's exact margin is proven by
+	/// `ThemeContrastTests`; the lowest across both appearances is 4.73:1
+	/// (`secondaryText` on `secondaryBackground`, dark).
 	public var token: Theme.ColorToken {
 		switch self {
 		case .background:
+			// Legacy `AppColors.darkestGrey`/`.background`/`.webviewBackground`
+			// (all the same literal) ported verbatim for dark — the app's
+			// base surface. Light has no legacy value; derived as a near-
+			// white neutral (no legacy color is tinted, so light stays
+			// achromatic too), the lightest step of the light-mode ladder
+			// short of `cellSurface`.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 250 / 255, green: 250 / 255, blue: 252 / 255),
-				dark: Theme.RGBAComponents(red: 11 / 255, green: 10 / 255, blue: 14 / 255),
+				light: Theme.RGBAComponents(red: 250 / 255, green: 250 / 255, blue: 250 / 255),
+				dark: Theme.RGBAComponents(red: 0.157, green: 0.157, blue: 0.157),
 			)
 		case .secondaryBackground:
+			// Legacy `AppColors.darkGrey` ported verbatim for dark — the
+			// lightest, most-elevated step of legacy's three-grey ladder
+			// (`darkestGrey` < `darkerGrey` < `darkGrey`), reused here as the
+			// most-recessed grouped-surface tier (legacy `searchBackground`,
+			// 0.1725, sits between `darkestGrey` and `darkerGrey` and is
+			// absorbed into `cellSurface`'s tier rather than kept distinct).
+			// Light is derived as the most recessed of the three light
+			// neutrals, mirroring dark's ladder direction.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 240 / 255, green: 239 / 255, blue: 243 / 255),
-				dark: Theme.RGBAComponents(red: 22 / 255, green: 20 / 255, blue: 27 / 255),
+				light: Theme.RGBAComponents(red: 237 / 255, green: 237 / 255, blue: 237 / 255),
+				dark: Theme.RGBAComponents(red: 0.2235294118, green: 0.2235294118, blue: 0.2235294118),
 			)
 		case .cellSurface:
+			// Legacy `AppColors.darkerGrey` ported verbatim for dark — the
+			// middle step of the grey ladder, between `background` and
+			// `secondaryBackground`, also the nearest neighbor to legacy's
+			// `searchBackground` (0.1725). Light is derived as pure white,
+			// the brightest surface, so elevated cards read as popping above
+			// `background` exactly as `cellSurface`/`background`'s ordering
+			// requires in both appearances.
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 1, green: 1, blue: 1),
-				dark: Theme.RGBAComponents(red: 29 / 255, green: 27 / 255, blue: 35 / 255),
+				dark: Theme.RGBAComponents(red: 0.1882352941, green: 0.1882352941, blue: 0.1882352941),
 			)
 		case .toastSurface:
+			// No legacy analog (legacy had no toast concept). Derived as a
+			// chrome darker than every step of the grey ladder, so a toast
+			// reads as a distinct floating overlay against any of this
+			// role's own backgrounds rather than blending in — kept
+			// identical in both appearances per this role's own contract,
+			// the same "deliberately dark regardless of appearance" idea
+			// legacy's own dark-only design took for granted everywhere.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 27 / 255, green: 25 / 255, blue: 32 / 255),
-				dark: Theme.RGBAComponents(red: 40 / 255, green: 37 / 255, blue: 47 / 255),
+				light: Theme.RGBAComponents(red: 10 / 255, green: 10 / 255, blue: 10 / 255),
+				dark: Theme.RGBAComponents(red: 10 / 255, green: 10 / 255, blue: 10 / 255),
 			)
 		case .primaryText:
+			// Legacy `AppColors.text`/`.navigationTitleText` (same 0.831
+			// literal) ported verbatim for dark. Light has no legacy value;
+			// derived as a neutral near-black, matching the achromatic
+			// character of legacy's own palette rather than introducing a
+			// tint.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 18 / 255, green: 15 / 255, blue: 23 / 255),
-				dark: Theme.RGBAComponents(red: 248 / 255, green: 247 / 255, blue: 251 / 255),
+				light: Theme.RGBAComponents(red: 18 / 255, green: 18 / 255, blue: 18 / 255),
+				dark: Theme.RGBAComponents(red: 0.831, green: 0.831, blue: 0.831),
 			)
 		case .secondaryText:
+			// Legacy `AppColors.textPlaceHolder` (0.345) was designed only
+			// for placeholder text with no contrast guarantee: it fails
+			// `secondaryBackground` at 1.62:1. Lightened to the minimum
+			// grey (0.65) that clears 4.5:1 against `secondaryBackground`,
+			// the tightest of the three sanctioned dark backgrounds — same
+			// minimal-adjustment mechanism S2.1 used for the accent it
+			// replaces. Light is derived as a mid grey clearing 4.5:1
+			// against all three light backgrounds (tightest: `cellSurface`,
+			// pure white).
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 92 / 255, green: 88 / 255, blue: 102 / 255),
-				dark: Theme.RGBAComponents(red: 182 / 255, green: 178 / 255, blue: 192 / 255),
+				light: Theme.RGBAComponents(red: 100 / 255, green: 100 / 255, blue: 100 / 255),
+				dark: Theme.RGBAComponents(red: 0.65, green: 0.65, blue: 0.65),
 			)
 		case .toastText:
+			// Reuses legacy `AppColors.text` (0.831) verbatim in both
+			// appearances — `toastSurface` is itself deliberately dark
+			// regardless of appearance, so the text drawn over it stays the
+			// same legacy near-white in both too.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 250 / 255, green: 250 / 255, blue: 252 / 255),
-				dark: Theme.RGBAComponents(red: 250 / 255, green: 250 / 255, blue: 252 / 255),
+				light: Theme.RGBAComponents(red: 0.831, green: 0.831, blue: 0.831),
+				dark: Theme.RGBAComponents(red: 0.831, green: 0.831, blue: 0.831),
 			)
 		case .accent:
+			// Legacy `AppColors.greenBlue`/`.navigationItemText` (the brand
+			// teal, also legacy's `border` at 33% alpha) ported verbatim for
+			// dark — it clears all three sanctioned dark backgrounds already
+			// (lowest 4.75:1, `secondaryBackground`). The same bright teal
+			// fails badly against light surfaces (as low as 2.08:1): light
+			// darkens it by a fixed 0.62 factor, the minimum found to clear
+			// 4.5:1 against `secondaryBackground` (light's tightest
+			// background) with a small safety margin, while keeping the hue
+			// exactly legacy's (green > blue > red in both appearances).
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 108 / 255, green: 43 / 255, blue: 217 / 255),
-				dark: Theme.RGBAComponents(red: 180 / 255, green: 156 / 255, blue: 250 / 255),
+				light: Theme.RGBAComponents(red: 13 / 255, green: 116 / 255, blue: 99 / 255),
+				dark: Theme.RGBAComponents(red: 0.082, green: 0.733, blue: 0.624),
 			)
 		case .accentPressed:
+			// No legacy pressed-state analog. Darkened from this
+			// appearance's own `accent` by a flat 0.8 factor per channel —
+			// the same factor the brand-violet predecessor used between its
+			// own `accent`/`accentPressed` pair, kept for consistency.
 			Theme.ColorToken(
-				light: Theme.RGBAComponents(red: 86 / 255, green: 34 / 255, blue: 174 / 255),
-				dark: Theme.RGBAComponents(red: 144 / 255, green: 125 / 255, blue: 200 / 255),
+				light: Theme.RGBAComponents(red: 10 / 255, green: 93 / 255, blue: 79 / 255),
+				dark: Theme.RGBAComponents(red: 0.0656, green: 0.5864, blue: 0.4992),
 			)
 		case .accentText:
+			// No legacy analog (legacy never drew text over a filled accent
+			// button). Unchanged from the brand-violet predecessor: verified
+			// to still clear 4.5:1 against the new teal `accent`/
+			// `accentPressed` in both appearances (lowest 5.12:1, dark).
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 248 / 255, green: 247 / 255, blue: 251 / 255),
 				dark: Theme.RGBAComponents(red: 18 / 255, green: 15 / 255, blue: 23 / 255),
 			)
 		case .success:
+			// No legacy analog — `AppColors` defines no status colors at all.
+			// Left unchanged; not part of this brand port.
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 27 / 255, green: 122 / 255, blue: 61 / 255),
 				dark: Theme.RGBAComponents(red: 111 / 255, green: 219 / 255, blue: 148 / 255),
 			)
 		case .warning:
+			// No legacy analog — see `.success`.
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 138 / 255, green: 90 / 255, blue: 0),
 				dark: Theme.RGBAComponents(red: 245 / 255, green: 192 / 255, blue: 92 / 255),
 			)
 		case .danger:
+			// No legacy analog — see `.success`.
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 179 / 255, green: 38 / 255, blue: 30 / 255),
 				dark: Theme.RGBAComponents(red: 255 / 255, green: 155 / 255, blue: 147 / 255),
