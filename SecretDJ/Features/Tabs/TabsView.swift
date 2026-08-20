@@ -121,7 +121,14 @@ struct TabsView: View {
 				}
 			}
 		}
-		.toastPresenter(queue: toastQueue)
+		.toastPresenter(
+			queue: toastQueue,
+			richToastVipActionLabel: Self.richToastVipActionLabel,
+			onRichToastVipTapped: { personId in
+				observability.interaction("richToastTapped")
+				model.router(for: model.selectedTab).push(.person(personId: personId))
+			},
+		)
 		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 	}
 

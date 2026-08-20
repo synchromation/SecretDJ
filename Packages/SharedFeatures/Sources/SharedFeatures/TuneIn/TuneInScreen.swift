@@ -34,6 +34,18 @@ public struct TuneInScreen: View {
 	/// never created here (``PreviewPlayerModel``'s own doc comment on why
 	/// it's a shared instance, not per-screen).
 	public let previewPlayer: PreviewPlayerModel
+	/// Whether a successful request's rich-toast payload (S8.6) actually
+	/// renders richly — `false` by default, matching the kiosk's own legacy
+	/// behavior: `secretdjv3/KioskTuneInViewController.swift`'s
+	/// `jukeboxButtonTapped` calls `handleSimpleToast(selectSongInfo.message,
+	/// withURL: selectSongInfo.URL)` unconditionally, never
+	/// `handleRichToast`, even though `SelectSongAPIAccess` (shared by both
+	/// apps) already parses the same `Data` field. The consumer app opts in
+	/// (`ResolvedTuneInScreen`'s own doc comment); the kiosk (`KioskTuneInScreen`)
+	/// never does. When `false`, a rich payload still shows — as the plain
+	/// ``TuneInToastEvent/message`` toast, same as before S8.6.
+	public let showsRichToasts: Bool
+	private let observability: ObservabilityPipeline
 
 	@State private var model: TuneInScreenModel
 	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
@@ -48,12 +60,15 @@ public struct TuneInScreen: View {
 		toastQueue: ToastQueue,
 		previewPlayer: PreviewPlayerModel,
 		onOutOfCredits: ((Bool) -> Void)? = nil,
+		showsRichToasts: Bool = false,
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.copy = copy
 		self.toastQueue = toastQueue
 		self.previewPlayer = previewPlayer
 		self.onOutOfCredits = onOutOfCredits
+		self.showsRichToasts = showsRichToasts
+		self.observability = observability
 		_model = State(initialValue: TuneInScreenModel(
 			song: song,
 			venueId: venueId,
@@ -242,8 +257,25 @@ public struct TuneInScreen: View {
 
 	private func showToast(_: TuneInToastEvent?, _ event: TuneInToastEvent?) {
 		guard let event else { return }
-		toastQueue.enqueue(ToastItem(message: event.message))
+
+		if showsRichToasts, let richToast = event.richToast {
+			observability.interaction("richToastShown")
+			toastQueue.enqueue(ToastItem(
+				message: event.message,
+				duration: Self.richToastDuration,
+				richContent: RichToastContent(richToast),
+			))
+		} else {
+			toastQueue.enqueue(ToastItem(message: event.message))
+		}
 	}
+
+	/// Double the plain default — mirrors legacy's own ratio
+	/// (`secretdjv3/ToastManager.swift`'s `richToastLength = 12.0` vs
+	/// `simpleToastLength = 6.0`; this app's own plain default is `3`
+	/// seconds, not legacy's `6`, so this scales that same 2× relationship
+	/// rather than reusing legacy's absolute values).
+	private static let richToastDuration: Duration = .seconds(6)
 
 	/// Shows a toast only when the buzz toggle's failure carried server
 	/// copy — this package owns no fallback copy of its own to show

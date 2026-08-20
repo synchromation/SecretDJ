@@ -16,4 +16,18 @@ struct ToastItemTests {
 		#expect(first.id != second.id)
 		#expect(first != second)
 	}
+
+	@Test func `has no rich content by default`() {
+		let item = ToastItem(message: "Saved")
+
+		#expect(item.richContent == nil)
+	}
+
+	@Test func `carries the rich content it's constructed with`() {
+		let content = RichToastContent(title: "Reward!", headline: "", bodyText: "", vip: nil)
+
+		let item = ToastItem(message: "Saved", richContent: content)
+
+		#expect(item.richContent == content)
+	}
 }

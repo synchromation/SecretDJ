@@ -17,7 +17,13 @@ public final class InMemorySongRequesting: SongRequesting {
 	private var isHanging = false
 	private var continuation: CheckedContinuation<Void, Never>?
 
-	public init(result: Result<SongRequestResult, SongRequestError> = .success(.success(message: nil, url: nil))) {
+	public init(
+		result: Result<SongRequestResult, SongRequestError> = .success(.success(
+			message: nil,
+			url: nil,
+			richToast: nil,
+		)),
+	) {
 		self.result = result
 	}
 

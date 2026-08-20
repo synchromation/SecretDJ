@@ -1,4 +1,5 @@
 import Foundation
+import SecretDJDomain
 
 /// The `checkin` call ``CheckInModel`` needs, thinned from
 /// ``SecretDJAPI/APIClient`` to this feature's exact surface
@@ -32,12 +33,17 @@ enum CheckInError: Error, Equatable {
 }
 
 /// ``CheckingIn/checkIn(venueId:)``'s outcome — the server's own
-/// confirmation copy and an optional hand-off URL
-/// (`secretdjv3/CheckInAPIAccess.swift`'s `CheckInInfo`). LEGACY.md's
-/// `ToastHandler`: "if the server response carries a URL, an in-app web
-/// view is pushed *instead of* the toast" — so `url`, when present, takes
-/// priority over `message` at the call site rather than both showing.
+/// confirmation copy, an optional hand-off URL, and an optional award-style
+/// rich-toast payload (S8.6) (`secretdjv3/CheckInAPIAccess.swift`'s
+/// `CheckInInfo`). LEGACY.md's `ToastHandler`: "if the server response
+/// carries a URL, an in-app web view is pushed *instead of* the toast" — so
+/// `url`, when present, takes priority over both `message` and `richToast`
+/// at the call site rather than any of them showing
+/// (`secretdjv3/VenueFeedViewController.swift`'s `checkInCompleted`: `if let
+/// richToast { handleRichToast(...) } else { handleSimpleToast(...) }`, and
+/// both of those check the URL first).
 struct CheckInOutcome: Equatable {
 	let message: String?
 	let url: URL?
+	let richToast: RichToastData?
 }

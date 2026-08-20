@@ -159,10 +159,21 @@ struct VenueScreen: View {
 		.onChange(of: checkInModel?.successEvent) { _, event in
 			guard let event else { return }
 			// LEGACY.md's `ToastHandler`: a response URL is opened *instead
-			// of* the toast, never alongside it.
+			// of* the toast (rich or plain), never alongside either
+			// (`secretdjv3/VenueFeedViewController.swift`'s
+			// `checkInCompleted`: `if let richToast { handleRichToast(...) }
+			// else { handleSimpleToast(...) }`, and both of those check the
+			// URL first).
 			if let url = event.url {
 				observability.interaction("openCheckInURL")
 				openURL(url)
+			} else if let richToast = event.richToast {
+				observability.interaction("richToastShown")
+				toastQueue.enqueue(ToastItem(
+					message: Self.richToastAnnouncement(message: event.message, richToast: richToast),
+					duration: Self.richToastDuration,
+					richContent: RichToastContent(richToast),
+				))
 			} else if let message = event.message, !message.isEmpty {
 				toastQueue.enqueue(ToastItem(message: message))
 			}
@@ -297,6 +308,28 @@ struct VenueScreen: View {
 			localized: "Sorry, we couldn't check you in — please try again.",
 			comment: "Toast shown when checking in at a venue fails.",
 		)
+	}
+
+	/// Double the plain default — mirrors legacy's own ratio
+	/// (`secretdjv3/ToastManager.swift`'s `richToastLength = 12.0` vs
+	/// `simpleToastLength = 6.0`; matches ``SharedFeatures/TuneInScreen``'s
+	/// own `richToastDuration`).
+	static var richToastDuration: Duration {
+		.seconds(6)
+	}
+
+	/// ``DesignSystem/ToastView`` announces/labels a rich toast with
+	/// ``DesignSystem/ToastItem/message`` exactly like a plain one — this
+	/// picks the best available copy for that: the server's own `Text`
+	/// (almost always present alongside `Data` — LEGACY.md's endpoint
+	/// catalog lists them as siblings), falling back to the rich payload's
+	/// own `Headline`/`BodyText` on the unconfirmed chance a real response
+	/// ever sends `Data` without `Text`.
+	static func richToastAnnouncement(message: String?, richToast: RichToastData) -> String {
+		for candidate in [message, richToast.headline, richToast.bodyText] where !(candidate ?? "").isEmpty {
+			return candidate ?? ""
+		}
+		return ""
 	}
 
 	private static var copy: FeedScreenCopy {

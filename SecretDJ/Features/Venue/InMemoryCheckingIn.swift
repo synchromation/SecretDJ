@@ -12,7 +12,11 @@ final class InMemoryCheckingIn: CheckingIn {
 	private var isHanging = false
 	private var continuation: CheckedContinuation<Void, Never>?
 
-	init(result: Result<CheckInOutcome, CheckInError> = .success(CheckInOutcome(message: "", url: nil))) {
+	init(result: Result<CheckInOutcome, CheckInError> = .success(CheckInOutcome(
+		message: "",
+		url: nil,
+		richToast: nil,
+	))) {
 		self.result = result
 	}
 

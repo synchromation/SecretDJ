@@ -2,8 +2,13 @@
 /// response's `ReturnCode` (LEGACY.md business rule 5; `WSRX_ERROR_REQUEST_NO_CREDITS`).
 public enum SongRequestResult: Sendable, Hashable {
 	/// `ReturnCode == 0`: the song was queued. `message`/`url` are the
-	/// server's copy for the confirmation toast.
-	case success(message: String?, url: String?)
+	/// server's copy for the confirmation toast; `richToast` is the same
+	/// response's optional `Data` award payload (S8.6, LEGACY.md "Toasts") —
+	/// present, it renders instead of the plain `message` toast, exactly
+	/// like `checkin`'s own rich-toast branch
+	/// (`secretdjv3/TuneInViewController.swift`'s `jukeboxButtonTapped`: `if
+	/// let richToast { handleRichToast(...) } else { handleSimpleToast(...) }`).
+	case success(message: String?, url: String?, richToast: RichToastData?)
 	/// `ReturnCode == -8`: out of credits. `hasProfilePicture` (from the
 	/// response's `ImageSize > 0`) decides whether the client offers the
 	/// pic-for-credits upsell or goes straight to the top-up screen.
@@ -15,12 +20,15 @@ public enum SongRequestResult: Sendable, Hashable {
 	public static let outOfCreditsReturnCode = -8
 
 	/// Classifies a `requestsong` response into its typed outcome.
-	/// - Parameter imageSize: the response's `ImageSize`; only consulted
-	///   when `returnCode` is ``outOfCreditsReturnCode``.
-	public init(returnCode: Int, message: String?, url: String?, imageSize: Int) {
+	/// - Parameters:
+	///   - imageSize: the response's `ImageSize`; only consulted when
+	///     `returnCode` is ``outOfCreditsReturnCode``.
+	///   - richToast: the response's optional `Data` award payload; only
+	///     consulted when `returnCode` is `0`.
+	public init(returnCode: Int, message: String?, url: String?, imageSize: Int, richToast: RichToastData? = nil) {
 		switch returnCode {
 		case 0:
-			self = .success(message: message, url: url)
+			self = .success(message: message, url: url, richToast: richToast)
 		case Self.outOfCreditsReturnCode:
 			self = .outOfCredits(hasProfilePicture: imageSize > 0)
 		default:

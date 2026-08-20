@@ -116,10 +116,10 @@ public final class TuneInScreenModel {
 		do {
 			let result = try await songRequesting.requestSong(songId: song.songId, venueId: venueId)
 			switch result {
-			case .success(let message, _):
+			case .success(let message, _, let richToast):
 				hasRequestedSuccessfully = true
 				observability.track(TuneInEvent.songRequested)
-				raiseToast(message)
+				raiseToast(message, richToast: richToast)
 
 			case .outOfCredits(let hasProfilePicture):
 				observability.track(TuneInEvent.songRequestOutOfCredits)
@@ -171,8 +171,8 @@ public final class TuneInScreenModel {
 		}
 	}
 
-	private func raiseToast(_ message: String?) {
+	private func raiseToast(_ message: String?, richToast: RichToastData? = nil) {
 		guard let message, !message.isEmpty else { return }
-		toastEvent = TuneInToastEvent(id: (toastEvent?.id ?? 0) + 1, message: message)
+		toastEvent = TuneInToastEvent(id: (toastEvent?.id ?? 0) + 1, message: message, richToast: richToast)
 	}
 }

@@ -62,7 +62,7 @@ enum JukeboxAPITests {
 				credential: JukeboxAPITests.credential,
 			)
 
-			guard case .success(let message, let url) = response.payload else {
+			guard case .success(let message, let url, let richToast) = response.payload else {
 				Issue.record("expected .success, got \(response.payload)")
 				return
 			}
@@ -75,6 +75,32 @@ enum JukeboxAPITests {
 			You can pick 18 more songs here today.
 			""")
 			#expect(url == nil)
+			// `RequestSong.json`'s top-level `Vips` array is a different, unread
+			// field (`SelectSongAPIAccess.swift`'s `handle(dictionary:)` never
+			// reads it) — this fixture carries no real `Response.Data`.
+			#expect(richToast == nil)
+		}
+
+		/// `requestsong`'s `Response.Data` (S8.6) — see
+		/// ``SecretDJDomain/RichToastData``'s own LIVE-CAPTURE doc comment: no
+		/// fixture carries this shape, so this JSON is synthesized from
+		/// `RichToastView.swift`'s contract.
+		@Test func `decodes a Data payload as the success case's rich toast`() async throws {
+			let json = Data(
+				#"{"Success": true, "Response": {"ReturnCode": 0, "Data": {"Title": "Reward!"}}}"#.utf8,
+			)
+			let client = JukeboxAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+
+			let response = try await client.requestSong(
+				userId: "u", venueId: "v", songId: "s",
+				credential: JukeboxAPITests.credential,
+			)
+
+			guard case .success(_, _, let richToast) = response.payload else {
+				Issue.record("expected .success, got \(response.payload)")
+				return
+			}
+			#expect(richToast?.title == "Reward!")
 		}
 
 		/// No legacy fixture carries `ImageSize` at all (neither `RequestSong.json`

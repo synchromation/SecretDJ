@@ -39,6 +39,7 @@ struct ResolvedTuneInScreen: View {
 			toastQueue: toastQueue,
 			previewPlayer: previewPlayerModel,
 			onOutOfCredits: handleOutOfCredits,
+			showsRichToasts: true,
 			observability: observability,
 		)
 		.alert(Self.addPhotoPromptTitle, isPresented: $showsAddPhotoPrompt) {

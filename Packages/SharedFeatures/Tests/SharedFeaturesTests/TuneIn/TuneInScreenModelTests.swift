@@ -80,7 +80,11 @@ enum TuneInScreenModelTests {
 	@MainActor
 	struct `Requesting a song, on success` {
 		@Test func `raises a toast with the server's message`() async {
-			let requesting = InMemorySongRequesting(result: .success(.success(message: "You're up next!", url: nil)))
+			let requesting = InMemorySongRequesting(result: .success(.success(
+				message: "You're up next!",
+				url: nil,
+				richToast: nil,
+			)))
 			let model = makeModel(song: makeSong(), songRequesting: requesting)
 
 			await model.requestSong()
@@ -89,7 +93,7 @@ enum TuneInScreenModelTests {
 		}
 
 		@Test func `raises no toast when the server sends no message`() async {
-			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil)))
+			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil, richToast: nil)))
 			let model = makeModel(song: makeSong(), songRequesting: requesting)
 
 			await model.requestSong()
@@ -98,7 +102,7 @@ enum TuneInScreenModelTests {
 		}
 
 		@Test func `marks the request as succeeded, for good`() async {
-			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil)))
+			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil, richToast: nil)))
 			let model = makeModel(song: makeSong(), songRequesting: requesting)
 
 			await model.requestSong()
@@ -107,7 +111,7 @@ enum TuneInScreenModelTests {
 		}
 
 		@Test func `a second call after success makes no further request call`() async {
-			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil)))
+			let requesting = InMemorySongRequesting(result: .success(.success(message: nil, url: nil, richToast: nil)))
 			let model = makeModel(song: makeSong(), songRequesting: requesting)
 
 			await model.requestSong()
@@ -123,6 +127,22 @@ enum TuneInScreenModelTests {
 			await model.requestSong()
 
 			#expect(requesting.invocations == [InMemorySongRequesting.Invocation(songId: "42", venueId: "v7")])
+		}
+
+		/// `requestsong`'s `Response.Data` (S8.6, LEGACY.md "Toasts") carries
+		/// through onto the toast event alongside the plain message — the
+		/// presenting layer decides whether to render it richly
+		/// (``SharedFeatures/TuneInScreen``'s `showsRichToasts` doc comment).
+		@Test func `carries a rich toast payload onto the toast event`() async {
+			let richToast = RichToastData(title: "Reward!", headline: "", bodyText: "", vip: nil)
+			let requesting = InMemorySongRequesting(
+				result: .success(.success(message: "Queued!", url: nil, richToast: richToast)),
+			)
+			let model = makeModel(song: makeSong(), songRequesting: requesting)
+
+			await model.requestSong()
+
+			#expect(model.toastEvent?.richToast == richToast)
 		}
 	}
 
@@ -238,7 +258,7 @@ enum TuneInScreenModelTests {
 			async let first: Void = model.requestSong()
 			async let second: Void = model.requestSong()
 			await waitUntil { !requesting.invocations.isEmpty }
-			requesting.resume(with: .success(.success(message: nil, url: nil)))
+			requesting.resume(with: .success(.success(message: nil, url: nil, richToast: nil)))
 			_ = await (first, second)
 
 			#expect(requesting.invocations.count == 1)
@@ -253,7 +273,7 @@ enum TuneInScreenModelTests {
 			await waitUntil { !requesting.invocations.isEmpty }
 
 			#expect(model.isRequesting)
-			requesting.resume(with: .success(.success(message: nil, url: nil)))
+			requesting.resume(with: .success(.success(message: nil, url: nil, richToast: nil)))
 			await request
 			#expect(!model.isRequesting)
 		}

@@ -27,7 +27,11 @@ struct APIClientCheckingIn: CheckingIn {
 			if let rotatedToken = response.rotatedToken {
 				await MainActor.run { sessionStore.rotateToken(rotatedToken) }
 			}
-			return CheckInOutcome(message: response.payload.text, url: response.payload.url.flatMap(URL.init))
+			return CheckInOutcome(
+				message: response.payload.text,
+				url: response.payload.url.flatMap(URL.init),
+				richToast: response.payload.data,
+			)
 		} catch {
 			if case .server(let message) = error {
 				throw .server(message: message)

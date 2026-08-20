@@ -5540,6 +5540,35 @@
           }
         }
       }
+    },
+    "View Profile": {
+      "comment": "VoiceOver custom action on a rich (award-style) toast's VIP row, opening that person's profile.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profil ansehen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ver perfil"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Voir le profil"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Profiel bekijken"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

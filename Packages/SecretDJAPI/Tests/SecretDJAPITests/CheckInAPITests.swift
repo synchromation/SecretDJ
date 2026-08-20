@@ -83,6 +83,31 @@ enum CheckInAPITests {
 			#expect(response.payload.text == "Welcome, this is your first visit here.")
 			#expect(response.payload.url == "TESTURL")
 			#expect(response.payload.returnCode == 2)
+			// `CheckIn.json` carries no `Data` field — see
+			// ``SecretDJDomain/RichToastData``'s own LIVE-CAPTURE doc comment.
+			#expect(response.payload.data == nil)
+		}
+
+		/// `checkin`'s `Response.Data` (S8.6) — see
+		/// ``SecretDJDomain/RichToastData``'s own LIVE-CAPTURE doc comment: no
+		/// fixture carries this shape, so this JSON is synthesized from
+		/// `RichToastView.swift`'s contract.
+		@Test func `decodes a Data payload as a rich toast`() async throws {
+			let json = Data(
+				"""
+				{"Sections": [{"Custom": {"Response": {
+				  "ReturnCode": 0, "Text": "Welcome!", "Data": {"Title": "Reward!"}
+				}}}], "Success": true}
+				""".utf8,
+			)
+			let client = CheckInAPITests.makeClient(transport: FakeAPITransport(outcome: .success(json)))
+
+			let response = try await client.checkIn(
+				userId: "u", venueId: "v",
+				credential: CheckInAPITests.credential,
+			)
+
+			#expect(response.payload.data?.title == "Reward!")
 		}
 	}
 }

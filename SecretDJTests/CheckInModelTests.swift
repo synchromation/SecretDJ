@@ -1,5 +1,6 @@
 import Foundation
 import Observability
+import SecretDJDomain
 import Testing
 
 @testable import SecretDJ
@@ -31,7 +32,7 @@ enum CheckInModelTests {
 			await Task.yield()
 
 			#expect(model.checkedIn)
-			checkingIn.resume(with: .success(CheckInOutcome(message: "Welcome!", url: nil)))
+			checkingIn.resume(with: .success(CheckInOutcome(message: "Welcome!", url: nil, richToast: nil)))
 			await checkIn
 		}
 
@@ -49,6 +50,7 @@ enum CheckInModelTests {
 				result: .success(CheckInOutcome(
 					message: "Welcome, this is your first visit!",
 					url: URL(string: "https://secretdj.com/reward"),
+					richToast: nil,
 				)),
 			)
 			let model = makeModel(checkedIn: false, checkingIn: checkingIn)
@@ -59,11 +61,29 @@ enum CheckInModelTests {
 			#expect(model.successEvent?.url == URL(string: "https://secretdj.com/reward"))
 		}
 
+		/// `Response.Data` (S8.6, LEGACY.md "Toasts") carries through onto
+		/// the success event alongside the plain message.
+		@Test func `carries a rich toast payload onto the success event`() async {
+			let richToast = RichToastData(title: "Reward!", headline: "", bodyText: "", vip: nil)
+			let checkingIn = InMemoryCheckingIn(
+				result: .success(CheckInOutcome(message: "Welcome!", url: nil, richToast: richToast)),
+			)
+			let model = makeModel(checkedIn: false, checkingIn: checkingIn)
+
+			await model.checkIn()
+
+			#expect(model.successEvent?.richToast == richToast)
+		}
+
 		@Test func `a second successful check-in produces a distinct success event id`() async {
 			// Unreachable through checkIn() alone since a success leaves
 			// checkedIn permanently true, but the id still needs to prove
 			// itself distinct rather than hard-coded to 1.
-			let checkingIn = InMemoryCheckingIn(result: .success(CheckInOutcome(message: "Hi", url: nil)))
+			let checkingIn = InMemoryCheckingIn(result: .success(CheckInOutcome(
+				message: "Hi",
+				url: nil,
+				richToast: nil,
+			)))
 			let model = makeModel(checkedIn: false, checkingIn: checkingIn)
 
 			await model.checkIn()
@@ -122,7 +142,7 @@ enum CheckInModelTests {
 			async let first: Void = model.checkIn()
 			async let second: Void = model.checkIn()
 			await Task.yield()
-			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil)))
+			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil, richToast: nil)))
 			_ = await (first, second)
 
 			#expect(checkingIn.calls.count == 1)
@@ -146,7 +166,7 @@ enum CheckInModelTests {
 			await Task.yield()
 
 			#expect(model.isCheckingIn)
-			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil)))
+			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil, richToast: nil)))
 			await checkIn
 			#expect(!model.isCheckingIn)
 		}
@@ -179,14 +199,18 @@ enum CheckInModelTests {
 			model.reconcile(with: false)
 
 			#expect(model.checkedIn)
-			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil)))
+			checkingIn.resume(with: .success(CheckInOutcome(message: "", url: nil, richToast: nil)))
 			await checkInTask
 		}
 	}
 
 	struct Instrumentation {
 		@Test func `breadcrumbs the check-in attempt and tracks the checkedIn analytics event on success`() async {
-			let checkingIn = InMemoryCheckingIn(result: .success(CheckInOutcome(message: "Hi", url: nil)))
+			let checkingIn = InMemoryCheckingIn(result: .success(CheckInOutcome(
+				message: "Hi",
+				url: nil,
+				richToast: nil,
+			)))
 			let recorder = RecordingDestination()
 			let model = makeModel(
 				checkedIn: false,

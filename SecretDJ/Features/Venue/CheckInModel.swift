@@ -61,6 +61,7 @@ final class CheckInModel {
 				id: (successEvent?.id ?? 0) + 1,
 				message: outcome.message,
 				url: outcome.url,
+				richToast: outcome.richToast,
 			)
 		} catch {
 			checkedIn = false

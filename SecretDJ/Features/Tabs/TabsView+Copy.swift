@@ -19,6 +19,17 @@ extension TabsView {
 		)
 	}
 
+	/// The accessible name for a rich toast's VIP-row custom action (S8.6,
+	/// `secretdjv3/RichToastView.swift`'s `viewVipButtonTapped`) — the one
+	/// composition point every rich toast's tap routes through, regardless
+	/// of which screen enqueued it (check-in or a song request).
+	static var richToastVipActionLabel: Text {
+		Text(
+			"View Profile",
+			comment: "VoiceOver custom action on a rich (award-style) toast's VIP row, opening that person's profile.",
+		)
+	}
+
 	static var musicSelectionCopy: FeedScreenCopy {
 		FeedScreenCopy(
 			emptySystemImage: Theme.Icon.jukebox.systemName,

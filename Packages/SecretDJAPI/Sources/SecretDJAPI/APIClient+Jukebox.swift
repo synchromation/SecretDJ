@@ -41,6 +41,7 @@ extension APIClient {
 				message: response.payload.response.text,
 				url: response.payload.response.url,
 				imageSize: response.payload.response.imageSize,
+				richToast: response.payload.response.data,
 			),
 			rotatedToken: response.rotatedToken,
 		)
@@ -171,12 +172,16 @@ struct RequestSongWirePayload: Hashable, Decodable {
 		let text: String?
 		let url: String?
 		let imageSize: Int
+		/// The rich-toast `Data` payload (S8.6) — see
+		/// ``SecretDJDomain/RichToastData``'s own LIVE-CAPTURE doc comment.
+		let data: RichToastData?
 
 		private enum CodingKeys: String, CodingKey {
 			case returnCode = "ReturnCode"
 			case text = "Text"
 			case url = "Url"
 			case imageSize = "ImageSize"
+			case data = "Data"
 		}
 
 		init(from decoder: Decoder) throws {
@@ -185,6 +190,7 @@ struct RequestSongWirePayload: Hashable, Decodable {
 			text = try container.decodeIfPresent(String.self, forKey: .text)
 			url = try container.decodeIfPresent(String.self, forKey: .url)
 			imageSize = try container.decodeIfPresent(Int.self, forKey: .imageSize) ?? 1
+			data = try container.decodeIfPresent(RichToastData.self, forKey: .data)
 		}
 	}
 }

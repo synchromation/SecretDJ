@@ -786,3 +786,18 @@ work happens; every commit includes this file's delta.
   Sentry DSN + TelemetryDeck appID already exist from the example
   project's own setup — product owner to confirm they're the intended
   destinations; kiosk vendor linkage still missing.
+- S8.6 done (TDD, sonnet subagent, direct): rich toasts per the ported
+  legacy contract — Response.Data is {Title, Headline, BodyText, Vip}
+  with Vip reusing the Person shape (cited to RichToastView's
+  dictionary reads; no fixture anywhere carries a real payload, so the
+  decode is LIVE-CAPTURE-marked per convention). ToastItem gains a
+  primitive closure-free richContent; the VIP tap resolves by person-id
+  through a single presenter callback wired once in TabsView to the
+  .person destination; VoiceOver sees one element with a named View
+  Profile action. Wired where legacy actually emitted them — check-in
+  and consumer song-request only (like/machinecontrol never read Data
+  in legacy, cited; the kiosk never called handleRichToast — excluded
+  via an opt-in flag) — and the URL-supersedes-toast rule is
+  preserved. One localized string. D15 resolved by its documented
+  default in the same change: the fixed 30-minute mood override
+  stands, picker struck, reversible. Full verify green.

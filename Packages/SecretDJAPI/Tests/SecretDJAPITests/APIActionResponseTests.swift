@@ -41,6 +41,24 @@ enum APIActionResponseTests {
 
 			#expect(response.returnCode == -8)
 		}
+
+		/// The rich-toast `Data` field (S8.6, LEGACY.md "Toasts") — see
+		/// ``SecretDJDomain/RichToastData``'s own LIVE-CAPTURE doc comment.
+		@Test func `reads a Data payload as a rich toast`() throws {
+			let json = Data(#"{"ReturnCode": 0, "Data": {"Title": "Reward!"}}"#.utf8)
+
+			let response = try JSONDecoder().decode(APIActionResponse.self, from: json)
+
+			#expect(response.data?.title == "Reward!")
+		}
+
+		@Test func `a missing Data field decodes to no rich toast`() throws {
+			let json = Data(#"{"ReturnCode": 0}"#.utf8)
+
+			let response = try JSONDecoder().decode(APIActionResponse.self, from: json)
+
+			#expect(response.data == nil)
+		}
 	}
 
 	struct `Decoding the whole action envelope` {
