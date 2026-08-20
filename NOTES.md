@@ -709,3 +709,22 @@ work happens; every commit includes this file's delta.
   dependency for the recovery breadcrumbs. Eleven localized kiosk
   keys. Full verify green. On-hardware soak explicitly deferred to
   S8.4/S9.3.
+- S8.2 automated half done (sonnet subagent; the biggest single-agent
+  run yet): UI-test mode in both composition roots (UITEST_MODE /
+  UITEST_SIGNED_IN launch env; fixture transport answering every feed
+  endpoint with one deterministic SectionList; pre-seeded kiosk skin
+  store; observability disabled; animations off — audits were
+  sampling mid-fade), two XCUITest targets via pbxproj surgery, and a
+  new verify.sh uitest action (default test untouched so the Stop
+  hook stays fast). Eighteen audit tests green across 13 screens incl.
+  AX5 Dynamic Type runs. Real fixes at the source: fixed-height
+  frames around single-line text in three cells became minHeight (the
+  skill's no-fixed-height rule — a genuine clipping risk),
+  FeedSectionHeader's lineLimit removed, ForgottenPassword's close
+  button moved onto the theme accent for contrast. Deferred with
+  markers + a documented allow-list (new issues still fail): UIKit
+  text-field "text clipped" (3 fields, component-generic), a
+  Dynamic-Type partial-support report (element-diverse), and two
+  element-scoped contrast items needing Accessibility Inspector on
+  hardware. The manual VoiceOver walk of all 13 screens is listed in
+  PLAN.md as the remaining human half.

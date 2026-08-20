@@ -69,7 +69,10 @@ public struct MediaRowCell: View {
 					accessoryView
 				}
 				.padding(.horizontal, Spacing.medium)
-				.frame(height: rowHeight)
+				// `minHeight`, not a fixed `height` — see `TopUpRowCell`'s own
+				// comment (PLAN.md S8.2): a hard-fixed frame around
+				// `lineLimit(1)` text is a Dynamic Type clipping risk.
+				.frame(minHeight: rowHeight)
 			}
 		}
 		.background(Theme.ColorRole.cellSurface.color, in: RoundedRectangle(cornerRadius: 14))

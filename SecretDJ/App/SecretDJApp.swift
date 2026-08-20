@@ -28,14 +28,47 @@ struct SecretDJApp: App {
 	/// ``topUpTransactionListener`` so a purchase and a later restore/drain
 	/// agree about the same underlying unfinished-transaction queue. A
 	/// plain `let`, not `@State`, matching ``apiClient`` — nothing here
-	/// ever replaces the instance, only mutates it internally.
-	private let productPurchasing = StoreKitProductPurchasing()
+	/// ever replaces the instance, only mutates it internally. Typed as the
+	/// protocol (rather than defaulting to a `StoreKitProductPurchasing()`
+	/// literal) so ``init()``'s UI-test branch can assign
+	/// ``UITestDependencies/makeProductPurchasing()`` instead — never real
+	/// StoreKit under UI-test automation.
+	private let productPurchasing: any ProductPurchasing
 	/// Started in ``body`` below, replacing legacy's resubmit-on-every-
 	/// screen-appearance loop (``TopUpTransactionListener``'s doc comment)
 	/// with a single startup drain.
 	private let topUpTransactionListener: TopUpTransactionListener
 
 	init() {
+		if UITestMode.isActive {
+			// PLAN.md S8.2's UI-test mode: every dependency below comes from
+			// ``UITestDependencies`` instead — deterministic, in-memory, and
+			// never touching the real network, StoreKit, or Core Location.
+			// This branch is the app's *only* substitution point; nothing
+			// else in the composition root re-checks ``UITestMode``.
+			//
+			// Animations off: XCTest's synchronization doesn't wait out a
+			// sheet/NavigationStack transition, so `performAccessibilityAudit()`
+			// can sample mid-fade and report a transient "Contrast failed" on
+			// whatever's still animating in — a flake, not a real design
+			// issue. Disabling animations removes that whole class of
+			// timing races.
+			UIView.setAnimationsEnabled(false)
+			let sessionStore = UITestDependencies.makeSessionStore()
+			_sessionStore = State(initialValue: sessionStore)
+			_locationService = State(initialValue: UITestDependencies.makeLocationService())
+			apiClient = UITestDependencies.makeAPIClient()
+			_previewPlayerModel = State(initialValue: UITestDependencies.makePreviewPlayerModel())
+			productPurchasing = UITestDependencies.makeProductPurchasing()
+			topUpTransactionListener = TopUpTransactionListener(
+				purchasing: productPurchasing,
+				servicing: APIClientTopUpsService(client: apiClient),
+				sessionStore: sessionStore,
+				observability: .disabled,
+			)
+			return
+		}
+
 		let sessionStore = SessionStore(
 			snapshotStore: UserDefaultsSessionSnapshotStore(),
 			credentialStore: KeychainCredentialStore(),
@@ -58,6 +91,7 @@ struct SecretDJApp: App {
 			playerFactory: SystemAudioPlayerFactory(),
 			observability: .live,
 		))
+		productPurchasing = StoreKitProductPurchasing()
 		topUpTransactionListener = TopUpTransactionListener(
 			purchasing: productPurchasing,
 			servicing: APIClientTopUpsService(client: apiClient),
@@ -65,6 +99,12 @@ struct SecretDJApp: App {
 			observability: .live,
 		)
 		AudioSessionConfiguration.configureForPreviewPlayback(observability: .live)
+	}
+
+	/// `.disabled` under UI-test automation (PLAN.md S8.2's ground rule: no
+	/// vendor/analytics traffic from a test run either) — `.live` otherwise.
+	private var observability: ObservabilityPipeline {
+		UITestMode.isActive ? .disabled : .live
 	}
 
 	var body: some Scene {
@@ -76,9 +116,9 @@ struct SecretDJApp: App {
 				previewPlayerModel: previewPlayerModel,
 				productPurchasing: productPurchasing,
 				topUpTransactionListener: topUpTransactionListener,
-				observability: .live,
+				observability: observability,
 			)
-			.environment(\.observability, .live)
+			.environment(\.observability, observability)
 			.task { await topUpTransactionListener.start() }
 			.onOpenURL { url in
 				_ = appDelegate.application(UIApplication.shared, open: url)

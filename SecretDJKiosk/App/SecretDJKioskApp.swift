@@ -28,8 +28,32 @@ struct SecretDJKioskApp: App {
 	/// non-optional again in S7.6.
 	@State private var previewPlayerModel: PreviewPlayerModel
 	private let apiClient: APIClient
+	/// `nil` in production (``KioskRootView`` falls back to its own default,
+	/// `FileManagerSkinStoring()`) — set only by ``init()``'s UI-test branch,
+	/// pre-seeded so the skin gate never makes a network call (PLAN.md
+	/// S8.2, ``UITestDependencies/preSeededSkinStoring()``'s doc comment).
+	private let skinStoring: (any SkinStoring)?
 
 	init() {
+		if UITestMode.isActive {
+			// PLAN.md S8.2's UI-test mode: every dependency below comes from
+			// ``UITestDependencies`` instead — deterministic, in-memory, and
+			// never touching the real network. This branch is the app's
+			// *only* substitution point; nothing else in the composition
+			// root re-checks ``UITestMode``.
+			//
+			// Animations off: mirrors the consumer app's own `SecretDJApp`
+			// — XCTest's synchronization doesn't wait out a transition, so
+			// `performAccessibilityAudit()` can sample mid-fade and report a
+			// transient "Contrast failed" that isn't a real design issue.
+			UIView.setAnimationsEnabled(false)
+			_sessionStore = State(initialValue: UITestDependencies.makeSessionStore())
+			apiClient = UITestDependencies.makeAPIClient()
+			_previewPlayerModel = State(initialValue: UITestDependencies.makePreviewPlayerModel())
+			skinStoring = UITestDependencies.preSeededSkinStoring()
+			return
+		}
+
 		let sessionStore = SessionStore(
 			snapshotStore: UserDefaultsSessionSnapshotStore(),
 			credentialStore: KeychainCredentialStore(service: "com.secretdj.kiosk.session"),
@@ -47,6 +71,13 @@ struct SecretDJKioskApp: App {
 			playerFactory: SystemAudioPlayerFactory(),
 			observability: .live,
 		))
+		skinStoring = nil
+	}
+
+	/// `.disabled` under UI-test automation (PLAN.md S8.2's ground rule: no
+	/// vendor/analytics traffic from a test run either) — `.live` otherwise.
+	private var observability: ObservabilityPipeline {
+		UITestMode.isActive ? .disabled : .live
 	}
 
 	var body: some Scene {
@@ -55,9 +86,10 @@ struct SecretDJKioskApp: App {
 				sessionStore: sessionStore,
 				apiClient: apiClient,
 				previewPlayer: previewPlayerModel,
-				observability: .live,
+				skinStoring: skinStoring ?? FileManagerSkinStoring(),
+				observability: observability,
 			)
-			.environment(\.observability, .live)
+			.environment(\.observability, observability)
 		}
 	}
 }

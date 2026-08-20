@@ -56,6 +56,17 @@ struct ForgottenPasswordView: View {
 				Button("Close") {
 					dismiss()
 				}
+				// Explicit token color, not the system default: this button
+				// is what performAccessibilityAudit() reported as
+				// "Contrast failed" (PLAN.md S8.2) — the system's own
+				// default toolbar tint over this sheet's translucent nav
+				// bar material is out of this app's control, but every
+				// other button in this app already draws from
+				// `Theme.ColorRole` rather than system defaults, and that
+				// token is proven >4.5:1 against this screen's own
+				// background. `.foregroundStyle`, not `.tint` — a plain
+				// (non-bordered) `Button`'s title color follows the former.
+				.foregroundStyle(Theme.ColorRole.accent.color)
 			}
 		}
 	}

@@ -88,6 +88,14 @@ struct LoginView: View {
 				.frame(minHeight: 44)
 				.background(Theme.ColorRole.cellSurface.color, in: .rect(cornerRadius: 12))
 
+			// S8.2-FOLLOWUP: performAccessibilityAudit() flags this field's
+			// text as possibly clipped at larger Dynamic Type sizes
+			// (SwiftUI.UIKitTextField). The plain TextField immediately
+			// above shares identical layout (no fixed frame, same padding)
+			// and passes clean, so this looks like SecureField's own
+			// UIKit-bridged implementation rather than app layout — confirm
+			// with Accessibility Inspector on a real device at AX5 before
+			// attempting a fix.
 			SecureField("Your password", text: Binding(get: { model.password }, set: model.updatePassword))
 				.textContentType(.password)
 				.focused($focusedField, equals: .password)

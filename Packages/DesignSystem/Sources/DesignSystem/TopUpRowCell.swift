@@ -38,7 +38,14 @@ public struct TopUpRowCell: View {
 					chevron
 				}
 				.padding(.horizontal, Spacing.medium)
-				.frame(height: rowHeight)
+				// `minHeight`, not a fixed `height`: a hard-fixed frame around
+				// `lineLimit(1)` text is exactly the clipping risk the
+				// accessibility skill's "no fixed-height containers around
+				// text" rule and `performAccessibilityAudit()`'s Dynamic Type
+				// check both flag (PLAN.md S8.2) — this keeps the row's usual
+				// compact height as a floor while letting a longer title grow
+				// the row rather than clip.
+				.frame(minHeight: rowHeight)
 			}
 		}
 		.background(Theme.ColorRole.cellSurface.color, in: RoundedRectangle(cornerRadius: 14))

@@ -13,7 +13,17 @@ struct FeedSectionHeader: View {
 		Text(verbatim: title)
 			.font(Theme.TextStyle.sectionHeader.font)
 			.foregroundStyle(Theme.ColorRole.primaryText.color)
-			.lineLimit(1)
+			// No `lineLimit`: a single-line cap is exactly the "won't respond
+			// to Dynamic Type" shape `performAccessibilityAudit()` flagged
+			// here (PLAN.md S8.2) — server-driven titles are short in
+			// practice, but forcing one line still fights the accessibility
+			// skill's "text wraps rather than truncates" rule at large sizes.
+			// S8.2-FOLLOWUP: removing the cap didn't clear the audit's
+			// "Dynamic Type font sizes are partially unsupported" finding
+			// for this element; the font itself is already the
+			// Dynamic-Type-aware `Theme.TextStyle.sectionHeader` (semantic
+			// `.title3`, never a fixed point size) — needs Accessibility
+			// Inspector to see what the audit still considers unresponsive.
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.padding(.horizontal, Spacing.medium)
 			.accessibilityAddTraits(.isHeader)

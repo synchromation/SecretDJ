@@ -5,13 +5,21 @@
 # pass?" — Claude Code hooks, developers, and CI should all call this
 # script rather than invoking xcodebuild with their own flags.
 #
-# Usage: Scripts/verify.sh [build|test] [suite-or-test ...]
+# Usage: Scripts/verify.sh [build|test|uitest] [suite-or-test ...]
 #   Scripts/verify.sh                       # build + full test suite (default)
 #   Scripts/verify.sh build                 # build only
 #   Scripts/verify.sh test CounterModelTests   # only the named suite(s) — the
 #       fast loop for TDD red/green checks. Bare names are resolved inside
 #       the consumer unit test target; pass Target/Suite/testName for
 #       anything else, e.g. SecretDJKioskTests/Suite for the kiosk app.
+#   Scripts/verify.sh uitest                # the accessibility-audit XCUITest
+#       targets (PLAN.md S8.2) — a separate action from the default "test",
+#       deliberately: these launch a real app process per test and are much
+#       slower, so the Stop hook (which runs "test" on every turn) never
+#       pays that cost. Runs SecretDJUITests against the newest iPhone
+#       simulator and SecretDJKioskUITests (when its shared scheme exists)
+#       against the newest iPad simulator, exactly like "test"'s own
+#       consumer/kiosk split.
 #
 # A second app scheme "<project>Kiosk" is picked up automatically when its
 # shared scheme file exists, and runs the same action against the newest
@@ -39,6 +47,9 @@ TEST_TARGET="${APP_NAME}Tests"
 KIOSK_SCHEME="${APP_NAME}Kiosk"
 KIOSK_TEST_TARGET="${APP_NAME}KioskTests"
 KIOSK_SCHEME_FILE="$PROJECT/xcshareddata/xcschemes/${KIOSK_SCHEME}.xcscheme"
+UITEST_SCHEME="${APP_NAME}UITests"
+KIOSK_UITEST_SCHEME="${APP_NAME}KioskUITests"
+KIOSK_UITEST_SCHEME_FILE="$PROJECT/xcshareddata/xcschemes/${KIOSK_UITEST_SCHEME}.xcscheme"
 DERIVED_DATA="$PROJECT_DIR/build/DerivedData"
 ACTION="${1:-test}"
 [ $# -gt 0 ] && shift
@@ -46,6 +57,9 @@ FILTERS_GIVEN=$#
 
 HAS_KIOSK=0
 [ -f "$KIOSK_SCHEME_FILE" ] && HAS_KIOSK=1
+
+HAS_KIOSK_UITEST=0
+[ -f "$KIOSK_UITEST_SCHEME_FILE" ] && HAS_KIOSK_UITEST=1
 
 # Route each filter to the scheme whose test target it addresses: anything
 # qualified with the kiosk test target resolves against the kiosk scheme;
@@ -99,6 +113,33 @@ if not candidates:
 print(sorted(candidates)[-1][1])
 ' "$1"
 }
+
+# "uitest" is a distinct action from "build"/"test" above, not another
+# xcodebuild ACTION value — it always runs xcodebuild's own "test" action,
+# just against the UI-test schemes instead. Handled and exited here, ahead
+# of the package loop and the build/test scheme logic below, neither of
+# which apply to it.
+if [ "$ACTION" = "uitest" ]; then
+	UDID="$(destination_id iPhone)" || exit 1
+	xcodebuild test \
+		-project "$PROJECT" \
+		-scheme "$UITEST_SCHEME" \
+		-destination "id=$UDID" \
+		-derivedDataPath "$DERIVED_DATA" \
+		-quiet || exit 1
+
+	if [ "$HAS_KIOSK_UITEST" -eq 1 ]; then
+		UDID="$(destination_id iPad)" || exit 1
+		xcodebuild test \
+			-project "$PROJECT" \
+			-scheme "$KIOSK_UITEST_SCHEME" \
+			-destination "id=$UDID" \
+			-derivedDataPath "$DERIVED_DATA" \
+			-quiet || exit 1
+	fi
+
+	exit 0
+fi
 
 # Package logic tests run natively on macOS — the fastest part of the loop.
 # They are part of every full test run; targeted runs skip them.

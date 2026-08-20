@@ -60,6 +60,13 @@ struct KioskSignInView: View {
 				.frame(minHeight: 64)
 				.background(Theme.ColorRole.cellSurface.color, in: .rect(cornerRadius: 12))
 
+			// S8.2-FOLLOWUP: performAccessibilityAudit() flags this field's
+			// text as possibly clipped at larger Dynamic Type sizes
+			// (SwiftUI.UIKitTextField) — mirrors the consumer app's own
+			// LoginView password field (`SecretDJ/Features/Login/LoginView.swift`'s
+			// own `// S8.2-FOLLOWUP:` comment); the plain TextField above
+			// shares identical layout and passes clean, so this looks like
+			// SecureField's own UIKit-bridged implementation, not app layout.
 			SecureField("Venue password", text: Binding(get: { model.password }, set: model.updatePassword))
 				.textContentType(.password)
 				.focused($focusedField, equals: .password)

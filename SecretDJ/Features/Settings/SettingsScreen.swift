@@ -183,6 +183,13 @@ struct SettingsScreen: View {
 
 	private var accountActionsSection: some View {
 		VStack(spacing: Spacing.small) {
+			// S8.2-FOLLOWUP: performAccessibilityAudit() reports "Contrast
+			// failed" for this button. `.secondary`'s accent-on-clear text
+			// computes to ~6.75:1 against this screen's background by the
+			// plain WCAG formula — past 4.5:1 — so this doesn't trace to an
+			// obviously wrong color choice; needs Accessibility Inspector to
+			// find what the audit is actually sampling before changing
+			// anything here.
 			Button("Sign Out") {
 				isConfirmingSignOut = true
 			}
