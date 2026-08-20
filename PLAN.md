@@ -535,10 +535,18 @@ Prereqs: S8.
 - [ ] S9.2 Store assets: icons, screenshots (five languages), privacy
       nutrition labels matching the observability/privacy reality,
       App Store metadata parity for both apps.
+      — in progress: the document halves are drafted for review in
+      Store/ (privacy-labels.md from the actual code with per-claim
+      citations; metadata drafts for both apps in five languages within
+      Apple's field limits). Remaining: real icons, screenshots,
+      product review, App Store Connect entry.
 - [ ] S9.3 TestFlight: internal builds of both apps, venue pilot for the
       kiosk (R1 verified on real venue hardware).
-- [ ] S9.4 Cutover plan: account continuity verified (existing users sign
+- [x] S9.4 Cutover plan: account continuity verified (existing users sign
       in against unchanged backend), rollback story, phased release.
+      (Drafted in Store/cutover-plan.md — continuity already
+      production-verified by the S4.2 smoke; includes the kiosk fleet
+      rollout and the launch-gate checklist. Product review required.)
 
 ---
 
@@ -651,7 +659,7 @@ what it blocks.
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
 | S8 Cross-cutting | in progress (S8.1/S8.2/S8.5/S8.6 done, S8.3 redaction half done; S8.4 hardware-blocked; vendor confirm awaits product) |
-| S9 Release readiness | in progress (S9.1 done) |
+| S9 Release readiness | in progress (S9.1, S9.4 done; S9.2 drafted; S9.3 awaits humans) |
 
 Keep this table in step with the checkboxes; it exists so a resuming
 session can orient in one glance.

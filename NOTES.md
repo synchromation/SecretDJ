@@ -814,3 +814,22 @@ work happens; every commit includes this file's delta.
   sign-in anchor; three structural ones remain recorded in PLAN.md
   (FB SDK signature; UIScreen.main at composition scope x2). Full
   verify green.
+- S9.2 (document halves) + S9.4 done (sonnet subagent, twice
+  sleep-interrupted and resumed; cutover plan finished directly):
+  Store/ now holds privacy-labels.md (questionnaire answers for both
+  apps derived from code with a citing file per claim — consumer:
+  name/email/photos/user id/device id/precise location/purchases/
+  diagnostics/usage; kiosk: venue credentials and diagnostics only,
+  no ATT/FB/purchases; ATT rows conditional on the Facebook client
+  token; open items listed rather than guessed), metadata drafts for
+  both apps in five languages within Apple's field limits (German
+  subtitles needed deliberate abbreviation per the adaptation sheet),
+  and cutover-plan.md: updates-in-place per D14, one-time re-sign-in
+  per D6 with the rationale, phased-release rollback levers (pause +
+  fix-forward + server-side mitigation, since iOS offers no true
+  rollback), the venue-by-venue kiosk rollout procedure incl. the new
+  staff-reset gesture briefing, and the launch-gate checklist tying
+  together every open human item. All drafts marked for product
+  review. The automatable surface of the entire plan is now
+  exhausted: remaining work is exclusively human/device/backend-gated
+  and enumerated in the cutover plan's launch gates.
