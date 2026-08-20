@@ -16,6 +16,9 @@ import SwiftUI
 /// S7.3+ pushes from there) to read.
 struct KioskSkinGateView: View {
 	let sessionStore: SessionStore
+	/// Threaded through to ``KioskHomeView`` once the skin is ready.
+	let apiClient: APIClient
+	let venueId: String
 	let previewPlayer: PreviewPlayerModel
 	let observability: ObservabilityPipeline
 
@@ -30,6 +33,8 @@ struct KioskSkinGateView: View {
 		observability: ObservabilityPipeline,
 	) {
 		self.sessionStore = sessionStore
+		self.apiClient = apiClient
+		self.venueId = venueId
 		self.previewPlayer = previewPlayer
 		self.observability = observability
 		_skinModel = State(initialValue: SkinModel(
@@ -42,10 +47,15 @@ struct KioskSkinGateView: View {
 	}
 
 	/// Test/preview-only entry point — injects the ``SkinModel`` directly
-	/// rather than building production dependencies from an `APIClient`.
+	/// rather than building production dependencies from an `APIClient`
+	/// (``apiClient`` still takes a harmless ``PreviewAPIClient/broken()``
+	/// default, since ``KioskHomeView`` needs a concrete one regardless of
+	/// whether this preview ever taps into a real feed).
 	init(
 		sessionStore: SessionStore,
 		skinModel: SkinModel,
+		apiClient: APIClient = PreviewAPIClient.broken(),
+		venueId: String = "v1",
 		previewPlayer: PreviewPlayerModel = PreviewPlayerModel(
 			downloading: InMemoryPreviewDownloading(),
 			playerFactory: InMemoryAudioPlayerFactory(),
@@ -53,6 +63,8 @@ struct KioskSkinGateView: View {
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.sessionStore = sessionStore
+		self.apiClient = apiClient
+		self.venueId = venueId
 		self.previewPlayer = previewPlayer
 		self.observability = observability
 		_skinModel = State(initialValue: skinModel)
@@ -81,7 +93,13 @@ struct KioskSkinGateView: View {
 				previewPlayer: previewPlayer,
 				observability: observability,
 			) {
-				KioskHomeView(sessionStore: sessionStore)
+				KioskHomeView(
+					sessionStore: sessionStore,
+					apiClient: apiClient,
+					venueId: venueId,
+					previewPlayer: previewPlayer,
+					observability: observability,
+				)
 			}
 			.environment(\.kioskSkin, skin)
 		}

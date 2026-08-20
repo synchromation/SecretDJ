@@ -669,3 +669,21 @@ work happens; every commit includes this file's delta.
   key. Watch item: IdleTimerModelTests' attract-breadcrumb test failed
   ONCE with zero diagnostics and passed both full reruns — if it
   recurs in S7.7/S8 runs, investigate rather than retry.
+- S7.4 + S7.5 done (TDD, sonnet subagent; resumed once): the kiosk
+  home replaces the placeholder — a fixed now-playing header
+  (KioskNowPlayingModel polling playhistory at the legacy 20s;
+  intermission renders the \n\n-split two-line message with artwork
+  suppressed via a pure TDD'd KioskNowPlayingDisplay; venue name
+  resolved into the session) above SharedFeatures'
+  MusicSelectionScreen reused wholesale with reloadInPlace injected
+  (hash changes absorbed, never a toast). Song taps port legacy's
+  kiosk write path exactly (cited): KioskTuneInScreen wraps the shared
+  TuneIn — unmetered requesting for venue accounts, no out-of-credits
+  funnel (unreachable), moderation stays server-action-gated per D13.
+  Kiosk-local thin adapters over the shared protocols (the GPS-fix
+  rule deliberately dropped as a phone-only workaround). Sixteen
+  localized kiosk keys reusing consumer translations verbatim where
+  identical. ALSO: the S7.3 watch-item flake is solved — the test
+  discarded its model (weak-self clock closures deallocated before
+  firing); both discard sites fixed, root-caused via xcresulttool.
+  Full verify green.

@@ -91,6 +91,22 @@ public final class SessionStore {
 		snapshotStore.save(SessionSnapshot(user: updated, venue: venue))
 	}
 
+	/// Updates the signed-in venue's display name, keeping its id — mirrors
+	/// ``updateScreenName(_:)``'s shape but for ``venue`` instead of ``user``.
+	/// A no-op when not signed in, or signed in with no venue checked into
+	/// (a consumer session, or a kiosk session before its first feed
+	/// response resolves the real name — the kiosk's own sign-in response
+	/// carries only the venue id, `SessionStore+KioskAuthenticatedSession`'s
+	/// doc comment; PLAN.md S7.4 folds the real name in once a feed's
+	/// `hiddenVenueDetails` section supplies it).
+	public func updateVenueName(_ name: String) {
+		guard let user, let venue else { return }
+
+		let updated = SessionVenue(venueId: venue.venueId, name: name)
+		self.venue = updated
+		snapshotStore.save(SessionSnapshot(user: user, venue: updated))
+	}
+
 	/// Clears the session and wipes both persistence stores.
 	public func signOut() {
 		user = nil

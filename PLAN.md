@@ -446,12 +446,12 @@ landscape with attract mode; shares S1–S3 + SharedFeatures wholesale.
       playing** (playback signal from the shared preview player) and
       resumed on stop, `isIdleTimerDisabled` policy (in-app setting;
       document venue guided-access/auto-lock ops — R1 note).
-- [ ] S7.4 Kiosk feeds: now playing (including intermission as a
+- [x] S7.4 Kiosk feeds: now playing (including intermission as a
       two-line message vehicle — title split on `\n\n`, artwork
       suppressed) and the jukebox digest, which deliberately ignores
       hash changes (reload-in-place, unlike the phone's jukebox-changed
       error — LEGACY.md kiosk feed branches), at kiosk-scale layouts.
-- [ ] S7.5 Kiosk controls at legacy parity: change-mood/atmosphere tiles
+- [x] S7.5 Kiosk controls at legacy parity: change-mood/atmosphere tiles
       via the shared S3.3 action path. (The legacy kiosk has **no**
       queue view, skip, blacklist, or request moderation — those are
       consumer-app `machinecontrol` affordances, S6.3. Adding kiosk-side
@@ -599,7 +599,7 @@ what it blocks.
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
-| S7 Kiosk app | in progress (S7.1–S7.3 done) |
+| S7 Kiosk app | in progress (S7.1–S7.5 done; S7.6, S7.7 remain) |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
 

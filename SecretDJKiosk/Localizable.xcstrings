@@ -1,528 +1,992 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Cancel" : {
-      "comment" : "Cancel button on the staff reset confirmation dialog.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Abbrechen"
+  "sourceLanguage": "en",
+  "strings": {
+    "Cancel": {
+      "comment": "Cancel button on the staff reset confirmation dialog.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Abbrechen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cancelar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cancelar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Annuler"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Annuler"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Annuleren"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Annuleren"
           }
         }
       }
     },
-    "Downloading this venue's look" : {
-      "comment" : "Accessibility label for the kiosk's skin-download progress bar.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Design dieses Ortes wird heruntergeladen"
+    "Check the venue's connection and try again.": {
+      "comment": "Body shown on the kiosk's jukebox wall (or a jukebox's own song list) when the device has no internet connection.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prüfe die Verbindung des Orts und versuche es erneut."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Descargando el diseño de este lugar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Comprueba la conexión del local e inténtalo de nuevo."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Téléchargement de l'apparence de ce lieu"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vérifie la connexion du lieu et réessaie."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vormgeving van deze locatie wordt gedownload"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Controleer de verbinding van de locatie en probeer het opnieuw."
           }
         }
       }
     },
-    "Getting ready" : {
-      "comment" : "Heading shown while the kiosk downloads its venue's look after signing in.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Wird vorbereitet"
+    "Downloading this venue's look": {
+      "comment": "Accessibility label for the kiosk's skin-download progress bar.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Design dieses Ortes wird heruntergeladen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Preparando todo"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Descargando el diseño de este lugar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Préparation en cours"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Téléchargement de l'apparence de ce lieu"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Alles wordt klaargezet"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vormgeving van deze locatie wordt gedownload"
           }
         }
       }
     },
-    "Reset Kiosk" : {
-      "comment" : "Destructive confirm button on the staff reset dialog; signs the venue out and clears kiosk caches.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kiosk zurücksetzen"
+    "Getting ready": {
+      "comment": "Heading shown while the kiosk downloads its venue's look after signing in.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird vorbereitet"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Reiniciar quiosco"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparando todo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Réinitialiser le kiosque"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Préparation en cours"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kiosk resetten"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Alles wordt klaargezet"
           }
         }
       }
     },
-    "Reset This Kiosk?" : {
-      "comment" : "Title of the staff-only confirmation dialog reached by the hidden five-tap reset gesture.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Diesen Kiosk zurücksetzen?"
+    "Like this song": {
+      "comment": "Accessible name of the kiosk TuneIn screen's like/buzz toggle button.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diesen Song mögen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "¿Reiniciar este quiosco?"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Me gusta esta canción"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Réinitialiser ce kiosque ?"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "J'aime cette chanson"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Deze kiosk resetten?"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dit nummer leuk vinden"
           }
         }
       }
     },
-    "Setup didn't finish" : {
-      "comment" : "Title shown when the kiosk can't download its venue skin after signing in.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Einrichtung nicht abgeschlossen"
+    "Never Play This": {
+      "comment": "Button, shown only to entitled users, that stops a song from ever playing on the jukebox again. Never shown on a kiosk venue account (D13).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nie mehr abspielen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "La configuración no se completó"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No reproducir nunca"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "La configuration n'a pas abouti"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ne plus jamais jouer"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Instellen niet gelukt"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nooit meer afspelen"
           }
         }
       }
     },
-    "SIGN IN" : {
-      "comment" : "Primary button on the kiosk's venue sign-in screen.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ANMELDEN"
+    "Not Playing": {
+      "comment": "Accessibility value of the kiosk TuneIn screen's preview button while no preview is playing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird nicht abgespielt"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "INICIAR SESIÓN"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "No se está reproduciendo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "SE CONNECTER"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Pas en cours de lecture"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "INLOGGEN"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wordt niet afgespeeld"
           }
         }
       }
     },
-    "SIGNING IN..." : {
-      "comment" : "Sign-in button label while the kiosk's venue sign-in request is in flight.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ANMELDUNG..."
+    "Nothing Here Yet": {
+      "comment": "Title shown on the kiosk's jukebox wall (or a jukebox's own song list) when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier gibt's noch nichts"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "INICIANDO SESIÓN..."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Todavía no hay nada aquí"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "CONNEXION..."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rien ici pour l'instant"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "BEZIG MET INLOGGEN..."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hier is nog niets"
           }
         }
       }
     },
-    "Sorry, this account isn't set up for a venue.\n\nPlease check your venue sign-in details and try again." : {
-      "comment" : "Error shown when the kiosk's credentials authenticate but aren't pinned to a venue (legacy: wrong type of signin).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, dieses Konto ist nicht für einen Ort eingerichtet.\n\nBitte überprüfe deine Ortsanmeldedaten und versuche es erneut."
+    "Nothing playing yet": {
+      "comment": "Shown in the kiosk's now-playing header before this venue's first song of the session.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gerade läuft nichts"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Lo sentimos, esta cuenta no está configurada para un lugar.\n\nComprueba los datos de inicio de sesión del lugar e inténtalo de nuevo."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nada sonando todavía"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Désolé, ce compte n'est pas configuré pour un lieu.\n\nVérifie tes identifiants de connexion du lieu et réessaie."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rien ne joue pour l'instant"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, dit account is niet ingesteld voor een locatie.\n\nControleer je locatiegegevens en probeer het opnieuw."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er speelt nog niets"
           }
         }
       }
     },
-    "Sorry, we couldn't download this venue's look. Check the connection and try again." : {
-      "comment" : "Body text under the kiosk skin-download failure title; a retry button follows.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, wir konnten das Design dieses Ortes nicht herunterladen. Bitte prüfe die Verbindung und versuche es erneut."
+    "Play on the Jukebox": {
+      "comment": "Button that requests the current song be played on the venue's jukebox, from the kiosk.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Auf der Jukebox abspielen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Lo sentimos, no hemos podido descargar el diseño de este lugar. Comprueba la conexión e inténtalo de nuevo."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproducir en la jukebox"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Désolé, nous n'avons pas pu télécharger l'apparence de ce lieu. Vérifie la connexion et réessaie."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Jouer sur le jukebox"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, we konden de vormgeving van deze locatie niet downloaden. Controleer de verbinding en probeer het opnieuw."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afspelen op de jukebox"
           }
         }
       }
     },
-    "Sorry, we couldn't sign you in.\n\nPlease check that you have a good connection to your cellular data or WiFi network." : {
-      "comment" : "Error shown when kiosk venue sign-in fails before reaching the server (offline, timeout).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, wir konnten dich nicht anmelden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+    "Playing": {
+      "comment": "Accessibility value of the kiosk TuneIn screen's preview button while the preview is playing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wird abgespielt"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Lo sentimos, no hemos podido iniciar tu sesión.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reproduciendo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Désolé, nous n'avons pas pu te connecter.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lecture en cours"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sorry, we konden je niet inloggen.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wordt afgespeeld"
           }
         }
       }
     },
-    "Tap to Continue" : {
-      "comment" : "Visible hint and VoiceOver label on the kiosk's full-screen attract-mode screensaver; tapping anywhere dismisses it.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tippen, um fortzufahren"
+    "Reset Kiosk": {
+      "comment": "Destructive confirm button on the staff reset dialog; signs the venue out and clears kiosk caches.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kiosk zurücksetzen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Toca para continuar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Reiniciar quiosco"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Touche pour continuer"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réinitialiser le kiosque"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tik om door te gaan"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Kiosk resetten"
           }
         }
       }
     },
-    "This signs the venue out and clears everything cached on this device. You'll need to sign in again." : {
-      "comment" : "Body text of the staff reset confirmation dialog, explaining what the reset does.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dadurch wird der Ort abgemeldet und alle zwischengespeicherten Daten auf diesem Gerät gelöscht. Du musst dich danach erneut anmelden."
+    "Reset This Kiosk?": {
+      "comment": "Title of the staff-only confirmation dialog reached by the hidden five-tap reset gesture.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Diesen Kiosk zurücksetzen?"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Esto cierra la sesión del lugar y borra todo lo almacenado en este dispositivo. Tendrás que iniciar sesión de nuevo."
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "¿Reiniciar este quiosco?"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Cela déconnecte le lieu et efface tout ce qui est stocké sur cet appareil. Tu devras te reconnecter."
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réinitialiser ce kiosque ?"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Hierdoor wordt de locatie uitgelogd en wordt alles wat op dit apparaat is opgeslagen, gewist. Je moet opnieuw inloggen."
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze kiosk resetten?"
           }
         }
       }
     },
-    "Try Again" : {
-      "comment" : "Retry button on the kiosk skin-download failure screen.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Erneut versuchen"
+    "SIGN IN": {
+      "comment": "Primary button on the kiosk's venue sign-in screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ANMELDEN"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Inténtalo de nuevo"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "INICIAR SESIÓN"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Réessayer"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "SE CONNECTER"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Opnieuw proberen"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "INLOGGEN"
           }
         }
       }
     },
-    "Venue password" : {
-      "comment" : "Placeholder for the password field on the kiosk's venue sign-in screen.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Passwort des Ortes"
+    "SIGNING IN...": {
+      "comment": "Sign-in button label while the kiosk's venue sign-in request is in flight.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "ANMELDUNG..."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Contraseña del lugar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "INICIANDO SESIÓN..."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Mot de passe du lieu"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "CONNEXION..."
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Wachtwoord van de locatie"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "BEZIG MET INLOGGEN..."
           }
         }
       }
     },
-    "Venue screen name" : {
-      "comment" : "Placeholder for the screen name field on the kiosk's venue sign-in screen.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Benutzername des Ortes"
+    "Setup didn't finish": {
+      "comment": "Title shown when the kiosk can't download its venue skin after signing in.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Einrichtung nicht abgeschlossen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nombre de usuario del lugar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La configuración no se completó"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Nom d'utilisateur du lieu"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "La configuration n'a pas abouti"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Gebruikersnaam van de locatie"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Instellen niet gelukt"
           }
         }
       }
     },
-    "Venue Sign In" : {
-      "comment" : "Title on the kiosk's venue sign-in screen.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ortsanmeldung"
+    "Skip": {
+      "comment": "Button, shown only to entitled users, that skips the current song on the jukebox. Never shown on a kiosk venue account (D13).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Überspringen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Inicio de sesión del lugar"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Saltar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Connexion du lieu"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Passer"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Locatie-aanmelding"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Overslaan"
           }
         }
       }
     },
-    "Welcome" : {
-      "comment" : "Placeholder kiosk home screen heading, shown once a venue has signed in.",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Willkommen"
+    "Something Went Wrong": {
+      "comment": "Title shown on the kiosk's jukebox wall (or a jukebox's own song list) when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Etwas ist schiefgelaufen"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bienvenido"
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Algo salió mal"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bienvenue"
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Un problème est survenu"
           }
         },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Welkom"
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Er ging iets mis"
+          }
+        }
+      }
+    },
+    "Song Preview": {
+      "comment": "Accessible name of the kiosk TuneIn screen's play/stop 30-second preview button.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Songvorschau"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vista previa de la canción"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aperçu de la chanson"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummervoorbeeld"
+          }
+        }
+      }
+    },
+    "Sorry, this account isn't set up for a venue.\n\nPlease check your venue sign-in details and try again.": {
+      "comment": "Error shown when the kiosk's credentials authenticate but aren't pinned to a venue (legacy: wrong type of signin).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dieses Konto ist nicht für einen Ort eingerichtet.\n\nBitte überprüfe deine Ortsanmeldedaten und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, esta cuenta no está configurada para un lugar.\n\nComprueba los datos de inicio de sesión del lugar e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, ce compte n'est pas configuré pour un lieu.\n\nVérifie tes identifiants de connexion du lieu et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, dit account is niet ingesteld voor een locatie.\n\nControleer je locatiegegevens en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't download this venue's look. Check the connection and try again.": {
+      "comment": "Body text under the kiosk skin-download failure title; a retry button follows.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten das Design dieses Ortes nicht herunterladen. Bitte prüfe die Verbindung und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido descargar el diseño de este lugar. Comprueba la conexión e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu télécharger l'apparence de ce lieu. Vérifie la connexion et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden de vormgeving van deze locatie niet downloaden. Controleer de verbinding en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't load the music.\n\nPlease check the venue's connection and try again.": {
+      "comment": "Body shown on the kiosk's jukebox wall (or a jukebox's own song list) when it fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten die Musik nicht laden.\n\nBitte prüfe die Verbindung des Orts und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar la música.\n\nComprueba la conexión del local e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger la musique.\n\nVérifie la connexion du lieu et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden de muziek niet laden.\n\nControleer de verbinding van de locatie en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't play that preview. Please try again.": {
+      "comment": "Toast shown when a song preview fails to download or decode, on the kiosk.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Entschuldigung, wir konnten diese Vorschau nicht abspielen. Bitte versuch es noch mal."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido reproducir esa vista previa. Inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu lire cet aperçu. Réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden dat voorbeeld niet afspelen. Probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't sign you in.\n\nPlease check that you have a good connection to your cellular data or WiFi network.": {
+      "comment": "Error shown when kiosk venue sign-in fails before reaching the server (offline, timeout).",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten dich nicht anmelden.\n\nBitte prüfe, ob du eine gute Verbindung zu deinen mobilen Daten oder deinem WLAN hast."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido iniciar tu sesión.\n\nComprueba que tienes una buena conexión a tus datos móviles o a la red WiFi."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu te connecter.\n\nVérifie que tu as une bonne connexion à tes données mobiles ou à ton réseau WiFi."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden je niet inloggen.\n\nControleer of je een goede verbinding hebt met je mobiele data of wifi-netwerk."
+          }
+        }
+      }
+    },
+    "Tap to Continue": {
+      "comment": "Visible hint and VoiceOver label on the kiosk's full-screen attract-mode screensaver; tapping anywhere dismisses it.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tippen, um fortzufahren"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Toca para continuar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Touche pour continuer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tik om door te gaan"
+          }
+        }
+      }
+    },
+    "This signs the venue out and clears everything cached on this device. You'll need to sign in again.": {
+      "comment": "Body text of the staff reset confirmation dialog, explaining what the reset does.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dadurch wird der Ort abgemeldet und alle zwischengespeicherten Daten auf diesem Gerät gelöscht. Du musst dich danach erneut anmelden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Esto cierra la sesión del lugar y borra todo lo almacenado en este dispositivo. Tendrás que iniciar sesión de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cela déconnecte le lieu et efface tout ce qui est stocké sur cet appareil. Tu devras te reconnecter."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Hierdoor wordt de locatie uitgelogd en wordt alles wat op dit apparaat is opgeslagen, gewist. Je moet opnieuw inloggen."
+          }
+        }
+      }
+    },
+    "This venue hasn't got anything to show yet — check back soon.": {
+      "comment": "Body shown on the kiosk's jukebox wall (or a jukebox's own song list) when it has no content yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dieser Ort hat noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este local todavía no tiene nada que mostrar — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ce lieu n'a encore rien à montrer — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze locatie heeft nog niets te laten zien — kom snel nog eens terug."
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "comment": "Retry button on the kiosk skin-download failure screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Erneut versuchen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inténtalo de nuevo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Réessayer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Opnieuw proberen"
+          }
+        }
+      }
+    },
+    "Tune In": {
+      "comment": "Navigation title of the kiosk's song request (TuneIn) screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Einschalten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sintonizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "À l'écoute"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Afstemmen"
+          }
+        }
+      }
+    },
+    "Venue Sign In": {
+      "comment": "Title on the kiosk's venue sign-in screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ortsanmeldung"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Inicio de sesión del lugar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Connexion du lieu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Locatie-aanmelding"
+          }
+        }
+      }
+    },
+    "Venue password": {
+      "comment": "Placeholder for the password field on the kiosk's venue sign-in screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Passwort des Ortes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Contraseña del lugar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Mot de passe du lieu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Wachtwoord van de locatie"
+          }
+        }
+      }
+    },
+    "Venue screen name": {
+      "comment": "Placeholder for the screen name field on the kiosk's venue sign-in screen.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Benutzername des Ortes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nombre de usuario del lugar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nom d'utilisateur du lieu"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Gebruikersnaam van de locatie"
+          }
+        }
+      }
+    },
+    "Welcome": {
+      "comment": "Placeholder kiosk home screen heading, shown once a venue has signed in.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Willkommen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bienvenido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Bienvenue"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Welkom"
+          }
+        }
+      }
+    },
+    "You're Offline": {
+      "comment": "Title shown on the kiosk's jukebox wall (or a jukebox's own song list) when the device has no internet connection.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Du bist offline"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Estás sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Tu es hors ligne"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Je bent offline"
           }
         }
       }
     }
   },
-  "version" : "1.1"
+  "version": "1.1"
 }

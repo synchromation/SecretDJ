@@ -52,7 +52,15 @@ struct AttractIdleContainerView<Content: View>: View {
 			playerFactory: InMemoryAudioPlayerFactory(),
 		),
 	) {
-		KioskHomeView(sessionStore: PreviewKioskSessionStore.signedIn())
+		KioskHomeView(
+			sessionStore: PreviewKioskSessionStore.signedIn(),
+			apiClient: PreviewAPIClient.broken(),
+			venueId: "v1",
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
+		)
 	}
 }
 
@@ -64,7 +72,15 @@ struct AttractIdleContainerView<Content: View>: View {
 			playerFactory: InMemoryAudioPlayerFactory(),
 		),
 	) {
-		KioskHomeView(sessionStore: PreviewKioskSessionStore.signedIn())
+		KioskHomeView(
+			sessionStore: PreviewKioskSessionStore.signedIn(),
+			apiClient: PreviewAPIClient.broken(),
+			venueId: "v1",
+			previewPlayer: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
+		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)
 }

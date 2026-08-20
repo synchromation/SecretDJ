@@ -55,7 +55,13 @@ enum IdleTimerModelTests {
 		@Test func `leaves an interaction breadcrumb`() throws {
 			let recorder = RecordingDestination()
 			let clock = ManualIdleTimerClock()
-			_ = try IdleTimerModel(
+			// Kept alive as `model`, not discarded with `_ =` — the clock's
+			// scheduled closure only captures `self` weakly (this type's own
+			// doc comment), so a discarded instance would already be
+			// deallocated by the time `clock.fire` below runs its action,
+			// silently no-op-ing through the `self?` in `attractTimerFired()`
+			// and leaving `recorder` empty for the wrong reason.
+			let model = try IdleTimerModel(
 				config: config(),
 				clock: clock,
 				observability: ObservabilityPipeline(destinations: [recorder]),
@@ -63,6 +69,7 @@ enum IdleTimerModelTests {
 
 			clock.fire(after: .seconds(20))
 
+			#expect(model.isShowingAttract)
 			#expect(recorder.breadcrumbs.contains(.interaction(description: "attractShown")))
 		}
 	}
@@ -90,7 +97,11 @@ enum IdleTimerModelTests {
 		@Test func `is not breadcrumbed`() throws {
 			let recorder = RecordingDestination()
 			let clock = ManualIdleTimerClock()
-			_ = try IdleTimerModel(
+			// Kept alive as `model` — see the sibling `leaves an interaction
+			// breadcrumb` test's own comment on why `_ =` here would let this
+			// assertion pass for the wrong reason (a deallocated model whose
+			// weakly captured `self` silently no-ops on fire).
+			let model = try IdleTimerModel(
 				config: config(),
 				clock: clock,
 				observability: ObservabilityPipeline(destinations: [recorder]),
@@ -98,6 +109,7 @@ enum IdleTimerModelTests {
 
 			clock.fire(after: .seconds(10))
 
+			#expect(model.idleTimeoutFireCount == 1)
 			#expect(recorder.breadcrumbs.isEmpty)
 		}
 	}

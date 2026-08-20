@@ -2,14 +2,18 @@ import SwiftUI
 
 extension View {
 	/// Presents `queue`'s current toast as a bottom overlay, VoiceOver-
-	/// announcing each new toast and dismissing it early on tap.
-	public func toastPresenter(queue: ToastQueue) -> some View {
-		modifier(ToastPresenterModifier(queue: queue))
+	/// announcing each new toast and dismissing it early on tap. `appearance`
+	/// defaults to ``ToastAppearance/themed``; a caller with venue-skinned
+	/// chrome to honor (the kiosk: PLAN.md S7.5) passes its own resolved
+	/// colors instead.
+	public func toastPresenter(queue: ToastQueue, appearance: ToastAppearance = .themed) -> some View {
+		modifier(ToastPresenterModifier(queue: queue, appearance: appearance))
 	}
 }
 
 private struct ToastPresenterModifier: ViewModifier {
 	let queue: ToastQueue
+	let appearance: ToastAppearance
 
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -17,7 +21,7 @@ private struct ToastPresenterModifier: ViewModifier {
 		content
 			.overlay(alignment: .bottom) {
 				if let current = queue.current {
-					ToastView(item: current)
+					ToastView(item: current, appearance: appearance)
 						.padding(.bottom, Spacing.large)
 						.transition(transition)
 						.onTapGesture { queue.dismissCurrent() }
