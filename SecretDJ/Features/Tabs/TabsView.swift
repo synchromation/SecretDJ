@@ -8,47 +8,45 @@ import SwiftUI
 
 /// The signed-in app's real shell (PLAN.md S5.2): three tabs — Places
 /// Nearby, Activity, Profile — each with its own `NavigationStack` driven by
-/// a ``TabRouter`` (LEGACY.md "Launch and root navigation"). Places Nearby
-/// hosts its real feed as of S6.1, Activity as of S6.5, Profile as of S6.6
-/// (its tab root is the signed-in user's own profile, ``profileScreen(personId:router:)``
-/// resolving the session's own id), and any tab's stack can push a real
-/// ``VenueScreen``/``NowPlayingScreen``/``ProfileScreen`` as of S6.2/S6.6, or
-/// ``SettingsScreen`` (S6.11) from the Profile tab's own gear toolbar
-/// button. Also composes the shell-wide ``DesignSystem/ToastQueue`` every S6
-/// feed screen's jukebox-changed toast (and later, other server-driven
-/// toasts) presents through.
+/// a ``TabRouter`` (LEGACY.md "Launch and root navigation"), its stack able
+/// to push a real ``VenueScreen``/``NowPlayingScreen``/``ProfileScreen`` or
+/// ``SettingsScreen``. Also composes the shell-wide ``DesignSystem/ToastQueue``
+/// every S6 feed screen's jukebox-changed toast presents through.
 struct TabsView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
 	let locationService: LocationService
-	/// The app-wide shared song-preview player (S6.4), threaded from the
-	/// composition root down to whichever `TuneInDestinationScreen` a tab's
-	/// stack pushes — see `SecretDJApp`'s own doc comment on why exactly one
-	/// instance exists.
+	/// The app-wide shared song-preview player (S6.4) — see `SecretDJApp`'s
+	/// own doc comment on why exactly one instance exists.
 	let previewPlayerModel: PreviewPlayerModel
 	/// Starts the ``AccountFlowView`` delete-account flow, forwarded to the
 	/// Profile tab — owned by `RootView`, see its doc comment for why.
 	let onDeleteAccount: () -> Void
-	/// StoreKit 2 purchases, threaded from the composition root
-	/// (`SecretDJApp`) so ``TopUpsScreen`` and its
-	/// ``TopUpTransactionListener`` share the exact same seam a real
-	/// purchase and a later restore/drain both need to agree about
-	/// unfinished transactions.
+	/// StoreKit 2 purchases, threaded from the composition root so
+	/// ``TopUpsScreen`` and ``TopUpTransactionListener`` share the exact
+	/// same seam a purchase and a later restore/drain both need to agree
+	/// about unfinished transactions.
 	let productPurchasing: any ProductPurchasing
 	/// Owns "Restore Purchases" and the startup unfinished-transaction
-	/// drain — started once at the composition root
-	/// (``TopUpTransactionListener``'s doc comment), never per screen
-	/// presentation.
+	/// drain — started once at the composition root, never per screen.
 	let topUpTransactionListener: TopUpTransactionListener
 	let observability: ObservabilityPipeline
 
 	@State private var model: TabsModel
 	/// Composed here, at the shell's root, so a toast raised by any tab's
-	/// screen (S6.1's jukebox-changed toast, and every S6 screen after it)
-	/// presents above the tab bar rather than getting clipped to one tab's
-	/// own stack.
+	/// screen presents above the tab bar rather than getting clipped to one
+	/// tab's own stack.
 	@State private var toastQueue = ToastQueue()
+	/// The in-app browser sheet ``OpenURLOutcomeHandling`` presents for this
+	/// shell's own `handle(outcome:router:venueId:)` path (S8.5 cross-check).
+	@State private var inAppBrowserURL: InAppBrowserURL?
 	@Environment(\.openURL) private var openURL
+	/// The ``PromotionEngaging`` seam every `.engagePromotion` outcome fires
+	/// through, built once here — unlike ``topUpTransactionListener`` it
+	/// carries no identity to protect.
+	private var promotionEngaging: any PromotionEngaging {
+		APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore)
+	}
 
 	init(
 		sessionStore: SessionStore,
@@ -92,6 +90,7 @@ struct TabsView: View {
 							sessionStore: sessionStore,
 						),
 						onShowActivity: { model.show(tab: .activity) },
+						promotionEngaging: promotionEngaging,
 						observability: observability,
 					)
 				}
@@ -111,6 +110,7 @@ struct TabsView: View {
 						locationService: locationService,
 						router: router,
 						toastQueue: toastQueue,
+						promotionEngaging: promotionEngaging,
 					)
 				}
 			}
@@ -122,6 +122,7 @@ struct TabsView: View {
 			}
 		}
 		.toastPresenter(queue: toastQueue)
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 	}
 
 	private var selectedTab: Binding<AppTab> {
@@ -129,13 +130,11 @@ struct TabsView: View {
 	}
 
 	/// Wraps `root` in `tab`'s own `NavigationStack`, bound to its
-	/// ``TabRouter``'s path — so a destination the router pushes (a routed
-	/// ``FeedActionOutcome``, once S6 wires a real feed screen's taps into
-	/// it) navigates within that tab alone, and the back button/swipe-back
-	/// pop mirrors straight back into the router. `root` receives that same
-	/// router, for a screen (Places Nearby, from S6.1 on) that routes its
-	/// own feed taps or a nested screen's taps (the venue map's annotations)
-	/// through it directly.
+	/// ``TabRouter``'s path — so a destination the router pushes navigates
+	/// within that tab alone, and the back button/swipe-back pop mirrors
+	/// straight back into the router. `root` receives that same router, for
+	/// a screen that routes its own feed taps or a nested screen's taps
+	/// (the venue map's annotations) through it directly.
 	private func tabStack(for tab: AppTab, @ViewBuilder root: (TabRouter) -> some View) -> some View {
 		let router = model.router(for: tab)
 
@@ -148,8 +147,7 @@ struct TabsView: View {
 	}
 
 	/// Every ``AppDestination`` case S6 has a real screen for; everything
-	/// else still falls through to ``ComingSoonScreen`` (PLAN.md S5.2's
-	/// exercisable-before-built navigation model).
+	/// else falls through to ``ComingSoonScreen`` (PLAN.md S5.2).
 	@ViewBuilder
 	private func destination(for destination: AppDestination, router: TabRouter) -> some View {
 		switch destination {
@@ -243,16 +241,15 @@ struct TabsView: View {
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
 			checkingIn: APIClientCheckingIn(client: apiClient, sessionStore: sessionStore),
 			observability: observability,
-			promotionEngaging: APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore),
+			promotionEngaging: promotionEngaging,
 			extraContentLoading: APIClientExtraContentLoading(client: apiClient, sessionStore: sessionStore),
 			onShowActivity: { model.show(tab: .activity) },
 		)
 	}
 
-	/// Shared by the Profile tab root (`personId` the session's own) and
-	/// ``AppDestination/person(personId:)`` — the gear toolbar button that
-	/// leads to ``settingsScreen`` only ever renders on the former
-	/// (``ProfileScreen``'s own doc comment).
+	/// Shared by the Profile tab root and ``AppDestination/person(personId:)``
+	/// — the gear toolbar button leading to ``settingsScreen`` only ever
+	/// renders on the former (``ProfileScreen``'s own doc comment).
 	private func profileScreen(personId: String, router: TabRouter) -> some View {
 		ProfileScreen(
 			personId: personId,
@@ -270,13 +267,13 @@ struct TabsView: View {
 			sessionStore: sessionStore,
 			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
 			onboardingService: APIClientOnboardingService(client: apiClient),
+			promotionEngaging: promotionEngaging,
 			observability: observability,
 		)
 	}
 
-	/// The Settings hub (S6.11), pushed from the Profile tab's own gear
-	/// toolbar button — relocates the sign-out/delete-account entry points
-	/// that used to live in `ProfileScreen`'s footer.
+	/// The Settings hub (S6.11), pushed from the Profile tab's gear toolbar
+	/// button — relocates the sign-out/delete-account entry points.
 	@ViewBuilder
 	private var settingsScreen: some View {
 		if let user = sessionStore.user, let credential = sessionStore.credential {
@@ -308,6 +305,7 @@ struct TabsView: View {
 			locationService: locationService,
 			router: router,
 			toastQueue: toastQueue,
+			promotionEngaging: promotionEngaging,
 		)
 	}
 
@@ -337,9 +335,8 @@ struct TabsView: View {
 	}
 
 	/// The legacy 50-song page size for `musicselection`/`musicdigest`
-	/// (LEGACY.md "Choosing music": "hash-checked pagination in 50-song
-	/// batches with server-adjustable batch size" — kept as a fixed client
-	/// default since the server-adjustable half of that isn't modeled yet).
+	/// (LEGACY.md "Choosing music" — server-adjustable batch size isn't
+	/// modeled yet, so this is a fixed client default).
 	private static let musicSelectionBatchSize = 50
 
 	private func path(for router: TabRouter) -> Binding<[AppDestination]> {
@@ -349,49 +346,55 @@ struct TabsView: View {
 	/// Every screen this shell composes with a venue-context `onOutcome`
 	/// (music search, songs-for-artist, music selection) forwards its
 	/// outcomes here rather than straight to `router.handle(outcome:venueId:)`
-	/// — ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
-	/// (S6.10), falling through to the router for everything else.
+	/// — the same hail-ride/openURL/social-app/engage-promotion chain every
+	/// S6 feed screen's own `handle(outcome:)` tries (S6.10/S8.5 cross-check).
 	private func handle(outcome: FeedActionOutcome, router: TabRouter, venueId: String) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: venueId,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 		router.handle(outcome: outcome, venueId: venueId)
 	}
 }
 
-#Preview("Signed in") {
-	TabsView(
-		sessionStore: PreviewSessionStore.signedIn(),
-		apiClient: PreviewAPIClient.broken(),
-		locationService: PreviewLocationService.authorized(),
-		previewPlayerModel: PreviewPlayerModel(
-			downloading: InMemoryPreviewDownloading(),
-			playerFactory: InMemoryAudioPlayerFactory(),
-		),
-		onDeleteAccount: {},
-		productPurchasing: FakeProductPurchasing(),
-		topUpTransactionListener: TopUpTransactionListener(
-			purchasing: FakeProductPurchasing(),
-			servicing: InMemoryTopUpsServicing(),
+extension TabsView {
+	/// Previews only — never production (previews always inject fakes, per
+	/// swiftui-views).
+	fileprivate static func preview() -> TabsView {
+		TabsView(
 			sessionStore: PreviewSessionStore.signedIn(),
-		),
-	)
+			apiClient: PreviewAPIClient.broken(),
+			locationService: PreviewLocationService.authorized(),
+			previewPlayerModel: PreviewPlayerModel(
+				downloading: InMemoryPreviewDownloading(),
+				playerFactory: InMemoryAudioPlayerFactory(),
+			),
+			onDeleteAccount: {},
+			productPurchasing: FakeProductPurchasing(),
+			topUpTransactionListener: TopUpTransactionListener(
+				purchasing: FakeProductPurchasing(),
+				servicing: InMemoryTopUpsServicing(),
+				sessionStore: PreviewSessionStore.signedIn(),
+			),
+		)
+	}
+}
+
+#Preview("Signed in") {
+	TabsView.preview()
 }
 
 #Preview("Accessibility text size") {
-	TabsView(
-		sessionStore: PreviewSessionStore.signedIn(),
-		apiClient: PreviewAPIClient.broken(),
-		locationService: PreviewLocationService.authorized(),
-		previewPlayerModel: PreviewPlayerModel(
-			downloading: InMemoryPreviewDownloading(),
-			playerFactory: InMemoryAudioPlayerFactory(),
-		),
-		onDeleteAccount: {},
-		productPurchasing: FakeProductPurchasing(),
-		topUpTransactionListener: TopUpTransactionListener(
-			purchasing: FakeProductPurchasing(),
-			servicing: InMemoryTopUpsServicing(),
-			sessionStore: PreviewSessionStore.signedIn(),
-		),
-	)
-	.environment(\.dynamicTypeSize, .accessibility5)
+	TabsView.preview()
+		.environment(\.dynamicTypeSize, .accessibility5)
 }

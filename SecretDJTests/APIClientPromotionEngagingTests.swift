@@ -28,6 +28,19 @@ enum APIClientPromotionEngagingTests {
 			#expect(transport.requestCount == 0)
 		}
 
+		@Test func `never touches the transport when no venue is in view`() async {
+			let sessionStore = makeSignedInSessionStore()
+			let transport = RecordingAPITransport(response: .success(#"{"Success":true}"#))
+			let engaging = APIClientPromotionEngaging(
+				client: makeClient(transport: transport),
+				sessionStore: sessionStore,
+			)
+
+			await engaging.engage(venueId: nil, promotionId: 42)
+
+			#expect(transport.requestCount == 0)
+		}
+
 		@Test func `calls the promote endpoint when signed in`() async {
 			let sessionStore = makeSignedInSessionStore()
 			let transport = RecordingAPITransport(response: .success(#"{"Success":true}"#))

@@ -17,11 +17,13 @@ struct NowPlayingScreen: View {
 	let venueId: String
 	let router: TabRouter
 	let toastQueue: ToastQueue
+	let promotionEngaging: any PromotionEngaging
 
 	@Environment(\.observability) private var observability
 	@Environment(\.openURL) private var openURL
 
 	@State private var model: FeedScreenModel
+	@State private var inAppBrowserURL: InAppBrowserURL?
 
 	init(
 		venueId: String,
@@ -29,11 +31,13 @@ struct NowPlayingScreen: View {
 		locationService: LocationService,
 		router: TabRouter,
 		toastQueue: ToastQueue,
+		promotionEngaging: any PromotionEngaging,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
 		self.venueId = venueId
 		self.router = router
 		self.toastQueue = toastQueue
+		self.promotionEngaging = promotionEngaging
 		_model = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
@@ -59,14 +63,29 @@ struct NowPlayingScreen: View {
 		.toolbar {
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
 		}
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 		.tracksScreen("NowPlaying")
 	}
 
-	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
-	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
-	/// before.
+	/// ``HailRideOutcomeHandling``/``OpenURLOutcomeHandling``/
+	/// ``SocialAppOutcomeHandling``/``EngagePromotionOutcomeHandling`` each
+	/// intercept their own hand-off first (S6.10/S8.5 cross-check); every
+	/// other outcome routes through ``TabRouter`` exactly as before.
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: venueId,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 		router.handle(outcome: outcome, venueId: venueId)
 	}
 
@@ -127,6 +146,7 @@ struct NowPlayingScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -139,6 +159,7 @@ struct NowPlayingScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -151,6 +172,7 @@ struct NowPlayingScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

@@ -486,11 +486,29 @@ audits pass and are recorded in NOTES.md.
 - [ ] S8.3 Observability completion: vendor adapters per D4 configured at
       both composition roots (DEBUG console-only), redaction spot-audit
       on every emission site (privacy per observability skill).
+      — blocked (partially): the vendor half needs the Sentry DSN and
+      TelemetryDeck app id from the product owner; the redaction
+      spot-audit half is still to run and is not blocked.
 - [ ] S8.4 Performance: Instruments passes on feed scroll (both apps),
       launch time, kiosk soak (S7.7 evidence); regressions fixed.
-- [ ] S8.5 LEGACY.md cross-check: walk LEGACY.md end to end against the
+      — blocked: needs device-class hardware; runs with S9.3's venue
+      pilot.
+- [x] S8.5 LEGACY.md cross-check: walk LEGACY.md end to end against the
       built apps; every behavior is either shipped, in this plan, or in
       the exclusion list with a reason. Update this file accordingly.
+      (Done 2026-08-20: all 12 spot-checked business rules verified
+      faithful with citations. Findings dispositioned: the dropped
+      .openURL/.openSocialApp/.engagePromotion outcomes are FIXED —
+      a uniform four-helper chain now runs on every feed surface;
+      rich toasts are scheduled as S8.6; the mood-duration picker is
+      decision D15. The kiosk's no-legacy-precedent backoff timings
+      (5s→300s) await a product/ops sanity nod.)
+- [ ] S8.6 Rich toasts: model the server's Response.Data award-style
+      payload (check-in/request/like responses) and a tappable
+      RichToastView variant (opens the carried profile/URL), per
+      LEGACY.md's rich-toast contract — currently deferred by a code
+      comment in APIActionResponse. Product owner may strike this in
+      favor of the shipped plain-text toasts.
 
 ## S9 — Release readiness
 
@@ -568,6 +586,11 @@ what it blocks.
 - **D13 Kiosk-side moderation** — **Resolved 2026-08-18: legacy parity**
   (no kiosk-side skip/blacklist/queue tools; moderation stays
   consumer-side via `machinecontrol`).
+- **D15 Mood-duration picker** — legacy offered an hours/minutes
+  duration slider on mood changes (server-configured bounds); the
+  rewrite currently applies a documented fixed 30-minute override.
+  Default: keep the fixed default and strike the picker. If the
+  product wants it, it becomes a small SharedFeatures task.
 - **D14 Ship as updates or new apps** — **Resolved 2026-08-18: ship as
   updates**, legacy bundle ids confirmed (`com.c-burn.secretdj`,
   `com.secretdj.kiosk`). Pins S9.1: CFBundleVersion must exceed the
@@ -609,7 +632,7 @@ what it blocks.
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
-| S8 Cross-cutting | in progress (S8.1, S8.2 done; S8.3–S8.5 remain) |
+| S8 Cross-cutting | in progress (S8.1, S8.2, S8.5 done; S8.3/S8.4 blocked on keys/hardware; S8.6 + D15 await product) |
 | S9 Release readiness | not started |
 
 Keep this table in step with the checkboxes; it exists so a resuming

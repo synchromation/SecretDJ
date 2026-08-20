@@ -24,7 +24,11 @@ import SwiftUI
 /// ``FeedUI/FeedActionOutcome/openURL(_:)``/``FeedUI/FeedActionOutcome/engagePromotion(promotionId:)``/
 /// ``FeedUI/FeedActionOutcome/hailRide(url:)``), which — unlike every
 /// navigational outcome — this screen handles directly rather than handing
-/// to ``TabRouter``.
+/// to ``TabRouter``, through the same shared helpers every other S6 feed
+/// screen now uses (``SocialAppOutcomeHandling``/``OpenURLOutcomeHandling``/
+/// ``HailRideOutcomeHandling``/``EngagePromotionOutcomeHandling``), this
+/// screen's own ``promotionEngaging`` supplying the last of those its own
+/// `venueId`.
 struct VenueScreen: View {
 	let venueId: String
 	let router: TabRouter
@@ -41,6 +45,7 @@ struct VenueScreen: View {
 	@State private var likeModel: OptimisticLikeModel?
 	@State private var checkInModel: CheckInModel?
 	@State private var extraContentModel: ExtraContentModel
+	@State private var inAppBrowserURL: InAppBrowserURL?
 	@Environment(\.openURL) private var openURL
 
 	init(
@@ -172,6 +177,7 @@ struct VenueScreen: View {
 		.onDisappear {
 			extraContentModel.stop()
 		}
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 		.tracksScreen("Venue")
 	}
 
@@ -234,30 +240,25 @@ struct VenueScreen: View {
 	/// outcomes a promotion tap or a server-driven hail-ride action button
 	/// can produce are this screen's own side effect
 	/// (``AppDestination/init(outcome:)``'s doc comment: "S6 hangs its own
-	/// handling... directly off the outcome").
+	/// handling... directly off the outcome"), all four through the same
+	/// shared helpers every other S6 feed screen now uses.
 	private func handle(outcome: FeedActionOutcome) {
-		switch outcome {
-		case .openSocialApp(let platform, let identifier, let webFallbackURL):
-			openSocialApp(platform: platform, identifier: identifier, webFallbackURL: webFallbackURL)
+		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: venueId,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 
-		case .openURL(.external(let url)),
-		     .openURL(.inApp(let url)):
-			// No in-app web view exists yet in this rewrite (legacy's
-			// `InternalWebViewController` isn't ported by any S6 task so
-			// far) — both branches open externally until one lands.
-			observability.interaction("openPromotionURL")
-			openURL(url)
-
-		case .engagePromotion(let promotionId):
-			observability.interaction("engagePromotion")
-			Task { await promotionEngaging.engage(venueId: venueId, promotionId: promotionId) }
-
-		case .hailRide:
-			HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability)
-
-		default:
-			router.handle(outcome: outcome, venueId: venueId)
-		}
+		router.handle(outcome: outcome, venueId: venueId)
 	}
 
 	/// A server-driven nav-bar action button tap (S6.12) — routed through
@@ -267,25 +268,6 @@ struct VenueScreen: View {
 	private func handleBarButtonTap(_ action: Action) {
 		guard let outcome = model.outcome(forBarButton: action) else { return }
 		handle(outcome: outcome)
-	}
-
-	/// `secretdjv3/FeedActionProvider.swift:319-324`'s deep-link-else-browser
-	/// rule: try the native app first (``SocialAppDeepLink``), falling back
-	/// to the web profile URL either when no native scheme exists for this
-	/// platform or when opening it didn't succeed.
-	private func openSocialApp(platform: SocialPlatform, identifier: String, webFallbackURL: URL) {
-		observability.interaction("openSocialApp")
-
-		guard let nativeURL = SocialAppDeepLink.url(platform: platform, identifier: identifier) else {
-			openURL(webFallbackURL)
-			return
-		}
-
-		openURL(nativeURL) { accepted in
-			if !accepted {
-				openURL(webFallbackURL)
-			}
-		}
 	}
 
 	private func handleJukeboxChanged() {

@@ -59,7 +59,7 @@ enum TuneInScreenModelModerationTests {
 
 			async let first: Void = model.skip()
 			async let second: Void = model.skip()
-			await Task.yield()
+			await waitUntil { !controlling.invocations.isEmpty }
 			controlling.resume(with: .success(MachineControlResult(message: nil)))
 			_ = await (first, second)
 
@@ -72,7 +72,7 @@ enum TuneInScreenModelModerationTests {
 			let model = makeModel(song: makeSong(), machineControlling: controlling)
 
 			async let skip: Void = model.skip()
-			await Task.yield()
+			await waitUntil { !controlling.invocations.isEmpty }
 
 			#expect(model.isModerating)
 			controlling.resume(with: .success(MachineControlResult(message: nil)))
@@ -112,7 +112,7 @@ enum TuneInScreenModelModerationTests {
 
 			async let first: Void = model.neverPlay()
 			async let second: Void = model.neverPlay()
-			await Task.yield()
+			await waitUntil { !controlling.invocations.isEmpty }
 			controlling.resume(with: .success(MachineControlResult(message: nil)))
 			_ = await (first, second)
 
@@ -126,7 +126,7 @@ enum TuneInScreenModelModerationTests {
 			let model = makeModel(song: makeSong(), machineControlling: controlling)
 
 			async let skip: Void = model.skip()
-			await Task.yield()
+			await waitUntil { !controlling.invocations.isEmpty }
 			#expect(model.isModerating)
 
 			await model.neverPlay()
@@ -135,5 +135,24 @@ enum TuneInScreenModelModerationTests {
 
 			#expect(controlling.invocations.count == 1)
 		}
+	}
+}
+
+// MARK: - Fixtures
+
+/// Polls until `condition` holds, yielding the MainActor between checks —
+/// a deterministic replacement for a single bare `await Task.yield()`
+/// before asserting on an in-flight `async let`'s side effects. A single
+/// yield only *suggests* the scheduler give another ready job a turn; it
+/// doesn't guarantee the specific `async let` child task actually ran
+/// before the caller resumes, so an assertion placed right after it is
+/// flaky under heavy system load (observed: passes in isolation, fails
+/// intermittently inside the full `Scripts/verify.sh test` run, where many
+/// other processes contend for the same cooperative thread pool). Capped
+/// so a genuine regression still fails fast rather than hanging.
+@MainActor
+private func waitUntil(_ condition: () -> Bool) async {
+	for _ in 0 ..< 10000 where !condition() {
+		await Task.yield()
 	}
 }

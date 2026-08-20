@@ -3,13 +3,13 @@
 @MainActor
 final class InMemoryPromotionEngaging: PromotionEngaging {
 	struct Invocation: Equatable {
-		let venueId: String
+		let venueId: String?
 		let promotionId: Int
 	}
 
 	private(set) var invocations: [Invocation] = []
 
-	func engage(venueId: String, promotionId: Int) async {
+	func engage(venueId: String?, promotionId: Int) async {
 		invocations.append(Invocation(venueId: venueId, promotionId: promotionId))
 	}
 }

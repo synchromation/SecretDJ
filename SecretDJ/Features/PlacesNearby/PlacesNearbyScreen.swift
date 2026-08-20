@@ -22,6 +22,11 @@ struct PlacesNearbyScreen: View {
 	/// Jumps to the Activity tab — a person ticker entry's tap destination
 	/// (``ExtraContentTapRoute/activity``).
 	let onShowActivity: () -> Void
+	/// This screen lists many venues at once, so no single `venueId` is ever
+	/// in view — ``EngagePromotionOutcomeHandling`` gets `nil` for it,
+	/// and ``PromotionEngaging`` no-ops the network call accordingly (its
+	/// own doc comment).
+	let promotionEngaging: any PromotionEngaging
 
 	@Environment(\.scenePhase) private var scenePhase
 	@Environment(\.observability) private var observability
@@ -30,6 +35,7 @@ struct PlacesNearbyScreen: View {
 	@State private var model: FeedScreenModel
 	@State private var extraContentModel: ExtraContentModel
 	@State private var isShowingMap = false
+	@State private var inAppBrowserURL: InAppBrowserURL?
 
 	init(
 		loader: any FeedLoading,
@@ -38,6 +44,7 @@ struct PlacesNearbyScreen: View {
 		toastQueue: ToastQueue,
 		extraContentLoading: any ExtraContentLoading,
 		onShowActivity: @escaping () -> Void,
+		promotionEngaging: any PromotionEngaging,
 		observability: ObservabilityPipeline = .disabled,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
@@ -45,6 +52,7 @@ struct PlacesNearbyScreen: View {
 		self.router = router
 		self.toastQueue = toastQueue
 		self.onShowActivity = onShowActivity
+		self.promotionEngaging = promotionEngaging
 		_model = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
@@ -118,6 +126,7 @@ struct PlacesNearbyScreen: View {
 		.onDisappear {
 			extraContentModel.stop()
 		}
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 		.tracksScreen("PlacesNearby")
 	}
 
@@ -144,11 +153,25 @@ struct PlacesNearbyScreen: View {
 		}
 	}
 
-	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
-	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
-	/// before.
+	/// ``HailRideOutcomeHandling``/``OpenURLOutcomeHandling``/
+	/// ``SocialAppOutcomeHandling``/``EngagePromotionOutcomeHandling`` each
+	/// intercept their own hand-off first (S6.10/S8.5 cross-check); every
+	/// other outcome routes through ``TabRouter`` exactly as before.
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: nil,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 		router.handle(outcome: outcome)
 	}
 
@@ -216,6 +239,7 @@ struct PlacesNearbyScreen: View {
 			toastQueue: ToastQueue(),
 			extraContentLoading: InMemoryExtraContentLoading(),
 			onShowActivity: {},
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -229,6 +253,7 @@ struct PlacesNearbyScreen: View {
 			toastQueue: ToastQueue(),
 			extraContentLoading: InMemoryExtraContentLoading(),
 			onShowActivity: {},
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -242,6 +267,7 @@ struct PlacesNearbyScreen: View {
 			toastQueue: ToastQueue(),
 			extraContentLoading: InMemoryExtraContentLoading(),
 			onShowActivity: {},
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -255,6 +281,7 @@ struct PlacesNearbyScreen: View {
 			toastQueue: ToastQueue(),
 			extraContentLoading: InMemoryExtraContentLoading(),
 			onShowActivity: {},
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

@@ -20,21 +20,29 @@ import SwiftUI
 struct ActivityScreen: View {
 	let router: TabRouter
 	let toastQueue: ToastQueue
+	/// This screen mixes activity from many venues, so no single `venueId`
+	/// is ever in view — ``EngagePromotionOutcomeHandling`` gets `nil` for
+	/// it, and ``PromotionEngaging`` no-ops the network call accordingly
+	/// (its own doc comment).
+	let promotionEngaging: any PromotionEngaging
 
 	@Environment(\.observability) private var observability
 	@Environment(\.openURL) private var openURL
 
 	@State private var model: FeedScreenModel
+	@State private var inAppBrowserURL: InAppBrowserURL?
 
 	init(
 		loader: any FeedLoading,
 		locationService: LocationService,
 		router: TabRouter,
 		toastQueue: ToastQueue,
+		promotionEngaging: any PromotionEngaging,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
 		self.router = router
 		self.toastQueue = toastQueue
+		self.promotionEngaging = promotionEngaging
 		_model = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
@@ -65,14 +73,29 @@ struct ActivityScreen: View {
 		.toolbar {
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)
 		}
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 		.tracksScreen("Activity")
 	}
 
-	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
-	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
-	/// before.
+	/// ``HailRideOutcomeHandling``/``OpenURLOutcomeHandling``/
+	/// ``SocialAppOutcomeHandling``/``EngagePromotionOutcomeHandling`` each
+	/// intercept their own hand-off first (S6.10/S8.5 cross-check); every
+	/// other outcome routes through ``TabRouter`` exactly as before.
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: nil,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 		router.handle(outcome: outcome)
 	}
 
@@ -140,6 +163,7 @@ struct ActivityScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -151,6 +175,7 @@ struct ActivityScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -162,6 +187,7 @@ struct ActivityScreen: View {
 			locationService: PreviewLocationService.authorized(),
 			router: TabRouter(),
 			toastQueue: ToastQueue(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

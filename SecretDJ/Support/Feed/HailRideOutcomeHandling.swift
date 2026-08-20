@@ -7,12 +7,12 @@ import SwiftUI
 /// ``FeedUI/FeedActionOutcome/hailRide(url:)`` and opening its
 /// server-supplied URL externally rather than routing it.
 /// ``TabRouter/handle(outcome:)``'s own doc comment leaves exactly this kind
-/// of external hand-off to the caller, mirroring how ``VenueScreen`` already
-/// self-handles `openSocialApp`/`openURL`/`engagePromotion` before falling
-/// back to the router. LEGACY.md "Gaps and cross-checks": the server only
-/// ever sends this action once the client's `appmask` reports Uber
-/// installed, so no local installed-app check happens here — the URL is
-/// simply opened.
+/// of external hand-off to the caller, alongside ``OpenURLOutcomeHandling``/
+/// ``SocialAppOutcomeHandling`` (S8.5 cross-check) — every S6 feed screen
+/// tries all three before falling back to the router. LEGACY.md "Gaps and
+/// cross-checks": the server only ever sends this action once the client's
+/// `appmask` reports Uber installed, so no local installed-app check
+/// happens here — the URL is simply opened.
 enum HailRideOutcomeHandling {
 	/// Opens `outcome`'s URL and returns `true` when it's a hail-ride
 	/// hand-off; otherwise does nothing and returns `false`, leaving the

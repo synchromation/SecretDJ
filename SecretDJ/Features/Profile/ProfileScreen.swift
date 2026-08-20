@@ -30,10 +30,16 @@ struct ProfileScreen: View {
 	let toastQueue: ToastQueue
 	let sessionStore: SessionStore
 	let observability: ObservabilityPipeline
+	/// A profile's feed carries no single venue in view —
+	/// ``EngagePromotionOutcomeHandling`` gets `nil` for it, and
+	/// ``PromotionEngaging`` no-ops the network call accordingly (its own
+	/// doc comment).
+	let promotionEngaging: any PromotionEngaging
 
 	@State private var feedModel: FeedScreenModel
 	@State private var model: ProfileScreenModel
 	@State private var showsAvatarPicker = false
+	@State private var inAppBrowserURL: InAppBrowserURL?
 	@Environment(\.openURL) private var openURL
 
 	init(
@@ -44,6 +50,7 @@ struct ProfileScreen: View {
 		sessionStore: SessionStore,
 		likeToggling: any LikeToggling,
 		onboardingService: any OnboardingServicing,
+		promotionEngaging: any PromotionEngaging,
 		observability: ObservabilityPipeline = .disabled,
 		installedApps: any InstalledApps = URLSchemeInstalledApps(),
 	) {
@@ -52,6 +59,7 @@ struct ProfileScreen: View {
 		self.toastQueue = toastQueue
 		self.sessionStore = sessionStore
 		self.observability = observability
+		self.promotionEngaging = promotionEngaging
 		_feedModel = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
@@ -118,14 +126,29 @@ struct ProfileScreen: View {
 				onImageData: { data in Task { await model.uploadAvatar(data) } },
 			)
 		}
+		.sheet(item: $inAppBrowserURL) { LegalWebScreen(url: $0.url).ignoresSafeArea() }
 		.tracksScreen("Profile")
 	}
 
-	/// ``HailRideOutcomeHandling`` intercepts a hail-ride hand-off first
-	/// (S6.10); every other outcome routes through ``TabRouter`` exactly as
-	/// before.
+	/// ``HailRideOutcomeHandling``/``OpenURLOutcomeHandling``/
+	/// ``SocialAppOutcomeHandling``/``EngagePromotionOutcomeHandling`` each
+	/// intercept their own hand-off first (S6.10/S8.5 cross-check); every
+	/// other outcome routes through ``TabRouter`` exactly as before.
 	private func handle(outcome: FeedActionOutcome) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !OpenURLOutcomeHandling.handle(
+			outcome,
+			openURL: openURL,
+			presentInApp: { inAppBrowserURL = InAppBrowserURL(url: $0) },
+			observability: observability,
+		) else { return }
+		guard !SocialAppOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
+		guard !EngagePromotionOutcomeHandling.handle(
+			outcome,
+			venueId: nil,
+			promotionEngaging: promotionEngaging,
+			observability: observability,
+		) else { return }
 		router.handle(outcome: outcome)
 	}
 
@@ -180,6 +203,7 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -194,6 +218,7 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -208,6 +233,7 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 }
@@ -222,6 +248,7 @@ struct ProfileScreen: View {
 			sessionStore: PreviewSessionStore.signedIn(personId: "9", screenName: "TurboTim"),
 			likeToggling: InMemoryLikeToggling(),
 			onboardingService: InMemoryOnboardingService(),
+			promotionEngaging: InMemoryPromotionEngaging(),
 		)
 	}
 	.environment(\.dynamicTypeSize, .accessibility5)

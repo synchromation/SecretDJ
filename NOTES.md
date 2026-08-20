@@ -748,3 +748,23 @@ work happens; every commit includes this file's delta.
   flows) before the remaining general-UI copy. No entries were
   flipped to translated by the audit — that stays a native speaker's
   call per the localization skill.
+- S8.5 done (read-only cross-check + fix agents): the full LEGACY.md
+  walk found the rewrite faithful on all 12 spot-checked business
+  rules (funnel, intermission, hash policies, like rollback, check-in
+  URL-over-toast, machinecontrol gating, skin fallbacks, attract
+  semantics, appmodel, User-Agent — whose "px" label in LEGACY.md is
+  itself the minor error, legacy sends points — signing, kiosk
+  unmetered requests). Three findings dispositioned: (1) FIXED —
+  .openURL/.openSocialApp/.engagePromotion outcomes were silently
+  dropped outside VenueScreen; a uniform four-helper chain
+  (hailRide/openURL/socialApp/engagePromotion) now runs on all five
+  feed screens AND TabsView's routed-screen path, with the in-app
+  browser sheet housed per screen, promotion pings venue-gated per
+  legacy (venueId optional; no-venue surfaces breadcrumb only), all
+  TDD'd red-first; (2) rich toasts scheduled as S8.6 for a product
+  call; (3) the mood-duration picker became decision D15 (default:
+  keep the fixed 30-minute override). Also fixed the remaining
+  blind-yield flake class in SharedFeatures (MoodTile/TuneIn suites,
+  same deterministic-wait treatment as S8.1's like fix; 3x stable).
+  The kiosk backoff timings (no legacy precedent) await a product/ops
+  sanity nod. Full verify green.

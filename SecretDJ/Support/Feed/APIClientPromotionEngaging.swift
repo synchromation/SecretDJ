@@ -5,7 +5,8 @@ import SecretDJAPI
 /// user/credential fresh on every call — never captured once at
 /// construction time, matching ``APIClientFeedLoading/sessionFeed(sessionStore:locationService:endpoint:)``'s
 /// doc comment — and rotating the session's token when the response
-/// carries one.
+/// carries one. A `nil` `venueId` never reaches the transport at all
+/// (``PromotionEngaging/engage(venueId:promotionId:)``'s own doc comment).
 struct APIClientPromotionEngaging: PromotionEngaging {
 	private let client: APIClient
 	private let sessionStore: SessionStore
@@ -15,7 +16,9 @@ struct APIClientPromotionEngaging: PromotionEngaging {
 		self.sessionStore = sessionStore
 	}
 
-	func engage(venueId: String, promotionId: Int) async {
+	func engage(venueId: String?, promotionId: Int) async {
+		guard let venueId else { return }
+
 		let session = await MainActor.run { (sessionStore.user?.personId, sessionStore.credential) }
 		guard let userId = session.0, let credential = session.1 else { return }
 

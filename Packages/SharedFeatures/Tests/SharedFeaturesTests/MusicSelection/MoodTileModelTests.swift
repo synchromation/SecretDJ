@@ -92,7 +92,7 @@ enum MoodTileModelTests {
 
 			async let first: Void = model.changeAtmosphere(itemId: 7)
 			async let second: Void = model.changeAtmosphere(itemId: 8)
-			await Task.yield()
+			await waitUntil { !atmosphereChanging.invocations.isEmpty }
 			atmosphereChanging.resume(with: .success(AtmosphereChangeResult(message: nil)))
 			_ = await (first, second)
 
@@ -105,12 +105,31 @@ enum MoodTileModelTests {
 			let model = MoodTileModel(venueId: "v1", atmosphereChanging: atmosphereChanging, toastQueue: ToastQueue())
 
 			async let change: Void = model.changeAtmosphere(itemId: 7)
-			await Task.yield()
+			await waitUntil { !atmosphereChanging.invocations.isEmpty }
 
 			#expect(model.isChanging)
 			atmosphereChanging.resume(with: .success(AtmosphereChangeResult(message: nil)))
 			await change
 			#expect(model.isChanging == false)
 		}
+	}
+}
+
+// MARK: - Fixtures
+
+/// Polls until `condition` holds, yielding the MainActor between checks —
+/// a deterministic replacement for a single bare `await Task.yield()`
+/// before asserting on an in-flight `async let`'s side effects. A single
+/// yield only *suggests* the scheduler give another ready job a turn; it
+/// doesn't guarantee the specific `async let` child task actually ran
+/// before the caller resumes, so an assertion placed right after it is
+/// flaky under heavy system load (observed: passes in isolation, fails
+/// intermittently inside the full `Scripts/verify.sh test` run, where many
+/// other processes contend for the same cooperative thread pool). Capped
+/// so a genuine regression still fails fast rather than hanging.
+@MainActor
+private func waitUntil(_ condition: () -> Bool) async {
+	for _ in 0 ..< 10000 where !condition() {
+		await Task.yield()
 	}
 }
