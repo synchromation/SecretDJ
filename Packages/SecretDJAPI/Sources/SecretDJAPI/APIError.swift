@@ -16,3 +16,27 @@ public enum APIError: Error, Sendable {
 	/// server's copy, when present.
 	case server(message: String?)
 }
+
+extension APIError: CustomStringConvertible {
+	/// A description safe to hand to `ObservabilityPipeline.report(_:category:)`,
+	/// which logs errors via `String(describing:)` (observability skill).
+	/// Every signed endpoint call carries its credentials/token as URL query
+	/// parameters (``APIRequestBuilder``), and both `URLSession` (on
+	/// ``transport``) and `JSONDecoder` (on ``decoding``, via a corrupted
+	/// value's debug description) can embed arbitrary request content in
+	/// their default, reflection-based description — so those two cases drop
+	/// their associated error entirely here, the same way every caller that
+	/// collapses ``APIError`` into its own feature-local error type already
+	/// discards them (mapping both to a bare `.connection` case). `message`
+	/// is left as the server sent it: display copy about this request's own
+	/// outcome, not request content this type generated.
+	public var description: String {
+		switch self {
+		case .missingCredential: "missingCredential"
+		case .requestGeneration: "requestGeneration"
+		case .transport: "transport"
+		case .decoding: "decoding"
+		case .server(let message): "server(message: \(message ?? "nil"))"
+		}
+	}
+}

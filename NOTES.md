@@ -768,3 +768,21 @@ work happens; every commit includes this file's delta.
   same deterministic-wait treatment as S8.1's like fix; 3x stable).
   The kiosk backoff timings (no legacy precedent) await a product/ops
   sanity nod. Full verify green.
+- S8.3 redaction spot-audit done (sonnet subagent): ~162 emission
+  sites across 45 files classified — 126 provably non-identifying,
+  zero needing Redacted (the feature-local error-collapsing
+  architecture sidesteps it), and ONE real leak class found and fixed
+  red-first: APIError had no CustomStringConvertible, so transport/
+  decoding failures reported via two direct sites (ExtraContentModel,
+  KioskNowPlayingModel) embedded the full signed request URL —
+  including sign-in email/password in the query string — through
+  URLSession's failing-URL userInfo. Fixed at the root: non-server
+  cases describe by case name only; server messages unchanged; five
+  new tests incl. an unanticipated DecodingError debug-description
+  leak. Judgment calls open to veto: server outcome copy logged in
+  the clear; skin/preview URLs treated as content-not-person
+  identifiers. Coverage gap flagged: per-feature failure tests assert
+  category, not message content. Vendor half un-blocked: real-looking
+  Sentry DSN + TelemetryDeck appID already exist from the example
+  project's own setup — product owner to confirm they're the intended
+  destinations; kiosk vendor linkage still missing.

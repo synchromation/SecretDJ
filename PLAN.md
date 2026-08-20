@@ -486,9 +486,17 @@ audits pass and are recorded in NOTES.md.
 - [ ] S8.3 Observability completion: vendor adapters per D4 configured at
       both composition roots (DEBUG console-only), redaction spot-audit
       on every emission site (privacy per observability skill).
-      — blocked (partially): the vendor half needs the Sentry DSN and
-      TelemetryDeck app id from the product owner; the redaction
-      spot-audit half is still to run and is not blocked.
+      — redaction half DONE (2026-08-20): ~162 emission sites audited;
+      one real leak found and fixed at the root (APIError descriptions
+      embedded full signed URLs incl. sign-in credentials via two
+      direct-report sites — CustomStringConvertible now collapses
+      non-server cases to case names, tested). Three judgment calls
+      recorded in NOTES for veto. Vendor half: the consumer app already
+      carries Sentry/TelemetryDeck keys inherited from the example
+      project — product owner to CONFIRM they're the intended
+      destinations; the kiosk still needs the vendor adapters linked
+      (console-only today). The skill's network middleware has no call
+      sites yet — wire when a middleware layer exists.
 - [ ] S8.4 Performance: Instruments passes on feed scroll (both apps),
       launch time, kiosk soak (S7.7 evidence); regressions fixed.
       — blocked: needs device-class hardware; runs with S9.3's venue
@@ -632,7 +640,7 @@ what it blocks.
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
-| S8 Cross-cutting | in progress (S8.1, S8.2, S8.5 done; S8.3/S8.4 blocked on keys/hardware; S8.6 + D15 await product) |
+| S8 Cross-cutting | in progress (S8.1/S8.2/S8.5 done, S8.3 redaction half done; S8.4 hardware-blocked; vendor confirm + S8.6 + D15 await product) |
 | S9 Release readiness | not started |
 
 Keep this table in step with the checkboxes; it exists so a resuming
