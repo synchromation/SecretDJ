@@ -522,9 +522,16 @@ audits pass and are recorded in NOTES.md.
 
 Prereqs: S8.
 
-- [ ] S9.1 Signing/config hygiene: one team, per-app bundle ids,
+- [x] S9.1 Signing/config hygiene: one team, per-app bundle ids,
       Debug/Release only unless Ad Hoc is still needed, no source-tree
-      mutation at build time.
+      mutation at build time. (Done 2026-08-20: build 10300 clears both
+      legacy CFBundleVersion floors; one team 37QJ2YY6CV across all six
+      targets; Debug/Release only; the only script phase is the
+      archive-only Sentry dSYM upload — no source mutation. Two
+      warnings fixed; three structural ones remain and are recorded:
+      the FB SDK's deprecated OpenURLOptionsKey signature, and
+      UIScreen.main at composition scope in both apps' User-Agent
+      width — a design change if Apple hardens the deprecation.)
 - [ ] S9.2 Store assets: icons, screenshots (five languages), privacy
       nutrition labels matching the observability/privacy reality,
       App Store metadata parity for both apps.
@@ -644,7 +651,7 @@ what it blocks.
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
 | S8 Cross-cutting | in progress (S8.1/S8.2/S8.5/S8.6 done, S8.3 redaction half done; S8.4 hardware-blocked; vendor confirm awaits product) |
-| S9 Release readiness | not started |
+| S9 Release readiness | in progress (S9.1 done) |
 
 Keep this table in step with the checkboxes; it exists so a resuming
 session can orient in one glance.

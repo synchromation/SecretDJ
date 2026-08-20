@@ -66,9 +66,18 @@ extension ASAuthorizationControllerAppleAuthorizing: ASAuthorizationControllerDe
 
 extension ASAuthorizationControllerAppleAuthorizing: ASAuthorizationControllerPresentationContextProviding {
 	func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-		UIApplication.shared.connectedScenes
-			.compactMap { $0 as? UIWindowScene }
-			.flatMap(\.windows)
-			.first(where: \.isKeyWindow) ?? UIWindow()
+		let windowScenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
+
+		if let keyWindow = windowScenes.flatMap(\.windows).first(where: \.isKeyWindow) {
+			return keyWindow
+		}
+
+		// No key window to anchor to (should not happen while presenting an
+		// interactive sign-in sheet, which requires an active scene) — build
+		// a scene-attached window rather than the deprecated `UIWindow()`.
+		guard let scene = windowScenes.first else {
+			preconditionFailure("No window scene available to anchor Sign in with Apple")
+		}
+		return UIWindow(windowScene: scene)
 	}
 }

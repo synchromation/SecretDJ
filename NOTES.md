@@ -801,3 +801,16 @@ work happens; every commit includes this file's delta.
   preserved. One localized string. D15 resolved by its documented
   default in the same change: the fixed 30-minute mood override
   stands, picker struck, reversible. Full verify green.
+- S9.1 done (sonnet subagent): CURRENT_PROJECT_VERSION 10300 on both
+  app targets (clears consumer 5287 and kiosk 10226 with headroom;
+  one shared generation number per D14); configurations are
+  Debug/Release only with no Ad Hoc anywhere incl. schemes; signing
+  already uniform (37QJ2YY6CV on all six targets — cleaner than
+  legacy's three-team mess, nothing to flag); the only script phase
+  is the archive-only Sentry dSYM upload, no source-tree mutation.
+  Warnings: fixed the dead default in TabsView's now-exhaustive
+  destination switch (ComingSoonScreen now unreferenced — cleanup
+  follow-up) and the deprecated UIWindow() fallback in the Apple
+  sign-in anchor; three structural ones remain recorded in PLAN.md
+  (FB SDK signature; UIScreen.main at composition scope x2). Full
+  verify green.

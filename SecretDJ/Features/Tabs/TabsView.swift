@@ -153,8 +153,9 @@ struct TabsView: View {
 		}
 	}
 
-	/// Every ``AppDestination`` case S6 has a real screen for; everything
-	/// else falls through to ``ComingSoonScreen`` (PLAN.md S5.2).
+	/// Every ``AppDestination`` case has a real screen (S6 is complete);
+	/// the switch is exhaustive, so there is no ``ComingSoonScreen``
+	/// fallback left (PLAN.md S5.2).
 	@ViewBuilder
 	private func destination(for destination: AppDestination, router: TabRouter) -> some View {
 		switch destination {
@@ -202,9 +203,6 @@ struct TabsView: View {
 
 		case .topUps(let context):
 			topUpsScreen(context: context)
-
-		default:
-			ComingSoonScreen(destination: destination)
 		}
 	}
 
