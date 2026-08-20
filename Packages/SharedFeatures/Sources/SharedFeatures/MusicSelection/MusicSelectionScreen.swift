@@ -12,7 +12,10 @@ import SwiftUI
 /// wall) without duplicating the paginated-feed plumbing. Both apps use it —
 /// `changePolicy` defaults to ``FeedUI/FeedChangeDetector/Policy/surfaceChange``
 /// for the consumer; the kiosk passes ``FeedUI/FeedChangeDetector/Policy/reloadInPlace``
-/// per PLAN.md S7.4.
+/// per PLAN.md S7.4. `errorRecovery` defaults to `nil` (the consumer leaves a
+/// failed load to the person holding the phone); the kiosk passes a policy
+/// so its digest/jukebox wall heals itself while nobody's watching it
+/// (PLAN.md S7.7).
 ///
 /// Mood/atmosphere tiles (the `matrixControlLarge` template, rendered by
 /// FeedUI's existing `controlTile` cell) ride the same tap path as every
@@ -47,6 +50,7 @@ public struct MusicSelectionScreen: View {
 		toastQueue: ToastQueue,
 		copy: FeedScreenCopy,
 		changePolicy: FeedChangeDetector.Policy = .surfaceChange,
+		errorRecovery: FeedConfiguration.ErrorRecovery? = nil,
 		installedApps: any InstalledApps = NoInstalledApps(),
 		onOutcome: ((FeedActionOutcome) -> Void)? = nil,
 		onJukeboxChanged: (() -> Void)? = nil,
@@ -59,7 +63,13 @@ public struct MusicSelectionScreen: View {
 		_model = State(initialValue: FeedScreenModel(
 			loader: loader,
 			router: FeedActionRouter(installedApps: installedApps),
-			configuration: FeedConfiguration(autoRefresh: nil, paginationEnabled: true, changePolicy: changePolicy),
+			configuration: FeedConfiguration(
+				autoRefresh: nil,
+				paginationEnabled: true,
+				changePolicy: changePolicy,
+				errorRecovery: errorRecovery,
+			),
+			observability: observability,
 		))
 		_moodTileModel = State(initialValue: MoodTileModel(
 			venueId: venueId,

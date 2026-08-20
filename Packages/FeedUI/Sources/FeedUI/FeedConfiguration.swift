@@ -36,10 +36,41 @@ public struct FeedConfiguration: Sendable {
 	/// ``FeedChangeDetector/Policy/surfaceChange`` for the consumer app,
 	/// ``FeedChangeDetector/Policy/reloadInPlace`` for the kiosk digest.
 	public let changePolicy: FeedChangeDetector.Policy
+	/// `nil` (every consumer-app screen) leaves a failed load's recovery to
+	/// the person looking at the phone — pull-to-refresh or the error
+	/// surface's own "Try Again" button, both already unconditional. A
+	/// value arms ``FeedScreenModel``'s unattended backoff retry (PLAN.md
+	/// S7.7: "an unattended iPad heals without staff") once ``FeedScreenModel/phase``
+	/// shows an error — the kiosk digest/jukebox/songs-for-artist screens
+	/// are the only callers that set this.
+	public let errorRecovery: ErrorRecovery?
 
-	public init(autoRefresh: AutoRefresh?, paginationEnabled: Bool, changePolicy: FeedChangeDetector.Policy) {
+	public init(
+		autoRefresh: AutoRefresh?,
+		paginationEnabled: Bool,
+		changePolicy: FeedChangeDetector.Policy,
+		errorRecovery: ErrorRecovery? = nil,
+	) {
 		self.autoRefresh = autoRefresh
 		self.paginationEnabled = paginationEnabled
 		self.changePolicy = changePolicy
+		self.errorRecovery = errorRecovery
+	}
+
+	/// A backoff schedule for ``FeedScreenModel``'s unattended error
+	/// recovery (PLAN.md S7.7). Retries never stop trying — only the wait
+	/// between them grows, doubling each failed attempt up to
+	/// ``maximumInterval`` and holding there: an unattended kiosk has no
+	/// staff around to eventually give up and go find, so "keep trying,
+	/// capped" is the only sensible failure mode (unlike a person-facing
+	/// retry button, which only ever fires once per tap).
+	public struct ErrorRecovery: Sendable {
+		public let initialInterval: Duration
+		public let maximumInterval: Duration
+
+		public init(initialInterval: Duration = .seconds(5), maximumInterval: Duration = .seconds(300)) {
+			self.initialInterval = initialInterval
+			self.maximumInterval = maximumInterval
+		}
 	}
 }

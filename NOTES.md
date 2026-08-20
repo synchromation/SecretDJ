@@ -687,3 +687,25 @@ work happens; every commit includes this file's delta.
   discarded its model (weak-self clock closures deallocated before
   firing); both discard sites fixed, root-caused via xcresulttool.
   Full verify green.
+- S7.6 + S7.7 done — stage S7 complete (TDD, sonnet subagents): kiosk
+  search reuses MusicSearchScreen/SongsForArtistScreen wholesale
+  (kiosk adapter + copy; header-mounted search button per legacy;
+  iPad grids already proven by the digest; system keyboard confirmed
+  per D10; A–Z strip accessibility confirmed by reuse). Resilience:
+  FeedConfiguration gains an opt-in ErrorRecovery backoff (5s
+  doubling to a 300s cap, never gives up — unattended iPads have no
+  staff to retry; coarse breadcrumbs on attempt 1 and every 5th),
+  armed on the kiosk's resting screens; memory-stability proof tests
+  (50-cycle refresh/poll, state replaced not accumulated — no bugs
+  found); composition tests prove attract and recovery run on
+  independent clocks (attract can't be blocked by error states,
+  dismissing attract lands on a healed screen). The flagged
+  idle-return gap closed: AttractIdleContainerView publishes its
+  IdleTimerModel via the environment (kioskSkin pattern) and
+  KioskHomeView pops its NavigationStack to root on idle firing,
+  citing legacy's didExceedIdleTimeout; search deliberately carries no
+  recovery of its own since idle-abandonment now returns home where
+  recovery lives (documented). FeedUI gained an Observability
+  dependency for the recovery breadcrumbs. Eleven localized kiosk
+  keys. Full verify green. On-hardware soak explicitly deferred to
+  S8.4/S9.3.

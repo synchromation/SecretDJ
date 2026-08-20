@@ -136,6 +136,43 @@ enum KioskNowPlayingModelTests {
 	}
 
 	@MainActor
+	struct `Memory stability` {
+		/// PLAN.md S7.7: the header polls all day at the legacy 20-second
+		/// cadence, so ``KioskNowPlayingModel/tick()`` replacing ``display``
+		/// wholesale (rather than, say, accumulating a history of songs
+		/// played) is exactly what keeps a soak-length run from growing
+		/// state. `display` is a single value, not a collection, so this
+		/// proves the replace behavior directly: many ticks with a
+		/// different song each time leave only the latest one, never a
+		/// trace of the others.
+		@Test func `many repeated ticks replace the display, never accumulate a history`() async {
+			let loader = InMemoryFeedLoading()
+			let clock = ManualFeedRefreshClock()
+			let model = KioskNowPlayingModel(loader: loader, clock: clock)
+
+			for tick in 0 ..< 50 {
+				await loader.setOutcome(
+					.success(makeSectionList(songs: [makeSong(
+						songId: "\(tick)",
+						title: "Song \(tick)",
+						artist: "Artist",
+					)])),
+					forPage: nil,
+				)
+				if tick == 0 {
+					await model.start()
+				} else {
+					await clock.advance()
+				}
+			}
+
+			#expect(model.display == .nowPlaying(title: "Song 49", artist: "Artist", artworkURL: nil))
+			#expect(await loader.requestedPages.count == 50)
+			#expect(clock.pendingCount == 1)
+		}
+	}
+
+	@MainActor
 	struct `Venue name resolution` {
 		@Test func `calls back with the venue's name when the feed carries a hiddenVenueDetails section`() async {
 			let loader = InMemoryFeedLoading()

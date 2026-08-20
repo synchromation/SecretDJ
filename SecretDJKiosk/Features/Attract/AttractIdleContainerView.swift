@@ -16,6 +16,13 @@ import SwiftUI
 /// same "observe in the view, forward to the model" shape
 /// `SecretDJApp.swift` already uses for `scenePhase`/auto-lock, rather than
 /// introducing a new `withObservationTracking` pattern for this one case.
+///
+/// Also publishes ``IdleTimerModel`` itself into the environment
+/// (``EnvironmentValues/idleTimerModel``) for `content` to read — this
+/// container is deliberately ignorant of what `content` does with an idle
+/// timeout (S7.4+'s screens are the ones that know what "return to root"
+/// means for them), so it hands the model up rather than threading a
+/// navigation callback through its generic `Content` builder.
 struct AttractIdleContainerView<Content: View>: View {
 	let behavioralConfig: KioskBehavioralConfig
 	let previewPlayer: PreviewPlayerModel
@@ -41,6 +48,7 @@ struct AttractIdleContainerView<Content: View>: View {
 			.onChange(of: previewPlayer.isPlaying, initial: true) { _, isPlaying in
 				idleTimerModel.setPreviewPlaying(isPlaying)
 			}
+			.environment(\.idleTimerModel, idleTimerModel)
 	}
 }
 

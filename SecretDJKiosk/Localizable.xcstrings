@@ -1,6 +1,35 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "Artists": {
+      "comment": "Kiosk search screen tab that searches by artist name.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Künstler"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artistas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artistes"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Artiesten"
+          }
+        }
+      }
+    },
     "Cancel": {
       "comment": "Cancel button on the staff reset confirmation dialog.",
       "localizations": {
@@ -171,6 +200,64 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Nooit meer afspelen"
+          }
+        }
+      }
+    },
+    "No Results": {
+      "comment": "Title shown on the kiosk search screen when a search finds nothing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Ergebnisse"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin resultados"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucun résultat"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen resultaten"
+          }
+        }
+      }
+    },
+    "No Songs": {
+      "comment": "Title shown on the kiosk when an artist has no songs here yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Keine Songs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sin canciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucune chanson"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Geen nummers"
           }
         }
       }
@@ -436,6 +523,35 @@
         }
       }
     },
+    "Search": {
+      "comment": "Label of the kiosk's search entry point — the header's search button, the search screen's navigation title, and its search field placeholder.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suche"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Buscar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Rechercher"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Zoeken"
+          }
+        }
+      }
+    },
     "Setup didn't finish": {
       "comment": "Title shown when the kiosk can't download its venue skin after signing in.",
       "localizations": {
@@ -523,6 +639,35 @@
         }
       }
     },
+    "Song Not Found": {
+      "comment": "Title shown on the kiosk when a single-song artist's own song can't be found.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Song nicht gefunden"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Canción no encontrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chanson introuvable"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummer niet gevonden"
+          }
+        }
+      }
+    },
     "Song Preview": {
       "comment": "Accessible name of the kiosk TuneIn screen's play/stop 30-second preview button.",
       "localizations": {
@@ -548,6 +693,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Nummervoorbeeld"
+          }
+        }
+      }
+    },
+    "Songs": {
+      "comment": "Kiosk search screen tab that searches by song title.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Songs"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Canciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Chansons"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Nummers"
           }
         }
       }
@@ -610,6 +784,35 @@
         }
       }
     },
+    "Sorry, we couldn't find this artist's song.": {
+      "comment": "Body shown on the kiosk when a single-song artist's own song can't be found.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten den Song dieses Künstlers nicht finden."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido encontrar la canción de este artista."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas trouvé la chanson de cet artiste."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden het nummer van deze artiest niet vinden."
+          }
+        }
+      }
+    },
     "Sorry, we couldn't load the music.\n\nPlease check the venue's connection and try again.": {
       "comment": "Body shown on the kiosk's jukebox wall (or a jukebox's own song list) when it fails to load.",
       "localizations": {
@@ -639,6 +842,35 @@
         }
       }
     },
+    "Sorry, we couldn't load these songs.\n\nPlease check the venue's connection and try again.": {
+      "comment": "Body shown on the kiosk when an artist's song list fails to load.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten diese Songs nicht laden.\n\nBitte prüfe die Verbindung des Orts und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido cargar estas canciones.\n\nComprueba la conexión del local e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu charger ces chansons.\n\nVérifie la connexion du lieu et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden deze nummers niet laden.\n\nControleer de verbinding van de locatie en probeer het opnieuw."
+          }
+        }
+      }
+    },
     "Sorry, we couldn't play that preview. Please try again.": {
       "comment": "Toast shown when a song preview fails to download or decode, on the kiosk.",
       "localizations": {
@@ -664,6 +896,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Sorry, we konden dat voorbeeld niet afspelen. Probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Sorry, we couldn't search right now.\n\nPlease check the venue's connection and try again.": {
+      "comment": "Body shown on the kiosk search screen when a search fails.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, wir konnten gerade nicht suchen.\n\nBitte prüfe die Verbindung des Orts und versuche es erneut."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Lo sentimos, no hemos podido buscar ahora mismo.\n\nComprueba la conexión del local e inténtalo de nuevo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Désolé, nous n'avons pas pu lancer la recherche.\n\nVérifie la connexion du lieu et réessaie."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Sorry, we konden nu niet zoeken.\n\nControleer de verbinding van de locatie en probeer het opnieuw."
           }
         }
       }
@@ -722,6 +983,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Tik om door te gaan"
+          }
+        }
+      }
+    },
+    "This artist hasn't got anything to show yet — check back soon.": {
+      "comment": "Body shown on the kiosk when an artist has no songs here yet.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Dieser Künstler hat noch nichts zu zeigen — schau bald wieder vorbei."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Este artista todavía no tiene nada que mostrar — vuelve a comprobarlo pronto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Cet artiste n'a encore rien à montrer — reviens vérifier bientôt."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Deze artiest heeft nog niets te laten zien — kom snel nog eens terug."
           }
         }
       }
@@ -809,6 +1099,35 @@
           "stringUnit": {
             "state": "needs_review",
             "value": "Opnieuw proberen"
+          }
+        }
+      }
+    },
+    "Try a different search.": {
+      "comment": "Body shown on the kiosk search screen when a search finds nothing.",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Versuch's mit einer anderen Suche."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Prueba con otra búsqueda."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Essaie une autre recherche."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Probeer een andere zoekopdracht."
           }
         }
       }

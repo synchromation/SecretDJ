@@ -14,10 +14,11 @@ let package = Package(
 	dependencies: [
 		.package(path: "../SecretDJDomain"),
 		.package(path: "../DesignSystem"),
+		.package(path: "../Observability"),
 	],
 	targets: [
-		.target(name: "FeedUI", dependencies: ["SecretDJDomain", "DesignSystem"]),
-		.testTarget(name: "FeedUITests", dependencies: ["FeedUI"]),
+		.target(name: "FeedUI", dependencies: ["SecretDJDomain", "DesignSystem", "Observability"]),
+		.testTarget(name: "FeedUITests", dependencies: ["FeedUI", "Observability"]),
 	],
 	swiftLanguageModes: [.v6],
 )

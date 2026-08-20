@@ -6,24 +6,38 @@ import SecretDJDomain
 import SharedFeatures
 import SwiftUI
 
-/// The kiosk's signed-in home screen (PLAN.md S7.4/S7.5) — a permanent
-/// now-playing header (``KioskNowPlayingHeaderView``) above the venue's
-/// jukebox digest (``SharedFeatures/MusicSelectionScreen``, reused wholesale
-/// with the kiosk's own ``FeedUI/FeedChangeDetector/Policy/reloadInPlace``
-/// injected — LEGACY.md's kiosk digest branch, PLAN.md S7.4), replacing the
-/// S7.1 placeholder that only confirmed sign-in by naming the venue.
+/// The kiosk's signed-in home screen (PLAN.md S7.4–S7.6) — a permanent
+/// now-playing header (``KioskNowPlayingHeaderView``, with its own search
+/// button, S7.6) above the venue's jukebox digest
+/// (``SharedFeatures/MusicSelectionScreen``, reused wholesale with the
+/// kiosk's own ``FeedUI/FeedChangeDetector/Policy/reloadInPlace`` injected —
+/// LEGACY.md's kiosk digest branch, PLAN.md S7.4), replacing the S7.1
+/// placeholder that only confirmed sign-in by naming the venue. The digest
+/// and every jukebox drill-in also arm S7.7's unattended error recovery
+/// (``FeedUI/FeedConfiguration/ErrorRecovery``) — these two are the screens
+/// the kiosk actually rests on all day, so they're the ones that most need
+/// to heal themselves without staff.
 ///
 /// Tapping a jukebox tile drills into that jukebox's own song grid (the same
 /// ``SharedFeatures/MusicSelectionScreen``, scoped to one jukebox); tapping a
-/// song opens ``KioskTuneInScreen`` to request it — LEGACY.md "Requesting a
+/// song (from the digest, a jukebox, or search) opens
+/// ``KioskTuneInDestinationScreen`` to request it — LEGACY.md "Requesting a
 /// song (the kiosk's whole write path)": tapping any song anywhere on the
 /// legacy kiosk opened `KioskTuneInViewController` to preview and request it
 /// unmetered, so this wires the same behavior through the shared S6.3
-/// TuneIn screen rather than the consumer's browse-only assumption. A
-/// change-mood tile (the `matrixControlLarge` template, when the venue's
-/// digest carries one) is self-handled by `MusicSelectionScreen` itself —
-/// this view never sees that tap (S7.5, D13: no other kiosk-side control
-/// exists).
+/// TuneIn screen rather than the consumer's browse-only assumption. The
+/// header's search button opens ``KioskMusicSearchScreen`` (LEGACY.md
+/// "Search"), whose own artist rows drill into ``KioskSongsForArtistScreen``
+/// for a multi-song artist. A change-mood tile (the `matrixControlLarge`
+/// template, when the venue's digest carries one) is self-handled by
+/// `MusicSelectionScreen` itself — this view never sees that tap (S7.5,
+/// D13: no other kiosk-side control exists).
+///
+/// Also the one place that consumes ``IdleTimerModel/idleTimeoutFireCount``
+/// (S7.3 left the hook, S7.4+ is this screen): an idle timeout pops `path`
+/// back to root, however deep browsing or search left it — legacy's
+/// `KioskNowPlayingViewController.didExceedIdleTimeout` popping its
+/// embedded nav controller to the jukebox wall.
 struct KioskHomeView: View {
 	let sessionStore: SessionStore
 	let apiClient: APIClient
@@ -36,6 +50,7 @@ struct KioskHomeView: View {
 	@State private var toastQueue = ToastQueue()
 
 	@Environment(\.kioskSkin) private var kioskSkin
+	@Environment(\.idleTimerModel) private var idleTimerModel
 
 	/// The legacy 50-song page size for `musicdigest`/`musicselection`
 	/// (LEGACY.md "Choosing music": "hash-checked pagination in 50-song
@@ -70,7 +85,11 @@ struct KioskHomeView: View {
 
 	var body: some View {
 		VStack(spacing: 0) {
-			KioskNowPlayingHeaderView(display: nowPlayingModel.display)
+			KioskNowPlayingHeaderView(
+				display: nowPlayingModel.display,
+				isSearchActive: path.contains(.search),
+				onSearchTapped: { path.append(.search) },
+			)
 
 			NavigationStack(path: $path) {
 				digestScreen
@@ -82,6 +101,7 @@ struct KioskHomeView: View {
 		.background(Theme.ColorRole.background.color)
 		.toastPresenter(queue: toastQueue, appearance: kioskSkin.toast.toastAppearance)
 		.task { await nowPlayingModel.start() }
+		.onChange(of: idleTimerModel?.idleTimeoutFireCount) { _, _ in path.removeAll() }
 		.tracksScreen("KioskHome")
 	}
 
@@ -93,7 +113,9 @@ struct KioskHomeView: View {
 			toastQueue: toastQueue,
 			copy: Self.digestCopy,
 			changePolicy: .reloadInPlace,
+			errorRecovery: FeedConfiguration.ErrorRecovery(),
 			onOutcome: handle(outcome:),
+			observability: observability,
 		)
 	}
 
@@ -119,9 +141,9 @@ struct KioskHomeView: View {
 		case .jukebox(let jukeboxId):
 			jukeboxScreen(jukeboxId: jukeboxId)
 
-		case .song(.song(let song)):
-			KioskTuneInScreen(
-				song: song,
+		case .song(let target):
+			KioskTuneInDestinationScreen(
+				target: target,
 				venueId: venueId,
 				apiClient: apiClient,
 				sessionStore: sessionStore,
@@ -130,12 +152,24 @@ struct KioskHomeView: View {
 				observability: observability,
 			)
 
-		case .song(.artist):
-			// The kiosk digest/jukebox grids only ever tap through a song's
-			// own `.showSong(.song(_:))` outcome (``KioskHomeDestination``'s
-			// doc comment) — an artist row exists only in search results,
-			// which S7.6 hasn't built on the kiosk yet.
-			EmptyView()
+		case .search:
+			KioskMusicSearchScreen(
+				venueId: venueId,
+				apiClient: apiClient,
+				sessionStore: sessionStore,
+				observability: observability,
+				onOutcome: handle(outcome:),
+			)
+
+		case .songsForArtist(let artist):
+			KioskSongsForArtistScreen(
+				artistName: artist,
+				venueId: venueId,
+				apiClient: apiClient,
+				sessionStore: sessionStore,
+				observability: observability,
+				onOutcome: handle(outcome:),
+			)
 		}
 	}
 
@@ -159,7 +193,9 @@ struct KioskHomeView: View {
 			toastQueue: toastQueue,
 			copy: Self.digestCopy,
 			changePolicy: .reloadInPlace,
+			errorRecovery: FeedConfiguration.ErrorRecovery(),
 			onOutcome: handle(outcome:),
+			observability: observability,
 		)
 	}
 

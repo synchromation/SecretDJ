@@ -456,11 +456,11 @@ landscape with attract mode; shares S1–S3 + SharedFeatures wholesale.
       queue view, skip, blacklist, or request moderation — those are
       consumer-app `machinecontrol` affordances, S6.3. Adding kiosk-side
       moderation is new scope: D13.)
-- [ ] S7.6 Kiosk search: SharedFeatures search reused at iPad scale
+- [x] S7.6 Kiosk search: SharedFeatures search reused at iPad scale
       (multi-column layouts per swiftui-views/lazy-sections); the legacy
       custom on-screen keyboard is replaced by the system keyboard unless
       D10's skin conversation decides otherwise.
-- [ ] S7.7 Kiosk resilience: all-day soak behavior — memory-stable feed
+- [x] S7.7 Kiosk resilience: all-day soak behavior — memory-stable feed
       refresh, network-loss recovery, unattended-error surfaces that
       self-recover to attract mode.
 
@@ -599,7 +599,7 @@ what it blocks.
 | S4 Identity & session | **done** (live SIWA/FB smokes + FB client token pending — see S4.3/S4.4) |
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
-| S7 Kiosk app | in progress (S7.1–S7.5 done; S7.6, S7.7 remain) |
+| S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
 | S8 Cross-cutting | not started |
 | S9 Release readiness | not started |
 

@@ -1,11 +1,13 @@
 import Foundation
+import Observability
 import SecretDJDomain
 
 /// Drives a backend-driven feed screen: initial load, pull-to-refresh,
-/// opt-in auto-refresh, infinite scroll, hash-change detection, and the
-/// load state DesignSystem's surfaces render — composing
-/// ``FeedChangeDetector``, ``FeedDisplayModel``, and ``FeedActionRouter``
-/// behind one reusable model both apps' feed screens wrap (PLAN.md S3.4).
+/// opt-in auto-refresh, opt-in unattended error recovery, infinite scroll,
+/// hash-change detection, and the load state DesignSystem's surfaces
+/// render — composing ``FeedChangeDetector``, ``FeedDisplayModel``, and
+/// ``FeedActionRouter`` behind one reusable model both apps' feed screens
+/// wrap (PLAN.md S3.4; the kiosk's unattended recovery is S7.7).
 @MainActor
 @Observable
 public final class FeedScreenModel {
@@ -62,11 +64,19 @@ public final class FeedScreenModel {
 	private let configuration: FeedConfiguration
 	private let gpsFixAge: (any GPSFixAgeProviding)?
 	private let clock: any FeedRefreshClock
+	private let observability: ObservabilityPipeline
 
 	private var changeDetector: FeedChangeDetector
 	private var jukeboxList: [Jukebox] = []
 	private var nextPage = 1
 	private var refreshToken: FeedRefreshClockToken?
+	private var recoveryToken: FeedRefreshClockToken?
+	/// How many unattended recovery retries have fired in the current error
+	/// streak — `0` outside one (idle, loaded, or a fresh error nobody has
+	/// retried yet). Feeds ``recoveryInterval(forAttempt:initial:maximum:)``
+	/// and gates the coarse breadcrumb in ``recoveryTick(attempt:)``; reset
+	/// to `0` the moment a load succeeds again.
+	private var recoveryAttempt = 0
 
 	public init(
 		loader: any FeedLoading,
@@ -74,12 +84,14 @@ public final class FeedScreenModel {
 		configuration: FeedConfiguration,
 		gpsFixAge: (any GPSFixAgeProviding)? = nil,
 		clock: any FeedRefreshClock = SystemFeedRefreshClock(),
+		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.loader = loader
 		self.router = router
 		self.configuration = configuration
 		self.gpsFixAge = gpsFixAge
 		self.clock = clock
+		self.observability = observability
 		changeDetector = FeedChangeDetector(policy: configuration.changePolicy)
 	}
 
@@ -99,11 +111,14 @@ public final class FeedScreenModel {
 		await performFullLoad(resetsScrollPosition: true)
 	}
 
-	/// Cancels any pending auto-refresh tick — call from the view's
-	/// `onDisappear` so a backgrounded screen stops polling.
+	/// Cancels any pending auto-refresh tick and any pending unattended
+	/// recovery retry — call from the view's `onDisappear` so a
+	/// backgrounded screen stops polling and stops retrying.
 	public func stop() {
 		refreshToken?.cancel()
 		refreshToken = nil
+		recoveryToken?.cancel()
+		recoveryToken = nil
 	}
 
 	/// Fetches the next page for infinite scroll. A no-op when pagination is
@@ -149,11 +164,13 @@ public final class FeedScreenModel {
 		do {
 			let sectionList = try await loader.load(page: nil)
 			apply(sectionList, resetsScrollPosition: resetsScrollPosition)
+			cancelRecovery()
 		} catch {
 			// A background refresh failing while content is already showing
 			// keeps that content rather than replacing it with an error surface.
 			guard showsLoadingState else { return }
 			phase = .error(offline: isOffline(error))
+			scheduleRecovery()
 		}
 	}
 
@@ -255,5 +272,96 @@ public final class FeedScreenModel {
 		}
 
 		return autoRefresh.baseCadence
+	}
+
+	// MARK: - Unattended error recovery (PLAN.md S7.7)
+
+	/// Arms (or re-arms) the backoff retry once ``phase`` has just become
+	/// an error — a no-op when ``FeedConfiguration/errorRecovery`` opts
+	/// this screen out. Any already-pending retry is replaced rather than
+	/// left to double-fire alongside a new one, the same guard
+	/// ``scheduleNextAutoRefresh()`` applies to its own token; a retry
+	/// triggered by a person's own pull-to-refresh failing counts toward
+	/// the same backoff series as an unattended tick — there's no reason
+	/// to forgive the streak just because a human happened to tap in the
+	/// middle of it.
+	private func scheduleRecovery() {
+		guard let policy = configuration.errorRecovery else { return }
+
+		recoveryToken?.cancel()
+		recoveryAttempt += 1
+		let attempt = recoveryAttempt
+		let interval = Self.recoveryInterval(
+			forAttempt: attempt,
+			initial: policy.initialInterval,
+			maximum: policy.maximumInterval,
+		)
+
+		recoveryToken = clock.schedule(after: interval) { [weak self] in
+			await self?.recoveryTick(attempt: attempt)
+		}
+	}
+
+	/// Cancels any pending retry and resets the backoff streak — called
+	/// once a load actually succeeds. Only breadcrumbs "recovered" when
+	/// there was a streak to recover from, so an ordinary happy-path load
+	/// (which has never failed) stays silent.
+	private func cancelRecovery() {
+		recoveryToken?.cancel()
+		recoveryToken = nil
+
+		if recoveryAttempt > 0 {
+			observability.interaction("feedErrorRecoveryRecovered")
+		}
+		recoveryAttempt = 0
+	}
+
+	/// One backoff-scheduled retry: re-runs the exact same full load a
+	/// person's own "Try Again" button would (``refresh()``'s own path),
+	/// so a retry that succeeds clears the error surface exactly as if
+	/// someone had tapped it, and a retry that fails re-arms the next,
+	/// longer wait via ``scheduleRecovery()``.
+	private func recoveryTick(attempt: Int) async {
+		recoveryToken = nil
+
+		// Coarse breadcrumbs only (PLAN.md S7.7: "not per-attempt spam") —
+		// the first retry of a streak, then every `recoveryBreadcrumbStride`th
+		// after that, is enough to see a screen stuck retrying in telemetry
+		// without flooding it once backoff settles at its capped cadence.
+		if attempt == 1 || attempt.isMultiple(of: Self.recoveryBreadcrumbStride) {
+			observability.interaction("feedErrorRecoveryRetry")
+		}
+
+		await performFullLoad(resetsScrollPosition: true)
+	}
+
+	private static let recoveryBreadcrumbStride = 5
+
+	/// Exponential backoff, doubling each attempt from `initial` and
+	/// holding at `maximum` rather than growing without bound — pure and
+	/// `static` so it's directly testable without a hosted model
+	/// (mirrors `DesignSystem/SectionIndexStrip`'s own testable geometry
+	/// math). `attempt` is 1-based: the first retry after an error waits
+	/// `initial`, the second waits `initial * 2`, and so on.
+	nonisolated static func recoveryInterval(
+		forAttempt attempt: Int,
+		initial: Duration,
+		maximum: Duration,
+	) -> Duration {
+		guard attempt > 1 else { return initial }
+
+		// The exponent is capped well below where `1 << exponent` could
+		// overflow — irrelevant to any real backoff (it saturates at
+		// `maximum` within a handful of doublings), but keeps this total
+		// for a pathologically long attempt count during an all-day soak.
+		let exponent = min(attempt - 1, 20)
+		let scaled = initial.secondsAsDouble * Double(1 << exponent)
+		return .seconds(min(scaled, maximum.secondsAsDouble))
+	}
+}
+
+extension Duration {
+	fileprivate var secondsAsDouble: Double {
+		Double(components.seconds) + Double(components.attoseconds) / 1e18
 	}
 }

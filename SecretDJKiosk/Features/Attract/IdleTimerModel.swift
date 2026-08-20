@@ -47,12 +47,14 @@ final class IdleTimerModel {
 	private(set) var isShowingAttract = false
 
 	/// Increments every time the idle countdown fires while attract isn't
-	/// showing — the documented hook S7.4+'s screens will observe
-	/// (`.onChange`) to pop back to the jukebox wall and restore the
-	/// now-playing header, mirroring legacy's `popToRoot()`
-	/// (`KioskNowPlayingViewController.didExceedIdleTimeout`). The kiosk
-	/// home is still S7.1's placeholder with nothing to reset yet, so
-	/// nothing consumes this today.
+	/// showing — the hook `KioskHomeView` observes (`.onChange`, reading
+	/// this model via ``EnvironmentValues/idleTimerModel``) to pop its
+	/// `NavigationStack` back to the jukebox wall, mirroring legacy's
+	/// `popToRoot()` (`KioskNowPlayingViewController.didExceedIdleTimeout`).
+	/// The now-playing header needs no restoring on this side — unlike
+	/// legacy's embedded nav controller, it already lives outside
+	/// `KioskHomeView`'s stack and is never replaced by anything pushed
+	/// onto it.
 	private(set) var idleTimeoutFireCount = 0
 
 	private let attractTimeoutSeconds: Int

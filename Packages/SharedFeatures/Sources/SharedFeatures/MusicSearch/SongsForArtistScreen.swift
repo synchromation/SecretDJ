@@ -10,7 +10,8 @@ import SwiftUI
 /// wrapper, same shape as every other S6 feed screen; its own `FeedLoading`
 /// is ``MusicSearchingSongsForArtistLoading``, so this screen shares the
 /// ``MusicSearching`` seam with the rest of search rather than opening a
-/// separate one.
+/// separate one. `errorRecovery` mirrors ``MusicSelectionScreen``'s own
+/// opt-in (`nil` for the consumer; the kiosk arms it, PLAN.md S7.7).
 public struct SongsForArtistScreen: View {
 	public let copy: FeedScreenCopy
 	public let onOutcome: ((FeedActionOutcome) -> Void)?
@@ -21,15 +22,23 @@ public struct SongsForArtistScreen: View {
 		artistName: String,
 		searching: any MusicSearching,
 		copy: FeedScreenCopy,
+		errorRecovery: FeedConfiguration.ErrorRecovery? = nil,
 		installedApps: any InstalledApps = NoInstalledApps(),
 		onOutcome: ((FeedActionOutcome) -> Void)? = nil,
+		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.copy = copy
 		self.onOutcome = onOutcome
 		_model = State(initialValue: FeedScreenModel(
 			loader: MusicSearchingSongsForArtistLoading(searching: searching, artistName: artistName),
 			router: FeedActionRouter(installedApps: installedApps),
-			configuration: FeedConfiguration(autoRefresh: nil, paginationEnabled: false, changePolicy: .surfaceChange),
+			configuration: FeedConfiguration(
+				autoRefresh: nil,
+				paginationEnabled: false,
+				changePolicy: .surfaceChange,
+				errorRecovery: errorRecovery,
+			),
+			observability: observability,
 		))
 	}
 

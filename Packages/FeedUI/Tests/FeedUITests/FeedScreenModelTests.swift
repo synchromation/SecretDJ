@@ -3,6 +3,7 @@ import Testing
 @testable import FeedUI
 
 import Foundation
+import Observability
 import SecretDJDomain
 
 /// Initial load, pull-to-refresh, and the S3.3 song→jukebox correlation.
@@ -130,6 +131,36 @@ enum FeedScreenModelTests {
 			#expect(model.phase == .loaded)
 			#expect(model.visibleSections[0].items.map(\.id) == ["song-1"])
 		}
+
+		/// PLAN.md S7.7's memory-stability proof: the kiosk digest sits in one
+		/// long-lived `FeedScreenModel` all day, reloading in place
+		/// (``FeedUI/FeedChangeDetector/Policy/reloadInPlace``) rather than
+		/// being torn down between refreshes the way a consumer screen's own
+		/// navigation would. If a full refresh ever *appended* to
+		/// `visibleSections` instead of replacing it, that model would grow
+		/// without bound over a soak. It doesn't: ``apply(_:resetsScrollPosition:)``
+		/// assigns `visibleSections` wholesale on every ``start()``/``refresh()``/
+		/// auto-refresh tick.
+		@Test func `many repeated refreshes never grow visibleSections beyond the latest load`() async {
+			let loader = InMemoryFeedLoading()
+			let model = makeScreenModel(loader: loader)
+
+			for tick in 0 ..< 50 {
+				await loader.setOutcome(
+					.success(makeLoadedSectionList(hash: "v\(tick)", items: [makeFeedSong(songId: "\(tick)")])),
+					forPage: nil,
+				)
+				if tick == 0 {
+					await model.start()
+				} else {
+					await model.refresh()
+				}
+			}
+
+			#expect(model.visibleSections.count == 1)
+			#expect(model.visibleSections[0].items.count == 1)
+			#expect(model.visibleSections[0].items.map(\.id) == ["song-49"])
+		}
 	}
 
 	@MainActor
@@ -169,8 +200,10 @@ func makeScreenModel(
 	autoRefresh: FeedConfiguration.AutoRefresh? = nil,
 	paginationEnabled: Bool = false,
 	changePolicy: FeedChangeDetector.Policy = .surfaceChange,
+	errorRecovery: FeedConfiguration.ErrorRecovery? = nil,
 	gpsFixAge: (any GPSFixAgeProviding)? = nil,
 	clock: any FeedRefreshClock = ManualFeedRefreshClock(),
+	observability: ObservabilityPipeline = .disabled,
 ) -> FeedScreenModel {
 	FeedScreenModel(
 		loader: loader,
@@ -179,9 +212,11 @@ func makeScreenModel(
 			autoRefresh: autoRefresh,
 			paginationEnabled: paginationEnabled,
 			changePolicy: changePolicy,
+			errorRecovery: errorRecovery,
 		),
 		gpsFixAge: gpsFixAge,
 		clock: clock,
+		observability: observability,
 	)
 }
 
