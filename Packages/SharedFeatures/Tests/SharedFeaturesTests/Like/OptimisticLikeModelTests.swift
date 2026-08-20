@@ -28,7 +28,7 @@ enum OptimisticLikeModelTests {
 			let model = makeModel(likeInfo: LikeInfo(likedByYou: false, info: ""), likeToggling: toggling)
 
 			async let toggle: Void = model.toggle()
-			await Task.yield()
+			await waitUntil { !toggling.calls.isEmpty }
 
 			#expect(model.likeInfo.likedByYou)
 			toggling.resume(with: .success(LikeResult(message: "1 person buzzed this", url: "", isLikedByYou: true)))
@@ -163,7 +163,7 @@ enum OptimisticLikeModelTests {
 			let model = makeModel(likeToggling: toggling)
 
 			async let toggle: Void = model.toggle()
-			await Task.yield()
+			await waitUntil { !toggling.calls.isEmpty }
 
 			#expect(model.isToggling)
 			toggling.resume(with: .success(LikeResult(message: "", url: "", isLikedByYou: true)))
@@ -188,7 +188,7 @@ enum OptimisticLikeModelTests {
 			let model = makeModel(likeInfo: LikeInfo(likedByYou: false, info: "Be the first"), likeToggling: toggling)
 
 			async let toggleTask: Void = model.toggle()
-			await Task.yield()
+			await waitUntil { !toggling.calls.isEmpty }
 			model.reconcile(with: LikeInfo(likedByYou: false, info: "A stale refresh snapshot"))
 
 			#expect(model.likeInfo.likedByYou)
@@ -199,6 +199,23 @@ enum OptimisticLikeModelTests {
 }
 
 // MARK: - Fixtures
+
+/// Polls until `condition` holds, yielding the MainActor between checks —
+/// a deterministic replacement for a single bare `await Task.yield()`
+/// before asserting on an in-flight `async let`'s side effects. A single
+/// yield only *suggests* the scheduler give another ready job a turn; it
+/// doesn't guarantee the specific `async let` child task actually ran
+/// before the caller resumes, so an assertion placed right after it is
+/// flaky under heavy system load (observed: passes in isolation, fails
+/// intermittently inside the full `Scripts/verify.sh test` run, where many
+/// other processes contend for the same cooperative thread pool). Capped
+/// so a genuine regression still fails fast rather than hanging.
+@MainActor
+private func waitUntil(_ condition: () -> Bool) async {
+	for _ in 0 ..< 10000 where !condition() {
+		await Task.yield()
+	}
+}
 
 @MainActor
 private func makeModel(

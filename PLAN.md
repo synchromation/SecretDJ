@@ -470,7 +470,7 @@ Prereqs: S6, S7.
 Goal: the qualities that were built per-feature, audited whole-app. Exit:
 audits pass and are recorded in NOTES.md.
 
-- [ ] S8.1 Localization audit: every key present in es/fr/de/nl,
+- [x] S8.1 Localization audit: every key present in es/fr/de/nl,
       adaptation sheets honored, `needs_review` queue triaged with a
       native-speaker pass scheduled; pseudo-localization + longest-language
       layout sweep; D11's server-copy outcome verified end to end.
@@ -554,8 +554,12 @@ what it blocks.
   **`Accept-Language` header** on every request (not a query
   parameter); the backend returns copy localized for the five
   languages. Satisfies the localization skill's server-text rule with
-  no skill amendment. S8.1 verifies localized server copy end to end
-  per language.
+  no skill amendment. **S8.1's end-to-end verification (2026-08-20)
+  found the backend does NOT yet localize**: placesnearby returned
+  byte-identical English copy for all five Accept-Language values
+  (client behavior confirmed correct). Backend deployment of the
+  localization is now the gating item — re-verify before S9 ships;
+  the finding is marked `// S8.1-FOLLOWUP:` in the API client.
 - **D12 Affiliate hand-offs** — **Resolved 2026-08-18: dropped.** The
   listen-elsewhere sheet goes entirely (its only non-Spotify rows were
   the Apple Music affiliate link and the YouTube hand-off): S6.4 is
@@ -605,7 +609,7 @@ what it blocks.
 | S5 Consumer shell | **done** |
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
-| S8 Cross-cutting | in progress (S8.2 automated half done) |
+| S8 Cross-cutting | in progress (S8.1, S8.2 done; S8.3–S8.5 remain) |
 | S9 Release readiness | not started |
 
 Keep this table in step with the checkboxes; it exists so a resuming

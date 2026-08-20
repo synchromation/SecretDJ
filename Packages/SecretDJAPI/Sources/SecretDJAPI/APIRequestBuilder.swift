@@ -34,6 +34,15 @@ public struct APIRequestBuilder: Sendable {
 	/// - Throws: ``APIError/missingCredential`` when `signed` is `true` and
 	///   `credential` is `nil`; ``APIError/requestGeneration`` if the result
 	///   would not be a valid URL.
+	// S8.1-FOLLOWUP: this header is sent correctly and verified against the
+	// live backend (PLAN.md S8.1's D11 end-to-end check, 2026-08-20):
+	// `placesnearby` called with `Accept-Language: es/fr/de/nl` returns
+	// byte-identical section titles/LikeInfo copy to `en` every time — the
+	// server does not localize this endpoint's copy despite D11's text ("the
+	// backend returns copy localized for the five languages"). Flagged for
+	// the product owner; not a client-side defect, so nothing to fix here —
+	// remove this note once the backend is confirmed to localize or D11 is
+	// revisited.
 	public func request(
 		endpoint: String,
 		parameters: [String: String],

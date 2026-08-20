@@ -728,3 +728,23 @@ work happens; every commit includes this file's delta.
   element-scoped contrast items needing Accessibility Inspector on
   hardware. The manual VoiceOver walk of all 13 screens is listed in
   PLAN.md as the remaining human half.
+- S8.1 done (sonnet subagent): 239 keys / 956 translation entries
+  audited across three catalogs — one gap fixed (the numeric-only
+  %lld key), zero conformance violations (payment phrases verbatim,
+  no formal address anywhere, placeholders/newlines preserved; the
+  one Title Case flag was a Dutch proper-noun false positive). German
+  longest-language layout tests added to both UI-test targets (23/23
+  uitest green). A pre-existing flaky race in OptimisticLikeModelTests
+  fixed with deterministic waiting (confirmed pre-existing via stash).
+  MAJOR FINDING — D11: the backend does not localize yet. Live
+  capture (≤1 req/s, read-only) requested placesnearby under all five
+  Accept-Language values; every copy field returned byte-identical
+  English (two request shapes confirmed; the client's header is
+  correct). Recorded on D11 in PLAN.md as the gating item before S9.
+- Native-speaker review scheduled for the S8.1 needs_review queue:
+  936 entries across es/fr/de/nl (234 per language) spanning all
+  three catalogs. Priority pass first on the ~35 high-risk entries
+  (account deletion, payment/top-up, permission prompts, password
+  flows) before the remaining general-UI copy. No entries were
+  flipped to translated by the audit — that stays a native speaker's
+  call per the localization skill.
