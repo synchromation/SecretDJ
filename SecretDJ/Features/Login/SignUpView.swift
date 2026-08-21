@@ -42,7 +42,7 @@ struct SignUpView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("SignUp")
 		.onChange(of: model.onboardingRoute) { _, newValue in
 			if let newValue {

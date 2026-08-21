@@ -10,7 +10,13 @@ public struct PromotionCell: View {
 
 	@ScaledMetric private var height: CGFloat
 
-	public init(artworkURL: URL?, caption: String? = nil, height: CGFloat = 120) {
+	/// 106pt default: `AdvertCollectionViewCell`'s own fixed height
+	/// (`FeedCellSizeCalculator.cellSizeiPhone`'s `.advert` case) and
+	/// `PromotionCollectionViewCell.xib`'s own placeholder-image constraints
+	/// agree on 106×106 (S9.5) — used only when a caller has no server-sized
+	/// height of its own (this cell's own doc comment: the server usually
+	/// dictates it).
+	public init(artworkURL: URL?, caption: String? = nil, height: CGFloat = 106) {
 		self.artworkURL = artworkURL
 		self.caption = caption
 		_height = ScaledMetric(wrappedValue: height, relativeTo: .footnote)

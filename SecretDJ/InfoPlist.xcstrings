@@ -1,93 +1,138 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "NSUserTrackingUsageDescription": {
-      "comment": "App Tracking Transparency prompt, shown when the user first attempts Facebook sign-in or taps \"use my Facebook photo\" (S4.4) — the only two features that touch the Facebook SDK. Candid about what the app itself does vs. what Facebook might do, per LEGACY.md's original phrasing.",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Wir verfolgen dich nicht, aber wenn du dich mit Facebook anmeldest, könnten die das tun."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nosotros no te rastreamos, pero si inicias sesión con Facebook, puede que ellos sí."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Nous ne te suivons pas, mais si tu te connectes avec Facebook, eux pourraient le faire."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Wij volgen jou niet, maar als je inlogt met Facebook, doen zij dat misschien wel."
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secret DJ"
           }
         }
       }
     },
-    "NSCameraUsageDescription": {
-      "comment": "Camera permission prompt, shown when the onboarding photo step's camera capture button is first tapped.",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ braucht Zugriff auf deine Kamera, damit du ein Profilbild aufnehmen kannst."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ necesita tu cámara para que puedas hacerte una foto de perfil."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ a besoin de ton appareil photo pour que tu puisses prendre une photo de profil."
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ heeft toegang tot je camera nodig zodat je een profielfoto kunt maken."
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SecretDJ"
           }
         }
       }
     },
-    "NSLocationWhenInUseUsageDescription": {
-      "comment": "Location-when-in-use permission prompt, shown the first time a screen that needs the user's location (Places Nearby) requests authorization.",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ braucht deinen Standort, um Orte in deiner Nähe zu finden."
+    "NSCameraUsageDescription" : {
+      "comment" : "Camera permission prompt, shown when the onboarding photo step's camera capture button is first tapped.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ braucht Zugriff auf deine Kamera, damit du ein Profilbild aufnehmen kannst."
           }
         },
-        "es": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ necesita tu ubicación para encontrar lugares cerca de ti."
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secret DJ needs your camera so you can take a profile picture."
           }
         },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ a besoin de ta position pour trouver des lieux près de toi."
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ necesita tu cámara para que puedas hacerte una foto de perfil."
           }
         },
-        "nl": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Secret DJ heeft je locatie nodig om plekken in de buurt te vinden."
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ a besoin de ton appareil photo pour que tu puisses prendre une photo de profil."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ heeft toegang tot je camera nodig zodat je een profielfoto kunt maken."
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Location-when-in-use permission prompt, shown the first time a screen that needs the user's location (Places Nearby) requests authorization.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ braucht deinen Standort, um Orte in deiner Nähe zu finden."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Secret DJ needs your location to find venues near you."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ necesita tu ubicación para encontrar lugares cerca de ti."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ a besoin de ta position pour trouver des lieux près de toi."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Secret DJ heeft je locatie nodig om plekken in de buurt te vinden."
+          }
+        }
+      }
+    },
+    "NSUserTrackingUsageDescription" : {
+      "comment" : "App Tracking Transparency prompt, shown when the user first attempts Facebook sign-in or taps \"use my Facebook photo\" (S4.4) — the only two features that touch the Facebook SDK. Candid about what the app itself does vs. what Facebook might do, per LEGACY.md's original phrasing.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wir verfolgen dich nicht, aber wenn du dich mit Facebook anmeldest, könnten die das tun."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We don't track you ourselves, but if you sign in with Facebook, they might."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nosotros no te rastreamos, pero si inicias sesión con Facebook, puede que ellos sí."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Nous ne te suivons pas, mais si tu te connectes avec Facebook, eux pourraient le faire."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Wij volgen jou niet, maar als je inlogt met Facebook, doen zij dat misschien wel."
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

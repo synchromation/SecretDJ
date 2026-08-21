@@ -89,7 +89,7 @@ struct ProfileScreen: View {
 			FeedScreen(model: feedModel, copy: Self.copy, onOutcome: handle(outcome:))
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text(
 			"Profile",
 			comment: "Navigation title of the Profile tab; also the coming-soon placeholder's title in place of a person's profile.",

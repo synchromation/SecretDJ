@@ -5,8 +5,22 @@ import SwiftUI
 /// across song/venue/person payloads by taking only primitive display
 /// values (lazy-sections' immutable-value-props rule).
 public struct CardCell: View {
-	public static let baseWidth: CGFloat = 140
-	public static let baseHeight: CGFloat = 168
+	/// 106pt — `StyleKit2023.defaultCellImageSize`
+	/// (`secretdjv3/StyleKit2023.swift:15`), matching
+	/// `ContainerCellSizeCalculator.calculateCellSize`'s own square sizing
+	/// for `horizontalAward`/`horizontalPerson`/`horizontalSong` (width ==
+	/// height == `defaultCellImageSize`) — the templates this cell's own
+	/// `FeedCarouselSection` caller renders (S9.5).
+	public static let baseWidth: CGFloat = 106
+	/// Derived, not directly cited: legacy's own horizontal song/person/
+	/// award cells carry no title/subtitle text at all (`HorizontalSong
+	/// CollectionViewCell.xib` has no `<label>`; `Horizontal{Award,Person}
+	/// CollectionViewCell.xib` carry only a single 12pt name caption), so
+	/// there's no legacy total-height to port for a card that (unlike
+	/// legacy) always shows a title and optional subtitle underneath its
+	/// artwork. This is `baseWidth`'s square artwork (106) plus this cell's
+	/// own two-line title + one-line subtitle text stack and spacing.
+	public static let baseHeight: CGFloat = 178
 
 	let artworkURL: URL?
 	let placeholderIcon: Theme.Icon
@@ -17,8 +31,10 @@ public struct CardCell: View {
 	private var width = CardCell.baseWidth
 	@ScaledMetric(relativeTo: .footnote)
 	private var height = CardCell.baseHeight
+	/// Same 106pt legacy citation as `baseWidth` (S9.5) — kept square, same
+	/// as the legacy cells it ports from.
 	@ScaledMetric(relativeTo: .footnote)
-	private var artworkHeight: CGFloat = 96
+	private var artworkHeight: CGFloat = 106
 
 	public init(artworkURL: URL? = nil, placeholderIcon: Theme.Icon, title: String, subtitle: String? = nil) {
 		self.artworkURL = artworkURL

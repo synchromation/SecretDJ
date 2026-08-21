@@ -44,7 +44,7 @@ struct TabsView: View {
 	/// The ``PromotionEngaging`` seam every `.engagePromotion` outcome fires
 	/// through, built once here — unlike ``topUpTransactionListener`` it
 	/// carries no identity to protect.
-	private var promotionEngaging: any PromotionEngaging {
+	var promotionEngaging: any PromotionEngaging {
 		APIClientPromotionEngaging(client: apiClient, sessionStore: sessionStore)
 	}
 
@@ -117,10 +117,11 @@ struct TabsView: View {
 
 			Tab("Profile", systemImage: Theme.Icon.profile.systemName, value: AppTab.profile) {
 				tabStack(for: .profile) { router in
-					profileScreen(personId: sessionStore.user?.personId ?? "", router: router)
+					profileScreen(personId: sessionStore.user?.personId ?? "", router: router, toastQueue: toastQueue)
 				}
 			}
 		}
+		.themedTabBar() // S9.5: selected-tab tint already follows the root `.tint` (`SecretDJApp`).
 		.toastPresenter(
 			queue: toastQueue,
 			richToastVipActionLabel: Self.richToastVipActionLabel,
@@ -172,19 +173,24 @@ struct TabsView: View {
 			)
 
 		case .venue(let venueId):
-			venueScreen(venueId: venueId, router: router)
+			venueScreen(
+				venueId: venueId,
+				router: router,
+				toastQueue: toastQueue,
+				onShowActivity: { model.show(tab: .activity) },
+			)
 
 		case .person(let personId):
-			profileScreen(personId: personId, router: router)
+			profileScreen(personId: personId, router: router, toastQueue: toastQueue)
 
 		case .settings:
-			settingsScreen
+			settingsScreen(toastQueue: toastQueue)
 
 		case .nowPlaying(let venueId):
-			nowPlayingScreen(venueId: venueId, router: router)
+			nowPlayingScreen(venueId: venueId, router: router, toastQueue: toastQueue)
 
 		case .jukebox(let venueId, let jukeboxId):
-			musicSelectionScreen(venueId: venueId, jukeboxId: jukeboxId, router: router)
+			musicSelectionScreen(venueId: venueId, jukeboxId: jukeboxId, router: router, toastQueue: toastQueue)
 
 		case .search(let venueId):
 			MusicSearchScreen(
@@ -202,147 +208,9 @@ struct TabsView: View {
 			)
 
 		case .topUps(let context):
-			topUpsScreen(context: context)
+			topUpsScreen(context: context, toastQueue: toastQueue)
 		}
 	}
-
-	private func topUpsScreen(context: FeedActionOutcome.TopUpContext) -> some View {
-		TopUpsScreen(
-			loader: APIClientFeedLoading.sessionFeed(
-				sessionStore: sessionStore,
-				locationService: locationService,
-				endpoint: { userId, credential, _ in try await apiClient.topUpDetails(
-					userId: userId,
-					venueId: nil,
-					context: context.apiContext,
-					vendor: .appleAppStore,
-					credential: credential,
-				) },
-			),
-			sessionStore: sessionStore,
-			toastQueue: toastQueue,
-			listener: topUpTransactionListener,
-			productPurchasing: productPurchasing,
-			topUpsServicing: APIClientTopUpsService(client: apiClient),
-			observability: observability,
-		)
-	}
-
-	private func venueScreen(venueId: String, router: TabRouter) -> some View {
-		VenueScreen(
-			venueId: venueId,
-			loader: APIClientFeedLoading.sessionFeed(
-				sessionStore: sessionStore,
-				locationService: locationService,
-				endpoint: { userId, credential, _ in try await apiClient.venue(
-					userId: userId,
-					venueId: venueId,
-					credential: credential,
-				) },
-			),
-			locationService: locationService,
-			router: router,
-			toastQueue: toastQueue,
-			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
-			checkingIn: APIClientCheckingIn(client: apiClient, sessionStore: sessionStore),
-			observability: observability,
-			promotionEngaging: promotionEngaging,
-			extraContentLoading: APIClientExtraContentLoading(client: apiClient, sessionStore: sessionStore),
-			onShowActivity: { model.show(tab: .activity) },
-		)
-	}
-
-	/// Shared by the Profile tab root and ``AppDestination/person(personId:)``
-	/// — the gear toolbar button leading to ``settingsScreen`` only ever
-	/// renders on the former (``ProfileScreen``'s own doc comment).
-	private func profileScreen(personId: String, router: TabRouter) -> some View {
-		ProfileScreen(
-			personId: personId,
-			loader: APIClientFeedLoading.sessionFeed(
-				sessionStore: sessionStore,
-				locationService: locationService,
-				endpoint: { userId, credential, _ in try await apiClient.profile(
-					userId: userId,
-					profileUserId: personId,
-					credential: credential,
-				) },
-			),
-			router: router,
-			toastQueue: toastQueue,
-			sessionStore: sessionStore,
-			likeToggling: APIClientLikeToggling(client: apiClient, sessionStore: sessionStore),
-			onboardingService: APIClientOnboardingService(client: apiClient),
-			promotionEngaging: promotionEngaging,
-			observability: observability,
-		)
-	}
-
-	/// The Settings hub (S6.11), pushed from the Profile tab's gear toolbar
-	/// button — relocates the sign-out/delete-account entry points.
-	@ViewBuilder
-	private var settingsScreen: some View {
-		if let user = sessionStore.user, let credential = sessionStore.credential {
-			SettingsScreen(
-				personId: user.personId,
-				credential: credential,
-				sessionStore: sessionStore,
-				settingsService: APIClientSettingsService(client: apiClient),
-				onboardingService: APIClientOnboardingService(client: apiClient),
-				toastQueue: toastQueue,
-				onDeleteAccount: onDeleteAccount,
-				observability: observability,
-			)
-		}
-	}
-
-	private func nowPlayingScreen(venueId: String, router: TabRouter) -> some View {
-		NowPlayingScreen(
-			venueId: venueId,
-			loader: APIClientFeedLoading.sessionFeed(
-				sessionStore: sessionStore,
-				locationService: locationService,
-				endpoint: { userId, credential, _ in try await apiClient.nowPlaying(
-					userId: userId,
-					venueId: venueId,
-					credential: credential,
-				) },
-			),
-			locationService: locationService,
-			router: router,
-			toastQueue: toastQueue,
-			promotionEngaging: promotionEngaging,
-		)
-	}
-
-	private func musicSelectionScreen(venueId: String, jukeboxId: Int, router: TabRouter) -> some View {
-		MusicSelectionScreen(
-			venueId: venueId,
-			loader: APIClientFeedLoading.sessionFeed(
-				sessionStore: sessionStore,
-				locationService: locationService,
-				endpoint: { userId, credential, page in try await apiClient.musicSelection(
-					userId: userId,
-					venueId: venueId,
-					offset: (page ?? 0) * Self.musicSelectionBatchSize,
-					batchSize: Self.musicSelectionBatchSize,
-					item: jukeboxId,
-					type: Int64(ItemType.song.rawValue),
-					hash: nil,
-					credential: credential,
-				) },
-			),
-			atmosphereChanging: APIClientAtmosphereChanging(client: apiClient, sessionStore: sessionStore),
-			toastQueue: toastQueue,
-			copy: Self.musicSelectionCopy,
-			onOutcome: { handle(outcome: $0, router: router, venueId: venueId) },
-			onJukeboxChanged: { toastQueue.enqueue(ToastItem(message: Self.jukeboxChangedMessage)) },
-		)
-	}
-
-	/// The legacy 50-song page size for `musicselection`/`musicdigest`
-	/// (LEGACY.md "Choosing music" — server-adjustable batch size isn't
-	/// modeled yet, so this is a fixed client default).
-	private static let musicSelectionBatchSize = 50
 
 	private func path(for router: TabRouter) -> Binding<[AppDestination]> {
 		Binding(get: { router.path }, set: { router.setPath($0) })
@@ -353,7 +221,7 @@ struct TabsView: View {
 	/// outcomes here rather than straight to `router.handle(outcome:venueId:)`
 	/// — the same hail-ride/openURL/social-app/engage-promotion chain every
 	/// S6 feed screen's own `handle(outcome:)` tries (S6.10/S8.5 cross-check).
-	private func handle(outcome: FeedActionOutcome, router: TabRouter, venueId: String) {
+	func handle(outcome: FeedActionOutcome, router: TabRouter, venueId: String) {
 		guard !HailRideOutcomeHandling.handle(outcome, openURL: openURL, observability: observability) else { return }
 		guard !OpenURLOutcomeHandling.handle(
 			outcome,

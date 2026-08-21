@@ -12,7 +12,7 @@ struct ComingSoonScreen: View {
 	var body: some View {
 		EmptyStateView(systemImage: Theme.Icon.emptyState.systemName, title: title, message: message)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 			.tracksScreen(destination.screenTrackingName)
 	}
 

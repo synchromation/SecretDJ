@@ -34,7 +34,7 @@ struct AvatarChangeSheet: View {
 				}
 				.padding(Spacing.large)
 			}
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 			.navigationTitle(Text(
 				"Change Photo",
 				comment: "Navigation title of the sheet for changing your own profile picture.",

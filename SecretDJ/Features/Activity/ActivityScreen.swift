@@ -68,7 +68,7 @@ struct ActivityScreen: View {
 			onJukeboxChanged: handleJukeboxChanged,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Activity", comment: "Navigation title of the Activity tab."))
 		.toolbar {
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)

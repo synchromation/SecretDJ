@@ -858,3 +858,26 @@ work happens; every commit includes this file's delta.
   pristine history is preferred. Lesson: commit commands must assert
   their repo (git rev-parse --show-toplevel) after any cross-repo
   scouting.
+- S9.5 added and done (sonnet subagents across two runs; the second
+  verified and completed an interrupted first): the rewrite now LOOKS
+  like legacy, not just behaves like it. Dark by default at both app
+  roots (legacy shipped dark-only; the light palette stays in Theme
+  for a future appearance choice, reversible in one line); a
+  themedScreen/themedTabBar treatment in DesignSystem applied at 31
+  call sites covering every screen in both apps — it also clears the
+  system material a List paints over the fill and carries the same
+  color into the nav bar, which is why the palette port alone had
+  looked like nothing changed; teal accent tint on chrome and the
+  selected tab. Legacy metrics reseeded into the cells' @ScaledMetric
+  bases with a citation per value: 106pt artwork and 114pt rows from
+  StyleKit2023.defaultCellImageSize/defaultCellHeight() and the size
+  calculators' default case, 106pt card/tile/advert sizing, and text
+  recipes retuned (cellTitle 15pt via .subheadline, cellSubtitle 13pt
+  via .footnote) so cells match legacy point-for-point at default
+  Dynamic Type while still scaling. Fixed on review: the doc comments
+  cited non-existent plan tasks (S9.3/S9.4 are TestFlight and
+  cutover) — added S9.5 to PLAN.md and repointed all 15 citations so
+  they resolve; also reverted pure Xcode reordering churn in
+  project.pbxproj. AttractScreen deliberately excluded (a full-bleed
+  venue web view, not an app surface). Full verify and uitest green,
+  both run at top level after the revert.

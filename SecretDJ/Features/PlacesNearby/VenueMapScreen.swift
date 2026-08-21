@@ -54,7 +54,7 @@ struct VenueMapScreen: View {
 				),
 			)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 		} else {
 			Map(position: $cameraPosition) {
 				UserAnnotation()

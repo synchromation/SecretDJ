@@ -13,10 +13,13 @@ public struct VenueRowCell: View {
 
 	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
+	/// 106pt / 114pt — same legacy citation as `MediaRowCell`'s own bases
+	/// (S9.5): `VenueCollectionViewCell.xib`'s 106×106 artwork constraints,
+	/// and `StyleKit2023.defaultCellHeight()` for the row.
 	@ScaledMetric(relativeTo: .subheadline)
-	private var artworkSize: CGFloat = 44
+	private var artworkSize: CGFloat = 106
 	@ScaledMetric(relativeTo: .subheadline)
-	private var rowHeight: CGFloat = 64
+	private var rowHeight: CGFloat = 114
 
 	public init(
 		artworkURL: URL? = nil,

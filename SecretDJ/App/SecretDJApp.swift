@@ -1,3 +1,4 @@
+import DesignSystem
 import Observability
 import ObservabilitySentry
 import ObservabilityTelemetryDeck
@@ -118,6 +119,23 @@ struct SecretDJApp: App {
 				topUpTransactionListener: topUpTransactionListener,
 				observability: observability,
 			)
+			// S9.5: legacy shipped dark-only (LEGACY.md "Dark-only theme" —
+			// "colours are hardcoded dark... there is no light-mode design to
+			// migrate"), so this app presents dark by default too rather than
+			// following the device's own appearance — `Theme.ColorRole`
+			// already carries a full light palette (S9.2's doc comment) for a
+			// future user-facing appearance choice, this is just today's
+			// fixed default. Reversible in one line: delete this modifier
+			// (or make it conditional on a future preference) and every
+			// screen already resolves the right colors for either appearance
+			// on its own, since nothing else in the app hardcodes "dark".
+			.preferredColorScheme(.dark)
+			// Legacy's own brand teal on every nav item (`AppColors
+			// .navigationItemText`/`.greenBlue`, LEGACY.md's `StyleKit`
+			// brand-color note) — one root-level tint cascades into every
+			// nav bar back/bar-button item and `TabsView`'s own selected-tab
+			// icon, rather than each screen setting its own.
+			.tint(Theme.ColorRole.accent.color)
 			.environment(\.observability, observability)
 			.task { await topUpTransactionListener.start() }
 			.onOpenURL { url in

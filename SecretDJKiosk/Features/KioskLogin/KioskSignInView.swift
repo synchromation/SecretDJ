@@ -42,7 +42,7 @@ struct KioskSignInView: View {
 		.padding(Spacing.large)
 		.frame(maxWidth: 560)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("KioskSignIn")
 	}
 

@@ -91,7 +91,7 @@ public struct TuneInScreen: View {
 			.padding(Spacing.large)
 			.frame(maxWidth: .infinity)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(copy.navigationTitle)
 		.onChange(of: model.toastEvent, showToast)
 		.onChange(of: model.likeModel.failureEvent, showLikeFailureToast)

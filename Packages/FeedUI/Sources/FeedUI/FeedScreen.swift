@@ -38,6 +38,14 @@ public struct FeedScreen: View {
 
 	public var body: some View {
 		content
+			// S9.5: the central place for every backend-driven feed's own
+			// screen-level surface — most `FeedScreen` call sites already
+			// paint their own outer container with this same role (a
+			// header above the feed, an extra bar below it, ...), so this
+			// is deliberately harmless to layer under those too, and is
+			// what covers the handful of call sites with nothing else to
+			// paint it (`DesignSystem/View/themedScreen(_:)`'s doc comment).
+			.themedScreen()
 			.task { await model.start() }
 			.onDisappear { model.stop() }
 			.onChange(of: model.jukeboxChangedEvent) { _, newValue in

@@ -32,7 +32,7 @@ struct AccountDeletionRequestedView: View {
 		}
 		.padding(Spacing.large)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("AccountDeletionRequested")
 	}
 }

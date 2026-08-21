@@ -19,7 +19,7 @@ struct ChangeGenderView: View {
 			GenderPicker(selected: model.selectedGender, onSelect: select, isDisabled: model.isSaving)
 				.padding(Spacing.large)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Gender", comment: "Navigation title of Settings' change-gender screen."))
 		.tracksScreen("SettingsChangeGender")
 		.onChange(of: model.didSucceed) { _, succeeded in

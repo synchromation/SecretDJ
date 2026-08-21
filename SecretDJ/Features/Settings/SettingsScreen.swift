@@ -87,7 +87,7 @@ struct SettingsScreen: View {
 			}
 			.padding(Spacing.large)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text(
 			"Settings",
 			comment: "Navigation title of the Settings screen, reached from the Profile tab.",

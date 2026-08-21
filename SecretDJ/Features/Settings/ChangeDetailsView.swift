@@ -32,7 +32,7 @@ struct ChangeDetailsView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text(
 			"Change Details",
 			comment: "Navigation title of Settings' change-details screen.",

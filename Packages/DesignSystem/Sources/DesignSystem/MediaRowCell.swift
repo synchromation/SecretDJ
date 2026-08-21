@@ -28,10 +28,23 @@ public struct MediaRowCell: View {
 
 	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
+	/// 106pt — `StyleKit2023.defaultCellImageSize`
+	/// (`secretdjv3/StyleKit2023.swift:15`), confirmed as this row family's
+	/// actual artwork side in the cell xibs themselves (e.g.
+	/// `secretdjv3/Cells/SongCollectionViewCell.xib`'s 106×106 "Placeholder
+	/// Image" constraints) — every `FeedSectionKind.list` template shares one
+	/// image size (S9.5).
 	@ScaledMetric(relativeTo: .subheadline)
-	private var artworkSize: CGFloat = 44
+	private var artworkSize: CGFloat = 106
+	/// 114pt — `StyleKit2023.defaultCellHeight()`
+	/// (`secretdjv3/StyleKit2023.swift:93-95`: `defaultCellImageSize`(106) +
+	/// `defaultCellBottomMargin`(8)), the row height
+	/// `FeedCellSizeCalculator.cellSizeiPhone(for:maxSize:lastSection:)`'s
+	/// `default` case falls through to for every plain (non-matrix,
+	/// non-horizontal) template — song/venue/person/feedItem/checkIn/award/
+	/// newsItem/topUp all included (S9.5).
 	@ScaledMetric(relativeTo: .subheadline)
-	private var rowHeight: CGFloat = 64
+	private var rowHeight: CGFloat = 114
 
 	public init(
 		artworkURL: URL? = nil,

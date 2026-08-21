@@ -26,7 +26,7 @@ struct GenderStepView: View {
 			}
 			.padding(Spacing.large)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("OnboardingGender")
 	}
 

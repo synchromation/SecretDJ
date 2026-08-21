@@ -45,7 +45,7 @@ public struct SongsForArtistScreen: View {
 	public var body: some View {
 		FeedScreen(model: model, copy: copy, onOutcome: onOutcome)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 			.tracksScreen("SongsForArtist")
 	}
 }

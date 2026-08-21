@@ -44,7 +44,7 @@ struct DeleteAccountView: View {
 			}
 			.padding(Spacing.large)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("DeleteAccount")
 		.confirmationDialog(
 			"Delete Account?",

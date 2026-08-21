@@ -1,3 +1,4 @@
+import DesignSystem
 import Foundation
 import Observability
 import SecretDJAPI
@@ -89,6 +90,15 @@ struct SecretDJKioskApp: App {
 				skinStoring: skinStoring ?? FileManagerSkinStoring(),
 				observability: observability,
 			)
+			// S9.5: the same fixed dark-first identity as the consumer app's
+			// own `SecretDJApp` (its doc comment covers the legacy rationale
+			// and the future-appearance-choice reversibility) — the kiosk
+			// especially is always-dark: it's an unattended venue terminal,
+			// never a personal device whose owner might prefer light.
+			.preferredColorScheme(.dark)
+			// Legacy's own brand teal on every nav item — mirrors
+			// `SecretDJApp`'s own root-level `.tint`.
+			.tint(Theme.ColorRole.accent.color)
 			.environment(\.observability, observability)
 		}
 	}

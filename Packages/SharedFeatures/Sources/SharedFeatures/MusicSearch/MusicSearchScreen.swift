@@ -47,7 +47,7 @@ public struct MusicSearchScreen: View {
 			content
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(copy.navigationTitle)
 		.task { await model.updateMode(model.mode) }
 		.tracksScreen("MusicSearch")

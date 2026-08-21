@@ -49,7 +49,7 @@ struct ForgottenPasswordView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("ForgottenPassword")
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {

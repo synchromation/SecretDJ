@@ -61,7 +61,7 @@ struct LoginView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("Login")
 		.onChange(of: appleModel.didCreateAccount) { _, created in
 			if created {

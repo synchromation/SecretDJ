@@ -38,7 +38,7 @@ struct SocialUsernameView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("SocialUsername")
 		.onChange(of: model.isComplete) { _, complete in
 			if complete {

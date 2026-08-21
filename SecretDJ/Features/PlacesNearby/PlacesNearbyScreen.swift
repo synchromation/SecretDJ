@@ -94,7 +94,7 @@ struct PlacesNearbyScreen: View {
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Places Nearby", comment: "Navigation title of the Places Nearby tab."))
 		.toolbar {
 			if PlacesNearbyMapConfiguration.isMapEnabled {

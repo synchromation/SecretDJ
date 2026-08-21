@@ -98,7 +98,7 @@ private struct KioskTuneInArtistResolvingScreen: View {
 		case .loading:
 			ProgressView()
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(Theme.ColorRole.background.color)
+				.themedScreen()
 
 		case .resolved(let song):
 			KioskTuneInScreen(
@@ -125,7 +125,7 @@ private struct KioskTuneInArtistResolvingScreen: View {
 				),
 			)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 		}
 	}
 }

@@ -58,7 +58,7 @@ struct NowPlayingScreen: View {
 			onJukeboxChanged: handleJukeboxChanged,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Now Playing", comment: "Navigation title of the venue's now-playing screen."))
 		.toolbar {
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)

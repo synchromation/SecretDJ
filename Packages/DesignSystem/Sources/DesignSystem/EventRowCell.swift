@@ -10,6 +10,15 @@ public struct EventRowCell: View {
 	let icon: Theme.Icon
 	let lines: [String]
 
+	/// Left at its existing base (S9.5): legacy's own award/check-in/feed-item
+	/// cells (`AwardCollectionViewCell.xib`, `CheckInCollectionViewCell.xib`,
+	/// `FeedItemCollectionViewCell.xib`) all carry a full 106×106 photo, not a
+	/// small icon badge — this cell's compact circular glyph is an earlier,
+	/// deliberate departure this pass doesn't revisit (a content change, not
+	/// a size one), so there's no legacy pixel value to seed `iconBoxSize`
+	/// with. `title`/`subtitle` below still pick up the same legacy-matched
+	/// 15pt/13pt sizes as every other list cell, via `Theme.TextStyle
+	/// .cellTitle`/`.cellSubtitle`.
 	@ScaledMetric(relativeTo: .subheadline)
 	private var iconBoxSize: CGFloat = 36
 

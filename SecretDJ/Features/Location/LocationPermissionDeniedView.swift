@@ -29,7 +29,7 @@ struct LocationPermissionDeniedView: View {
 			retryAction: openSettings,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("LocationPermissionDenied")
 	}
 

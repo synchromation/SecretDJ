@@ -45,7 +45,7 @@ struct AddProfilePictureForCreditsScreen: View {
 				}
 				.padding(Spacing.large)
 			}
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
 					Button(action: dismissScreen) {

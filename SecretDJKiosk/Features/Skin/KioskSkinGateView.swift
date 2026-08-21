@@ -123,7 +123,7 @@ struct KioskSkinGateView: View {
 			retryAction: retry,
 		)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("KioskSkinDownloadFailed")
 	}
 
@@ -157,7 +157,7 @@ private struct SkinDownloadProgressView: View {
 		}
 		.padding(Spacing.large)
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("KioskSkinDownload")
 	}
 }

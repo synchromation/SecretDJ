@@ -116,7 +116,7 @@ struct VenueScreen: View {
 			}
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Venue", comment: "Navigation title of a venue's screen."))
 		.toolbar {
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)

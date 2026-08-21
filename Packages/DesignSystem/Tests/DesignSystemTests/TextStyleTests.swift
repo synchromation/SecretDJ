@@ -10,8 +10,8 @@ struct TextStyleTests {
 	@Test(arguments: zip(Theme.TextStyle.allCases, [
 		Theme.TextStyle.Recipe(textStyle: .largeTitle, weight: .bold, design: .rounded),
 		Theme.TextStyle.Recipe(textStyle: .title3, weight: .semibold),
-		Theme.TextStyle.Recipe(textStyle: .headline, weight: .semibold),
-		Theme.TextStyle.Recipe(textStyle: .subheadline, weight: .regular),
+		Theme.TextStyle.Recipe(textStyle: .subheadline, weight: .semibold),
+		Theme.TextStyle.Recipe(textStyle: .footnote, weight: .regular),
 		Theme.TextStyle.Recipe(textStyle: .body, weight: .regular),
 		Theme.TextStyle.Recipe(textStyle: .body, weight: .semibold, design: .rounded),
 		Theme.TextStyle.Recipe(textStyle: .caption, weight: .regular),

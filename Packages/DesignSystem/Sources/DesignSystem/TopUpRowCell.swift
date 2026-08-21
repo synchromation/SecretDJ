@@ -9,8 +9,15 @@ public struct TopUpRowCell: View {
 
 	@Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
+	/// 114pt — `StyleKit2023.defaultCellHeight()`, same citation as
+	/// `MediaRowCell`'s own `rowHeight` (S9.5): the `topUp` template isn't
+	/// overridden in `FeedCellSizeCalculator.cellSizeiPhone`'s switch, so it
+	/// falls through to the same default as every other flat list cell —
+	/// confirmed by `PPPCollectionViewCell.xib` (the `topUp` template's own
+	/// cell, `FeedCellConfigurator.swift`), whose own artwork constraints are
+	/// the same 106×106 as the rest of the family.
 	@ScaledMetric(relativeTo: .subheadline)
-	private var rowHeight: CGFloat = 64
+	private var rowHeight: CGFloat = 114
 
 	public init(title: String, subtitle: String? = nil, priceText: String) {
 		self.title = title

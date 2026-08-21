@@ -27,7 +27,7 @@ struct ChangePasswordView: View {
 			.padding(Spacing.large)
 		}
 		.scrollDismissesKeyboard(.interactively)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text(
 			"Change Password",
 			comment: "Navigation title of Settings' change-password screen.",

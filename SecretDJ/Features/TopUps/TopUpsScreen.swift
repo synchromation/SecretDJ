@@ -79,7 +79,7 @@ struct TopUpsScreen: View {
 			restoreBar
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.navigationTitle(Text("Get More Songs", comment: "Navigation title of the credits top-up screen."))
 		.disabled(purchaseModel.isPurchasing || listener.isRestoring || voucherModel.isRedeeming)
 		.task { await feedModel.start() }

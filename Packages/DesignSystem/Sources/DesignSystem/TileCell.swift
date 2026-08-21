@@ -15,8 +15,18 @@ public struct TileCell: View {
 	let artwork: Artwork
 	let title: String
 
+	/// 106pt — `StyleKit2023.MatrixMediumImageSize`
+	/// (`secretdjv3/StyleKit2023.swift:27`, numerically identical to
+	/// `defaultCellImageSize`) — legacy's own `matrix*` grid sizes a tile
+	/// from its column count (`ContainerCellSizeCalculator
+	/// .calculateCellSize`: small=÷4, medium=÷3, large=÷2 of the usable
+	/// screen width), so no single legacy pixel value is "the" grid tile
+	/// size the way `defaultCellImageSize` is for the flat row family; medium
+	/// is the representative default here because this design's own
+	/// `LazyVGrid` uses one `.adaptive` column rule for every grid template
+	/// rather than legacy's per-template column count (S9.5).
 	@ScaledMetric(relativeTo: .caption)
-	private var boxHeight: CGFloat = 64
+	private var boxHeight: CGFloat = 106
 
 	public init(artwork: Artwork, title: String) {
 		self.artwork = artwork

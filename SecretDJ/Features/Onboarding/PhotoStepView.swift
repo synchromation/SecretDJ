@@ -45,7 +45,7 @@ struct PhotoStepView: View {
 			}
 			.padding(Spacing.large)
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.tracksScreen("OnboardingPhoto")
 		.toastPresenter(queue: toastQueue)
 		.onChange(of: model.rewardMessage) { _, newValue in

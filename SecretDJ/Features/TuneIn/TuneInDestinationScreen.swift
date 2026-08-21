@@ -103,7 +103,7 @@ private struct TuneInArtistResolvingScreen: View {
 		case .loading:
 			ProgressView()
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(Theme.ColorRole.background.color)
+				.themedScreen()
 
 		case .resolved(let song):
 			ResolvedTuneInScreen(
@@ -131,7 +131,7 @@ private struct TuneInArtistResolvingScreen: View {
 				),
 			)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 		}
 	}
 }

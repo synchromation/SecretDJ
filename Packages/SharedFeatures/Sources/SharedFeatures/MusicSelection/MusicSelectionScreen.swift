@@ -82,7 +82,7 @@ public struct MusicSelectionScreen: View {
 	public var body: some View {
 		FeedScreen(model: model, copy: copy, onOutcome: handle(outcome:), onJukeboxChanged: onJukeboxChanged)
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.background(Theme.ColorRole.background.color)
+			.themedScreen()
 			.disabled(moodTileModel.isChanging)
 			.tracksScreen("MusicSelection")
 	}

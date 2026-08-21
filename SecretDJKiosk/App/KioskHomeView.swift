@@ -98,7 +98,7 @@ struct KioskHomeView: View {
 					}
 			}
 		}
-		.background(Theme.ColorRole.background.color)
+		.themedScreen()
 		.toastPresenter(queue: toastQueue, appearance: kioskSkin.toast.toastAppearance)
 		.task { await nowPlayingModel.start() }
 		.onChange(of: idleTimerModel?.idleTimeoutFireCount) { _, _ in path.removeAll() }

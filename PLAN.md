@@ -558,6 +558,16 @@ Prereqs: S8.
 Defaults apply unless the product owner overrides; each decision names
 what it blocks.
 
+- [x] S9.5 Legacy brand fidelity (added 2026-08-21 at product request):
+      the rewrite must LOOK like the legacy app, not merely behave like
+      it. Theme re-seeded from the legacy palette (teal on the dark-grey
+      ladder), the shipped production icon on both targets, both apps
+      dark by default per legacy's dark-only design, a themed-screen
+      treatment applied to every screen and both bars in both apps, and
+      the DesignSystem cells' @ScaledMetric bases + text recipes reseeded
+      from the legacy size calculators and xibs so cells match
+      point-for-point at default Dynamic Type while still scaling.
+      Every ported metric cites its legacy source file and line.
 - **D1 Facebook login** — **Resolved 2026-08-18: keep it.** S4.4 is in
   scope: current Facebook SDK, ATT prompt flow per current policy, and
   the `facebooksignin` endpoint (deferred out of S1.3a — build it as
@@ -662,7 +672,7 @@ what it blocks.
 | S6 Consumer features | **done** (mood-duration picker deferral noted on S6.3) |
 | S7 Kiosk app | **done** (on-hardware soak rides with S8.4/S9.3) |
 | S8 Cross-cutting | in progress (S8.1/S8.2/S8.5/S8.6 done, S8.3 redaction half done; S8.4 hardware-blocked; vendor confirm awaits product) |
-| S9 Release readiness | in progress (S9.1, S9.4 done; S9.2 drafted; S9.3 awaits humans) |
+| S9 Release readiness | in progress (S9.1, S9.4, S9.5 done; S9.2 drafted; S9.3 awaits humans) |
 
 Keep this table in step with the checkboxes; it exists so a resuming
 session can orient in one glance.
