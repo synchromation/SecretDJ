@@ -9,10 +9,10 @@ import UIKit
 /// `secretdjv3/SceneDelegate.swift`'s `sceneDidBecomeActive` comment
 /// verbatim: "Set auto-lock (we do this here so that changes to the
 /// settings update automatically)". The system side effect stays a direct,
-/// unseamed call (mirrors `AudioSessionConfiguration`'s own one-shot
-/// `AVAudioSession` call) — only the *preference itself* needs a seam for
-/// ``ChangeDetailsModel``-style testing, which ``AutoLockPreferenceStoring``
-/// provides.
+/// unseamed call (mirrors ``AVAudioSessionControl``'s own thin,
+/// unseamed-beneath-the-protocol wrap of `AVAudioSession`) — only the
+/// *preference itself* needs a seam for ``ChangeDetailsModel``-style
+/// testing, which ``AutoLockPreferenceStoring`` provides.
 @Observable
 @MainActor
 final class AutoLockPreferenceModel {

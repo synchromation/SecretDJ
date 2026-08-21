@@ -230,6 +230,162 @@ enum PreviewPlayerModelTests {
 	}
 
 	@MainActor
+	struct `Audio session lifecycle` {
+		@Test func `activates the session once playback begins, not merely by starting a download`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(downloading: downloading, sessionControl: sessionControl)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+
+			#expect(sessionControl.activateCount == 0)
+
+			await downloading.complete(with: Data([1]))
+			await settle()
+
+			#expect(sessionControl.activateCount == 1)
+		}
+
+		@Test func `deactivates and notifies other apps when explicitly stopped`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(downloading: downloading, sessionControl: sessionControl)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.complete(with: Data([1]))
+			await settle()
+
+			model.stop()
+
+			#expect(sessionControl.deactivateCount == 1)
+		}
+
+		@Test func `deactivates when the player finishes naturally`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let factory = InMemoryAudioPlayerFactory()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(
+				downloading: downloading,
+				playerFactory: factory,
+				sessionControl: sessionControl,
+			)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.complete(with: Data([1]))
+			await settle()
+
+			factory.lastPlayer?.finish()
+
+			#expect(sessionControl.deactivateCount == 1)
+		}
+
+		@Test func `deactivates when the 30-second cap fires`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let clock = ManualPreviewCapClock()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(downloading: downloading, clock: clock, sessionControl: sessionControl)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.complete(with: Data([1]))
+			await settle()
+
+			clock.fire()
+
+			#expect(sessionControl.deactivateCount == 1)
+		}
+
+		@Test func `deactivates on a download failure`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(downloading: downloading, sessionControl: sessionControl)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.fail(with: StubPreviewError())
+			await settle()
+
+			#expect(sessionControl.deactivateCount == 1)
+		}
+
+		@Test func `deactivates on a decode failure`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let factory = InMemoryAudioPlayerFactory()
+			factory.failure = StubPreviewError()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(
+				downloading: downloading,
+				playerFactory: factory,
+				sessionControl: sessionControl,
+			)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.complete(with: Data([1]))
+			await settle()
+
+			#expect(sessionControl.deactivateCount == 1)
+		}
+
+		@Test func `stopping while idle never deactivates`() {
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(sessionControl: sessionControl)
+
+			model.stop()
+
+			#expect(sessionControl.deactivateCount == 0)
+		}
+
+		@Test func `superseding a preview that's still downloading never deactivates`() async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(downloading: downloading, sessionControl: sessionControl)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			try model.play(songId: "2", url: #require(URL(string: "https://example.com/b.pbz")))
+			await settle()
+
+			#expect(sessionControl.deactivateCount == 0)
+		}
+
+		@Test func `superseding a preview that's already playing never deactivates, and stays active for the new one`(
+		) async throws {
+			let downloading = InMemoryPreviewDownloading()
+			let factory = InMemoryAudioPlayerFactory()
+			let sessionControl = InMemoryAudioSessionControl()
+			let model = makePreviewPlayerModel(
+				downloading: downloading,
+				playerFactory: factory,
+				sessionControl: sessionControl,
+			)
+
+			try model.play(songId: "1", url: #require(URL(string: "https://example.com/a.pbz")))
+			await settle()
+			await downloading.complete(with: Data([1]))
+			await settle()
+			#expect(sessionControl.activateCount == 1)
+
+			try model.play(songId: "2", url: #require(URL(string: "https://example.com/b.pbz")))
+			await settle()
+
+			#expect(sessionControl.deactivateCount == 0)
+
+			await downloading.complete(with: Data([2]))
+			await settle()
+
+			// Re-activating for the new preview is harmless (the fake just
+			// counts calls) — the important assertion is that no deactivate
+			// happened in between.
+			#expect(sessionControl.activateCount == 2)
+			#expect(sessionControl.deactivateCount == 0)
+		}
+	}
+
+	@MainActor
 	struct `Download and decode failures surface a toast event` {
 		@Test func `a download failure raises the failure event and returns to idle`() async throws {
 			let downloading = InMemoryPreviewDownloading()
@@ -288,8 +444,14 @@ private func makePreviewPlayerModel(
 	downloading: any PreviewDownloading = InMemoryPreviewDownloading(),
 	playerFactory: any AudioPlayerFactory = InMemoryAudioPlayerFactory(),
 	clock: any PreviewCapClock = ManualPreviewCapClock(),
+	sessionControl: any AudioSessionControlling = InMemoryAudioSessionControl(),
 ) -> PreviewPlayerModel {
-	PreviewPlayerModel(downloading: downloading, playerFactory: playerFactory, clock: clock)
+	PreviewPlayerModel(
+		downloading: downloading,
+		playerFactory: playerFactory,
+		clock: clock,
+		sessionControl: sessionControl,
+	)
 }
 
 /// Hands control back to the `MainActor`'s queue repeatedly, so

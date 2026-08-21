@@ -69,6 +69,7 @@ public final class PreviewPlayerModel {
 	private let downloading: any PreviewDownloading
 	private let playerFactory: any AudioPlayerFactory
 	private let clock: any PreviewCapClock
+	private let sessionControl: any AudioSessionControlling
 	private let observability: ObservabilityPipeline
 
 	private var downloadTask: Task<Void, Never>?
@@ -87,11 +88,13 @@ public final class PreviewPlayerModel {
 		downloading: any PreviewDownloading,
 		playerFactory: any AudioPlayerFactory,
 		clock: any PreviewCapClock = SystemPreviewCapClock(),
+		sessionControl: any AudioSessionControlling = AVAudioSessionControl(),
 		observability: ObservabilityPipeline = .disabled,
 	) {
 		self.downloading = downloading
 		self.playerFactory = playerFactory
 		self.clock = clock
+		self.sessionControl = sessionControl
 		self.observability = observability
 	}
 
@@ -99,7 +102,11 @@ public final class PreviewPlayerModel {
 	/// preview already active — for this song or a different one — stops
 	/// first (single active preview app-wide).
 	public func play(songId: String, url: URL) {
-		stop()
+		// Resets without deactivating the session: a preview superseding
+		// another one that's downloading or still playing keeps the session
+		// active throughout — only a path that actually returns to idle (see
+		// ``stop()``) hands audio back to other apps.
+		resetToIdle()
 		generation += 1
 		let myGeneration = generation
 		state = .downloading(songId: songId)
@@ -120,8 +127,23 @@ public final class PreviewPlayerModel {
 
 	/// Stops whatever is active — cancels an in-flight download cleanly, or
 	/// stops actual playback and disarms the 30-second cap — and returns to
-	/// ``PreviewPlaybackState/idle``. A no-op when already idle.
+	/// ``PreviewPlaybackState/idle``, deactivating the audio session and
+	/// notifying other apps they may resume theirs. A no-op when already
+	/// idle (including the session: nothing to deactivate).
 	public func stop() {
+		let wasActive = state != .idle
+		resetToIdle()
+
+		guard wasActive else { return }
+
+		do {
+			try sessionControl.deactivateNotifyingOthers()
+		} catch {
+			observability.report(error, category: "AudioSession")
+		}
+	}
+
+	private func resetToIdle() {
 		generation += 1
 		downloadTask?.cancel()
 		downloadTask = nil
@@ -140,6 +162,13 @@ public final class PreviewPlayerModel {
 		guard generation == self.generation else { return }
 
 		do {
+			// Activated here, immediately before playback actually begins —
+			// never at launch (see ``AudioSessionControlling``'s own doc
+			// comment on why). Other audio (ringtones, route changes) can
+			// deactivate the shared session between previews, so this always
+			// re-activates defensively, exactly as both legacy Tune In
+			// screens did per-tap (LEGACY.md "Audio session configuration").
+			try sessionControl.activate()
 			let newPlayer = try playerFactory.makePlayer(data: data)
 			player = newPlayer
 			newPlayer.onFinished = { [weak self] in self?.stop() }

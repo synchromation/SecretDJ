@@ -881,3 +881,27 @@ work happens; every commit includes this file's delta.
   project.pbxproj. AttractScreen deliberately excluded (a full-bleed
   venue web view, not an app surface). Full verify and uitest green,
   both run at top level after the revert.
+- Audio-session lifecycle fixed (TDD, sonnet subagent) after a user
+  report of "cannot add handler to 0 from 0 - dropping". Investigation
+  correction worth recording: I attributed that message to CoreAudio;
+  the simulator capture shows it is tagged
+  [com.apple.coreanimation:API] (CADebugTxHandlers) — CoreAnimation
+  noise, 4 occurrences at launch BEFORE and AFTER the fix, unrelated
+  to audio and not ours either way. But chasing it surfaced two real
+  consumer-app bugs, both now fixed: the app activated a non-mixable
+  .playback session at LAUNCH (interrupting the user's own music
+  before any preview played, and logging an AVAudioSession Hang Risk
+  runtime issue from synchronous setActive on the main thread during
+  init), and nothing ever deactivated it (their audio never resumed).
+  New AudioSessionControlling seam (protocol + AVAudioSession adapter
+  + counting fake) injected into PreviewPlayerModel with a defaulted
+  parameter so ~20 call sites needed no change; activation happens
+  immediately before playback, deactivation with
+  notifyOthersOnDeactivation on every path back to idle (stop, natural
+  finish, 30s cap, download failure, decode failure) and deliberately
+  NOT when one preview supersedes another — 9 red-first tests cover
+  all of it. AudioSessionConfiguration and its launch call deleted;
+  the factory only makes players now. Evidence: BEFORE ~10 coreaudio
+  lines at launch from our pid; AFTER zero. Deliberate divergence from
+  legacy (which activated at launch and never deactivated) documented
+  with its reason. Full verify green.

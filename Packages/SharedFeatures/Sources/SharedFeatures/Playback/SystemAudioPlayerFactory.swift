@@ -13,18 +13,7 @@ public final class SystemAudioPlayerFactory: AudioPlayerFactory {
 	public init() {}
 
 	public func makePlayer(data: Data) throws -> any AudioPlaying {
-		#if canImport(UIKit)
-			// Other audio (ringtones, route changes) can deactivate the shared
-			// session between previews — reactivate defensively before every
-			// one, exactly as both legacy Tune In screens did per-tap
-			// (LEGACY.md "Audio session configuration": "other audio ... can
-			// deactivate it"). `AVAudioSession` doesn't exist on macOS, which
-			// this package's native test suite also targets.
-			try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-			try? AVAudioSession.sharedInstance().setActive(true)
-		#endif
-
-		return try AVAudioPlayerAdapter(data: data)
+		try AVAudioPlayerAdapter(data: data)
 	}
 }
 

@@ -99,7 +99,6 @@ struct SecretDJApp: App {
 			sessionStore: sessionStore,
 			observability: .live,
 		)
-		AudioSessionConfiguration.configureForPreviewPlayback(observability: .live)
 	}
 
 	/// `.disabled` under UI-test automation (PLAN.md S8.2's ground rule: no
