@@ -34,8 +34,17 @@ struct SecretDJKioskApp: App {
 	/// pre-seeded so the skin gate never makes a network call (PLAN.md
 	/// S8.2, ``UITestDependencies/preSeededSkinStoring()``'s doc comment).
 	private let skinStoring: (any SkinStoring)?
+	/// Retains ``Theme/NavigationBarTitleAppearance/observeContentSizeCategoryChanges()``'s
+	/// token for the app's lifetime — `NotificationCenter` drops the
+	/// observation the moment nothing holds it. See
+	/// ``Theme/NavigationBarTitleAppearance`` itself for the full legacy
+	/// citation and Dynamic Type rationale.
+	private let navigationBarAppearanceObserverToken: NSObjectProtocol
 
 	init() {
+		Theme.NavigationBarTitleAppearance.apply()
+		navigationBarAppearanceObserverToken = Theme.NavigationBarTitleAppearance.observeContentSizeCategoryChanges()
+
 		if UITestMode.isActive {
 			// PLAN.md S8.2's UI-test mode: every dependency below comes from
 			// ``UITestDependencies`` instead — deterministic, in-memory, and

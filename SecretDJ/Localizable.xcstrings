@@ -2474,35 +2474,6 @@
         }
       }
     },
-    "Secret DJ" : {
-      "comment" : "Navigation title shown on each of the three tab root screens (Places Nearby, Activity, Profile) — legacy showed this same title on all tabs from the one nav bar wrapping its tab controller (`CustomTabBarViewController.swift:53`, `title = NSLocalizedString(\"Home_Screen_Title\")`, which resolves to \"Secret DJ\" in `Localizable.xcstrings`). The app's own proper name — never translated, in any context (glossary do-not-translate rule, language-adaptations.md).",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Secret DJ"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Secret DJ"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Secret DJ"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Secret DJ"
-          }
-        }
-      }
-    },
     "Places Nearby" : {
       "comment" : "Navigation title of the Places Nearby tab.",
       "localizations" : {
@@ -2823,7 +2794,7 @@
       }
     },
     "Profile" : {
-      "comment" : "Navigation title of the Profile tab; also the coming-soon placeholder's title in place of a person's profile.\nTitle of the coming-soon placeholder shown in place of a person's profile.",
+      "comment" : "Navigation title shown when viewing someone else's profile, pushed from a person link; also the coming-soon placeholder's title in place of a person's profile.\nTitle of the coming-soon placeholder shown in place of a person's profile.",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3137,6 +3108,35 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Zoeken"
+          }
+        }
+      }
+    },
+    "Secret DJ" : {
+      "comment" : "Navigation title of the Activity tab root (shared brand-name title across all three tabs, matching legacy).\nNavigation title of the Places Nearby tab root (shared brand-name title across all three tabs, matching legacy).\nNavigation title of the Profile tab root (shared brand-name title across all three tabs, matching legacy).",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret DJ"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret DJ"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret DJ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret DJ"
           }
         }
       }

@@ -960,3 +960,34 @@ work happens; every commit includes this file's delta.
   `git -C /Users/nick/Code/SecretDJ` explicitly. The legacy refactor
   branch now carries two commit+revert pairs; resetting it to
   4fef6ac9 and force-pushing is the owner's call.
+
+## 2026-08-22 — Nav title restored to legacy bold 24pt
+
+- The "Secret DJ" screen header was rendering at SwiftUI's default
+  inline-title size/weight — visibly smaller and lighter than legacy.
+  Legacy's shipped styling is `secretdjv3/AppDelegate.swift:24-31`:
+  a UINavigationBarAppearance with Helvetica Neue Bold 24pt in
+  navigationTitleText (0.831 white). The iOS 26 SDK has no
+  first-class SwiftUI title-font modifier (the only navigationTitle
+  overload taking a styled view is `@available(iOS, unavailable)`),
+  so the port uses the same mechanism legacy did: a new
+  `Theme.NavigationBarTitleAppearance` in DesignSystem sets
+  `titleTextAttributes` (and largeTitle, same recipe — legacy
+  predates large titles) to system bold 24pt scaled via
+  `UIFontMetrics(.title2)` in `primaryText`'s dynamic color, applied
+  from both app roots' `init()` and reapplied on every content-size
+  -category change (token retained for the app's lifetime). It sets
+  title attributes ONLY — `themedScreen`'s `.toolbarBackground`
+  keeps owning the bar fill, so the two compose. The kiosk
+  deliberately unifies on the consumer app's bug-#90-fixed 24pt
+  appearance rather than reproducing the legacy kiosk's unfixed
+  Light-20 regression (KioskAppDelegate never gained the iOS-15
+  branch). Four new tests pin `scaledTitleFont`: 24pt exactly at
+  .large, monotone scaling across the full category ladder.
+  Full verify green (644 app-side tests + all packages); uitest
+  green on both schemes after a simulator-infra stall (hung
+  xcodebuild killed, simulators shut down, clean re-run). Xcode
+  churn kept out of the commit: Info.plist key re-sort (which
+  deleted the S4.4 client-token comment) reverted; the local
+  Teddington.gpx location scenario in pbxproj/xcscheme and the
+  xcodecloud/ folder left uncommitted as user-local state.

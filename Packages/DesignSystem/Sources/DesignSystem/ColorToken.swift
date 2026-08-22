@@ -35,6 +35,17 @@ extension Theme.ColorToken {
 			Color(red: light.red, green: light.green, blue: light.blue, opacity: light.alpha)
 		#endif
 	}
+
+	#if canImport(UIKit)
+		/// The dynamic `UIColor` counterpart to ``color`` — for call sites
+		/// (a `UINavigationBarAppearance`'s `titleTextAttributes`, e.g.) that
+		/// take a `UIColor` rather than a SwiftUI `Color`.
+		var uiColor: UIColor {
+			UIColor { traits in
+				traits.userInterfaceStyle == .dark ? UIColor(dark) : UIColor(light)
+			}
+		}
+	#endif
 }
 
 #if canImport(UIKit)
