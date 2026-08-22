@@ -71,7 +71,7 @@ struct TabsView: View {
 
 	var body: some View {
 		TabView(selection: selectedTab) {
-			Tab("Places Nearby", systemImage: Theme.Icon.venue.systemName, value: AppTab.placesNearby) {
+			Tab(value: AppTab.placesNearby) {
 				tabStack(for: .placesNearby) { router in
 					PlacesNearbyScreen(
 						loader: APIClientFeedLoading.sessionFeed(
@@ -94,9 +94,11 @@ struct TabsView: View {
 						observability: observability,
 					)
 				}
+			} label: {
+				tabLabel("Places Nearby", icon: .venue, tab: .placesNearby)
 			}
 
-			Tab("Activity", systemImage: Theme.Icon.activity.systemName, value: AppTab.activity) {
+			Tab(value: AppTab.activity) {
 				tabStack(for: .activity) { router in
 					ActivityScreen(
 						loader: APIClientFeedLoading.sessionFeed(
@@ -113,12 +115,16 @@ struct TabsView: View {
 						promotionEngaging: promotionEngaging,
 					)
 				}
+			} label: {
+				tabLabel("Activity", icon: .activity, tab: .activity)
 			}
 
-			Tab("Profile", systemImage: Theme.Icon.profile.systemName, value: AppTab.profile) {
+			Tab(value: AppTab.profile) {
 				tabStack(for: .profile) { router in
 					profileScreen(personId: sessionStore.user?.personId ?? "", router: router, toastQueue: toastQueue)
 				}
+			} label: {
+				tabLabel("Profile", icon: .profile, tab: .profile)
 			}
 		}
 		.themedTabBar() // S9.5: selected-tab tint already follows the root `.tint` (`SecretDJApp`).
@@ -135,6 +141,21 @@ struct TabsView: View {
 
 	private var selectedTab: Binding<AppTab> {
 		Binding(get: { model.selectedTab }, set: { model.show(tab: $0) })
+	}
+
+	/// A tab's own label — legacy's tab bar art carries distinct Default/
+	/// Selected artwork per tab (`TabBarConfigurationProvider.swift:23-54`),
+	/// so (unlike a plain `Tab(_:systemImage:value:)`) this shell reads its
+	/// own selection state to pick the right one; `Theme.Icon.tabImage(selected:)`
+	/// only ever returns `nil` for a non-tab role, so the `venue`/`activity`/
+	/// `profile` roles this always calls with never hit the `image` fallback
+	/// in practice.
+	private func tabLabel(_ titleKey: LocalizedStringKey, icon: Theme.Icon, tab: AppTab) -> some View {
+		Label {
+			Text(titleKey)
+		} icon: {
+			icon.tabImage(selected: model.selectedTab == tab) ?? icon.image
+		}
 	}
 
 	/// Wraps `root` in `tab`'s own `NavigationStack`, bound to its

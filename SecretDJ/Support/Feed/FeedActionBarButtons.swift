@@ -33,7 +33,7 @@ struct FeedActionBarButtons: ToolbarContent {
 					Button {
 						onTap(action)
 					} label: {
-						Label { Text(title) } icon: { Image(systemName: icon.systemName) }
+						Label { Text(title) } icon: { icon.image }
 					}
 					.labelStyle(.iconOnly)
 				}

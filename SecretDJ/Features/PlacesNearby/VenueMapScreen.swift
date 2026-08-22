@@ -81,16 +81,26 @@ private struct VenueMapPinButton: View {
 	let annotation: VenueMapAnnotation
 	let onSelect: () -> Void
 
+	/// Legacy's own pre-colored pin art (`VenueMapViewController.swift:116-120`)
+	/// rather than a tinted symbol over a colored circle — a venue with a
+	/// jukebox gets a visibly different pin, same as legacy's own
+	/// `.vpHasJukebox` branch.
+	private var pinImage: Image {
+		// Decorative: this button's own `.accessibilityLabel`/`.accessibilityValue`
+		// carry everything VoiceOver needs, and `body` hides this image itself.
+		// swiftlint:disable accessibility_label_for_image
+		(annotation.hasJukebox ? Theme.Icon.jukebox.mapPinImage : Theme.Icon.venue.mapPinImage)
+			?? Image(systemName: annotation.hasJukebox ? Theme.Icon.jukebox.systemName : Theme.Icon.venue.systemName)
+		// swiftlint:enable accessibility_label_for_image
+	}
+
 	var body: some View {
 		Button(action: onSelect) {
-			Image(systemName: annotation.hasJukebox ? Theme.Icon.jukebox.systemName : Theme.Icon.venue.systemName)
-				.font(.title3)
-				.foregroundStyle(.white)
+			pinImage
+				.resizable()
+				.scaledToFit()
 				.frame(minWidth: 44, minHeight: 44)
-				.background(
-					annotation.hasJukebox ? Theme.ColorRole.accent.color : Theme.ColorRole.secondaryText.color,
-					in: Circle(),
-				)
+				.accessibilityHidden(true)
 		}
 		// A server-supplied venue name is never a String Catalog key
 		// (lazy-sections' server-text rule) — `verbatim` keeps it out of

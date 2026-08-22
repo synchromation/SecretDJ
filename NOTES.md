@@ -991,3 +991,37 @@ work happens; every commit includes this file's delta.
   deleted the S4.4 client-token comment) reverted; the local
   Teddington.gpx location scenario in pbxproj/xcscheme and the
   xcodecloud/ folder left uncommitted as user-local state.
+
+## 2026-08-22 — S9.8: legacy icon art replaces SF Symbols
+
+- Policy reversal (user decision): wherever legacy artwork actually
+  rendered for an icon role, the app now shows that exact asset;
+  SF Symbols remain only where legacy had no icon at all. Twenty
+  legacy imagesets re-cut into a new DesignSystem asset catalog
+  (Resources/Media.xcassets, SPM-processed). Theme.Icon stays the
+  single seam but grows one accessor per legacy-distinct CONTEXT:
+  image (glyphs — search/topUp/taxi/map/like/likeFilled/
+  playPreview/stopPreview), placeholderImage (artwork fallbacks —
+  placeholderTune/placeholderVenue/placeholderAvatarUnisex/
+  placeholderJukeboxBackground per FeedCellConfigurator), tabImage
+  (selected:) (the three tabs' Default/Selected pairs, template-
+  tinted per TabBarConfigurationProvider), and mapPinImage (the
+  pre-colored venue/jukebox pins per VenueMapViewController).
+  TabsView reads its own selection to swap Selected artwork;
+  RemoteArtworkView renders legacy placeholder art edge-to-edge.
+- Verified-orphan finding: iconSettingsDefault, iconCameraDefault,
+  ButtonVenueCheckIn/NowPlaying/Like*, IconNextArrow and iconWarning
+  exist in the legacy catalog but are wired into NO live legacy
+  screen (the real buttons were title-only Green(Outline)Buttons;
+  every like control used iconLike/iconLikeSelected) — so checkIn,
+  nowPlaying, settings, changePhoto, disclosure and warning stay on
+  symbols, documented in Icon.swift. profile placeholders use the
+  unisex asset uniformly (no Gender threaded to cells — intentional
+  simplification, documented). Kiosk-only placeholder variants not
+  ported: they differ from the phone art only in canvas size, which
+  resizable/scaledToFit already covers.
+- IconTests grew per-context mapping tables + Bundle.module
+  resolution tests (11 green red-first-where-new). Full verify and
+  uitest green on both schemes (counts confirmed via xcresulttool).
+  One doc-comment placement fix applied in review (tabLabel had
+  landed between tabStack's doc comment and tabStack).

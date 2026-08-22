@@ -109,7 +109,13 @@ struct PlacesNearbyScreen: View {
 		.toolbar {
 			if PlacesNearbyMapConfiguration.isMapEnabled {
 				ToolbarItem(placement: .topBarTrailing) {
-					Button("Map", systemImage: Theme.Icon.map.systemName, action: openMap)
+					Button(action: openMap) {
+						Label {
+							Text("Map")
+						} icon: {
+							Theme.Icon.map.image
+						}
+					}
 				}
 			}
 			FeedActionBarButtons(actions: model.actionButtons, onTap: handleBarButtonTap)

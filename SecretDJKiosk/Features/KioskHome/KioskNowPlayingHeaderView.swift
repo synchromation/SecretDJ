@@ -47,7 +47,7 @@ struct KioskNowPlayingHeaderView: View {
 				Spacer(minLength: 0)
 
 				Button(action: action) {
-					Image(systemName: Theme.Icon.search.systemName)
+					Theme.Icon.search.image
 						.font(.title2)
 						.foregroundStyle(Theme.ColorRole.primaryText.color)
 						.padding(Spacing.medium)

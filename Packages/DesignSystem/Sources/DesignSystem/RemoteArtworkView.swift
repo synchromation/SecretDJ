@@ -97,10 +97,20 @@ public struct RemoteArtworkView: View {
 		.accessibilityHidden(true)
 	}
 
+	@ViewBuilder
 	private var placeholder: some View {
-		placeholderIcon.image
-			.font(.system(size: height * 0.4).weight(.semibold))
-			.foregroundStyle(Theme.ColorRole.secondaryText.color)
+		if placeholderIcon.hasLegacyPlaceholder {
+			// Real legacy artwork fills its frame edge-to-edge, same as a
+			// loaded remote image would (S9.8) — never sized off the
+			// symbol-only `font` recipe below.
+			placeholderIcon.placeholderImage
+				.resizable()
+				.scaledToFit()
+		} else {
+			placeholderIcon.placeholderImage
+				.font(.system(size: height * 0.4).weight(.semibold))
+				.foregroundStyle(Theme.ColorRole.secondaryText.color)
+		}
 	}
 
 	private var clipShape: AnyShape {
