@@ -17,6 +17,20 @@ import SwiftUI
 /// your photo; someone else's shows their actual screen name and the like
 /// toggle in place of the avatar's change affordance — never both, since
 /// you can't like yourself.
+///
+/// The avatar itself is a rounded square, not a circle (S9.6): legacy's own
+/// `profileSectionHeaderView(collectionView:indexPath:kind:person:section:)`
+/// (`secretdjv3/SupplementaryViewProvider.swift:287`) sets
+/// `containerView`'s corner radius to
+/// `StyleKit2023.getCornerRadius(.size1x1)` == `MatrixMassiveCornerRadius`
+/// == `4 * gridUnit` == 16pt (`secretdjv3/StyleKit2023.swift:37`) — the same
+/// container this avatar image fills — never a circle; the smaller
+/// centered fallback avatar legacy shows in place of a missing photo
+/// (`centeredBackgroundView`/`centeredImageView`, `.size2x2` ==
+/// `MatrixLargeCornerRadius` == 12pt, `SupplementaryViewProvider.swift
+/// :290-292`) doesn't apply here, since ``RemoteArtworkView`` already fills
+/// this whole avatar with its own placeholder icon rather than nesting a
+/// second, smaller container inside a larger one.
 struct ProfileHeaderView: View {
 	let screenName: String
 	let avatarURL: URL?
@@ -27,6 +41,8 @@ struct ProfileHeaderView: View {
 
 	@ScaledMetric(relativeTo: .largeTitle)
 	private var avatarSize: CGFloat = 96
+	@ScaledMetric(relativeTo: .largeTitle)
+	private var avatarCornerRadius: CGFloat = 16
 
 	var body: some View {
 		VStack(spacing: Spacing.medium) {
@@ -66,7 +82,12 @@ struct ProfileHeaderView: View {
 	}
 
 	private var avatarImage: some View {
-		RemoteArtworkView(url: avatarURL, placeholderIcon: .profile, size: avatarSize, shape: .circle)
+		RemoteArtworkView(
+			url: avatarURL,
+			placeholderIcon: .profile,
+			size: avatarSize,
+			cornerRadius: avatarCornerRadius,
+		)
 	}
 
 	private var changePhotoBadge: some View {

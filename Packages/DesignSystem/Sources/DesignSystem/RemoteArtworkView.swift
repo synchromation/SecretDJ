@@ -30,19 +30,54 @@ public struct RemoteArtworkView: View {
 	let width: CGFloat?
 	let height: CGFloat
 	let shape: Shape
+	/// The `.rounded` shape's corner radius. `nil` falls back to the
+	/// proportional `height * 0.2` this design system uses for its card/tile
+	/// artwork (`CardCell`/`TileCell`/`PromotionCell`, none of which this
+	/// pass revisits); the flat row family (`MediaRowCell`/`VenueRowCell`/
+	/// `PersonRowCell`) instead passes a fixed, Dynamic-Type-scaled 12pt
+	/// (S9.6: `StyleKit2023.getCornerRadius(.size3x3)` ==
+	/// `MatrixMediumCornerRadius` == `3 * gridUnit` == 12,
+	/// `secretdjv3/StyleKit2023.swift:29`, applied to every flat row's
+	/// artwork via `BaseCollectionViewCell.awakeFromNib`'s
+	/// `isCornerRadiusView` check, `secretdjv3/BaseCollectionViewCell.swift
+	/// :80-85` — legacy's corner radius is a fixed point value per template
+	/// family, never proportional to the artwork's own pixel size, so the
+	/// proportional default was never legacy-matched for that family).
+	let cornerRadius: CGFloat?
 
-	public init(url: URL?, placeholderIcon: Theme.Icon, width: CGFloat?, height: CGFloat, shape: Shape = .rounded) {
+	public init(
+		url: URL?,
+		placeholderIcon: Theme.Icon,
+		width: CGFloat?,
+		height: CGFloat,
+		shape: Shape = .rounded,
+		cornerRadius: CGFloat? = nil,
+	) {
 		self.url = url
 		self.placeholderIcon = placeholderIcon
 		self.width = width
 		self.height = height
 		self.shape = shape
+		self.cornerRadius = cornerRadius
 	}
 
 	/// A square artwork view — the common case for row avatars and card/tile
 	/// thumbnails.
-	public init(url: URL?, placeholderIcon: Theme.Icon, size: CGFloat, shape: Shape = .rounded) {
-		self.init(url: url, placeholderIcon: placeholderIcon, width: size, height: size, shape: shape)
+	public init(
+		url: URL?,
+		placeholderIcon: Theme.Icon,
+		size: CGFloat,
+		shape: Shape = .rounded,
+		cornerRadius: CGFloat? = nil,
+	) {
+		self.init(
+			url: url,
+			placeholderIcon: placeholderIcon,
+			width: size,
+			height: size,
+			shape: shape,
+			cornerRadius: cornerRadius,
+		)
 	}
 
 	public var body: some View {
@@ -70,7 +105,7 @@ public struct RemoteArtworkView: View {
 
 	private var clipShape: AnyShape {
 		switch shape {
-		case .rounded: AnyShape(RoundedRectangle(cornerRadius: height * 0.2, style: .continuous))
+		case .rounded: AnyShape(RoundedRectangle(cornerRadius: cornerRadius ?? height * 0.2, style: .continuous))
 		case .circle: AnyShape(Circle())
 		}
 	}

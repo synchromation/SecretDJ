@@ -68,11 +68,16 @@ struct FeedCarouselSection: View {
 				subtitle: props.subtitle,
 			)
 		case .person(let props):
+			// A card shows a title/subtitle pair, not all four lines — the
+			// first two only (unchanged from before `PersonProps` carried
+			// every tagged line: `props.lines[0]` is always the name,
+			// `personProps(for:text:)`'s own screenName fallback guarantees
+			// it).
 			CardCell(
 				artworkURL: props.avatarURL,
 				placeholderIcon: .profile,
-				title: props.name,
-				subtitle: props.subtitle,
+				title: props.lines[0],
+				subtitle: props.lines.count > 1 ? props.lines[1] : nil,
 			)
 		case .venue(let props):
 			CardCell(

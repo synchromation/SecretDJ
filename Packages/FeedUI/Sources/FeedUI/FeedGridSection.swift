@@ -50,7 +50,11 @@ struct FeedGridSection: View {
 				title: props.title,
 			)
 		case .person(let props):
-			TileCell(artwork: .remote(url: props.avatarURL, placeholderIcon: .profile), title: props.name)
+			// A tile shows one line only — `props.lines`' first line always
+			// carries the person's own name (`personProps(for:text:)`'s own
+			// screenName fallback guarantees it, never a "details"/"since"
+			// line even when this item's four-line row form has more).
+			TileCell(artwork: .remote(url: props.avatarURL, placeholderIcon: .profile), title: props.lines[0])
 		case .venue(let props):
 			TileCell(artwork: .remote(url: props.artworkURL, placeholderIcon: .venue), title: props.name)
 		case .promotion(let props):

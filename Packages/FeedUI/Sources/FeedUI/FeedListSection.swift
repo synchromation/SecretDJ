@@ -49,8 +49,7 @@ struct FeedListSection: View {
 		case .person(let props):
 			PersonRowCell(
 				avatarURL: props.avatarURL,
-				name: props.name,
-				subtitle: props.subtitle,
+				lines: props.lines,
 				accessory: props.accessory,
 			)
 		case .venue(let props):

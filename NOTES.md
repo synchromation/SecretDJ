@@ -905,3 +905,24 @@ work happens; every commit includes this file's delta.
   lines at launch from our pid; AFTER zero. Deliberate divergence from
   legacy (which activated at launch and never deactivated) documented
   with its reason. Full verify green.
+- Activity-feed cell fidelity fixed (user report: circles instead of
+  rounded rectangles; wrong text alignment; two sonnet subagents — an
+  interrupted builder plus a completion pass). Three defects, all
+  rewrite inventions with no legacy basis, each fix cited: (1) person
+  row artwork is now the legacy 12pt rounded rectangle
+  (BaseCollectionViewCell.swift:82 → getCornerRadius(.size3x3) =
+  MatrixMediumCornerRadius = 12pt) — RemoteArtworkView gained a
+  cornerRadius parameter and no feed row uses .circle; (2) row text
+  now top-aligns against the 106pt artwork per the legacy xib (labels
+  y=8/26/44) with the fourth line pinned to the artwork's bottom edge
+  (y=87 in the 114pt row) via a Spacer inside a top-aligned
+  artwork-height frame — Dynamic Type and the accessibility-size
+  reflow preserved, no fixed heights that clip; (3) person rows now
+  carry up to FOUR server tagged lines (PersonProps.lines replacing
+  name/subtitle; legacy renders person/title/details/since via tags
+  101-104) — the activity feed had been silently dropping the details
+  line and the timestamp. Bonus from the profile-header check: legacy's
+  profile avatar is a rounded square (SupplementaryViewProvider.swift:
+  287-292, 16pt), so ProfileHeaderView's circle was the same class of
+  invention and now matches legacy too. Six new red-first props tests
+  (four-line contract + degradation); full verify and uitest green.

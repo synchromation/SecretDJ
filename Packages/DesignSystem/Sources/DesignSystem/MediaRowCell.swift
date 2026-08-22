@@ -45,6 +45,15 @@ public struct MediaRowCell: View {
 	/// newsItem/topUp all included (S9.5).
 	@ScaledMetric(relativeTo: .subheadline)
 	private var rowHeight: CGFloat = 114
+	/// 12pt — `StyleKit2023.getCornerRadius(.size3x3)` ==
+	/// `MatrixMediumCornerRadius` (`secretdjv3/StyleKit2023.swift:29`),
+	/// applied to every flat row's artwork via `BaseCollectionViewCell
+	/// .awakeFromNib` (`secretdjv3/BaseCollectionViewCell.swift:80-85`) — a
+	/// fixed point value, not proportional to `artworkSize` (S9.6, replacing
+	/// `RemoteArtworkView`'s general-purpose `height * 0.2` default for this
+	/// row family specifically).
+	@ScaledMetric(relativeTo: .subheadline)
+	private var artworkCornerRadius: CGFloat = 12
 
 	public init(
 		artworkURL: URL? = nil,
@@ -76,8 +85,17 @@ public struct MediaRowCell: View {
 				.padding(Spacing.medium)
 			} else {
 				HStack(spacing: Spacing.medium) {
-					artwork
-					textStack(lineLimit: 1)
+					// Top-aligned against the artwork, not centered (S9.6):
+					// legacy's own title/subtitle labels sit at a fixed y
+					// from the cell's top (`secretdjv3/Cells
+					// /SongCollectionViewCell.xib`'s tag-101/102 constraints,
+					// y=8/y=26), never vertically centered against the
+					// 106pt artwork beside them. The trailing accessory
+					// stays centered in its own nesting level, unchanged.
+					HStack(alignment: .top, spacing: Spacing.medium) {
+						artwork
+						textStack(lineLimit: 1)
+					}
 					Spacer(minLength: 0)
 					accessoryView
 				}
@@ -93,7 +111,13 @@ public struct MediaRowCell: View {
 	}
 
 	private var artwork: some View {
-		RemoteArtworkView(url: artworkURL, placeholderIcon: placeholderIcon, size: artworkSize, shape: artworkShape)
+		RemoteArtworkView(
+			url: artworkURL,
+			placeholderIcon: placeholderIcon,
+			size: artworkSize,
+			shape: artworkShape,
+			cornerRadius: artworkCornerRadius,
+		)
 	}
 
 	private func textStack(lineLimit: Int?) -> some View {
@@ -112,8 +136,19 @@ public struct MediaRowCell: View {
 		}
 	}
 
-	@ViewBuilder
 	private var accessoryView: some View {
+		RowAccessoryView(accessory: accessory)
+	}
+}
+
+/// A row's trailing affordance (chevron / like / credit badge), shared by
+/// every row cell that exposes ``MediaRowCell/Accessory`` (``MediaRowCell``,
+/// ``PersonRowCell``) so its rendering and accessibility behavior live in one
+/// place rather than each cell duplicating the same switch.
+struct RowAccessoryView: View {
+	let accessory: MediaRowCell.Accessory?
+
+	var body: some View {
 		switch accessory {
 		case nil:
 			EmptyView()

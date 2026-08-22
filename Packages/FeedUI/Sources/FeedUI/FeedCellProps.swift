@@ -47,8 +47,19 @@ public enum FeedCellProps: Hashable, Sendable {
 	}
 
 	public struct PersonProps: Hashable, Sendable {
-		let name: String
-		let subtitle: String?
+		/// Up to four positional tagged lines, carried through unsplit
+		/// (never reduced to a name/subtitle pair): legacy's own person
+		/// cells (`PersonCollectionViewCell.xib`,
+		/// `FeedItemCollectionViewCell.xib`) bind up to four labels by fixed
+		/// array index (`FeedCellConfigurator.populateFields`,
+		/// `secretdjv3/FeedCellConfigurator.swift:270-275`), and the
+		/// previous two-line mapping silently dropped the third ("details")
+		/// and fourth ("since"/timestamp) lines a `.feedItem`/`.vip`-
+		/// templated person item sends (S9.6). Never empty — falls back to
+		/// the person's own `screenName` when the server sent no tagged
+		/// text at all. Which lines stack at the top vs. pin to the row's
+		/// bottom is ``DesignSystem/PersonRowCell``'s own rendering concern.
+		let lines: [String]
 		let avatarURL: URL?
 		let accessory: MediaRowCell.Accessory?
 	}
@@ -103,12 +114,7 @@ public enum FeedCellProps: Hashable, Sendable {
 			venueOrEventProps(for: venue, text: text, template: template)
 
 		case .person(let person):
-			.person(PersonProps(
-				name: text.feedTaggedLines.first ?? person.screenName,
-				subtitle: text.feedTaggedLines.dropFirst().first,
-				avatarURL: person.image?.url(for: .size2x2),
-				accessory: likeAccessory(for: person.likeInfo),
-			))
+			personProps(for: person, text: text)
 
 		case .artist(let artist):
 			// Artist.displayText is client-synthesized, not `text` split on
@@ -166,6 +172,20 @@ public enum FeedCellProps: Hashable, Sendable {
 			// Inert on the consumer (LEGACY.md "Audio and playback") — no
 			// like affordance to show for the intermission placeholder.
 			accessory: song.isIntermission ? nil : likeAccessory(for: song.likeInfo),
+		))
+	}
+
+	private static func personProps(for person: Person, text: String) -> FeedCellProps {
+		let lines = text.feedTaggedLines
+		return .person(PersonProps(
+			// Capped at four: legacy's own `FeedCellConfigurator
+			// .populateFields` loop never reads past array index 3 either
+			// (`secretdjv3/FeedCellConfigurator.swift:270-275` — tags 101
+			// through 104 only), so a fifth tagged line is dropped exactly
+			// as it would be by legacy, not silently kept around unused.
+			lines: lines.isEmpty ? [person.screenName] : Array(lines.prefix(4)),
+			avatarURL: person.image?.url(for: .size2x2),
+			accessory: likeAccessory(for: person.likeInfo),
 		))
 	}
 

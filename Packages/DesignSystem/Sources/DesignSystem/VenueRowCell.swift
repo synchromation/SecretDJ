@@ -20,6 +20,14 @@ public struct VenueRowCell: View {
 	private var artworkSize: CGFloat = 106
 	@ScaledMetric(relativeTo: .subheadline)
 	private var rowHeight: CGFloat = 114
+	/// 12pt — same legacy citation as `MediaRowCell`'s own
+	/// `artworkCornerRadius` (S9.6): `StyleKit2023.getCornerRadius(.size3x3)`
+	/// (`secretdjv3/StyleKit2023.swift:29`), applied via
+	/// `BaseCollectionViewCell.awakeFromNib`
+	/// (`secretdjv3/BaseCollectionViewCell.swift:80-85`) to every flat row's
+	/// artwork, this cell's own included.
+	@ScaledMetric(relativeTo: .subheadline)
+	private var artworkCornerRadius: CGFloat = 12
 
 	public init(
 		artworkURL: URL? = nil,
@@ -49,8 +57,12 @@ public struct VenueRowCell: View {
 				.padding(Spacing.medium)
 			} else {
 				HStack(spacing: Spacing.medium) {
-					artwork
-					textStack(lineLimit: 1)
+					// Top-aligned against the artwork, not centered (S9.6) —
+					// see `MediaRowCell`'s own citation for the same fix.
+					HStack(alignment: .top, spacing: Spacing.medium) {
+						artwork
+						textStack(lineLimit: 1)
+					}
 					Spacer(minLength: 0)
 					badges
 				}
@@ -66,7 +78,12 @@ public struct VenueRowCell: View {
 	}
 
 	private var artwork: some View {
-		RemoteArtworkView(url: artworkURL, placeholderIcon: .venue, size: artworkSize)
+		RemoteArtworkView(
+			url: artworkURL,
+			placeholderIcon: .venue,
+			size: artworkSize,
+			cornerRadius: artworkCornerRadius,
+		)
 	}
 
 	private func textStack(lineLimit: Int?) -> some View {

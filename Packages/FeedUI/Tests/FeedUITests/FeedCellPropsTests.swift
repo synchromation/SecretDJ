@@ -115,35 +115,6 @@ enum FeedCellPropsTests {
 		}
 	}
 
-	struct `Person props` {
-		@Test func `maps name and subtitle from the first two tagged lines`() {
-			let item = makeItem(.person(makePerson(text: "Nick Banks\n12 places visited")), template: .person)
-
-			guard case .person(let props) = item.props else {
-				Issue.record("expected .person")
-				return
-			}
-
-			#expect(props.name == "Nick Banks")
-			#expect(props.subtitle == "12 places visited")
-		}
-
-		@Test func `carries the server like summary as the accessory`() {
-			let person = makePerson(
-				text: "Nick Banks",
-				likeInfo: LikeInfo(likedByYou: false, info: ""),
-			)
-			let item = makeItem(.person(person), template: .person)
-
-			guard case .person(let props) = item.props else {
-				Issue.record("expected .person")
-				return
-			}
-
-			#expect(props.accessory == .like(isLiked: false, summary: nil))
-		}
-	}
-
 	struct `Artist props` {
 		@Test func `uses the client synthesized display text, not tagged lines`() {
 			let artist = Artist(name: "", artist: "The Beatles", numSongs: 3, sortIndex: 0, action: nil, actions: [])
@@ -321,22 +292,6 @@ private func makeVenue(
 		properties: properties,
 		checkedIn: checkedIn,
 		hasMachineControl: false,
-		text: text,
-		sortIndex: 0,
-		action: nil,
-		actions: [],
-	)
-}
-
-private func makePerson(text: String, likeInfo: LikeInfo = LikeInfo(likedByYou: false, info: "")) -> Person {
-	Person(
-		personId: "p1",
-		screenName: "",
-		gender: .unisex,
-		likeInfo: likeInfo,
-		email: nil,
-		firstName: nil,
-		lastName: nil,
 		text: text,
 		sortIndex: 0,
 		action: nil,
