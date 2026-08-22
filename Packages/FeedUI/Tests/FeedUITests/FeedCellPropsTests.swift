@@ -21,7 +21,11 @@ enum FeedCellPropsTests {
 			#expect(props.artworkURL == nil)
 		}
 
-		@Test func `a liked song carries its server like summary as the accessory`() {
+		@Test func `a liked song carries no like accessory — legacy feed rows never show one`() {
+			// `FeedItemCollectionViewCell.xib`/`SongCollectionViewCell.xib`
+			// have no like control, and `FeedCellConfigurator` never wires
+			// one in; likes live only on the venue header, TuneIn buzz
+			// control, and profile header (S9.7).
 			let song = makeSong(
 				text: "Bohemian Rhapsody\nQueen",
 				likeInfo: LikeInfo(likedByYou: true, info: "12 people buzzed this"),
@@ -33,7 +37,7 @@ enum FeedCellPropsTests {
 				return
 			}
 
-			#expect(props.accessory == .like(isLiked: true, summary: "12 people buzzed this"))
+			#expect(props.accessory == nil)
 		}
 
 		@Test func `the intermission song carries no like accessory`() {

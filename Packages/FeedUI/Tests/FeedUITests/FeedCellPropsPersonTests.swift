@@ -76,10 +76,14 @@ enum FeedCellPropsPersonTests {
 			#expect(props.lines == ["Line one", "Line two", "Line three", "Line four"])
 		}
 
-		@Test func `carries the server like summary as the accessory`() {
+		@Test func `carries no like accessory, even when liked — legacy feed rows never show one`() {
+			// `FeedItemCollectionViewCell.xib`/`PersonCollectionViewCell.xib`
+			// have no like control, and `FeedCellConfigurator` never wires
+			// one in; likes live only on the venue header, TuneIn buzz
+			// control, and profile header (S9.7).
 			let person = makePerson(
 				text: "Nick Banks",
-				likeInfo: LikeInfo(likedByYou: false, info: ""),
+				likeInfo: LikeInfo(likedByYou: true, info: "12 people buzzed this"),
 			)
 			let item = makeItem(.person(person), template: .person)
 
@@ -88,7 +92,7 @@ enum FeedCellPropsPersonTests {
 				return
 			}
 
-			#expect(props.accessory == .like(isLiked: false, summary: nil))
+			#expect(props.accessory == nil)
 		}
 	}
 }

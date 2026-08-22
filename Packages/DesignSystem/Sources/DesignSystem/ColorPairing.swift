@@ -21,6 +21,7 @@ extension Theme {
 	public static let sanctionedPairings: [ColorPairing] = [
 		ColorPairing(text: .primaryText, background: .background),
 		ColorPairing(text: .secondaryText, background: .background),
+		ColorPairing(text: .sectionHeader, background: .background),
 		ColorPairing(text: .primaryText, background: .secondaryBackground),
 		ColorPairing(text: .secondaryText, background: .secondaryBackground),
 		ColorPairing(text: .primaryText, background: .cellSurface),

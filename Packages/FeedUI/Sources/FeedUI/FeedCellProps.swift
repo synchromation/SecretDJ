@@ -169,9 +169,13 @@ public enum FeedCellProps: Hashable, Sendable {
 			subtitle: text.feedTaggedLines.dropFirst().first,
 			placeholderIcon: .song,
 			artworkURL: song.image?.url(for: .size2x2),
-			// Inert on the consumer (LEGACY.md "Audio and playback") — no
-			// like affordance to show for the intermission placeholder.
-			accessory: song.isIntermission ? nil : likeAccessory(for: song.likeInfo),
+			// No like affordance on a feed row, intermission or not:
+			// `FeedItemCollectionViewCell.xib`/`SongCollectionViewCell.xib`
+			// carry no like control, and `FeedCellConfigurator` never wires
+			// one into a row — likes live only on the venue header, TuneIn
+			// buzz control, and profile header, never a feed row (S9.7,
+			// correcting S9.x's invented row accessory).
+			accessory: nil,
 		))
 	}
 
@@ -185,7 +189,9 @@ public enum FeedCellProps: Hashable, Sendable {
 			// as it would be by legacy, not silently kept around unused.
 			lines: lines.isEmpty ? [person.screenName] : Array(lines.prefix(4)),
 			avatarURL: person.image?.url(for: .size2x2),
-			accessory: likeAccessory(for: person.likeInfo),
+			// No like affordance: same citation as `songProps`'s own
+			// `accessory` comment (S9.7).
+			accessory: nil,
 		))
 	}
 
@@ -225,9 +231,5 @@ public enum FeedCellProps: Hashable, Sendable {
 				isCheckedIn: venue.checkedIn,
 			))
 		}
-	}
-
-	private static func likeAccessory(for likeInfo: LikeInfo) -> MediaRowCell.Accessory {
-		.like(isLiked: likeInfo.likedByYou, summary: likeInfo.info.isEmpty ? nil : likeInfo.info)
 	}
 }

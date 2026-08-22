@@ -926,3 +926,37 @@ work happens; every commit includes this file's delta.
   287-292, 16pt), so ProfileHeaderView's circle was the same class of
   invention and now matches legacy too. Six new red-first props tests
   (four-line contract + degradation); full verify and uitest green.
+- Four user-reported fidelity issues fixed (sonnet subagent), each
+  verified against legacy first: (1) "Secret DJ" is now the nav title
+  on all three tab roots (CustomTabBarViewController.swift:53 set it
+  once on the shared nav bar; ProfileScreen mirrors legacy's own
+  root-vs-pushed split — own profile shows the app name, someone
+  else's shows "Profile"); the brand-name key is translated-verbatim
+  in all five languages per the do-not-translate rule. (2) Feed
+  section headers are legacy's dark teal (SectionHeaderView.xib
+  rgb 0.082/0.506/0.427) via a new sanctioned sectionHeader role —
+  the verbatim value fails 4.5:1 on the dark background (3.08:1,
+  proven red), so dark scales x1.3 to 4.92:1 per the S2.1 mechanism;
+  light uses it verbatim (4.58:1, the suite's new lowest margin).
+  Bonus: the header recipe was semibold, legacy is Helvetica-BOLD
+  with an exact SF equivalent — now .bold. (3) The four-line feed
+  cell's emphasis moved to LINE 2 per the xib (Light 14 / MEDIUM 14 /
+  Light 12 / Light 11 — a 14pt ScaledMetric escape hatch since no
+  system style lands on 14, and a new caption2 TextStyle for 11pt);
+  the two-line song/venue family was checked against its own xibs
+  and confirmed already correct (Medium 15 / Light 13). (4) The
+  like-heart accessory is removed from feed rows — the legacy cell
+  and configurator have no like control; likes remain only where
+  legacy had them (venue header, TuneIn buzz, profile header) —
+  props tests flipped red-first to pin accessory == nil. Full verify
+  and uitest green.
+- SECOND wrong-repo incident, disclosed: the commit for this work
+  initially ran in the legacy checkout again (scouting cd'd there;
+  the recorded lesson was not applied) and pushed a stray commit to
+  the legacy refactor branch — reverted within a minute (45992cea
+  reverted by f6ca74a9, both pushed), TopUp.swift restored unstaged,
+  stray NOTES.md removed. The fix is now mechanical, not
+  memory-based: all git commit/push operations for this project use
+  `git -C /Users/nick/Code/SecretDJ` explicitly. The legacy refactor
+  branch now carries two commit+revert pairs; resetting it to
+  4fef6ac9 and force-pushing is the owner's call.

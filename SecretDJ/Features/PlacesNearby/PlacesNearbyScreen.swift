@@ -95,7 +95,17 @@ struct PlacesNearbyScreen: View {
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.themedScreen()
-		.navigationTitle(Text("Places Nearby", comment: "Navigation title of the Places Nearby tab."))
+		// Legacy showed one shared nav-bar title, "Secret DJ", across all
+		// three tabs (`CustomTabBarViewController.swift:53`,
+		// `NSLocalizedString("Home_Screen_Title")`) rather than a
+		// per-tab title; this tab root matches that (S9.5 legacy-fidelity
+		// pass). Pushed screens reached from here keep their own titles,
+		// as legacy's pushed view controllers did.
+		.navigationTitle(Text(
+			"Secret DJ",
+			comment: "Navigation title of the Places Nearby tab root (shared brand-name title across all three tabs, matching legacy).",
+		))
+		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
 			if PlacesNearbyMapConfiguration.isMapEnabled {
 				ToolbarItem(placement: .topBarTrailing) {

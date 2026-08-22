@@ -120,6 +120,15 @@ public struct MediaRowCell: View {
 		)
 	}
 
+	/// `cellTitle`/`cellSubtitle` re-confirmed against this family's own
+	/// legacy xibs (S9.7): `SongCollectionViewCell.xib` sets tag 101
+	/// (artist/title line) `HelveticaNeue-Medium` 15pt and tag 102/103
+	/// (song name / "liked by") `HelveticaNeue-Light` 13pt/11pt;
+	/// `VenueCollectionViewCell.xib` sets tag 101 (venue name)
+	/// `HelveticaNeue-Medium` 15pt and tag 102 (address)
+	/// `HelveticaNeue-Light` 13pt — both land exactly on `cellTitle`/
+	/// `cellSubtitle`'s existing 15pt-semibold/13pt-regular recipe
+	/// already, so this cell's two-line family needed no change.
 	private func textStack(lineLimit: Int?) -> some View {
 		VStack(alignment: .leading, spacing: Spacing.extraSmall) {
 			Text(verbatim: title)

@@ -3,6 +3,12 @@ import SwiftUI
 
 /// A visible section's title — VoiceOver users navigate by heading using
 /// this trait (accessibility skill).
+///
+/// Legacy renders this in a dark teal
+/// (`secretdjv3/SupplementaryViews/SectionHeaderView.xib`'s `textColor`),
+/// never `primaryText` — `Theme.ColorRole.sectionHeader` carries that exact
+/// color forward (S9.7; see its own case in `ColorRole.token` for the
+/// contrast fix its dark appearance needed).
 struct FeedSectionHeader: View {
 	let title: String
 
@@ -12,7 +18,7 @@ struct FeedSectionHeader: View {
 		// it out of the String Catalog, same as any dynamic feed content.
 		Text(verbatim: title)
 			.font(Theme.TextStyle.sectionHeader.font)
-			.foregroundStyle(Theme.ColorRole.primaryText.color)
+			.foregroundStyle(Theme.ColorRole.sectionHeader.color)
 			// No `lineLimit`: a single-line cap is exactly the "won't respond
 			// to Dynamic Type" shape `performAccessibilityAudit()` flagged
 			// here (PLAN.md S8.2) — server-driven titles are short in

@@ -90,10 +90,24 @@ struct ProfileScreen: View {
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.themedScreen()
-		.navigationTitle(Text(
-			"Profile",
-			comment: "Navigation title of the Profile tab; also the coming-soon placeholder's title in place of a person's profile.",
-		))
+		// Legacy only ever set a custom "Profile" title when this screen was
+		// pushed to view someone else (`ProfileFeedViewController.swift`'s
+		// `viewWillAppear` sets it only `if isChildViewController`); at the
+		// tab root (your own profile) it left the title alone, inheriting
+		// the one shared nav-bar title "Secret DJ" from
+		// `CustomTabBarViewController.swift:53`. This mirrors that: the tab
+		// root shows the shared brand title, a pushed someone-else's-profile
+		// keeps its own "Profile" title.
+		.navigationTitle(model.isOwnProfile
+			? Text(
+				"Secret DJ",
+				comment: "Navigation title of the Profile tab root (shared brand-name title across all three tabs, matching legacy).",
+			)
+			: Text(
+				"Profile",
+				comment: "Navigation title shown when viewing someone else's profile, pushed from a person link; also the coming-soon placeholder's title in place of a person's profile.",
+			))
+		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
 			if model.isOwnProfile {
 				ToolbarItem(placement: .topBarTrailing) {

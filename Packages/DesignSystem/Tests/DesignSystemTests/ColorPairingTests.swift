@@ -16,6 +16,7 @@ struct ColorPairingTests {
 		let textRoles: Set<Theme.ColorRole> = [
 			.primaryText,
 			.secondaryText,
+			.sectionHeader,
 			.toastText,
 			.accent,
 			.accentText,

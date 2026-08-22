@@ -22,6 +22,15 @@ import SwiftUI
 /// activity-feed row family, but it had the same `shape: .circle` bug this
 /// cell did, with no legacy basis either, so it's been corrected alongside
 /// this cell (S9.6) rather than left to carry the same defect forward.
+///
+/// Its four lines don't share one font recipe either (S9.7): legacy's
+/// `FeedItemCollectionViewCell.xib` sets line 1 (person, tag 101)
+/// HelveticaNeue-Light 14pt, line 2 (title, tag 102) HelveticaNeue-
+/// **Medium** 14pt — the bold line is the *second* line, not the first —
+/// line 3 (details, tag 103) Light 12pt, and line 4 ("since", tag 104)
+/// Light 11pt; see `font(atLineIndex:)` and
+/// `Theme.TextStyle.recipe`'s own `caption2` doc comment for exactly how
+/// each maps onto this design's fonts.
 public struct PersonRowCell: View {
 	let avatarURL: URL?
 	/// Up to four positional lines, straight from
@@ -48,6 +57,18 @@ public struct PersonRowCell: View {
 	/// (S9.5).
 	@ScaledMetric(relativeTo: .subheadline)
 	private var rowHeight: CGFloat = 114
+	/// 14pt — legacy's tag-101 (person) and tag-102 (title) label size
+	/// (`secretdjv3/Cells/FeedItemCollectionViewCell.xib`), shared by both
+	/// lines despite their different weights (S9.7, this type's own doc
+	/// comment). No system Dynamic Type style lands on 14pt at the
+	/// default size (nearest neighbors are `.footnote` at 13pt and
+	/// `.subheadline` at 15pt), so — per the accessibility skill's
+	/// `@ScaledMetric`-seeded-fixed-size allowance — both lines get their
+	/// own scaled font here rather than being force-fit onto
+	/// `Theme.TextStyle.cellTitle`/`cellSubtitle`, which correctly serve a
+	/// different cell family at 15pt/13pt.
+	@ScaledMetric(relativeTo: .subheadline)
+	private var feedLineFontSize: CGFloat = 14
 
 	public init(
 		avatarURL: URL? = nil,
@@ -147,7 +168,7 @@ public struct PersonRowCell: View {
 			if let bottomLine {
 				Spacer(minLength: Spacing.extraSmall)
 				Text(verbatim: bottomLine)
-					.font(Theme.TextStyle.caption.font)
+					.font(Theme.TextStyle.caption2.font)
 					.foregroundStyle(Theme.ColorRole.secondaryText.color)
 					.lineLimit(1)
 			}
@@ -164,11 +185,28 @@ public struct PersonRowCell: View {
 		VStack(alignment: .leading, spacing: Spacing.extraSmall) {
 			ForEach(Array(lines.enumerated()), id: \.offset) { index, line in
 				Text(verbatim: line)
-					.font(index == 0 ? Theme.TextStyle.cellTitle.font : Theme.TextStyle.cellSubtitle.font)
+					.font(font(atLineIndex: index))
 					.foregroundStyle(index == 0 ? Theme.ColorRole.primaryText.color : Theme.ColorRole.secondaryText
 						.color)
 					.lineLimit(lineLimit)
 			}
+		}
+	}
+
+	/// This cell's own per-line font recipe (this type's own doc comment,
+	/// `Theme.TextStyle.recipe`'s `caption2` doc comment): index 0 → tag
+	/// 101 (person) Light 14pt, index 1 → tag 102 (title) Medium 14pt,
+	/// index 2 → tag 103 (details) Light 12pt (`Theme.TextStyle.caption`,
+	/// an exact system-style match), index 3+ → tag 104 ("since") Light
+	/// 11pt (`Theme.TextStyle.caption2`, also exact). Index-based, not
+	/// tag-based, same simplification `effectiveLines`'s own doc comment
+	/// already accepts for a row with fewer than four lines.
+	private func font(atLineIndex index: Int) -> Font {
+		switch index {
+		case 0: .system(size: feedLineFontSize, weight: .regular)
+		case 1: .system(size: feedLineFontSize, weight: .semibold)
+		case 2: Theme.TextStyle.caption.font
+		default: Theme.TextStyle.caption2.font
 		}
 	}
 }

@@ -19,6 +19,9 @@ extension Theme {
 		/// A de-emphasized reading color for supporting copy, e.g. subtitles
 		/// and metadata.
 		case secondaryText
+		/// A feed section header's title color — legacy's dark teal, never
+		/// `primaryText` (S9.7).
+		case sectionHeader
 		/// The text color drawn on `toastSurface`.
 		case toastText
 		/// The brand color for interactive elements and highlighted content.
@@ -53,8 +56,10 @@ extension Theme.ColorRole {
 	/// sanctioned pairing (`textPlaceHolder`), it's adjusted by the minimum
 	/// amount needed to pass, the same mechanism S2.1 used for the brand
 	/// violet accent it replaces. Every pairing's exact margin is proven by
-	/// `ThemeContrastTests`; the lowest across both appearances is 4.73:1
-	/// (`secondaryText` on `secondaryBackground`, dark).
+	/// `ThemeContrastTests`; the lowest across both appearances is 4.58:1
+	/// (`sectionHeader` on `background`, light — legacy's own dark teal,
+	/// ported verbatim there since it already clears; see `sectionHeader`'s
+	/// own case for its dark appearance, which doesn't).
 	public var token: Theme.ColorToken {
 		switch self {
 		case .background:
@@ -128,6 +133,22 @@ extension Theme.ColorRole {
 			Theme.ColorToken(
 				light: Theme.RGBAComponents(red: 100 / 255, green: 100 / 255, blue: 100 / 255),
 				dark: Theme.RGBAComponents(red: 0.65, green: 0.65, blue: 0.65),
+			)
+		case .sectionHeader:
+			// Legacy `SectionHeaderView.xib`'s `textColor` (21/255,
+			// 129/255, 109/255 — a dark teal, distinct from `accent`'s
+			// brighter one) ported verbatim for light: it already clears
+			// `background` light at 4.58:1. Verbatim on `background`
+			// dark (0.157) only reaches 3.08:1 — this role's one
+			// sanctioned pairing (`Theme.sanctionedPairings`) — so dark
+			// is lightened by a flat ×1.3 factor, the same
+			// fixed-factor-until-it-clears-4.5:1 mechanism S2.1 used
+			// for `accent`, landing at 4.92:1 with a safety margin
+			// similar to that pass's own (hue preserved: green > blue >
+			// red in both appearances, same as legacy).
+			Theme.ColorToken(
+				light: Theme.RGBAComponents(red: 21 / 255, green: 129 / 255, blue: 109 / 255),
+				dark: Theme.RGBAComponents(red: 0.1071, green: 0.6576, blue: 0.5557),
 			)
 		case .toastText:
 			// Reuses legacy `AppColors.text` (0.831) verbatim in both
